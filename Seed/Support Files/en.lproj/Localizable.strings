@@ -1,0 +1,21 @@
+/* 
+  Localizable.strings
+  Seed
+
+  Created by GuanQinghao on 09/02/2018.
+  Copyright © 2018 GuanQinghao. All rights reserved.
+*/
+
+
+"puzzle" = "PUZZLE";
+"about" = "ABOUT";
+"record" = "RECORD";
+"gallery" = "GALLERY";
+"music" = "MUSIC";
+"level" = "LEVEL";
+
+/// 游戏
+"time" = "CurrentTime";
+"count" = "CurrentCount";
+"besttime" = "BestTime";
+"leastcount" = "LeastCount";
