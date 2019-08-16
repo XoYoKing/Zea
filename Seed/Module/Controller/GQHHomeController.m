@@ -1,193 +1,299 @@
 //
 //  GQHHomeController.m
-//  Seed
 //
-//  Created by GuanQinghao on 07/03/2018.
-//  Copyright © 2018 GuanQinghao. All rights reserved.
+//  Created by GuanQinghao on 2019-08-11.
+//  Copyright © 2019 GuanQinghao. All rights reserved.
 //
 
-#pragma mark Macro
+#pragma mark Other
 #import "GQHHeader.h"
 
 #pragma mark Model
 
-#pragma mark Object
-
 #pragma mark View
 #import "GQHHomeView.h"
-#import "GQHLockView.h"
-
 
 #pragma mark Controller
 #import "GQHHomeController.h"
 
-#pragma mark CocoaPods
 
-#pragma mark ----------Header End----------
+#pragma mark -
 
-@interface GQHHomeController () <UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout,GQHLockViewDelegate>
+@interface GQHHomeController () <UITableViewDelegate, UITableViewDataSource, GQHHomeViewDelegate>
 
-/// 自定义根视图
+/**
+ 自定义根视图
+ */
 @property (nonatomic, strong) GQHHomeView *rootView;
-/// 定时器
-@property (nonatomic, strong) dispatch_source_t timer;
+
+/**
+ 数据源
+ */
+@property (nonatomic, strong) NSMutableArray *dataSourceArray;
 
 @end
 
-
 @implementation GQHHomeController
 
-#pragma mark --Lifecycle
+#pragma mark - Lifecycle
+/**
+ 1.加载系统根视图或自定义根视图
+ */
 - (void)loadView {
-    // 添加自定义视图
-    DLog();
+    [super loadView];
+    NSLog(@"");
     
     self.view = self.rootView;
 }
 
+/**
+ 2.视图加载完成
+ */
 - (void)viewDidLoad {
     [super viewDidLoad];
-    DLog();
-    
-//    self.timer;
-    
-    GQHLockView *lockView = [[GQHLockView alloc] initWithFrame:CGRectMake(0, 210, 414, 414)];
-    lockView.qh_delegate = self;
-    [self.rootView addSubview:lockView];
+    NSLog(@"");
     
 }
 
+/**
+ 3.视图即将显示
+ 
+ @param animated 是否显示动画效果
+ */
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
-    DLog();
+    NSLog(@"");
     
-    self.qh_backButton.hidden = YES;
-    [self.qh_titleButton setTitle:@"首页" forState:UIControlStateNormal];
-    self.qh_rightMostButton.hidden = YES;
 }
 
+/**
+ 4.视图即将布局其子视图
+ */
+- (void)viewWillLayoutSubviews {
+    [super viewWillLayoutSubviews];
+    NSLog(@"");
+    
+}
+
+/**
+ 5.视图已经布局其子视图
+ */
+- (void)viewDidLayoutSubviews {
+    [super viewDidLayoutSubviews];
+    NSLog(@"");
+    
+}
+
+/**
+ 6.视图已经显示
+ 
+ @param animated 是否显示动画效果
+ */
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
-    DLog();
+    NSLog(@"");
     
 }
 
-#pragma mark --Delegate
-- (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath {
+/**
+ 7.视图即将消失
+ 
+ @param animated 是否显示动画效果
+ */
+- (void)viewWillDisappear:(BOOL)animated {
+    [super viewWillDisappear:animated];
+    NSLog(@"");
     
-    return CGSizeMake(100.0f, 120.0f);
 }
 
-- (UIEdgeInsets)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout insetForSectionAtIndex:(NSInteger)section {
+/**
+ 8.视图已经消失
+ 
+ @param animated 是否显示动画效果
+ */
+- (void)viewDidDisappear:(BOOL)animated {
+    [super viewDidDisappear:animated];
+    NSLog(@"");
     
-    return UIEdgeInsetsZero;
 }
 
-- (CGFloat)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout minimumLineSpacingForSectionAtIndex:(NSInteger)section {
+/**
+ 9.视图被销毁
+ */
+- (void)dealloc {
+    NSLog(@"");
     
-    return 0.0f;
 }
 
-- (CGFloat)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout minimumInteritemSpacingForSectionAtIndex:(NSInteger)section {
-    
-    return 0.0f;
-}
-
-- (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView {
+#pragma mark - UITableViewDataSource
+/**
+ 列表视图的总组数
+ 
+ @param tableView 列表视图
+ @return 列表视图的总组数
+ */
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
+    NSLog(@"");
     
     return 1;
 }
 
-- (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
+/**
+ 列表视图的各组行数
+ 
+ @param tableView 列表视图
+ @param section 列表视图的某组索引值
+ @return 列表视图的某组的行数
+ */
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+    NSLog(@"");
     
-    return 6;
+    return 5;
 }
 
-- (__kindof UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
+/**
+ 列表视图的行视图
+ 
+ @param tableView 列表视图
+ @param indexPath 列表视图某行的索引值
+ @return 列表视图某行视图
+ */
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+    NSLog(@"");
     
-    GQHHomeCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier: NSStringFromClass([GQHHomeCollectionViewCell class]) forIndexPath:indexPath];
+    // 数据data
+    NSMutableDictionary *data = [NSMutableDictionary dictionary];
     
-    cell.qh_titleLabel.text = [NSString stringWithFormat:@"第%ld个按钮", indexPath.row];
-    cell.qh_imageView.image = [UIImage qh_imageWithColor:UIColor.qh_colorWithRandomRGB size:CGSizeMake(70.0f, 70.0f)];
+    // 视图cell
+    GQHHomeTableViewCell *cell = [GQHHomeTableViewCell qh_tableView:tableView cellWithData:data];
+    cell.qh_delegate = self;
     
     return cell;
 }
 
-- (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
+#pragma mark - UITableViewDelegate
+/**
+ 列表视图的各行高度
+ 
+ @param tableView 列表视图
+ @param indexPath 列表视图某行的索引值
+ @return 列表视图某行视图的高度值
+ */
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+    NSLog(@"");
     
-    [GQHLogger qh_print: NSStringFromSelector(_cmd)];
-    
+    return 50.0f;
 }
 
-- (void)qh_lockView:(GQHLockView *)lockView value:(NSString *)value {
+/**
+ 选中列表视图的某行视图
+ 
+ @param tableView 列表视图
+ @param indexPath 选中列表视图的某行视图的索引值
+ */
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    NSLog(@"");
     
-    DLog(@"%@",value);
-    
-    if ([value isEqualToString:@"13457"]) {
-        
-        lockView.qh_show = NO;
-        DLog(@"密码正确");
-    } else {
-        
-        lockView.qh_show = YES;
-        DLog(@"密码错误");
-    }
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
 
-#pragma mark --TargetMethod
-- (IBAction)qh_oneActino:(UIButton *)sender {
+/**
+ 列表视图的组头视图高度
+ 
+ @param tableView 列表视图
+ @param section 列表视图的某组索引值
+ @return 列表视图的某组头视图高度
+ */
+- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
+    NSLog(@"");
     
-    [UIView qh_animateScaledWithLayer:sender.layer type:GQHAnimationScaledTypeInOut];
-    
+    return CGFLOAT_MIN;
 }
 
-- (IBAction)qh_twoActino:(UIButton *)sender {
+/**
+ 列表视图的组自定义头视图
+ 
+ @param tableView 列表视图
+ @param section 列表视图的某组索引值
+ @return 列表视图的某组自定义头视图
+ */
+- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
+    NSLog(@"");
     
-    [UIView qh_animateShakedWithLayer:sender.layer type:GQHAnimationShakedTypeHorizontal];
+    // 头视图数据data
+    NSMutableDictionary *data = [NSMutableDictionary dictionary];
     
+    // 自定义头视图
+    GQHHomeTableViewHeaderView *headerView = [GQHHomeTableViewHeaderView qh_tableView:tableView headerViewWithData:data];
+    headerView.qh_delegate = self;
+    
+    return headerView;
 }
 
-#pragma mark --PrivateMethod
-- (void)logger {
+/**
+ 列表视图的组尾视图高度
+ 
+ @param tableView 列表视图
+ @param section 列表视图的某组索引值
+ @return 列表视图的某组尾视图高度
+ */
+- (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section {
+    NSLog(@"");
     
-    [GQHLogger qh_print: NSStringFromSelector(_cmd)];
+    return CGFLOAT_MIN;
 }
 
-#pragma mark --Setter
+/**
+ 列表视图的组自定义尾视图
+ 
+ @param tableView 列表视图
+ @param section 列表视图的某组索引值
+ @return 列表视图的某组自定义尾视图
+ */
+- (UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section {
+    NSLog(@"");
+    
+    // 尾视图数据data
+    NSMutableDictionary *data = [NSMutableDictionary dictionary];
+    
+    // 自定义尾视图
+    GQHHomeTableViewFooterView *footerView = [GQHHomeTableViewFooterView qh_tableView:tableView footerViewWithData:data];
+    footerView.qh_delegate = self;
+    
+    return footerView;
+}
 
-#pragma mark --Getter
+#pragma mark - GQHHomeViewDelegate
+
+#pragma mark - TargetMethod
+
+#pragma mark - PrivateMethod
+
+#pragma mark - Setter
+
+#pragma mark - Getter
 - (GQHHomeView *)rootView {
     
     if (!_rootView) {
         
         _rootView = [[GQHHomeView alloc] initWithFrame:UIScreen.mainScreen.bounds];
-        _rootView.qh_collectionView.delegate = self;
-        _rootView.qh_collectionView.dataSource = self;
+        _rootView.backgroundColor = [UIColor whiteColor];
+        _rootView.qh_tableView.delegate = self;
+        _rootView.qh_tableView.dataSource = self;
+        _rootView.qh_delegate = self;
     }
     
     return _rootView;
 }
 
-- (dispatch_source_t)timer {
+- (NSMutableArray *)dataSourceArray {
     
-    if (!_timer) {
+    if (!_dataSourceArray) {
         
-        // 创建队列
-        dispatch_queue_t queue = dispatch_get_main_queue();
-        // 创建GCD中的定时器
-        _timer = dispatch_source_create(DISPATCH_SOURCE_TYPE_TIMER, 0, 0, queue);
-        // 设置时间等
-        dispatch_source_set_timer(_timer, DISPATCH_TIME_NOW, 1.0f * NSEC_PER_SEC, 0 * NSEC_PER_SEC);
-        // 调用的任务
-        dispatch_source_set_event_handler(_timer, ^{
-            
-            [self logger];
-        });
-        // 开始执行
-        dispatch_resume(_timer);
+        _dataSourceArray = [NSMutableArray array];
     }
     
-    return _timer;
+    return _dataSourceArray;
 }
 
 @end

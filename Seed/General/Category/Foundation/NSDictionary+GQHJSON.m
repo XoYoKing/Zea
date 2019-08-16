@@ -11,8 +11,13 @@
 
 @implementation NSDictionary (GQHJSON)
 
-/// JSON字符串转字典
-+(NSDictionary*)qh_dictionaryWithJSON:(NSString*)JSON {
+/**
+ JSON字符串转字典
+ 
+ @param JSON JSON字符串
+ @return 字典
+ */
++ (NSDictionary*)qh_dictionaryWithJSON:(NSString*)JSON {
     
     if (JSON && JSON.length > 0) {
         
@@ -32,7 +37,11 @@
     return nil;
 }
 
-/// 字典转JSON字符串
+/**
+ 字典转JSON字符串
+ 
+ @return JSON字符串
+ */
 - (NSString *)qh_JSONString {
     
     NSError *error = [NSError new];
@@ -47,6 +56,7 @@
 }
 
 @end
+
 
 #pragma mark --控制台输出
 /// 交换方法
@@ -65,9 +75,14 @@ static inline void qh_swizzleSelector(Class class, SEL originalSelector, SEL alt
     }
 }
 
-/// Object转换成JSON字符串
+
 @implementation NSObject (GQHPrint)
 
+/**
+ Objective-C对象转JSON字符串
+ 
+ @return JSON字符串
+ */
 - (NSString *)toJSONString {
     
     if (![NSJSONSerialization isValidJSONObject:self]) {
@@ -88,6 +103,8 @@ static inline void qh_swizzleSelector(Class class, SEL originalSelector, SEL alt
 }
 
 @end
+
+
 ///数组打印
 @implementation NSArray (GQHPrint)
 
@@ -138,6 +155,8 @@ static inline void qh_swizzleSelector(Class class, SEL originalSelector, SEL alt
 }
 
 @end
+
+
 /// 字典打印
 @implementation NSDictionary (GQHPrint)
 
@@ -188,8 +207,3 @@ static inline void qh_swizzleSelector(Class class, SEL originalSelector, SEL alt
 }
 
 @end
-
-
-
-
-

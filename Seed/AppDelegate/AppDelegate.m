@@ -9,37 +9,46 @@
 #import "AppDelegate.h"
 #import "GQHHeader.h"
 #import "GQHHomeController.h"
-#import <UserNotifications/UserNotifications.h>
-
-#import "GQHLogger.h"
-#import "GQHGuideView.h"
 
 
 @interface AppDelegate ()
 
 @end
 
-
 @implementation AppDelegate
-
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
     
-    self.window = [[UIWindow alloc]initWithFrame:UIScreen.mainScreen.bounds];
-    // 记录器
-    [GQHLogger qh_sharedLogger].hidden = NO;
+    // 1.初始化应用程序窗口
+    self.window = [[UIWindow alloc] initWithFrame:UIScreen.mainScreen.bounds];
+    [self.window makeKeyAndVisible];
     
+    // 2. 设置根视图
+    // 2.1 首页根视图
     GQHHomeController *homeController = [[GQHHomeController alloc] init];
     UINavigationController *homeNavController = [[UINavigationController alloc] initWithRootViewController:homeController];
     self.window.rootViewController = homeNavController;
     
-    [self.window makeKeyAndVisible];
+    // 2.2 UI根视图
+//    GQHUIController *UIController = [[GQHUIController alloc] init];
+//    UINavigationController *UINavController = [[UINavigationController alloc] initWithRootViewController:UIController];
+//    self.window.rootViewController = UINavController;
     
-    // 游戏配置
-    [self defaultConfiguration];
-    // 全局状态栏样式
-    [UIApplication sharedApplication].statusBarStyle = UIStatusBarStyleLightContent;
+    // 3.记录器
+    [GQHLogger qh_sharedLogger].hidden = NO;
+    
+    // 4.app初始化设置
+    [self defaultAppConfiguration];
+    
+    // 5.监听网络
+    [[GQHNetworkStatusMonitor qh_shareNetStatusMonitor] qh_monitorNetStatus];
+    
+    // 6.3D Touch 功能
+    [self qh_creatAppShortcutItems];
+    
+    // 7、添加全局定时器
+    [[GQHGlobalTimer qh_sharedGlobalTimer] qh_resumeTimer];
     
     return YES;
 }
@@ -80,8 +89,10 @@
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
 }
 
-/// 初次启动配置应用程序默认设置
-- (void)defaultConfiguration {
+/**
+ 初次启动配置应用程序默认设置
+ */
+- (void)defaultAppConfiguration {
     
     if (![NSUserDefaults.standardUserDefaults objectForKey:GQHUserImageKey]) {
         
@@ -96,38 +107,6 @@
     if (![NSUserDefaults.standardUserDefaults objectForKey:GQHUserSoundKey]) {
         
         [NSUserDefaults.standardUserDefaults setObject:@"sound_0" forKey:GQHUserSoundKey];
-    }
-}
-
-/// 创建应用程序主屏3D Touch快捷选项 -- Home Screen Quick Actions
-- (void)creatAppShortcutItems {
-    
-    if (@available(iOS 9.0, *)) {
-        
-        //创建系统风格的icon
-        UIApplicationShortcutIcon *systemAddIcon = [UIApplicationShortcutIcon iconWithType:UIApplicationShortcutIconTypeAdd];
-        //创建应用程序主屏3D Touch快捷选项
-        UIApplicationShortcutItem *addShortcut = [[UIApplicationShortcutItem alloc]initWithType:@"identifier.add" localizedTitle:@"Add" localizedSubtitle:@"" icon:systemAddIcon userInfo:nil];
-        //创建系统风格的icon
-        UIApplicationShortcutIcon *composeIcon = [UIApplicationShortcutIcon iconWithType:UIApplicationShortcutIconTypeCompose];
-        //创建应用程序主屏3D Touch快捷选项
-        UIApplicationShortcutItem *composeShortcut = [[UIApplicationShortcutItem alloc]initWithType:@"identifier.compose" localizedTitle:@"Compose" localizedSubtitle:@"" icon:composeIcon userInfo:nil];
-        
-        //创建系统风格的icon
-        UIApplicationShortcutIcon *systemSearchIcon = [UIApplicationShortcutIcon iconWithType:UIApplicationShortcutIconTypeSearch];
-        //创建应用程序主屏3D Touch快捷选项
-        UIApplicationShortcutItem *searchShortcut = [[UIApplicationShortcutItem alloc]initWithType:@"identifier.search" localizedTitle:@"Search" localizedSubtitle:@"" icon:systemSearchIcon userInfo:nil];
-        
-        //创建自定义风格的icon 图片大小35×35
-        UIApplicationShortcutIcon *customPraiseIcon = [UIApplicationShortcutIcon iconWithTemplateImageName:@"icon.png"];
-        //创建应用程序主屏3D Touch快捷选项
-        UIApplicationShortcutItem *praiseShortcut = [[UIApplicationShortcutItem alloc]initWithType:@"identifier.praise" localizedTitle:@"Praise" localizedSubtitle:@"" icon:customPraiseIcon userInfo:nil];
-        
-        //添加到快捷选项数组  启用3D Touch功能后应用上架自动添加一个分享快捷选项
-        [UIApplication sharedApplication].shortcutItems = @[addShortcut,composeShortcut,searchShortcut,praiseShortcut];
-    } else {
-        // Fallback on earlier versions
-        
     }
 }
 

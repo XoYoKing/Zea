@@ -11,85 +11,74 @@
 
 @implementation UIColor (GQHColor)
 
-#pragma mark --PrimaryColor
-+ (UIColor *)qh_appRedColor {
-    
-    return [UIColor colorWithRed:212/255.0f green:23/255.0f blue:3/255.0f alpha:1.0f];
-}
-
-+ (UIColor *)qh_appGreenColor {
-    
-    return [UIColor colorWithRed:37/255.0f green:182/255.0f blue:114/255.0f alpha:1.0f];
-}
-
-#pragma mark --SecondaryColor
-+ (UIColor *)qh_appYellowColor {
-    
-    return [UIColor colorWithRed:248/255.0f green:191/255.0f blue:18/255.0f alpha:1.0f];
-}
-
-+ (UIColor *)qh_appOrangeColor {
-    
-    return [UIColor colorWithRed:250/255.0f green:142/255.0f blue:1/255.0f alpha:1.0f];
-}
-
-+ (UIColor *)qh_appPinkColor {
-    
-    return [UIColor colorWithRed:253/255.0f green:85/255.0f blue:85/255.0f alpha:1.0f];
-}
-
-
 #pragma mark --Constant
 + (UIColor *)qh_grayColor {
     
-    return [UIColor colorWithRed:153/255.0 green:153/255.0 blue:153/255.0 alpha:1.0];
+    return [UIColor colorWithRed:153/255.0f green:153/255.0f blue:153/255.0f alpha:1.0f];
 }
 
 + (UIColor *)qh_darkGrayColor {
     
-    return [UIColor colorWithRed:102/255.0 green:102/255.0 blue:102/255.0 alpha:1.0];
+    return [UIColor colorWithRed:102/255.0f green:102/255.0f blue:102/255.0f alpha:1.0f];
 }
 
 + (UIColor *)qh_darkBlackColor {
     
-    return [UIColor colorWithRed:51/255.0 green:51/255.0 blue:51/255.0 alpha:1.0];
+    return [UIColor colorWithRed:51/255.0f green:51/255.0f blue:51/255.0f alpha:1.0f];
 }
 
 + (UIColor *)qh_lightGrayColor {
     
-    return [UIColor colorWithRed:238/255.0 green:238/255.0 blue:238/255.0 alpha:1.0];
+    return [UIColor colorWithRed:238/255.0f green:238/255.0f blue:238/255.0f alpha:1.0f];
 }
 
 + (UIColor *)qh_lightStrokeColor {
     
-    return [UIColor colorWithRed:229/255.0 green:229/255.0 blue:229/255.0 alpha:1.0];
+    return [UIColor colorWithRed:229/255.0f green:229/255.0f blue:229/255.0f alpha:1.0f];
 }
 
 + (UIColor *)qh_strokeColor {
     
-    return [UIColor colorWithRed:204/255.0 green:204/255.0 blue:204/255.0 alpha:1.0];
+    return [UIColor colorWithRed:204/255.0f green:204/255.0f blue:204/255.0f alpha:1.0f];
 }
 
 + (UIColor *)qh_appleBlueColor {
     
-    return [UIColor colorWithRed:0/255.0 green:122/255.0 blue:255/255.0 alpha:1.0];
+    return [UIColor colorWithRed:0/255.0f green:122/255.0f blue:255/255.0f alpha:1.0f];
 }
 
 + (UIColor *)qh_appleGrayColor {
     
-    return [UIColor colorWithRed:249/255.0 green:249/255.0 blue:249/255.0 alpha:1.0];
+    return [UIColor colorWithRed:249/255.0f green:249/255.0f blue:249/255.0f alpha:1.0f];
 }
 
 #pragma mark --Converter
-// RGB
+
+/**
+ RGB颜色
+ 
+ @param red 红色R (0~255)
+ @param green 绿色G (0~255)
+ @param blue 蓝色B (0~255)
+ @return RGB颜色
+ */
 + (UIColor *)qh_colorWithRed:(NSUInteger)red green:(NSUInteger)green blue:(NSUInteger)blue {
     
     return [self qh_colorWithRed:red green:green blue:blue alpha:1.0f];
 }
 
+/**
+ RGBA颜色
+ 
+ @param red 红色R (0~255)
+ @param green 绿色G (0~255)
+ @param blue 蓝色B (0~255)
+ @param alpha 透明度A (0.0~1.0)
+ @return RGBA颜色
+ */
 + (UIColor *)qh_colorWithRed:(NSUInteger)red green:(NSUInteger)green blue:(NSUInteger)blue alpha:(CGFloat)alpha {
     
-    alpha = (alpha < 0.0) ? 0.0 : ((alpha > 1.0) ? 1.0 : alpha);
+    alpha = (alpha < 0.0f) ? 0.0f : ((alpha > 1.0f) ? 1.0f : alpha);
     
     if (red < 256 && green < 256 && red < 256) {
         
@@ -100,25 +89,31 @@
     }
 }
 
-// randomColor
-+ (UIColor *)qh_colorWithRandomRGB {
-    
-    NSUInteger red = arc4random()%256;
-    NSUInteger green = arc4random()%256;
-    NSUInteger blue = arc4random()%256;
-    
-    return [self qh_colorWithRed:red green:green blue:blue];
-}
-
-// HSB
+/**
+ HSB颜色
+ 
+ @param hue 色相H (0~360)
+ @param saturation 饱和度S (0~100)
+ @param brightness 亮度B (0~100)
+ @return HSB颜色
+ */
 + (UIColor *)qh_colorWithHue:(NSUInteger)hue saturation:(NSUInteger)saturation brightness:(NSUInteger)brightness {
     
     return [self qh_colorWithHue:hue saturation:saturation brightness:brightness alpha:1.0f];
 }
 
+/**
+ HSBA颜色
+ 
+ @param hue 色相H (0~360)
+ @param saturation 饱和度S (0~100)
+ @param brightness 亮度B (0~100)
+ @param alpha 透明度A (0.0~1.0)
+ @return HSBA颜色
+ */
 + (UIColor *)qh_colorWithHue:(NSUInteger)hue saturation:(NSUInteger)saturation brightness:(NSUInteger)brightness alpha:(CGFloat)alpha {
     
-    alpha = (alpha < 0.0) ? 0.0 : ((alpha > 1.0) ? 1.0 : alpha);
+    alpha = (alpha < 0.0f) ? 0.0f : ((alpha > 1.0f) ? 1.0f : alpha);
     
     hue = (hue > 360) ? 360 : hue;
     saturation = (saturation > 100) ? 100 : saturation;
@@ -127,12 +122,24 @@
     return [UIColor colorWithHue:hue/360.0f saturation:saturation/100.0f brightness:brightness/100.0f alpha:alpha/1.0f];
 }
 
-// Hex
+/**
+ HEX颜色
+ 
+ @param hexString 十六进制字符串
+ @return HEX颜色
+ */
 + (UIColor *)qh_colorWithHexString:(NSString *)hexString {
     
     return [self qh_colorWithHexString:hexString alpha:1.0f];
 }
 
+/**
+ HEXA颜色
+ 
+ @param hexString 十六进制字符串
+ @param alpha 透明度A (0.0~1.0)
+ @return HEXA颜色
+ */
 + (UIColor *)qh_colorWithHexString:(NSString *)hexString alpha:(CGFloat)alpha {
     
     NSString *cString = [[hexString stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]] uppercaseString];
@@ -177,11 +184,24 @@
     return [self qh_colorWithRed:red green:green blue:blue alpha:alpha];
 }
 
+/**
+ HEX颜色
+ 
+ @param hexValue 十六进制值
+ @return HEX颜色
+ */
 + (UIColor *)qh_colorWithHexValue:(uint32_t)hexValue {
     
     return [self qh_colorWithHexValue:hexValue alpha:1.0f];
 }
 
+/**
+ HEXA颜色
+ 
+ @param hexValue 十六进制值
+ @param alpha 透明度A (0.0~1.0)
+ @return HEXA颜色
+ */
 + (UIColor *)qh_colorWithHexValue:(uint32_t)hexValue alpha:(CGFloat)alpha {
     
     int red = (hexValue & 0xFF0000) >> 16;
@@ -191,14 +211,48 @@
     return [self qh_colorWithRed:red green:green blue:blue alpha:alpha];
 }
 
-// 渐变色
-+ (UIColor *)gradientColors:(NSArray *)CGColors startPoint:(CGPoint)startPoint endPoint:(CGPoint)endPoint {
+/**
+ 随机颜色
+ 
+ @return 随机颜色
+ */
++ (UIColor *)qh_colorWithRandomRGB {
+    
+    NSUInteger red = arc4random()%256;
+    NSUInteger green = arc4random()%256;
+    NSUInteger blue = arc4random()%256;
+    
+    return [self qh_colorWithRed:red green:green blue:blue];
+}
+
+/**
+ 渐变色
+ 
+ @param colors 渐变颜色数组
+ @param startPoint 渐变起点
+ @param endPoint 渐变终点
+ @return 渐变色
+ */
++ (UIColor *)qh_gradientColors:(NSArray<UIColor *> *)colors startPoint:(CGPoint)startPoint endPoint:(CGPoint)endPoint {
+    
+    if (colors.count <= 0) {
+        
+        return UIColor.blackColor;
+    }
+    
+    NSMutableArray *CGColors = [NSMutableArray array];
+    
+    // UIColor -> CGColor
+    [colors enumerateObjectsUsingBlock:^(UIColor * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+        
+        [CGColors addObject:(id)obj.CGColor];
+    }];
     
     double width =  fabs(endPoint.x - startPoint.x);
     double height = fabs(endPoint.y - startPoint.y);
     
-    width = width ? : 1.0;
-    height = height ? : 1.0;
+    width = width ? : 1.0f;
+    height = height ? : 1.0f;
     
     CGSize size = CGSizeMake(width, height);
     UIGraphicsBeginImageContextWithOptions(size, NO, 0);

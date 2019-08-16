@@ -48,10 +48,12 @@ typedef NS_ENUM(NSUInteger, GQHDeviceType) {
     iPad_4,
     iPad_Air,
     iPad_Air_2,
+    iPad_Air_3,
     iPad_mini,
     iPad_mini_2,
     iPad_mini_3,
     iPad_mini_4,
+    iPad_mini_5,
     iPad_Pro_129,//12.9寸
     iPad_Pro_97,//9.7寸
     iPad_2017,
@@ -65,24 +67,70 @@ typedef NS_ENUM(NSUInteger, GQHDeviceType) {
     Apple_Watch_4,
 };
 
+NS_ASSUME_NONNULL_BEGIN
 
 @interface UIDevice (GQHDevice)
 
-/// 运营商信息
+/**
+ 运营商名称
+ */
 @property (nonatomic, readonly, copy) NSString *qh_carrierName;
+
+/**
+ 运营商名称
+
+ @return 运营商名称
+ */
 - (NSString *)qh_carrierName;
-/// 运营商代码
+
+/**
+ 运营商代号
+ */
 @property (nonatomic, readonly, copy) NSString *qh_carrierCode;
+
+/**
+ 运营商代号
+
+ @return 运营商代号
+ */
 - (NSString *)qh_carrierCode;
 
-/// 手机磁盘总量
+/**
+ 手机磁盘总量(GB)
+ */
 @property (nonatomic, readonly, assign) CGFloat qh_diskTotalSize;
+
+/**
+ 手机磁盘总量(GB)
+
+ @return 手机磁盘总量(GB)
+ */
 - (CGFloat)qh_diskTotalSize;
-/// 手机可用磁盘容量
+
+/**
+ 手机可用磁盘容量(GB)
+ */
 @property (nonatomic,readonly, assign) CGFloat qh_diskFreeSize;
+
+/**
+ 手机可用磁盘容量(GB)
+
+ @return 手机可用磁盘容量(GB)
+ */
 - (CGFloat)qh_diskFreeSize;
-/// 手机可用内存容量
+
+/**
+ 手机可用内存容量(MB)
+ */
 @property (nonatomic,readonly, assign) CGFloat qh_memoryFreeSize;
+
+/**
+ 手机可用内存容量(MB)
+
+ @return 手机可用内存容量(MB)
+ */
 - (CGFloat)qh_memoryFreeSize;
 
 @end
+
+NS_ASSUME_NONNULL_END

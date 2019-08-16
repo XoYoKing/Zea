@@ -11,17 +11,55 @@
 
 @implementation NSString (GQHFormatter)
 
-// 手机号隐藏格式化 (保留前三位后四位)
+/**
+ 手机号隐藏格式化 (保留前三位后四位)
+ 
+ @param mobile 手机号
+ @return 隐藏的手机号(保留前三位后四位)
+ */
 + (NSString *)qh_formatterSecretStringWithMobile:(NSString *)mobile {
     
-    NSString *aMobile = [mobile stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
-    NSMutableString *mString = [NSMutableString stringWithString:aMobile];
-    
-    if (11 == mString.length) {
+    if (mobile) {
         
-        for (NSInteger i = 3; i < (mString.length - 4); i++) {
+        NSString *aMobile = [mobile stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
+        NSMutableString *mString = [NSMutableString stringWithString:aMobile];
+        
+        if (11 == mString.length) {
             
-            [mString replaceCharactersInRange:NSMakeRange(i, 1) withString:@"*"];
+            for (NSInteger i = 3; i < (mString.length - 4); i++) {
+                
+                [mString replaceCharactersInRange:NSMakeRange(i, 1) withString:@"*"];
+            }
+            
+            return mString;
+        }
+    }
+    
+    return nil;
+}
+
+/**
+ 身份证/银行卡/信用卡格式化 (保留前四位后四位)
+ 
+ @param cardNumber 身份证/银行卡/信用卡卡号
+ @return 隐藏的身份证/银行卡/信用卡卡号(保留前四位后四位)
+ */
++ (NSString *)qh_formatterSecretStringWithCardNumber:(NSString *)cardNumber {
+    
+    if (cardNumber) {
+        
+        NSString *aCardNumber = [cardNumber stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
+        NSMutableString *mString = [NSMutableString stringWithString:aCardNumber];
+        
+        if (mString.length < 8) {
+            
+            return nil;
+        }
+        
+        for (NSInteger i = 4; i < (mString.length - 4); i++) {
+            
+            NSRange range = NSMakeRange(i, 1);
+            [mString replaceCharactersInRange:range withString:@"*"];
         }
         
         return mString;
@@ -30,27 +68,12 @@
     return nil;
 }
 
-// 银行卡／信用卡格式化 (保留前四位后四位)
-+ (NSString *)qh_formatterSecretStringWithCardNumber:(NSString *)cardNumber {
-    
-    NSString *aCardNumber = [cardNumber stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
-    NSMutableString *mString = [NSMutableString stringWithString:aCardNumber];
-    
-    if (mString.length < 8) {
-        
-        return nil;
-    }
-    
-    for (NSInteger i = 4; i < (mString.length - 4); i++) {
-        
-        NSRange range = NSMakeRange(i, 1);
-        [mString replaceCharactersInRange:range withString:@"*"];
-    }
-    
-    return mString;
-}
-
-// 数量转中文单位
+/**
+ 数量转中文单位
+ 
+ @param value 数量值
+ @return 带中文单位的数量
+ */
 + (NSString *)qh_formatterChineseAmountStringWithValue:(CGFloat)value {
     
     if ((int)(floor(value) / 100000000)) {
@@ -65,7 +88,13 @@
     }
 }
 
-// 计算文本的大小
+/**
+ 计算文本的大小
+ 
+ @param font 文本字体
+ @param maxSize 最大size
+ @return 计算后的文本size
+ */
 - (CGSize)qh_formatterSizeWithFont:(UIFont *)font maxSize:(CGSize)maxSize {
     
     NSDictionary *attributeDictionary = [NSDictionary dictionaryWithObjectsAndKeys:font, NSFontAttributeName, nil];

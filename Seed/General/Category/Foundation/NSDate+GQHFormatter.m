@@ -26,7 +26,11 @@ static NSString * const kDateTimeFormatterTypeColonHourMinute = @"HH:mm";
 
 @implementation NSDate (GQHFormatter)
 
-// 单例
+/**
+ 时间格式化单例
+ 
+ @return 时间格式化单例
+ */
 + (NSDateFormatter *)qh_defaultDateFormatter {
     
     static NSDateFormatter *formatter = nil;
@@ -39,7 +43,12 @@ static NSString * const kDateTimeFormatterTypeColonHourMinute = @"HH:mm";
     return formatter;
 }
 
-// 时间戳格式化为时间差
+/**
+ 时间戳(1970 单位秒)格式化为时间差
+ 
+ @param timeStamp 时间戳(1970 单位秒)
+ @return 时间差
+ */
 + (NSString *)qh_formatterTimeDifferenceWith:(NSTimeInterval)timeStamp {
     
     // 第一步，获取当前系统的时间戳
@@ -74,7 +83,13 @@ static NSString * const kDateTimeFormatterTypeColonHourMinute = @"HH:mm";
     return  string;
 }
 
-/// 时间戳(1970)格式化为指定字符串
+/**
+ 时间戳(1970 单位秒)格式化为指定字符串
+ 
+ @param timeStamp 时间戳(1970 单位秒)
+ @param formatterType 时间格式化样式
+ @return 指定时间格式字符串
+ */
 + (NSString *)qh_formatterDateStringWithTimeStamp:(NSTimeInterval)timeStamp formatter:(GQHDateTimeFormatterType)formatterType {
     
     NSDate *date = [NSDate dateWithTimeIntervalSince1970:timeStamp/1000];
@@ -87,7 +102,13 @@ static NSString * const kDateTimeFormatterTypeColonHourMinute = @"HH:mm";
     return dateString;
 }
 
-/// 字符串格式化为时间戳(1970)
+/**
+ 字符串格式化为时间戳(1970 单位秒)
+ 
+ @param dateString 时间字符串
+ @param formatterType 时间格式化样式
+ @return 时间戳(1970 单位秒)
+ */
 + (NSTimeInterval)qh_formatterTimeStampWithDateString:(NSString *)dateString formatter:(GQHDateTimeFormatterType)formatterType {
     
     // 把字符串格式化为时间
@@ -98,7 +119,13 @@ static NSString * const kDateTimeFormatterTypeColonHourMinute = @"HH:mm";
     return timeStamp;
 }
 
-/// 字符串格式化为时间类型
+/**
+ 字符串格式化为时间类型
+ 
+ @param dateString 时间字符串
+ @param formatterType 时间格式化样式
+ @return 时间类型
+ */
 + (NSDate *)qh_formatterDateWithDateString:(NSString *)dateString formatter:(GQHDateTimeFormatterType)formatterType {
     
     // 设置日期格式化
@@ -110,7 +137,13 @@ static NSString * const kDateTimeFormatterTypeColonHourMinute = @"HH:mm";
     return date;
 }
 
-/// 时间类型格式化为指定字符串
+/**
+ 时间类型格式化为指定字符串
+ 
+ @param date 时间类型
+ @param formatterType 时间格式化样式
+ @return 指定时间字符串
+ */
 + (NSString *)qh_formatterDateStringWithDate:(NSDate *)date formatter:(GQHDateTimeFormatterType)formatterType {
     
     // 设置日期格式化
@@ -122,6 +155,12 @@ static NSString * const kDateTimeFormatterTypeColonHourMinute = @"HH:mm";
     return dateString;
 }
 
+/**
+ 枚举类型值(NSString)
+ 
+ @param formatterType 时间格式化样式
+ @return 时间格式化字符串
+ */
 + (NSString *)formatterTypeStringWith:(GQHDateTimeFormatterType)formatterType {
     
     switch (formatterType) {
@@ -155,7 +194,11 @@ static NSString * const kDateTimeFormatterTypeColonHourMinute = @"HH:mm";
     }
 }
 
-/// 是否为昨天
+/**
+ 是否为昨天
+ 
+ @return 是否为昨天
+ */
 - (BOOL)qh_isYesterday {
     
     NSDateFormatter *dateFormatter = NSDate.qh_defaultDateFormatter;
@@ -175,7 +218,11 @@ static NSString * const kDateTimeFormatterTypeColonHourMinute = @"HH:mm";
     return components.year == 0 && components.month == 0 && components.day == 1;
 }
 
-/// 是否为今天
+/**
+ 是否为今天
+ 
+ @return 是否为今天
+ */
 - (BOOL)qh_isToday {
     
     NSCalendar *calendar = [NSCalendar currentCalendar];
@@ -188,7 +235,11 @@ static NSString * const kDateTimeFormatterTypeColonHourMinute = @"HH:mm";
     return nowComponents.year == selfComponents.year && nowComponents.month == selfComponents.month && nowComponents.day == selfComponents.day;
 }
 
-/// 是否为明天
+/**
+ 是否为明天
+ 
+ @return 是否为明天
+ */
 - (BOOL)qh_isTomorrow {
     
     NSDateFormatter *dateFormatter = NSDate.qh_defaultDateFormatter;
@@ -208,7 +259,11 @@ static NSString * const kDateTimeFormatterTypeColonHourMinute = @"HH:mm";
     return components.year == 0 && components.month == 0 && components.day == -1;
 }
 
-/// 是否为今年
+/**
+ 是否为今年
+ 
+ @return 是否为今年
+ */
 - (BOOL)qh_isThisYear {
     
     NSCalendar *calendar = [NSCalendar currentCalendar];

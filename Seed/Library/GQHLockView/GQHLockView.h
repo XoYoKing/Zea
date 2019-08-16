@@ -7,25 +7,42 @@
 //
 
 #import <UIKit/UIKit.h>
-
-
 @class GQHLockView;
+
+
+/**
+ 手势解锁视图代理
+ */
 @protocol GQHLockViewDelegate <NSObject>
 
 @required
 
 @optional
-/// 手势解锁代理(获取value 判断后设置qh_show)
+/**
+ 手势解锁(获取value 判断后设置qh_show)
+
+ @param lockView 手势解锁视图
+ @param value 解锁值
+ */
 - (void)qh_lockView:(GQHLockView *)lockView value:(NSString *)value;
 
 @end
 
 
+NS_ASSUME_NONNULL_BEGIN
+
 @interface GQHLockView : UIView
 
-/// 代理
+/**
+ 视图代理
+ */
 @property (nonatomic, weak) id<GQHLockViewDelegate> qh_delegate;
-/// 解锁错误结果是否显示
+
+/**
+ 是否显示解锁错误
+ */
 @property (nonatomic, assign) BOOL qh_show;
 
 @end
+
+NS_ASSUME_NONNULL_END

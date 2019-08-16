@@ -10,20 +10,24 @@
 #define GQHMacro_h
 
 
-/// 弱引用
-#define GQH_WEAKSELF     __weak typeof(self) weakSelf = self;
-/// 弱引用变强引用
-#define GQH_STRONGSELF   __strong __typeof(self) strongSelf = weakSelf;
-
-
-/// debug 输出
+/// 控制台打印
 #ifdef DEBUG
-#define DLog(format, ...)   NSLog((@"\n[File:%s]\n" "[Function:%s]\n" "[Line:%d]\n" "[Output:"format"]\n"), __FILE__, __FUNCTION__, __LINE__, ##__VA_ARGS__)
-#define NSLog(...) NSLog(__VA_ARGS__)
+
+#define NSLog(format, ...)   printf("[%s] [%s] %s [%d] %s\n",[[[NSString stringWithFormat:@"%@",[NSDate dateWithTimeIntervalSinceNow:(8 * 60 * 60)]] substringToIndex:19] UTF8String],[[[NSString stringWithUTF8String: __FILE__] lastPathComponent] UTF8String],[[NSString stringWithUTF8String:__FUNCTION__] UTF8String],__LINE__, [[NSString stringWithFormat:format, ##__VA_ARGS__] UTF8String])
+
 #else
-#define DLog(...)
+
 #define NSLog(...)
+
 #endif
+
+/// 用户Token
+#define USER_TOKEN                          @"userTokenKey"
+#define USER_GET_TOKEN                      [[NSUserDefaults standardUserDefaults] valueForKey:USER_TOKEN]
+
+/// token刷新
+#define USER_REFRESH_TOKEN                  @"userRefreshTokenKey"
+#define USER_GET_REFRESH_TOKEN              [[NSUserDefaults standardUserDefaults] valueForKey:USER_REFRESH_TOKEN]
 
 
 #endif /* GQHMacro_h */

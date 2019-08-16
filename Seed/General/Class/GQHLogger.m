@@ -11,18 +11,31 @@
 
 @interface GQHLog : NSObject
 
-/// 时间戳
+/**
+ 时间戳
+ */
 @property (nonatomic, assign) double timeStamp;
-/// 时间文本
+
+/**
+ 时间文本
+ */
 @property (nonatomic, copy) NSString *timeText;
-/// 日志文本
+
+/**
+ 日志记录文本
+ */
 @property (nonatomic, copy) NSString *logText;
 
 @end
 
-
 @implementation GQHLog
 
+/**
+ 初始化日志记录
+
+ @param text 日志记录文本
+ @return 日志记录
+ */
 + (instancetype)logWithText:(NSString *)text {
     
     GQHLog *log = [[GQHLog alloc] init];
@@ -41,50 +54,35 @@
 
 @interface GQHLogger ()
 
-/// 记录视图
+/**
+ 日志记录视图
+ */
 @property (nonatomic, strong) UITextView *textView;
-/// 记录数组
+
+/**
+ 日志记录数组
+ */
 @property (nonatomic, strong) NSMutableArray *logArray;
 
 @end
 
-
 @implementation GQHLogger
 
-/// 记录器单例
-static GQHLogger *logger = nil;
-+ (instancetype)qh_sharedLogger {
-    
-    static dispatch_once_t onceToken;
-    dispatch_once(&onceToken, ^{
-        
-        logger = [[GQHLogger alloc] init];
-    });
-    
-    return logger;
-}
-
-- (instancetype)init {
-    self = [super initWithFrame:CGRectMake(0.0f, 0.0f, CGRectGetWidth(UIScreen.mainScreen.bounds), 200.0f)];
-    
-    if (self) {
-        
-        self.rootViewController = [UIViewController new];
-        self.windowLevel = UIWindowLevelAlert;
-        self.backgroundColor = [UIColor colorWithWhite:0.0f alpha:0.2f];
-        self.userInteractionEnabled = NO;
-        
-        [self addSubview:self.textView];
-    }
-    
-    return self;
-}
-/// 输出记录
+/**
+ 输出日志记录
+ 
+ @param text 日志记录
+ */
 + (void)qh_print:(NSString *)text {
     
     [[self qh_sharedLogger] qh_print:text];
 }
-/// 输出记录
+
+/**
+ 输出日志记录
+ 
+ @param text 日志记录
+ */
 - (void)qh_print:(NSString *)text {
     
     if (text && text.length > 0) {
@@ -106,7 +104,66 @@ static GQHLogger *logger = nil;
     
     return;
 }
-/// 刷新记录器视图
+
+/**
+ 清除日志记录
+ */
++ (void)qh_clear {
+    
+    [[self qh_sharedLogger] qh_clear];
+}
+
+/**
+ 清除日志记录
+ */
+- (void)qh_clear {
+    
+    self.textView.attributedText = nil;
+    self.logArray = nil;
+}
+
+/// 日志记录器单例
+static GQHLogger *logger = nil;
+
+/**
+ 日志记录器单例
+ 
+ @return 日志记录器单例
+ */
++ (instancetype)qh_sharedLogger {
+    
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        
+        logger = [[GQHLogger alloc] init];
+    });
+    
+    return logger;
+}
+
+/**
+ 初始化日志记录器
+
+ @return 日志记录器
+ */
+- (instancetype)init {
+    
+    if (self = [super initWithFrame:CGRectMake(0.0f, 0.0f, CGRectGetWidth(UIScreen.mainScreen.bounds), 200.0f)]) {
+        
+        self.rootViewController = [UIViewController new];
+        self.windowLevel = UIWindowLevelAlert;
+        self.backgroundColor = [UIColor colorWithWhite:0.0f alpha:0.2f];
+        self.userInteractionEnabled = NO;
+        
+        [self addSubview:self.textView];
+    }
+    
+    return self;
+}
+
+/**
+ 刷新记录器视图
+ */
 - (void)reloadDisplay {
     
     NSMutableAttributedString *attributedStringM = [NSMutableAttributedString new];
@@ -116,6 +173,7 @@ static GQHLogger *logger = nil;
     for (GQHLog *log in self.logArray) {
         
         NSMutableAttributedString *string = [[NSMutableAttributedString alloc] initWithString:log.logText];
+        
         UIColor *color = timeStamp - log.timeStamp > 0.1f ? UIColor.whiteColor : UIColor.yellowColor;
         [string addAttribute:NSForegroundColorAttributeName value:color range:NSMakeRange(0, string.length)];
         
@@ -124,17 +182,6 @@ static GQHLogger *logger = nil;
     
     self.textView.attributedText = attributedStringM;
     [self.textView scrollRangeToVisible:NSMakeRange(attributedStringM.length - 1, 1)];
-}
-/// 清除记录
-+ (void)qh_clear {
-    
-    [[self qh_sharedLogger] qh_clear];
-}
-/// 清除记录
-- (void)qh_clear {
-    
-    self.textView.attributedText = nil;
-    self.logArray = nil;
 }
 
 - (void)layoutSubviews {

@@ -8,12 +8,16 @@
 
 
 #import "GQHLockView.h"
-#import "GQHHeader.h"
+#import "UIColor+GQHColor.h"
+#import "UIView+GQHFrame.h"
 
 
-NSString *kErrorColor = @"F76432";
-NSString *kNormalColor = @"D5DBE8";
-NSString *kSelectedColor = @"2381F9";
+/// 错误颜色
+NSString *kErrorColor = @"#F76432";
+/// 正常颜色
+NSString *kNormalColor = @"#D5DBE8";
+/// 选中颜色
+NSString *kSelectedColor = @"#2381F9";
 
 /// 触点内比例
 CGFloat const kRatio = 0.35f;
@@ -25,6 +29,13 @@ NSInteger const kColumnCount = 3;
 CGFloat const kLineWidth = 5.0f;
 
 
+/**
+ 手机解锁触点视图样式
+
+ - GQHLockItemViewStyleNormal: 正常样式
+ - GQHLockItemViewStyleSelected: 选中样式
+ - GQHLockItemViewStyleError: 错误样式
+ */
 typedef NS_ENUM(NSUInteger, GQHLockItemViewStyle) {
     
     GQHLockItemViewStyleNormal,
@@ -32,23 +43,20 @@ typedef NS_ENUM(NSUInteger, GQHLockItemViewStyle) {
     GQHLockItemViewStyleError,
 };
 
+
 @interface GQHLockItemView : UIView
 
-/// 触点中心点视图
+/**
+ 中心小触点视图
+ */
 @property (nonatomic, strong) UIView *dotView;
 
-/// 解锁失败颜色
-@property (nonatomic, strong) UIColor *errorColor;
-/// 解锁正常颜色
-@property (nonatomic, strong) UIColor *normalColor;
-/// 解锁选中颜色
-@property (nonatomic, strong) UIColor *selectedColor;
-
-/// 样式
+/**
+ 视图样式
+ */
 @property (nonatomic, assign) GQHLockItemViewStyle itemViewStyle;
 
 @end
-
 
 @implementation GQHLockItemView
 
@@ -66,12 +74,12 @@ typedef NS_ENUM(NSUInteger, GQHLockItemViewStyle) {
 - (void)layoutSubviews {
     [super layoutSubviews];
     
-    // 圆角
+    // 大触点视图
     CGFloat width = CGRectGetWidth(self.bounds);
     CGFloat radius = 0.5f * width;
     [self qh_cornerWithRaius:radius byRoundingCorners:UIRectCornerAllCorners];
     
-    // 圆角
+    // 小触点视图
     CGFloat dotWidth = kRatio * CGRectGetWidth(self.bounds);
     CGFloat dotRadius = 0.5f * dotWidth;
     self.dotView.frame = CGRectMake(0.0f, 0.0f, dotWidth, dotWidth);
@@ -90,36 +98,6 @@ typedef NS_ENUM(NSUInteger, GQHLockItemViewStyle) {
     return _dotView;
 }
 
-- (UIColor *)errorColor {
-    
-    if (!_errorColor) {
-        
-        _errorColor = [UIColor qh_colorWithHexString:kErrorColor];
-    }
-    
-    return _errorColor;
-}
-
-- (UIColor *)normalColor {
-    
-    if (!_normalColor) {
-        
-        _normalColor = [UIColor qh_colorWithHexString:kNormalColor];
-    }
-    
-    return _normalColor;
-}
-
-- (UIColor *)selectedColor {
-    
-    if (!_selectedColor) {
-        
-        _selectedColor = [UIColor qh_colorWithHexString:kSelectedColor];
-    }
-    
-    return _selectedColor;
-}
-
 - (void)setItemViewStyle:(GQHLockItemViewStyle)itemViewStyle {
     
     _itemViewStyle = itemViewStyle;
@@ -128,20 +106,23 @@ typedef NS_ENUM(NSUInteger, GQHLockItemViewStyle) {
             
         case GQHLockItemViewStyleNormal: {
             
+            // 正常样式
             self.backgroundColor = UIColor.lightGrayColor;
             self.dotView.backgroundColor = UIColor.grayColor;
         }
             break;
         case GQHLockItemViewStyleSelected: {
             
-            self.backgroundColor = self.normalColor;
-            self.dotView.backgroundColor = self.selectedColor;
+            // 选中样式
+            self.backgroundColor = [UIColor qh_colorWithHexString:kNormalColor];
+            self.dotView.backgroundColor = [UIColor qh_colorWithHexString:kSelectedColor];
         }
             break;
         case GQHLockItemViewStyleError: {
             
-            self.backgroundColor = self.normalColor;
-            self.dotView.backgroundColor = self.errorColor;
+            // 错误样式
+            self.backgroundColor = [UIColor qh_colorWithHexString:kNormalColor];
+            self.dotView.backgroundColor = [UIColor qh_colorWithHexString:kErrorColor];
         }
             break;
     }
@@ -152,24 +133,36 @@ typedef NS_ENUM(NSUInteger, GQHLockItemViewStyle) {
 
 @interface GQHLockView ()
 
-/// 触点数组
+/**
+ 触点数组
+ */
 @property (nonatomic, strong) NSMutableArray <GQHLockItemView *> *itemViewArray;
-/// 选中的触点数组
+
+/**
+ 选中的触点数组
+ */
 @property (nonatomic, strong) NSMutableArray <GQHLockItemView *> *selectedItemViewArray;
 
-/// 手指触点位置
+/**
+ 手指触点位置
+ */
 @property (nonatomic, assign) CGPoint endPoint;
-/// 绘线层
+
+/**
+ 绘线层
+ */
 @property (nonatomic, strong) CAShapeLayer *shapeLayer;
 
-/// 解锁密码
+/**
+ 解锁密码值
+ */
 @property (nonatomic, copy) NSString *value;
 
 @end
 
-
 @implementation GQHLockView
 
+#pragma mark - Lifecycle
 - (instancetype)initWithFrame:(CGRect)frame {
     
     if (self = [super initWithFrame:frame]) {
@@ -185,7 +178,6 @@ typedef NS_ENUM(NSUInteger, GQHLockItemViewStyle) {
     return self;
 }
 
-#pragma mark --View
 - (void)layoutSubviews {
     [super layoutSubviews];
     
@@ -209,9 +201,15 @@ typedef NS_ENUM(NSUInteger, GQHLockItemViewStyle) {
     }
 }
 
-#pragma mark --Delegate
+#pragma mark - Delegate
 
-#pragma mark --TargetMethod
+#pragma mark - TargetMethod
+/**
+ 开始触摸屏幕
+
+ @param touches 触摸点
+ @param event 触摸事件
+ */
 - (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event {
     
     UITouch *touch = [touches anyObject];
@@ -227,6 +225,12 @@ typedef NS_ENUM(NSUInteger, GQHLockItemViewStyle) {
     [self setNeedsDisplay];
 }
 
+/**
+ 移动触摸点
+
+ @param touches 触摸点
+ @param event 触摸事件
+ */
 - (void)touchesMoved:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event {
     
     UITouch *touch = [touches anyObject];
@@ -246,6 +250,12 @@ typedef NS_ENUM(NSUInteger, GQHLockItemViewStyle) {
     }
 }
 
+/**
+ 结束触摸屏幕
+
+ @param touches 触摸点
+ @param event 触摸事件
+ */
 - (void)touchesEnded:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event {
     
     GQHLockItemView *itemView = [self.selectedItemViewArray lastObject];
@@ -285,6 +295,12 @@ typedef NS_ENUM(NSUInteger, GQHLockItemViewStyle) {
     });
 }
 
+/**
+ 取消触摸屏幕
+
+ @param touches 触摸点
+ @param event 触摸事件
+ */
 - (void)touchesCancelled:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event {
     
     [self.selectedItemViewArray removeAllObjects];
@@ -299,7 +315,13 @@ typedef NS_ENUM(NSUInteger, GQHLockItemViewStyle) {
     }
 }
 
-#pragma mark --PrivateMethod
+#pragma mark - PrivateMethod
+
+/**
+ 绘图
+
+ @param rect 视图范围
+ */
 - (void)drawRect:(CGRect)rect {
     [super drawRect:rect];
     
@@ -348,7 +370,12 @@ typedef NS_ENUM(NSUInteger, GQHLockItemViewStyle) {
     }
 }
 
-/// 触点所在视图
+/**
+ 触点所在视图
+
+ @param point 触点位置
+ @return 触点所在视图
+ */
 - (GQHLockItemView *)itemViewContainPoint:(CGPoint)point {
     
     for (GQHLockItemView *itemView in self.itemViewArray) {
@@ -362,7 +389,12 @@ typedef NS_ENUM(NSUInteger, GQHLockItemViewStyle) {
     return nil;
 }
 
-/// 改变触点视图状态
+/**
+ 改变触点视图状态
+
+ @param itemView 触点所在视图
+ @param style 触点视图样式
+ */
 - (void)alterItemView:(GQHLockItemView *)itemView style:(GQHLockItemViewStyle)style {
     
     if (itemView.itemViewStyle != style) {
@@ -371,9 +403,9 @@ typedef NS_ENUM(NSUInteger, GQHLockItemViewStyle) {
     }
 }
 
-#pragma mark --Setter
+#pragma mark - Setter
 
-#pragma mark --Getter
+#pragma mark - Getter
 - (NSMutableArray<GQHLockItemView *> *)itemViewArray {
     
     if (!_itemViewArray) {

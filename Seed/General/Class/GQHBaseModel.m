@@ -7,7 +7,11 @@
 //
 
 #import "GQHBaseModel.h"
+#import "GQHHeader.h"
+
 
 @implementation GQHBaseModel
+
+#warning to-do 请求token 刷新token 保存token
 
 @end

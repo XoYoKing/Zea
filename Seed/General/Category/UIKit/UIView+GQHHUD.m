@@ -7,11 +7,12 @@
 //
 
 #import "UIView+GQHHUD.h"
-#import <MBProgressHUD.h>
+#import <MBProgressHUD/MBProgressHUD.h>
 
 
 @implementation UIView (GQHHUD)
 
+#pragma mark --HUD
 + (instancetype)shareHUD {
     
     static MBProgressHUD *HUD = nil;
@@ -44,6 +45,20 @@
     [[[self class] shareHUD] hideAnimated:YES];
 }
 
+#pragma mark --toast
++ (instancetype)shareToast {
+    
+    static MBProgressHUD *toast = nil;
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        
+        toast = [[MBProgressHUD alloc] initWithView:[UIApplication sharedApplication].keyWindow];
+        toast.removeFromSuperViewOnHide = YES;
+    });
+    
+    return toast;
+}
+
 - (void)showToastWithText:(NSString *)toastString {
     
     CGPoint offset = CGPointMake(0.0f, 0.5f * CGRectGetHeight([UIScreen mainScreen].bounds));
@@ -55,16 +70,16 @@
     
     if (toastString && toastString.length > 0) {
         
-        MBProgressHUD *HUD = [[self class] shareHUD];
-        HUD.mode = MBProgressHUDModeText;
-        HUD.label.text = toastString;
-        HUD.offset = offset;
-        [[UIApplication sharedApplication].keyWindow addSubview:HUD];
-        [HUD showAnimated:YES];
+        MBProgressHUD *toast = [[self class] shareToast];
+        toast.mode = MBProgressHUDModeText;
+        toast.label.text = toastString;
+        toast.offset = offset;
+        [[UIApplication sharedApplication].keyWindow addSubview:toast];
+        [toast showAnimated:YES];
         
-        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.15 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1.0f * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
             
-            [self hideHUD];
+            [self hideToast];
         });
     }
 }
@@ -72,8 +87,14 @@
 - (void)showToastWithText:(NSString *)toastString afterDelay:(NSTimeInterval)timeInterval {
     
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(timeInterval * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        
         [self showToastWithText:toastString];
     });
+}
+
+- (void)hideToast {
+    
+    [[[self class] shareToast] hideAnimated:YES];
 }
 
 @end

@@ -7,9 +7,16 @@
 //
 
 #import "NSObject+GQHProperty.h"
+#import "GQHMacro.h"
+
 
 @implementation NSObject (GQHProperty)
 
+/**
+ 控制台输出属性代码
+ 
+ @param dictionary 属性字典
+ */
 + (void)qh_outputPropertyCodeWithDictionary:(NSDictionary *)dictionary {
     
     NSMutableString *autoCode = [NSMutableString string];
@@ -21,27 +28,27 @@
         //
         if ([obj isKindOfClass:[NSNumber class]]) {
             
-            property = [NSString stringWithFormat:@"@property (nonatomic, strong) NSNumber *%@;", key];
+            property = [NSString stringWithFormat:@"/**\n <#Description#>\n*/\n@property (nonatomic, strong) NSNumber *%@;", key];
         }
         //
         if ([obj isKindOfClass:[NSArray class]]) {
             
-            property = [NSString stringWithFormat:@"@property (nonatomic, strong) NSArray *%@;", key];
+            property = [NSString stringWithFormat:@"/**\n <#Description#>\n*/\n@property (nonatomic, strong) NSArray *%@;", key];
         }
         //
         if ([obj isKindOfClass:[NSDictionary class]]) {
             
-            property = [NSString stringWithFormat:@"@property (nonatomic, strong) NSDictionary *%@;", key];
+            property = [NSString stringWithFormat:@"/**\n <#Description#>\n*/\n@property (nonatomic, strong) NSDictionary *%@;", key];
         }
         //
         if ([obj isKindOfClass:[NSString class]]) {
             
-            property = [NSString stringWithFormat:@"@property (nonatomic, copy) NSString *%@;", key];
+            property = [NSString stringWithFormat:@"/**\n <#Description#>\n*/\n@property (nonatomic, copy) NSString *%@;", key];
         }
         //
         if ([obj isKindOfClass:NSClassFromString(@"__NSCFBoolean")]) {
             
-            property = [NSString stringWithFormat:@"@property (nonatomic, assign) BOOL %@;", key];
+            property = [NSString stringWithFormat:@"/**\n <#Description#>\n*/\n@property (nonatomic, assign) BOOL %@;", key];
         }
         
         if (property.length > 0) {

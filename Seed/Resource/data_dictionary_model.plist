@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<array>
+	<dict>
+		<key>title</key>
+		<string>User</string>
+		<key>description</key>
+		<string>用户</string>
+	</dict>
+	<dict>
+		<key>title</key>
+		<string>Token</string>
+		<key>description</key>
+		<string>token</string>
+	</dict>
+	<dict>
+		<key>title</key>
+		<string>Menu</string>
+		<key>description</key>
+		<string>按钮菜单</string>
+	</dict>
+	<dict>
+		<key>title</key>
+		<string>Image</string>
+		<key>description</key>
+		<string>游戏图片</string>
+	</dict>
+	<dict>
+		<key>title</key>
+		<string>Level</string>
+		<key>description</key>
+		<string>游戏等级</string>
+	</dict>
+	<dict>
+		<key>title</key>
+		<string>Record</string>
+		<key>description</key>
+		<string>游戏记录</string>
+	</dict>
+	<dict>
+		<key>title</key>
+		<string>AppVersion</string>
+		<key>description</key>
+		<string>应用程序版本信息</string>
+	</dict>
+	<dict>
+		<key>title</key>
+		<string>AppFeedback</string>
+		<key>description</key>
+		<string>应用程序意见反馈</string>
+	</dict>
+	<dict>
+		<key>title</key>
+		<string>AppAbout</string>
+		<key>description</key>
+		<string>关于应用程序</string>
+	</dict>
+</array>
+</plist>

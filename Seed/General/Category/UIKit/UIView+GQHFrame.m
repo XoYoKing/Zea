@@ -7,16 +7,17 @@
 //
 
 #import "UIView+GQHFrame.h"
+#import <objc/message.h>
 
 
-CGFloat const GQHFrameSingleMargin = 16.0f;
+/// 全局常量-视图单倍外边距
+CGFloat const GQHFrameSingleMargin = 12.0f;
+/// 全局常量-视图双倍外边距
 CGFloat const GQHFrameDoubleMargin = 2 * GQHFrameSingleMargin;
 
 
 @implementation UIView (GQHFrame)
 
-#pragma mark Setter/Getter
-// qh_x
 - (void)setQh_x:(CGFloat)qh_x {
     
     CGRect rect = self.frame;
@@ -29,7 +30,6 @@ CGFloat const GQHFrameDoubleMargin = 2 * GQHFrameSingleMargin;
     return CGRectGetMinX(self.frame);
 }
 
-// qh_y
 - (void)setQh_y:(CGFloat)qh_y {
     
     CGRect rect = self.frame;
@@ -42,7 +42,6 @@ CGFloat const GQHFrameDoubleMargin = 2 * GQHFrameSingleMargin;
     return CGRectGetMinY(self.frame);
 }
 
-// qh_width
 - (void)setQh_width:(CGFloat)qh_width {
     
     CGRect rect = self.frame;
@@ -55,7 +54,6 @@ CGFloat const GQHFrameDoubleMargin = 2 * GQHFrameSingleMargin;
     return CGRectGetWidth(self.frame);
 }
 
-// qh_height
 - (void)setQh_height:(CGFloat)qh_height {
     
     CGRect rect = self.frame;
@@ -68,7 +66,6 @@ CGFloat const GQHFrameDoubleMargin = 2 * GQHFrameSingleMargin;
     return CGRectGetHeight(self.frame);
 }
 
-// qh_left
 - (void)setQh_left:(CGFloat)qh_left {
     
     CGRect rect = self.frame;
@@ -81,7 +78,6 @@ CGFloat const GQHFrameDoubleMargin = 2 * GQHFrameSingleMargin;
     return CGRectGetMinX(self.frame);
 }
 
-// qh_right
 - (void)setQh_right:(CGFloat)qh_right {
     
     CGRect rect = self.frame;
@@ -94,7 +90,6 @@ CGFloat const GQHFrameDoubleMargin = 2 * GQHFrameSingleMargin;
     return CGRectGetMaxX(self.frame);
 }
 
-// qh_top
 - (void)setQh_top:(CGFloat)qh_top {
     
     CGRect rect = self.frame;
@@ -107,7 +102,6 @@ CGFloat const GQHFrameDoubleMargin = 2 * GQHFrameSingleMargin;
     return CGRectGetMinY(self.frame);
 }
 
-// qh_bottom
 - (void)setQh_bottom:(CGFloat)qh_bottom {
     
     CGRect rect = self.frame;
@@ -120,7 +114,6 @@ CGFloat const GQHFrameDoubleMargin = 2 * GQHFrameSingleMargin;
     return CGRectGetMaxY(self.frame);
 }
 
-// qh_alignLeft
 - (void)setQh_alignLeft:(CGFloat)qh_alignLeft {
     
     [self setQh_left:qh_alignLeft];
@@ -131,7 +124,6 @@ CGFloat const GQHFrameDoubleMargin = 2 * GQHFrameSingleMargin;
     return [self qh_left];
 }
 
-// qh_alignRight
 - (void)setQh_alignRight:(CGFloat)qh_alignRight {
     
     CGRect rect = self.frame;
@@ -144,7 +136,6 @@ CGFloat const GQHFrameDoubleMargin = 2 * GQHFrameSingleMargin;
     return [self qh_right];
 }
 
-// qh_alignTop
 - (void)setQh_alignTop:(CGFloat)qh_alignTop {
     
     [self setQh_top:qh_alignTop];
@@ -155,7 +146,6 @@ CGFloat const GQHFrameDoubleMargin = 2 * GQHFrameSingleMargin;
     return [self qh_top];
 }
 
-// qh_alignBottom
 - (void)setQh_alignBottom:(CGFloat)qh_alignBottom {
     
     CGRect rect = self.frame;
@@ -168,7 +158,6 @@ CGFloat const GQHFrameDoubleMargin = 2 * GQHFrameSingleMargin;
     return [self qh_bottom];
 }
 
-// qh_centerX
 - (void)setQh_centerX:(CGFloat)qh_centerX {
     
     self.center = CGPointMake(qh_centerX, self.center.y);
@@ -179,7 +168,6 @@ CGFloat const GQHFrameDoubleMargin = 2 * GQHFrameSingleMargin;
     return self.center.x;
 }
 
-// qh_centerY
 - (void)setQh_centerY:(CGFloat)qh_centerY {
     
     self.center = CGPointMake(self.center.x, qh_centerY);
@@ -190,7 +178,6 @@ CGFloat const GQHFrameDoubleMargin = 2 * GQHFrameSingleMargin;
     return self.center.y;
 }
 
-// qh_originPoint
 - (void)setQh_originPoint:(CGPoint)qh_originPoint {
     
     CGRect rect = self.frame;
@@ -203,7 +190,6 @@ CGFloat const GQHFrameDoubleMargin = 2 * GQHFrameSingleMargin;
     return self.frame.origin;
 }
 
-// qh_size
 - (void)setQh_size:(CGSize)qh_size {
     
     CGRect rect = self.frame;
@@ -216,7 +202,6 @@ CGFloat const GQHFrameDoubleMargin = 2 * GQHFrameSingleMargin;
     return self.frame.size;
 }
 
-// qh_resizeCenter
 - (void)setQh_resizeCenter:(CGSize)qh_resizeCenter {
     
     CGPoint center = self.center;
@@ -233,7 +218,6 @@ CGFloat const GQHFrameDoubleMargin = 2 * GQHFrameSingleMargin;
     return self.qh_size;
 }
 
-// qh_resizeTop
 - (void)setQh_resizeTop:(CGSize)qh_resizeTop {
     
     CGFloat x = self.qh_x + 0.5 * (self.qh_width - qh_resizeTop.width);
@@ -252,7 +236,6 @@ CGFloat const GQHFrameDoubleMargin = 2 * GQHFrameSingleMargin;
     return self.qh_size;
 }
 
-// qh_resizeBottom
 - (void)setQh_resizeBottom:(CGSize)qh_resizeBottom {
     
     CGFloat x = self.qh_x + 0.5 * (self.qh_width - qh_resizeBottom.width);
@@ -271,7 +254,6 @@ CGFloat const GQHFrameDoubleMargin = 2 * GQHFrameSingleMargin;
     return self.qh_size;
 }
 
-// qh_resizeLeft
 - (void)setQh_resizeLeft:(CGSize)qh_resizeLeft {
     
     CGFloat x = self.qh_x;
@@ -290,7 +272,6 @@ CGFloat const GQHFrameDoubleMargin = 2 * GQHFrameSingleMargin;
     return self.qh_size;
 }
 
-// qh_resizeRight
 - (void)setQh_resizeRight:(CGSize)qh_resizeRight {
     
     CGFloat x = self.qh_x + (self.qh_width - qh_resizeRight.width);
@@ -309,7 +290,6 @@ CGFloat const GQHFrameDoubleMargin = 2 * GQHFrameSingleMargin;
     return self.qh_size;
 }
 
-// qh_resizeTopLeft
 - (void)setQh_resizeTopLeft:(CGSize)qh_resizeTopLeft {
     
     CGPoint origin = self.frame.origin;
@@ -326,7 +306,6 @@ CGFloat const GQHFrameDoubleMargin = 2 * GQHFrameSingleMargin;
     return self.qh_size;
 }
 
-// qh_resizeTopRight
 - (void)setQh_resizeTopRight:(CGSize)qh_resizeTopRight {
     
     CGFloat x = self.qh_x + (self.qh_width - qh_resizeTopRight.width);
@@ -345,7 +324,6 @@ CGFloat const GQHFrameDoubleMargin = 2 * GQHFrameSingleMargin;
     return self.qh_size;
 }
 
-// qh_resizeBottomLeft
 - (void)setQh_resizeBottomLeft:(CGSize)qh_resizeBottomLeft {
     
     CGFloat x = self.qh_x;
@@ -364,7 +342,6 @@ CGFloat const GQHFrameDoubleMargin = 2 * GQHFrameSingleMargin;
     return self.qh_size;
 }
 
-// qh_resizeBottomRight
 - (void)setQh_resizeBottomRight:(CGSize)qh_resizeBottomRight {
     
     CGFloat x = self.qh_x + (self.qh_width - qh_resizeBottomRight.width);
@@ -383,65 +360,67 @@ CGFloat const GQHFrameDoubleMargin = 2 * GQHFrameSingleMargin;
     return self.qh_size;
 }
 
-// qh_contentAreaWidth
 - (CGFloat)qh_contentAreaWidth {
     
-    return CGRectGetWidth([UIScreen mainScreen].bounds);
+    return [self qh_safeAreaWidth];
 }
 
-// qh_contentAreaHeight
 - (CGFloat)qh_contentAreaHeight {
     
-    return CGRectGetHeight([UIScreen mainScreen].bounds) - [self qh_statusBarHeight] - [self qh_navigationBarHeight] - [self qh_tabBarHeight] - [self qh_homeIndicatorHeight];
+    return [self qh_safeAreaHeight] - [self qh_navigationBarHeight] - [self qh_tabBarHeight];
 }
 
-// qh_safeAreaWidth
 - (CGFloat)qh_safeAreaWidth {
     
-    return CGRectGetWidth([UIScreen mainScreen].bounds);
-}
-
-// qh_safeAreaHeight
-- (CGFloat)qh_safeAreaHeight {
-    
-    return CGRectGetHeight([UIScreen mainScreen].bounds) - [self qh_statusBarHeight] - [self qh_homeIndicatorHeight];
-}
-
-// qh_statusBarHeight
-- (CGFloat)qh_statusBarHeight {
-    
-    if (812.0f == CGRectGetHeight([UIScreen mainScreen].bounds) || 896.0f == CGRectGetHeight([UIScreen mainScreen].bounds)) {
+    if (@available(iOS 11.0, *)) {
         
-        return 44.0f;
+        return CGRectGetWidth(UIApplication.sharedApplication.delegate.window.safeAreaLayoutGuide.layoutFrame);
     }
     
-    return 20.0f;
+    return CGRectGetWidth(UIApplication.sharedApplication.delegate.window.bounds);
 }
 
-// qh_navigationBarHeight
+- (CGFloat)qh_safeAreaHeight {
+    
+    if (@available(iOS 11.0, *)) {
+        
+        return CGRectGetHeight(UIApplication.sharedApplication.delegate.window.safeAreaLayoutGuide.layoutFrame);
+    }
+    
+    return CGRectGetHeight(UIApplication.sharedApplication.delegate.window.bounds);
+}
+
+- (CGFloat)qh_statusBarHeight {
+    
+    return CGRectGetHeight(UIApplication.sharedApplication.statusBarFrame);
+}
+
 - (CGFloat)qh_navigationBarHeight {
     
     return 44.0f;
 }
 
-// qh_tabBarHeight
 - (CGFloat)qh_tabBarHeight {
     
     return 49.0f;
 }
 
-// qh_homeIndicatorHeight
 - (CGFloat)qh_homeIndicatorHeight {
     
-    if (812.0f == CGRectGetHeight([UIScreen mainScreen].bounds) || 896.0f == CGRectGetHeight([UIScreen mainScreen].bounds)) {
+    if (@available(iOS 11.0, *)) {
         
-        return 34.0f;
+        return UIApplication.sharedApplication.delegate.window.safeAreaInsets.bottom;
     }
     
     return 0.0f;
 }
 
-// 切圆角
+/**
+ 视图切圆角
+ 
+ @param radius 圆角半径
+ @param corners 圆角位置
+ */
 - (void)qh_cornerWithRaius:(CGFloat)radius byRoundingCorners:(UIRectCorner)corners {
     
     UIBezierPath *path = [UIBezierPath bezierPathWithRoundedRect:self.bounds byRoundingCorners:corners cornerRadii:CGSizeMake(radius, radius)];
@@ -452,8 +431,10 @@ CGFloat const GQHFrameDoubleMargin = 2 * GQHFrameSingleMargin;
     self.layer.mask = layer;
 }
 
-#pragma mark --视图继承关系
-// 移除所有子视图
+#pragma mark - 视图继承关系
+/**
+ 移除所有子视图
+ */
 - (void)qh_removeAllSubviews {
     
     while (self.subviews.count) {
@@ -462,12 +443,114 @@ CGFloat const GQHFrameDoubleMargin = 2 * GQHFrameSingleMargin;
     }
 }
 
+/**
+ 查询子视图(子视图的子视图)
+ 
+ @param className 子视图类名字符串
+ @return 子视图
+ */
+- (UIView *)qh_subViewOfClassName:(NSString *)className {
+    
+    for (UIView *subView in self.subviews) {
+        
+        if ([NSStringFromClass(subView.class) isEqualToString:className]) {
+            
+            return subView;
+        }
+        
+        // 子视图的子视图
+        UIView *result = [subView qh_subViewOfClassName:className];
+        if (result) {
+            
+            return result;
+        }
+    }
+    
+    return nil;
+}
+
+/**
+ 查询子视图(子视图的子视图)
+ 
+ @param classType 子视图类型
+ @return 子视图
+ */
+- (UIView *)qh_subViewOfClassType:(Class)classType {
+    
+    for (UIView *subView in self.subviews) {
+        
+        if ([subView isKindOfClass:classType]) {
+            
+            if ([subView isKindOfClass: [UIScrollView class]]) {
+                
+                NSString *classNameString = NSStringFromClass(subView.class);
+                
+                if ([subView.superview isKindOfClass:[UITableView class]] == NO && [subView.superview isKindOfClass:[UITableViewCell class]] == NO && [classNameString hasPrefix:@"_"] == NO) {
+                    
+                    return subView;
+                }
+            } else {
+                
+                return subView;
+            }
+        }
+        
+        // 子视图的子视图
+        UIView *result = [subView qh_subViewOfClassType:classType];
+        if (result) {
+            
+            return result;
+        }
+    }
+    
+    return nil;
+}
+
+/**
+ 查询父视图
+ 
+ @param classType 父视图类型
+ @return 父视图
+ */
+- (UIView *)qh_superviewOfClassType:(Class)classType {
+    
+    UIView *superview = self.superview;
+    
+    while (superview) {
+        
+        if ([superview isKindOfClass:classType]) {
+            
+            if ([superview isKindOfClass: [UIScrollView class]]) {
+                
+                NSString *classNameString = NSStringFromClass([superview class]);
+                
+                if ([superview.superview isKindOfClass:[UITableView class]] == NO && [superview.superview isKindOfClass:[UITableViewCell class]] == NO && [classNameString hasPrefix:@"_"] == NO) {
+                    
+                    return superview;
+                }
+            } else {
+                
+                return superview;
+            }
+        }
+        
+        return superview = superview.superview;
+    }
+    
+    return nil;
+}
+
 @end
 
-#pragma mark 视图控制器
+
+#pragma mark - 视图控制器
 @implementation UIView (GQHController)
 
-/// 视图控制器
+/**
+ 视图的视图控制器
+ 
+ @return 视图控制器
+ */
 - (UIViewController *)qh_currentViewController {
     
     UIResponder *next = [self nextResponder];
@@ -485,7 +568,11 @@ CGFloat const GQHFrameDoubleMargin = 2 * GQHFrameSingleMargin;
     return nil;
 }
 
-/// 视图导航控制器
+/**
+ 视图导航控制器
+ 
+ @return 视图导航控制器
+ */
 - (UINavigationController *)qh_navigationController {
     
     return [self qh_currentViewController].navigationController;

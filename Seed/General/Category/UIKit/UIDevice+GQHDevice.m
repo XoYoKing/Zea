@@ -7,7 +7,6 @@
 //
 
 #import "UIDevice+GQHDevice.h"
-
 #import <CoreTelephony/CTCarrier.h>
 #import <CoreTelephony/CTTelephonyNetworkInfo.h>
 #import <sys/sysctl.h>
@@ -16,7 +15,11 @@
 
 @implementation UIDevice (GQHDevice)
 
-/// 运营商信息
+/**
+ 运营商名称
+ 
+ @return 运营商名称
+ */
 - (NSString *)qh_carrierName {
     
     NSString *carrierName = @"";
@@ -32,7 +35,11 @@
     return carrierName;
 }
 
-/// 运营商代码
+/**
+ 运营商代号
+ 
+ @return 运营商代号
+ */
 - (NSString *)qh_carrierCode {
     
     NSString *carrierCode = @"";
@@ -50,7 +57,11 @@
     return carrierCode;
 }
 
-/// 手机磁盘总量(GB)
+/**
+ 手机磁盘总量(GB)
+ 
+ @return 手机磁盘总量(GB)
+ */
 - (CGFloat)qh_diskTotalSize {
     
     CGFloat size = 0.0f;
@@ -69,7 +80,11 @@
     return size;
 }
 
-/// 手机可用磁盘容量(GB)
+/**
+ 手机可用磁盘容量(GB)
+ 
+ @return 手机可用磁盘容量(GB)
+ */
 - (CGFloat)qh_diskFreeSize {
     
     CGFloat size = 0.0f;
@@ -88,7 +103,11 @@
     return size;
 }
 
-/// 手机可用内存容量
+/**
+ 手机可用内存容量(MB)
+ 
+ @return 手机可用内存容量(MB)
+ */
 - (CGFloat)qh_memoryFreeSize {
     
     vm_statistics_data_t vmStatus;

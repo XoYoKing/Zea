@@ -11,10 +11,55 @@
 
 @interface NSDictionary (GQHJSON)
 
-/// JSON字符串转字典
-+(NSDictionary*)qh_dictionaryWithJSON:(NSString*)JSON;
+/**
+ JSON字符串转字典
 
-/// 字典转JSON字符串
+ @param JSON JSON字符串
+ @return 字典
+ */
++ (NSDictionary*)qh_dictionaryWithJSON:(NSString*)JSON;
+
+/**
+ 字典转JSON字符串
+
+ @return JSON字符串
+ */
 - (NSString *)qh_JSONString;
+
+@end
+
+
+@interface NSObject (GQHPrint)
+
+/**
+ Objective-C对象转JSON字符串
+
+ @return JSON字符串
+ */
+- (NSString *)toJSONString;
+
+@end
+
+
+///数组打印
+@interface NSArray (GQHPrint)
+
+- (NSString *)qh_debugDescription;
+
+- (NSString *)qh_descriptionWithLocale:(id)locale;
+
+- (NSString *)qh_descriptionWithLocale:(id)locale indent:(NSUInteger)level;
+
+@end
+
+
+/// 字典打印
+@interface NSDictionary (GQHPrint)
+
+- (NSString *)qh_debugDescription;
+
+- (NSString *)qh_descriptionWithLocale:(id)locale;
+
+- (NSString *)qh_descriptionWithLocale:(id)locale indent:(NSUInteger)level;
 
 @end

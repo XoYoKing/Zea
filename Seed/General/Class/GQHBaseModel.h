@@ -6,10 +6,16 @@
 //  Copyright © 2018 GuanQinghao. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
-#import <AFNetworking.h>
 
+
+NS_ASSUME_NONNULL_BEGIN
+
+/**
+ 应用程序模型基类
+ */
 @interface GQHBaseModel : NSObject
 
 @end
+
+NS_ASSUME_NONNULL_END

@@ -11,10 +11,6 @@
 
 #pragma mark -------------------------------------------------------------------
 // 用户登录后保存用户信息
-// 用户ID
-#define USER_ID                     @"userIDKey"
-#define USER_GET_ID                 [[NSUserDefaults standardUserDefaults] valueForKey:USER_ID]
-
 // 用户类型
 #define USER_TYPE                   @"userTypeKey"
 #define USER_GET_TYPE               [[NSUserDefaults standardUserDefaults] valueForKey:USER_TYPE]
@@ -23,9 +19,6 @@
 #define USER_STATUS                 @"userStatusKey"
 #define USER_GET_STATUS             [[NSUserDefaults standardUserDefaults] valueForKey:USER_STATUS]
 
-// 用户手机号
-#define USER_MOBILE                 @"userMobileKey"
-#define USER_GET_MOBILE             [[NSUserDefaults standardUserDefaults] valueForKey:USER_MOBILE]
 
 #pragma mark -------------------------------------------------------------------
 // 用户类型
@@ -50,7 +43,7 @@ typedef NS_ENUM(NSInteger, GQHUserType) {
     /// 高级用户
     GQHUserTypeSenior,
     /// 管理用户
-    GQHUserTypeManager
+    GQHUserTypeManager,
 };
 
 /// 用户状态
@@ -61,7 +54,7 @@ typedef NS_ENUM(NSInteger, GQHUserStatusType) {
     /// 初次登录
     GQHUserStatusTypeSignInFirst,
     /// 非初次登录
-    GQHUserStatusTypeSignIn
+    GQHUserStatusTypeSignIn,
 };
 
 /// 用户权限
@@ -74,7 +67,7 @@ typedef NS_ENUM(NSInteger, GQHAccessPermissionType) {
     /// 高级访问权限
     GQHAccessPermissionTypeAdvanced,
     /// 管理权限
-    GQHAccessPermissionTypeManagement
+    GQHAccessPermissionTypeManagement,
 };
 
 @interface UIViewController (GQHPermission)

@@ -8,24 +8,35 @@
 
 #import <UIKit/UIKit.h>
 
+
+/**
+ 按钮图文排版方式
+
+ - GQHButtonGraphicLayoutStyleVerticalDefault: 上图下字
+ - GQHButtonGraphicLayoutStyleVerticalOpposite: 上字下图
+ - GQHButtonGraphicLayoutStyleHorizontalDefault: 左图右字
+ - GQHButtonGraphicLayoutStyleHorizontalOpposite: 左字右图
+ */
 typedef NS_ENUM(NSUInteger, GQHButtonGraphicLayoutStyle) {
     
-    /// 上图下字
-    GQHButtonGraphicLayoutStyleVerticalDefault,
-    /// 上字下图
+    
+    GQHButtonGraphicLayoutStyleVerticalDefault = 0,
     GQHButtonGraphicLayoutStyleVerticalOpposite,
-    /// 左图右字
     GQHButtonGraphicLayoutStyleHorizontalDefault,
-    /// 左字右图
     GQHButtonGraphicLayoutStyleHorizontalOpposite
 };
 
 
 @interface UIButton (GQHButton)
 
-/// 按钮图文排版样式 (枚举)
+/**
+ 按钮图文排版样式 (枚举)
+ */
 @property (nonatomic, assign) GQHButtonGraphicLayoutStyle qh_buttonGraphicLayoutStyle;
-/// 按钮图文间距 (需在设置样式 qh_buttonGraphicLayoutStyle 前设置)
+
+/**
+ 按钮图文间距
+ */
 @property (nonatomic, assign) float qh_buttonGraphicLayoutSpacing;
 
 @end

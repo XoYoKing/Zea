@@ -1,39 +1,47 @@
 source 'https://github.com/CocoaPods/Specs.git'
+
+inhibit_all_warnings!
 platform :ios, '9.0'
 
+def seed_pods
+    
+    #网络请求
+    pod 'AFNetworking'
+    
+    #sqlite的工具
+    #pod 'FMDB'
+    
+    #键盘
+    pod 'IQKeyboardManager'
+    
+    #自动布局
+    pod 'Masonry'
+    
+    #定制化的等待提示器
+    pod 'MBProgressHUD'
+    
+    #上拉加载下拉刷新
+    pod 'MJRefresh'
+    
+    #网络图像缓存
+    pod 'SDWebImage'
+    
+    #图片选择
+    #pod 'TZImagePickerController'
+    
+    #模型转换
+    pod 'YYModel'
+    
+end
+
 target 'Seed' do
+    seed_pods
+end
 
-#网络请求
-pod 'AFNetworking', '~> 3.2'
+target 'SeedTests' do
+    seed_pods
+end
 
-#sqlite的工具
-#pod 'FMDB'
-
-#自动布局
-pod 'Masonry'
-
-#上拉加载下拉刷新
-pod 'MJRefresh'
-
-#图表
-#pod 'PNChart'
-
-#键盘
-pod 'IQKeyboardManager'
-
-#小红点
-#pod 'PPBadgeView'
-
-#无限轮播图
-#pod 'SDCycleScrollView', '~> 1.75'
-
-#网络图像缓存
-pod 'SDWebImage', '~> 4.4'
-
-#定制化的等待提示器
-pod 'MBProgressHUD', '~> 1.1.0'
-
-#模型转换
-pod 'YYModel'
-
+target 'SeedUITests' do
+    seed_pods
 end

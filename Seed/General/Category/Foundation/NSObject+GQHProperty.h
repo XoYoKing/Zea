@@ -10,7 +10,11 @@
 
 @interface NSObject (GQHProperty)
 
-/// 控制台输出属性代码
+/**
+ 控制台输出属性代码
+
+ @param dictionary 属性字典
+ */
 + (void)qh_outputPropertyCodeWithDictionary:(NSDictionary *)dictionary;
 
 @end

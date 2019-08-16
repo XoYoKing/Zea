@@ -9,63 +9,148 @@
 #import <UIKit/UIKit.h>
 
 
+NS_ASSUME_NONNULL_BEGIN
+
 @interface UIColor (GQHColor)
 
-#pragma mark --PrimaryColor
-/// 主色-红
-+ (UIColor *)qh_appRedColor;
-/// 主色-绿
-+ (UIColor *)qh_appGreenColor;
-
-#pragma mark --SecondaryColor
-/// 辅色-黄
-+ (UIColor *)qh_appYellowColor;
-/// 辅色-橙色
-+ (UIColor *)qh_appOrangeColor;
-/// 辅色-粉色
-+ (UIColor *)qh_appPinkColor;
-
-
-#pragma mark --Constant
-/// 字体颜色 灰色 (系统灰色)
+#pragma mark - Constant
+/**
+ 字体颜色 灰色 (系统灰色)
+ */
 @property (nonatomic, readonly, class) UIColor *qh_grayColor;
-/// 字体颜色 深灰色
+
+/**
+ 字体颜色 深灰色
+ */
 @property (nonatomic, readonly, class) UIColor *qh_darkGrayColor;
-/// 字体颜色 深黑色
+
+/**
+ 字体颜色 深黑色
+ */
 @property (nonatomic, readonly, class) UIColor *qh_darkBlackColor;
 
-/// 浅灰色 背景色
+
+/**
+ 浅灰色 背景色
+ */
 @property (nonatomic, readonly, class) UIColor *qh_lightGrayColor;
-/// 浅色 填充、描边、分隔等
+
+/**
+ 浅色 填充、描边、分隔等
+ */
 @property (nonatomic, readonly, class) UIColor *qh_lightStrokeColor;
-/// 深色 填充、描边、分隔等
+
+/**
+ 深色 填充、描边、分隔等
+ */
 @property (nonatomic, readonly, class) UIColor *qh_strokeColor;
 
-/// 苹果蓝 (系统色)
+
+/**
+ 苹果蓝 (系统色)
+ */
 @property (nonatomic, readonly, class) UIColor *qh_appleBlueColor;
-/// 苹果导航颜色 (系统色)
+
+/**
+ 苹果导航颜色 (系统色)
+ */
 @property (nonatomic, readonly, class) UIColor *qh_appleGrayColor;
 
-#pragma mark --Converter
-/// RGB
+#pragma mark - Converter
+
+/**
+ RGB颜色
+
+ @param red 红色R (0~255)
+ @param green 绿色G (0~255)
+ @param blue 蓝色B (0~255)
+ @return RGB颜色
+ */
 + (UIColor *)qh_colorWithRed:(NSUInteger)red green:(NSUInteger)green blue:(NSUInteger)blue;
+
+/**
+ RGBA颜色
+
+ @param red 红色R (0~255)
+ @param green 绿色G (0~255)
+ @param blue 蓝色B (0~255)
+ @param alpha 透明度A (0.0~1.0)
+ @return RGBA颜色
+ */
 + (UIColor *)qh_colorWithRed:(NSUInteger)red green:(NSUInteger)green blue:(NSUInteger)blue alpha:(CGFloat)alpha;
 
-/// randomColor
-+ (UIColor *)qh_colorWithRandomRGB;
+/**
+ HSB颜色
 
-/// HSB
+ @param hue 色相H (0~360)
+ @param saturation 饱和度S (0~100)
+ @param brightness 亮度B (0~100)
+ @return HSB颜色
+ */
 + (UIColor *)qh_colorWithHue:(NSUInteger)hue saturation:(NSUInteger)saturation brightness:(NSUInteger)brightness;
+
+/**
+ HSBA颜色
+
+ @param hue 色相H (0~360)
+ @param saturation 饱和度S (0~100)
+ @param brightness 亮度B (0~100)
+ @param alpha 透明度A (0.0~1.0)
+ @return HSBA颜色
+ */
 + (UIColor *)qh_colorWithHue:(NSUInteger)hue saturation:(NSUInteger)saturation brightness:(NSUInteger)brightness alpha:(CGFloat)alpha;
 
-/// Hex
+/**
+ HEX颜色
+
+ @param hexString 十六进制字符串
+ @return HEX颜色
+ */
 + (UIColor *)qh_colorWithHexString:(NSString *)hexString;
+
+/**
+ HEXA颜色
+
+ @param hexString 十六进制字符串
+ @param alpha 透明度A (0.0~1.0)
+ @return HEXA颜色
+ */
 + (UIColor *)qh_colorWithHexString:(NSString *)hexString alpha:(CGFloat)alpha;
 
+/**
+ HEX颜色
+
+ @param hexValue 十六进制值
+ @return HEX颜色
+ */
 + (UIColor *)qh_colorWithHexValue:(uint32_t)hexValue;
+
+/**
+ HEXA颜色
+
+ @param hexValue 十六进制值
+ @param alpha 透明度A (0.0~1.0)
+ @return HEXA颜色
+ */
 + (UIColor *)qh_colorWithHexValue:(uint32_t)hexValue alpha:(CGFloat)alpha;
 
-/// 渐变色
-+ (UIColor *)gradientColors:(NSArray *)CGColors startPoint:(CGPoint)startPoint endPoint:(CGPoint)endPoint;
+/**
+ 随机颜色
+ 
+ @return 随机颜色
+ */
++ (UIColor *)qh_colorWithRandomRGB;
+
+/**
+ 渐变色
+
+ @param colors 渐变颜色数组
+ @param startPoint 渐变起点
+ @param endPoint 渐变终点
+ @return 渐变色
+ */
++ (UIColor *)qh_gradientColors:(NSArray<UIColor *> *)colors startPoint:(CGPoint)startPoint endPoint:(CGPoint)endPoint;
 
 @end
+
+NS_ASSUME_NONNULL_END
