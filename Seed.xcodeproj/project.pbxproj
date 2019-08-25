@@ -446,20 +446,20 @@
 		D5A5C07722FFE87600A21A77 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
-				D5A5C0CC22FFE8C500A21A77 /* GQHAppAboutController.h */,
-				D5A5C0C922FFE8C500A21A77 /* GQHAppAboutController.m */,
+				D5A5C0C522FFE8C400A21A77 /* GQHLaunchController.h */,
+				D5A5C0C622FFE8C400A21A77 /* GQHLaunchController.m */,
+				D5A5C0CA22FFE8C500A21A77 /* GQHHomeController.h */,
+				D5A5C0CB22FFE8C500A21A77 /* GQHHomeController.m */,
+				D5A5C0C722FFE8C500A21A77 /* GQHLevelsController.h */,
+				D5A5C0C322FFE8C400A21A77 /* GQHLevelsController.m */,
 				D5A5C0CD22FFE8C500A21A77 /* GQHGalleryController.h */,
 				D5A5C0CE22FFE8C600A21A77 /* GQHGalleryController.m */,
 				D5A5C0C422FFE8C400A21A77 /* GQHGameController.h */,
 				D5A5C0C222FFE8C400A21A77 /* GQHGameController.m */,
-				D5A5C0CA22FFE8C500A21A77 /* GQHHomeController.h */,
-				D5A5C0CB22FFE8C500A21A77 /* GQHHomeController.m */,
-				D5A5C0C522FFE8C400A21A77 /* GQHLaunchController.h */,
-				D5A5C0C622FFE8C400A21A77 /* GQHLaunchController.m */,
-				D5A5C0C722FFE8C500A21A77 /* GQHLevelsController.h */,
-				D5A5C0C322FFE8C400A21A77 /* GQHLevelsController.m */,
 				D5A5C0C822FFE8C500A21A77 /* GQHRecordsController.h */,
 				D5A5C0CF22FFE8C600A21A77 /* GQHRecordsController.m */,
+				D5A5C0CC22FFE8C500A21A77 /* GQHAppAboutController.h */,
+				D5A5C0C922FFE8C500A21A77 /* GQHAppAboutController.m */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -492,20 +492,20 @@
 		D5A5C09722FFE87600A21A77 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				D5A5C0FD22FFE8F200A21A77 /* GQHAppAboutView.h */,
-				D5A5C0F322FFE8F000A21A77 /* GQHAppAboutView.m */,
+				D5A5C0FB22FFE8F200A21A77 /* GQHLaunchView.h */,
+				D5A5C0FC22FFE8F200A21A77 /* GQHLaunchView.m */,
+				D5A5C0FA22FFE8F100A21A77 /* GQHHomeView.h */,
+				D5A5C0F422FFE8F100A21A77 /* GQHHomeView.m */,
+				D5A5C0F522FFE8F100A21A77 /* GQHLevelsView.h */,
+				D5A5C0F822FFE8F100A21A77 /* GQHLevelsView.m */,
 				D5A5C0FE22FFE8F200A21A77 /* GQHGalleryView.h */,
 				D5A5C0F622FFE8F100A21A77 /* GQHGalleryView.m */,
 				D5A5C0F922FFE8F100A21A77 /* GQHGameView.h */,
 				D5A5C0FF22FFE8F200A21A77 /* GQHGameView.m */,
-				D5A5C0FA22FFE8F100A21A77 /* GQHHomeView.h */,
-				D5A5C0F422FFE8F100A21A77 /* GQHHomeView.m */,
-				D5A5C0FB22FFE8F200A21A77 /* GQHLaunchView.h */,
-				D5A5C0FC22FFE8F200A21A77 /* GQHLaunchView.m */,
-				D5A5C0F522FFE8F100A21A77 /* GQHLevelsView.h */,
-				D5A5C0F822FFE8F100A21A77 /* GQHLevelsView.m */,
 				D5A5C0F722FFE8F100A21A77 /* GQHRecordsView.h */,
 				D5A5C0F222FFE8F000A21A77 /* GQHRecordsView.m */,
+				D5A5C0FD22FFE8F200A21A77 /* GQHAppAboutView.h */,
+				D5A5C0F322FFE8F000A21A77 /* GQHAppAboutView.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -601,8 +601,8 @@
 		D5B158AC202D7DCA005B76B1 /* Resource */ = {
 			isa = PBXGroup;
 			children = (
-				D5C8A62E22FFCC9F00947237 /* data_dictionary_model.plist */,
 				D5C8A62D22FFCC9F00947237 /* data_dictionary_ui.plist */,
+				D5C8A62E22FFCC9F00947237 /* data_dictionary_model.plist */,
 				D5E56CC52128780C001BCD74 /* icon */,
 				D5E56CD32128780C001BCD74 /* level */,
 				D5E56CC02128780B001BCD74 /* menu */,
@@ -1523,7 +1523,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.seed.zea;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				TARGETED_DEVICE_FAMILY = 1;
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
 		};
@@ -1540,7 +1540,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.seed.zea;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				TARGETED_DEVICE_FAMILY = 1;
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
 		};

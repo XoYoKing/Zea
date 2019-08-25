@@ -15,6 +15,11 @@
 
 #pragma mark Controller
 #import "GQHHomeController.h"
+#import "GQHAppAboutController.h"
+#import "GQHRecordsController.h"
+#import "GQHGameController.h"
+#import "GQHLevelsController.h"
+#import "GQHGalleryController.h"
 
 
 #pragma mark -
@@ -53,6 +58,7 @@
     [super viewDidLoad];
     NSLog(@"");
     
+    self.qh_navigationBar.hidden = YES;
 }
 
 /**
@@ -264,6 +270,56 @@
 }
 
 #pragma mark - GQHHomeViewDelegate
+
+/**
+ 跳转关于我们页面
+ */
+- (void)qh_forwardAboutUsPage {
+    NSLog(@"");
+    
+    GQHAppAboutController *appAboutController = [[GQHAppAboutController alloc] init];
+    [self.navigationController pushViewController:appAboutController animated:YES];
+}
+
+/**
+ 跳转游戏记录页面
+ */
+- (void)qh_forwardRecordsPage {
+    NSLog(@"");
+    
+    GQHRecordsController *recordsController = [[GQHRecordsController alloc] init];
+    [self.navigationController pushViewController:recordsController animated:YES];
+}
+
+/**
+ 跳转开始游戏页面
+ */
+- (void)qh_forwardGamePage {
+    NSLog(@"");
+    
+    GQHGameController *gameController = [[GQHGameController alloc] init];
+    [self.navigationController pushViewController:gameController animated:YES];
+}
+
+/**
+ 跳转图库页面
+ */
+- (void)qh_forwardGallaryPage {
+    NSLog(@"");
+    
+    GQHGalleryController *galleryController = [[GQHGalleryController alloc] init];
+    [self.navigationController pushViewController:galleryController animated:YES];
+}
+
+/**
+ 跳转游戏等级页面
+ */
+- (void)qh_forwardLevelsPage {
+    NSLog(@"");
+    
+    GQHLevelsController *levelsController = [[GQHLevelsController alloc] init];
+    [self.navigationController pushViewController:levelsController animated:YES];
+}
 
 #pragma mark - TargetMethod
 

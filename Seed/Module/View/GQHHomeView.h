@@ -17,6 +17,31 @@
 
 @optional
 
+/**
+ 跳转关于我们页面
+ */
+- (void)qh_forwardAboutUsPage;
+
+/**
+ 跳转游戏记录页面
+ */
+- (void)qh_forwardRecordsPage;
+
+/**
+ 跳转开始游戏页面
+ */
+- (void)qh_forwardGamePage;
+
+/**
+ 跳转图库页面
+ */
+- (void)qh_forwardGallaryPage;
+
+/**
+ 跳转游戏等级页面
+ */
+- (void)qh_forwardLevelsPage;
+
 @end
 
 

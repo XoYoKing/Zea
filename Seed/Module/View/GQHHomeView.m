@@ -13,6 +13,31 @@
 
 @interface GQHHomeView ()
 
+/**
+ 关于按钮
+ */
+@property (nonatomic, strong) UIButton *aboutButton;
+
+/**
+ 游戏记录按钮
+ */
+@property (nonatomic, strong) UIButton *recordButton;
+
+/**
+ 开始游戏按钮
+ */
+@property (nonatomic, strong) UIButton *startButton;
+
+/**
+ 游戏等级按钮
+ */
+@property (nonatomic, strong) UIButton *levelButton;
+
+/**
+ 图库按钮
+ */
+@property (nonatomic, strong) UIButton *galleryButton;
+
 @end
 
 @implementation GQHHomeView
@@ -54,18 +79,135 @@
 - (void)autoLayoutWithConstraints {
     NSLog(@"");
     
-    // 列表视图
-    [self addSubview:self.qh_tableView];
-    [self.qh_tableView mas_makeConstraints:^(MASConstraintMaker *make) {
+    /**
+     关于按钮
+     */
+    [self addSubview:self.aboutButton];
+    [self.aboutButton mas_makeConstraints:^(MASConstraintMaker *make) {
         
-        make.top.mas_equalTo(self).with.inset(self.qh_statusBarHeight + self.qh_navigationBarHeight);
-        make.left.and.right.and.bottom.mas_equalTo(self);
+        make.centerX.mas_equalTo(self).with.multipliedBy(0.3f);
+        make.centerY.mas_equalTo(self).with.multipliedBy(0.3f);
+        make.size.mas_equalTo(CGSizeMake(50.0f, 50.0f));
+    }];
+    
+    /**
+     游戏记录按钮
+     */
+    [self addSubview:self.recordButton];
+    [self.recordButton mas_makeConstraints:^(MASConstraintMaker *make) {
+        
+        make.centerX.mas_equalTo(self).with.multipliedBy(1.7f);
+        make.centerY.mas_equalTo(self).with.multipliedBy(0.3f);
+        make.size.mas_equalTo(CGSizeMake(50.0f, 50.0f));
+    }];
+    
+    /**
+     开始游戏按钮
+     */
+    [self addSubview:self.startButton];
+    [self.startButton mas_makeConstraints:^(MASConstraintMaker *make) {
+        
+        make.center.mas_equalTo(self);
+        make.size.mas_equalTo(CGSizeMake(200.0f, 200.0f));
+    }];
+    
+    /**
+     游戏等级按钮
+     */
+    [self addSubview:self.levelButton];
+    [self.levelButton mas_makeConstraints:^(MASConstraintMaker *make) {
+        
+        make.centerX.mas_equalTo(self).with.multipliedBy(0.5f);
+        make.centerY.mas_equalTo(self).with.multipliedBy(1.5f);
+        make.size.mas_equalTo(CGSizeMake(100.0f, 100.0f));
+    }];
+    
+    /**
+     图库按钮
+     */
+    [self addSubview:self.galleryButton];
+    [self.galleryButton mas_makeConstraints:^(MASConstraintMaker *make) {
+        
+        
+        make.centerX.mas_equalTo(self).with.multipliedBy(1.5f);
+        make.centerY.mas_equalTo(self).with.multipliedBy(1.5f);
+        make.size.mas_equalTo(CGSizeMake(100.0f, 100.0f));
     }];
 }
 
 #pragma mark - Delegate
 
 #pragma mark - TargetMethod
+
+/**
+ 点击关于按钮
+
+ @param sender 关于按钮
+ */
+- (IBAction)didClickAboutButton:(UIButton *)sender {
+    NSLog(@"");
+    
+    if ([self.qh_delegate respondsToSelector:@selector(qh_forwardAboutUsPage)]) {
+        
+        [self.qh_delegate qh_forwardAboutUsPage];
+    }
+}
+
+/**
+ 点击游戏记录按钮
+ 
+ @param sender 游戏记录按钮
+ */
+- (IBAction)didClickRecordButton:(UIButton *)sender {
+    NSLog(@"");
+    
+    if ([self.qh_delegate respondsToSelector:@selector(qh_forwardRecordsPage)]) {
+        
+        [self.qh_delegate qh_forwardRecordsPage];
+    }
+}
+
+/**
+ 点击开始游戏按钮
+ 
+ @param sender 开始游戏按钮
+ */
+- (IBAction)didClickStartButton:(UIButton *)sender {
+    NSLog(@"");
+    
+    if ([self.qh_delegate respondsToSelector:@selector(qh_forwardGamePage)]) {
+        
+        [self.qh_delegate qh_forwardGamePage];
+    }
+}
+
+/**
+ 点击游戏等级按钮
+ 
+ @param sender 游戏等级按钮
+ */
+- (IBAction)didClickLevelButton:(UIButton *)sender {
+    NSLog(@"");
+    
+    if ([self.qh_delegate respondsToSelector:@selector(qh_forwardLevelsPage)]) {
+        
+        [self.qh_delegate qh_forwardLevelsPage];
+    }
+}
+
+/**
+ 点击图库按钮
+ 
+ @param sender 图库按钮
+ */
+- (IBAction)didClickGalleryButton:(UIButton *)sender {
+    NSLog(@"");
+    
+    if ([self.qh_delegate respondsToSelector:@selector(qh_forwardGallaryPage)]) {
+        
+        [self.qh_delegate qh_forwardGallaryPage];
+    }
+}
 
 #pragma mark - PrivateMethod
 /**
@@ -109,6 +251,111 @@
     }
     
     return _qh_tableView;
+}
+
+- (UIButton *)aboutButton {
+    
+    if (!_aboutButton) {
+        
+        _aboutButton = [UIButton buttonWithType:UIButtonTypeCustom];
+        _aboutButton.backgroundColor = [UIColor redColor];
+        _aboutButton.titleLabel.font = [UIFont systemFontOfSize:16.0f];
+        
+        [_aboutButton setImage:nil forState:UIControlStateNormal];
+        [_aboutButton setBackgroundImage:nil forState:UIControlStateNormal];
+        [_aboutButton setTitle:NSLocalizedString(@"Button", @"Button") forState:UIControlStateNormal];
+        [_aboutButton setTitleColor:[UIColor darkTextColor] forState:UIControlStateNormal];
+        [_aboutButton addTarget:self action:@selector(didClickAboutButton:) forControlEvents:UIControlEventTouchUpInside];
+        
+        _aboutButton.layer.cornerRadius = 0.0f;
+        _aboutButton.layer.masksToBounds = YES;
+    }
+    
+    return _aboutButton;
+}
+
+- (UIButton *)recordButton {
+    
+    if (!_recordButton) {
+        
+        _recordButton = [UIButton buttonWithType:UIButtonTypeCustom];
+        _recordButton.backgroundColor = [UIColor redColor];
+        _recordButton.titleLabel.font = [UIFont systemFontOfSize:16.0f];
+        
+        [_recordButton setImage:nil forState:UIControlStateNormal];
+        [_recordButton setBackgroundImage:nil forState:UIControlStateNormal];
+        [_recordButton setTitle:NSLocalizedString(@"Button", @"Button") forState:UIControlStateNormal];
+        [_recordButton setTitleColor:[UIColor darkTextColor] forState:UIControlStateNormal];
+        [_recordButton addTarget:self action:@selector(didClickRecordButton:) forControlEvents:UIControlEventTouchUpInside];
+        
+        _recordButton.layer.cornerRadius = 0.0f;
+        _recordButton.layer.masksToBounds = YES;
+    }
+    
+    return _recordButton;
+}
+
+- (UIButton *)startButton {
+    
+    if (!_startButton) {
+        
+        _startButton = [UIButton buttonWithType:UIButtonTypeCustom];
+        _startButton.backgroundColor = [UIColor redColor];
+        _startButton.titleLabel.font = [UIFont systemFontOfSize:16.0f];
+        
+        [_startButton setImage:nil forState:UIControlStateNormal];
+        [_startButton setBackgroundImage:nil forState:UIControlStateNormal];
+        [_startButton setTitle:NSLocalizedString(@"Button", @"Button") forState:UIControlStateNormal];
+        [_startButton setTitleColor:[UIColor darkTextColor] forState:UIControlStateNormal];
+        [_startButton addTarget:self action:@selector(didClickStartButton:) forControlEvents:UIControlEventTouchUpInside];
+        
+        _startButton.layer.cornerRadius = 0.0f;
+        _startButton.layer.masksToBounds = YES;
+    }
+    
+    return _startButton;
+}
+
+- (UIButton *)levelButton {
+    
+    if (!_levelButton) {
+        
+        _levelButton = [UIButton buttonWithType:UIButtonTypeCustom];
+        _levelButton.backgroundColor = [UIColor redColor];
+        _levelButton.titleLabel.font = [UIFont systemFontOfSize:16.0f];
+        
+        [_levelButton setImage:nil forState:UIControlStateNormal];
+        [_levelButton setBackgroundImage:nil forState:UIControlStateNormal];
+        [_levelButton setTitle:NSLocalizedString(@"Button", @"Button") forState:UIControlStateNormal];
+        [_levelButton setTitleColor:[UIColor darkTextColor] forState:UIControlStateNormal];
+        [_levelButton addTarget:self action:@selector(didClickLevelButton:) forControlEvents:UIControlEventTouchUpInside];
+        
+        _levelButton.layer.cornerRadius = 0.0f;
+        _levelButton.layer.masksToBounds = YES;
+    }
+    
+    return _levelButton;
+}
+
+- (UIButton *)galleryButton {
+    
+    if (!_galleryButton) {
+        
+        _galleryButton = [UIButton buttonWithType:UIButtonTypeCustom];
+        _galleryButton.backgroundColor = [UIColor redColor];
+        _galleryButton.titleLabel.font = [UIFont systemFontOfSize:16.0f];
+        
+        [_galleryButton setImage:nil forState:UIControlStateNormal];
+        [_galleryButton setBackgroundImage:nil forState:UIControlStateNormal];
+        [_galleryButton setTitle:NSLocalizedString(@"Button", @"Button") forState:UIControlStateNormal];
+        [_galleryButton setTitleColor:[UIColor darkTextColor] forState:UIControlStateNormal];
+        [_galleryButton addTarget:self action:@selector(didClickGalleryButton:) forControlEvents:UIControlEventTouchUpInside];
+        
+        _galleryButton.layer.cornerRadius = 0.0f;
+        _galleryButton.layer.masksToBounds = YES;
+    }
+    
+    return _galleryButton;
 }
 
 @end

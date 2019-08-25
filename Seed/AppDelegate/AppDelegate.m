@@ -26,14 +26,14 @@
     
     // 2. 设置根视图
     // 2.1 首页根视图
-    GQHHomeController *homeController = [[GQHHomeController alloc] init];
-    UINavigationController *homeNavController = [[UINavigationController alloc] initWithRootViewController:homeController];
-    self.window.rootViewController = homeNavController;
+//    GQHHomeController *homeController = [[GQHHomeController alloc] init];
+//    UINavigationController *homeNavController = [[UINavigationController alloc] initWithRootViewController:homeController];
+//    self.window.rootViewController = homeNavController;
     
     // 2.2 UI根视图
-//    GQHUIController *UIController = [[GQHUIController alloc] init];
-//    UINavigationController *UINavController = [[UINavigationController alloc] initWithRootViewController:UIController];
-//    self.window.rootViewController = UINavController;
+    GQHUIController *UIController = [[GQHUIController alloc] init];
+    UINavigationController *UINavController = [[UINavigationController alloc] initWithRootViewController:UIController];
+    self.window.rootViewController = UINavController;
     
     // 3.记录器
     [GQHLogger qh_sharedLogger].hidden = NO;
