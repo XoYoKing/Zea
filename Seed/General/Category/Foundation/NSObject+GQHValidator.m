@@ -12,6 +12,25 @@
 @implementation NSObject (GQHValidator)
 
 /**
+ 版本号
+ 
+ @param object 任意对象
+ @return YES or NO
+ */
++ (BOOL)qh_isValidVersion:(id)object {
+    
+    if ([object isKindOfClass:[NSString class]]) {
+        
+        NSString *regex = @"\\d+(\\.\\d+)*";
+        NSPredicate *predicate = [NSPredicate predicateWithFormat:@"SELF MATCHES %@",regex];
+        
+        return [predicate evaluateWithObject:object];
+    }
+    
+    return NO;
+}
+
+/**
  密码以字母开头  只包含"字母" "数字" "下划线"  长度 6~18
  
  @param object 任意对象
@@ -21,7 +40,7 @@
     
     if ([object isKindOfClass:[NSString class]]) {
         
-        NSString *regex = @"^[a-zA-Z0-9]{6,16}$";
+        NSString *regex = @"^[a-zA-Z][a-zA-Z0-9_]{5,17}$";
         NSPredicate *predicate = [NSPredicate predicateWithFormat:@"SELF MATCHES%@",regex];
         
         return [predicate evaluateWithObject:object];

@@ -14,6 +14,14 @@ NS_ASSUME_NONNULL_BEGIN
 @interface NSObject (GQHValidator)
 
 /**
+ 版本号
+
+ @param object 任意对象
+ @return YES or NO
+ */
++ (BOOL)qh_isValidVersion:(id)object;
+
+/**
  密码以字母开头  只包含"字母" "数字" "下划线"  长度 6~18
  
  @param object 任意对象

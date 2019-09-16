@@ -25,18 +25,27 @@
     [self.window makeKeyAndVisible];
     
     // 2. 设置根视图
-    // 2.1 首页根视图
+    // 2.1 启动广告页根视图
+//    GQHLaunchController *launchController = [[GQHLaunchController alloc] init];
+//    UINavigationController *launchNavController = [[UINavigationController alloc] initWithRootViewController:launchController];
+//    self.window.rootViewController = launchNavController;
+    
+    // 2.2 首页根视图
 //    GQHHomeController *homeController = [[GQHHomeController alloc] init];
 //    UINavigationController *homeNavController = [[UINavigationController alloc] initWithRootViewController:homeController];
 //    self.window.rootViewController = homeNavController;
     
-    // 2.2 UI根视图
+    // 2.3 UI根视图
     GQHUIController *UIController = [[GQHUIController alloc] init];
     UINavigationController *UINavController = [[UINavigationController alloc] initWithRootViewController:UIController];
     self.window.rootViewController = UINavController;
     
     // 3.记录器
+#ifdef DEBUG
     [GQHLogger qh_sharedLogger].hidden = NO;
+#else
+    [GQHLogger qh_sharedLogger].hidden = YES;
+#endif
     
     // 4.app初始化设置
     [self defaultAppConfiguration];

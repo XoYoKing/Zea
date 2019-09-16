@@ -14,30 +14,34 @@
 
 /**
  设置并立即刷新
-
- @param view 滚动视图
+ 
+ @param scrollView 视图
  @param handler 刷新时的操作
  */
-- (void)qh_beginRefreshingWith:(UIView *)view handler:(void(^)(void))handler {
+- (void)qh_beginRefreshingWith:(__kindof UIScrollView *)scrollView handler:(void(^)(void))handler {
     
-    if ([view isKindOfClass:[UIScrollView class]]) {
+    if ([scrollView isKindOfClass:UIScrollView.class]) {
         
-        UIScrollView *scrollView = (UITableView *)view;
+        // 下拉刷新
         scrollView.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
             
+            self.qh_lastPage = NO;
             self.qh_pageNumber = 1;
+            
             if (handler) {
                 
                 handler();
             }
         }];
         
+        // 上拉加载
         scrollView.mj_footer = [MJRefreshBackNormalFooter footerWithRefreshingBlock:^{
             
             if (self.qh_lastPage) {
                 
-                [self showToastWithText:NSLocalizedString(@"最后一页", @"最后一页")];
-                [self qh_view:scrollView endRefresh:@{}];
+                [self showToastWithText:NSLocalizedString(@"最后一页", @"")];
+                // 结束加载
+                [self qh_scrollView:scrollView endRefresh:nil];
             } else {
                 
                 self.qh_pageNumber += 1;
@@ -56,38 +60,52 @@
 /**
  开始刷新
  
- @param view 滚动视图及其子类
+ @param scrollView 视图
  */
-- (void)qh_startRefresh:(__kindof UIScrollView *)view {
+- (void)qh_startRefresh:(__kindof UIScrollView *)scrollView {
     
-    [view.mj_header beginRefreshing];
+    [scrollView.mj_header beginRefreshing];
 }
+
 
 /**
  结束刷新
-
- @param view 滚动视图及其子类
+ 
+ @param scrollView 视图
  @param response 刷新返回数据(直接与页码相关的数据)
  */
-- (void)qh_view:(UIScrollView *)view endRefresh:(id)response {
+- (void)qh_scrollView:(__kindof UIScrollView *)scrollView endRefresh:(id)response {
     
-    // 根据页码
-    if ([NSObject qh_isValidDictionary:response]) {
+    if ([scrollView isKindOfClass:UIScrollView.class]) {
         
-        if (response[@"current"]) {
+        if ([NSObject qh_isValidDictionary:response]) {
             
+            // 当前页
             NSInteger current = [response[@"current"] integerValue];
+            // 总页数
             NSInteger pages = [response[@"pages"] integerValue];
             
+            // 最后一页
             if (current >= pages) {
                 
                 self.qh_lastPage = YES;
             }
+            
+            // 空白页设置
+            
+            NSInteger total = [response[@"total"] integerValue];
+            if (0 == total) {
+                
+                // 空白页
+            } else {
+                
+                
+            }
         }
+        
+        [scrollView.mj_header endRefreshing];
+        [scrollView.mj_footer endRefreshing];
     }
-    
-    [view.mj_header endRefreshing];
-    [view.mj_footer endRefreshing];
 }
 
 #pragma mark - 属性关联

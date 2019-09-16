@@ -239,7 +239,7 @@
 
 /**
  列表视图组头视图
- 
+
  @param tableView 列表视图
  @param section 组索引
  @return 组头视图
@@ -272,7 +272,7 @@
 
 /**
  点击列表头视图
- 
+
  @param sender 点击手势
  */
 - (IBAction)didClickHeaderView:(UITapGestureRecognizer *)sender {
@@ -350,7 +350,7 @@
         _tableView.separatorInset = UIEdgeInsetsMake(0.0f, 15.0f, 0.0f, 15.0f);
         
         if (@available(iOS 11.0, *)) {
-            
+
             _tableView.contentInsetAdjustmentBehavior = UIScrollViewContentInsetAdjustmentNever;
         }
     }

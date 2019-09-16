@@ -23,80 +23,125 @@ NSString * const GQHUserRecordKey = @"user_record";
 
 
 #pragma mark - font color
+/// 黑色 #111111
 NSString * const GQHFontColorBlack = @"#111111";
-NSString * const GQHFontColorDarkBlack = @"#333333";
-NSString * const GQHFontColorGray = @"#999999";
+/// 浅黑色
+NSString * const GQHFontColorLightBlack = @"#333333";
+/// 深灰色
+NSString * const GQHFontColorDarkGray = @"#878787";
+/// 灰色 #878787
+NSString * const GQHFontColorGray = @"#878787";
+/// 浅灰色 #adadad
 NSString * const GQHFontColorLightGray = @"#adadad";
-NSString * const GQHFontColorWhite = @"#FFFFFF"; 
 
 
 #pragma mark - font size
-CGFloat const GQHSmallestFont = 10.0f;
-CGFloat const GQHSmallerFont = 14.0f;
-CGFloat const GQHDefaultFont = 16.0f;
-CGFloat const GQHBiggerFont = 18.0f;
-CGFloat const GQHBiggestFont = 20.0f;
+/// 正文、列表正文
+CGFloat const GQHFontSizeSmallest = 10.0f;
+/// 副文、列表副文
+CGFloat const GQHFontSizeSmaller = 14.0f;
+/// 最小字体 小字
+CGFloat const GQHFontSizeDefault = 16.0f;
+/// 标题、按钮
+CGFloat const GQHFontSizeBigger = 18.0f;
+/// 最大字体 导航、突出内容
+CGFloat const GQHFontSizeBiggest = 20.0f;
+
 
 #pragma mark - font name
+/// 苹方-简 中黑体
 NSString * const GQHFontNamePFSMedium = @"PingFangSC-Medium";
+/// 苹方-简 中粗体
 NSString * const GQHFontNamePFSSemibold = @"PingFangSC-Semibold";
+/// 苹方-简 常规体
 NSString * const GQHFontNamePFSRegular = @"PingFangSC-Regular";
 
-#pragma mark - UI参数
+
+#pragma mark - UI
+/// 全局常量-单倍外边距
 CGFloat const GQHSingleMargin = 15.0f;
+/// 全局常量-双倍外边距
 CGFloat const GQHDoubleMargin = 2 * GQHSingleMargin;
-CGFloat const GQHLineWidth = 1.0f;
-CGFloat const GQHMinLayoutSize = 10.0f;
+/// 全局常量-线的粗细
+CGFloat const GQHLineWidth = 0.75f;
+/// 视图布局最小尺寸
+CGFloat const GQHMinLayoutValue = 10.0f;
+/// 普通按钮高度
 CGFloat const GQHButtonNormalHeight = 44.0f;
 
-#pragma makr - 网络请求
+
+#pragma makr - network
+/// 成功code 1
 NSInteger const GQHHTTPStatusOKCode = 1;
+/// 服务器错误code 500
+NSInteger const GQHHTTPStatusServiceErrorCode = 503;
+/// 无服务code 503
 NSInteger const GQHHTTPStatusNoServiceCode = 503;
-NSInteger const GQHHTTPStatusUnauthorizedCode = 101;
+/// 无效的令牌code 401
+NSInteger const GQHHTTPStatusUnauthorizedCode = 401;
 
+#ifdef DEBUG
 
-#pragma mark - 业务参数
+/// 接口根域名地址
 NSString * const GQHAPIServerBaseURL = @"";
-//NSString * const GQHAPIPathURL = @"https://1chalk.com/mall-app";
-NSString * const GQHAPIPathURL = @"http://192.168.1.38:8109/app-cloud";
-NSString * const GQHPictureServerURL = @"https://1chalk.com/";
-NSString * const GQHFileServerURL = @"https://1chalk.com/";
-NSString * const GQHBMKAppKey = @"8DqmxnnK2bjewy9G3Tk9uPqqbh9AaDZA";
+/// 接口路径地址
+NSString * const GQHAPIPathURL = @"https://1chalk.com";
+/// 图片服务器地址
+NSString * const GQHPictureServerURL = @"https://1chalk.com";
+/// 文件服务器地址
+NSString * const GQHFileServerURL = @"https://1chalk.com";
 
-#pragma mark - 图片资源名称
+#else
+
+/// 接口根域名地址
+NSString * const GQHAPIServerBaseURL = @"";
+/// 接口路径地址
+NSString * const GQHAPIPathURL = @"https://1chalk.com/mall-app";
+/// 图片服务器地址
+NSString * const GQHPictureServerURL = @"https://1chalk.com";
+/// 文件服务器地址
+NSString * const GQHFileServerURL = @"https://1chalk.com";
+
+#endif
+
+/// 空白页链接
+NSString * const GQHBlankURL = @"about:blank";
+
+
+#pragma mark - business
+/// 分页每页大小
+NSInteger const GQHPageSize = 10;
+
+/// 百度地图AppKey
+NSString * const GQHBMKAppKey = @"pacFIP2AGLpWHV2ODzeGG1L7Ehegjwp7";
+/// 友盟AppKey
+NSString * const GQHUMShareAppKey = @"5c43f1c4f1f556893f0004d2";
+
+
+#pragma mark - assets
 /// TabBar
 NSString * const GQHTabBarItemHomeNormal = @"TabBarItemHomeNormal";
 NSString * const GQHTabBarItemHomeSelected = @"TabBarItemHomeSelected";
-NSString * const GQHTabBarItemAttendanceNormal = @"TabBarItemAttendanceNormal";
-NSString * const GQHTabBarItemAttendanceSelected = @"TabBarItemAttendanceSelected";
+NSString * const GQHTabBarItemDepartmentNormal = @"TabBarItemDepartmentNormal";
+NSString * const GQHTabBarItemDepartmentSelected = @"TabBarItemDepartmentSelected";
+NSString * const GQHTabBarItemCartNormal = @"TabBarItemCartNormal";
+NSString * const GQHTabBarItemCartSelected = @"TabBarItemCartSelected";
+NSString * const GQHTabBarItemDiscoverNormal = @"TabBarItemDiscoverNormal";
+NSString * const GQHTabBarItemDiscoverSelected = @"TabBarItemDiscoverSelected";
 NSString * const GQHTabBarItemMeNormal = @"TabBarItemMeNormal";
 NSString * const GQHTabBarItemMeSelected = @"TabBarItemMeSelected";
-NSString * const GQHTabBarItemNew = @"TabBarItemNew";
 
 /// NavigationBar
 NSString * const GQHNavigationBarLeftArrowWhite = @"NavigationBarLeftArrowWhite";
 NSString * const GQHNavigationBarLeftArrowBlack = @"NavigationBarLeftArrowBlack";
-NSString * const GQHNavigationBarBackArrowBlack = @"NavigationBarBackArrowBlack";
 
 /// Me
 NSString * const GQHMeAppFeedbackAddPicture = @"MeAppFeedbackAddPicture";
 NSString * const GQHMeAppFeedbackRemovePicture = @"MeAppFeedbackRemovePicture";
-NSString * const GQHMeAppAbout = @"MeAppAbout";
-NSString * const GQHMeAppFeedback = @"MeAppFeedback";
-NSString * const GQHMeAppQA = @"MeAppQA";
-NSString * const GQHMeArrowRight = @"MeArrowRight";
-NSString * const GQHMeDefaultAvatar = @"MeDefaultAvatar";
-NSString * const GQHMeProjects = @"MeProjects";
 
 /// Login
 NSString * const GQHLoginEyeOff = @"LoginEyeOff";
 NSString * const GQHLoginEyeOn = @"LoginEyeOn";
-
-/// Home
-NSString * const GQHHomeTriangleDown = @"HomeTriangleDown";
-NSString * const GQHHomeBannerBackgroundImage = @"HomeBannerBackgroundImage";
-NSString * const GQHHomeMenuBadgeBackgroundImage = @"HomeMenuBadgeBackgroundImage";
-NSString * const GQHHomeMenuBackgroundImage = @"HomeMenuBackgroundImage";
 
 @implementation GQHConstantHelper
 

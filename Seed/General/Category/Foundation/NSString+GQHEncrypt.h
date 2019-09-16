@@ -8,6 +8,19 @@
 
 #import <Foundation/Foundation.h>
 
+
+NS_ASSUME_NONNULL_BEGIN
+
 @interface NSString (GQHEncrypt)
 
+/**
+ MD5加密 32位小写16进制
+ 
+ @param string 需要加密的字符串
+ @return 加密后的字符串
+ */
++ (NSString *)qh_encryptWithMD5:(NSString *)string;
+
 @end
+
+NS_ASSUME_NONNULL_END

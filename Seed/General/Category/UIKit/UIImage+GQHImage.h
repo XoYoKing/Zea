@@ -121,13 +121,22 @@ NS_ASSUME_NONNULL_BEGIN
 + (NSData *)qh_compressImage:(UIImage *)image toKilobytes:(NSUInteger)maxValue;
 
 /**
+ 根据字符串生成条形码图片
+
+ @param string 条形码图片字符串
+ @param size 条形码图片大小
+ @return 条形码图片
+ */
++ (UIImage *)qh_barCodeImageWithString:(NSString *)string size:(CGFloat)size;
+
+/**
  根据字符串生成二维码图片
- 
- @param QRString 二维码图片字符串
+
+ @param string 二维码图片字符串
  @param size 二维码图片大小
  @return 二维码图片
  */
-+ (UIImage *)qh_QRImageFromString:(NSString *)QRString size:(CGFloat)size;
++ (UIImage *)qh_QRCodeImageWithString:(NSString *)string size:(CGFloat)size;
 
 /**
  base64编码转图片

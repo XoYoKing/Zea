@@ -13,7 +13,7 @@
 @implementation UIView (GQHHUD)
 
 #pragma mark --HUD
-+ (instancetype)shareHUD {
++ (instancetype)sharedHUD {
     
     static MBProgressHUD *HUD = nil;
     static dispatch_once_t onceToken;
@@ -33,7 +33,7 @@
 
 - (void)showHUDWithText:(NSString *)text {
     
-    MBProgressHUD *HUD = [[self class] shareHUD];
+    MBProgressHUD *HUD = [[self class] sharedHUD];
     HUD.mode = MBProgressHUDModeIndeterminate;
     HUD.label.text = text;
     [[UIApplication sharedApplication].keyWindow addSubview:HUD];
@@ -42,7 +42,7 @@
 
 - (void)hideHUD {
     
-    [[[self class] shareHUD] hideAnimated:YES];
+    [[[self class] sharedHUD] hideAnimated:YES];
 }
 
 #pragma mark --toast

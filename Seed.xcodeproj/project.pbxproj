@@ -7,6 +7,18 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		04D80B8C232F923400617689 /* GQHBaseViewController+GQHNavigationBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 04D80B76232F923400617689 /* GQHBaseViewController+GQHNavigationBar.m */; };
+		04D80B8D232F923400617689 /* GQHBaseViewController+GQHNetworking.m in Sources */ = {isa = PBXBuildFile; fileRef = 04D80B78232F923400617689 /* GQHBaseViewController+GQHNetworking.m */; };
+		04D80B8E232F923400617689 /* GQHBaseViewController+GQHRefresh.m in Sources */ = {isa = PBXBuildFile; fileRef = 04D80B7A232F923400617689 /* GQHBaseViewController+GQHRefresh.m */; };
+		04D80B8F232F923400617689 /* GQHBaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 04D80B7C232F923400617689 /* GQHBaseViewController.m */; };
+		04D80B90232F923400617689 /* GQHBaseTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 04D80B7D232F923400617689 /* GQHBaseTableViewController.m */; };
+		04D80B91232F923400617689 /* GQHTabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = 04D80B7F232F923400617689 /* GQHTabBarController.m */; };
+		04D80B92232F923400617689 /* GQHBaseModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 04D80B80232F923400617689 /* GQHBaseModel.m */; };
+		04D80B93232F923400617689 /* GQHLogger.m in Sources */ = {isa = PBXBuildFile; fileRef = 04D80B83232F923400617689 /* GQHLogger.m */; };
+		04D80B94232F923400617689 /* GQHBaseView.m in Sources */ = {isa = PBXBuildFile; fileRef = 04D80B86232F923400617689 /* GQHBaseView.m */; };
+		04D80B95232F923400617689 /* GQHUIController.m in Sources */ = {isa = PBXBuildFile; fileRef = 04D80B87232F923400617689 /* GQHUIController.m */; };
+		04D80B96232F923400617689 /* GQHWebController.m in Sources */ = {isa = PBXBuildFile; fileRef = 04D80B88232F923400617689 /* GQHWebController.m */; };
+		04D80B97232F923400617689 /* GQHBaseCollectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 04D80B8A232F923400617689 /* GQHBaseCollectionViewController.m */; };
 		1A46AACB389F9172E3FD8D47 /* libPods-Seed.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 1F9022C94008243A6972068F /* libPods-Seed.a */; };
 		714D41090B87C418AAE32C7B /* libPods-SeedUITests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = CBB22A5583A8D587340B3181 /* libPods-SeedUITests.a */; };
 		C7EBE85CA3FAE16267B15F16 /* libPods-SeedTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 965655FC3B0AA93F8EE6E1B7 /* libPods-SeedTests.a */; };
@@ -40,10 +52,6 @@
 		D5B15876202D7D55005B76B1 /* SeedUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = D5B15875202D7D55005B76B1 /* SeedUITests.m */; };
 		D5B159A1202D7DCB005B76B1 /* specifications.md in Resources */ = {isa = PBXBuildFile; fileRef = D5B158CD202D7DCA005B76B1 /* specifications.md */; };
 		D5B159A2202D7DCB005B76B1 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = D5B158CE202D7DCA005B76B1 /* README.md */; };
-		D5B159A4202D7DCB005B76B1 /* SAMPLESingleton.m in Sources */ = {isa = PBXBuildFile; fileRef = D5B158D2202D7DCA005B76B1 /* SAMPLESingleton.m */; };
-		D5B159BD202D7DCB005B76B1 /* QHSegmentContentScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = D5B15911202D7DCA005B76B1 /* QHSegmentContentScrollView.m */; };
-		D5B159BE202D7DCB005B76B1 /* QHSegmentContentView.m in Sources */ = {isa = PBXBuildFile; fileRef = D5B15913202D7DCA005B76B1 /* QHSegmentContentView.m */; };
-		D5B159BF202D7DCB005B76B1 /* QHSegmentTitleView.m in Sources */ = {isa = PBXBuildFile; fileRef = D5B15915202D7DCA005B76B1 /* QHSegmentTitleView.m */; };
 		D5B159E8202D7E23005B76B1 /* Launch Screen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D5B159E7202D7E23005B76B1 /* Launch Screen.storyboard */; };
 		D5B159EA202D7E31005B76B1 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D5B159E9202D7E31005B76B1 /* Main.storyboard */; };
 		D5B159ED202D818B005B76B1 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = D5B159EF202D818B005B76B1 /* Localizable.strings */; };
@@ -53,19 +61,6 @@
 		D5C8A69322FFE10100947237 /* GQHCommonCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D5C8A63522FFE10100947237 /* GQHCommonCell.m */; };
 		D5C8A69422FFE10100947237 /* GQHCustomCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D5C8A63622FFE10100947237 /* GQHCustomCell.m */; };
 		D5C8A69522FFE10100947237 /* GQHCustomButton.m in Sources */ = {isa = PBXBuildFile; fileRef = D5C8A63A22FFE10100947237 /* GQHCustomButton.m */; };
-		D5C8A69622FFE10100947237 /* UIDashLineView.m in Sources */ = {isa = PBXBuildFile; fileRef = D5C8A63C22FFE10100947237 /* UIDashLineView.m */; };
-		D5C8A69722FFE10100947237 /* GQHBaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D5C8A63F22FFE10100947237 /* GQHBaseViewController.m */; };
-		D5C8A69822FFE10100947237 /* GQHLogger.m in Sources */ = {isa = PBXBuildFile; fileRef = D5C8A64022FFE10100947237 /* GQHLogger.m */; };
-		D5C8A69922FFE10100947237 /* GQHBaseCollectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D5C8A64322FFE10100947237 /* GQHBaseCollectionViewController.m */; };
-		D5C8A69A22FFE10100947237 /* GQHTabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = D5C8A64422FFE10100947237 /* GQHTabBarController.m */; };
-		D5C8A69B22FFE10100947237 /* GQHBaseViewController+GQHRefresh.m in Sources */ = {isa = PBXBuildFile; fileRef = D5C8A64622FFE10100947237 /* GQHBaseViewController+GQHRefresh.m */; };
-		D5C8A69C22FFE10100947237 /* GQHBaseModel.m in Sources */ = {isa = PBXBuildFile; fileRef = D5C8A64722FFE10100947237 /* GQHBaseModel.m */; };
-		D5C8A69D22FFE10100947237 /* GQHBaseViewController+GQHNavigationBar.m in Sources */ = {isa = PBXBuildFile; fileRef = D5C8A64B22FFE10100947237 /* GQHBaseViewController+GQHNavigationBar.m */; };
-		D5C8A69E22FFE10100947237 /* GQHBaseTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D5C8A64C22FFE10100947237 /* GQHBaseTableViewController.m */; };
-		D5C8A69F22FFE10100947237 /* GQHBaseViewController+GQHNetworking.m in Sources */ = {isa = PBXBuildFile; fileRef = D5C8A64F22FFE10100947237 /* GQHBaseViewController+GQHNetworking.m */; };
-		D5C8A6A022FFE10100947237 /* GQHWebController.m in Sources */ = {isa = PBXBuildFile; fileRef = D5C8A65322FFE10100947237 /* GQHWebController.m */; };
-		D5C8A6A122FFE10100947237 /* GQHBaseView.m in Sources */ = {isa = PBXBuildFile; fileRef = D5C8A65422FFE10100947237 /* GQHBaseView.m */; };
-		D5C8A6A222FFE10100947237 /* GQHUIController.m in Sources */ = {isa = PBXBuildFile; fileRef = D5C8A65522FFE10100947237 /* GQHUIController.m */; };
 		D5C8A6A322FFE10100947237 /* UIView+GQHAnimation.m in Sources */ = {isa = PBXBuildFile; fileRef = D5C8A65922FFE10100947237 /* UIView+GQHAnimation.m */; };
 		D5C8A6A422FFE10100947237 /* UIView+GQHHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = D5C8A65A22FFE10100947237 /* UIView+GQHHUD.m */; };
 		D5C8A6A522FFE10100947237 /* UIDevice+GQHDevice.m in Sources */ = {isa = PBXBuildFile; fileRef = D5C8A65B22FFE10100947237 /* UIDevice+GQHDevice.m */; };
@@ -156,6 +151,30 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		04D80B73232F923300617689 /* GQHBaseView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GQHBaseView.h; sourceTree = "<group>"; };
+		04D80B75232F923400617689 /* GQHBaseViewController+GQHNavigationBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "GQHBaseViewController+GQHNavigationBar.h"; sourceTree = "<group>"; };
+		04D80B76232F923400617689 /* GQHBaseViewController+GQHNavigationBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "GQHBaseViewController+GQHNavigationBar.m"; sourceTree = "<group>"; };
+		04D80B77232F923400617689 /* GQHBaseViewController+GQHNetworking.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "GQHBaseViewController+GQHNetworking.h"; sourceTree = "<group>"; };
+		04D80B78232F923400617689 /* GQHBaseViewController+GQHNetworking.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "GQHBaseViewController+GQHNetworking.m"; sourceTree = "<group>"; };
+		04D80B79232F923400617689 /* GQHBaseViewController+GQHRefresh.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "GQHBaseViewController+GQHRefresh.h"; sourceTree = "<group>"; };
+		04D80B7A232F923400617689 /* GQHBaseViewController+GQHRefresh.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "GQHBaseViewController+GQHRefresh.m"; sourceTree = "<group>"; };
+		04D80B7B232F923400617689 /* GQHBaseViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GQHBaseViewController.h; sourceTree = "<group>"; };
+		04D80B7C232F923400617689 /* GQHBaseViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GQHBaseViewController.m; sourceTree = "<group>"; };
+		04D80B7D232F923400617689 /* GQHBaseTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GQHBaseTableViewController.m; sourceTree = "<group>"; };
+		04D80B7E232F923400617689 /* GQHBaseTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GQHBaseTableViewController.h; sourceTree = "<group>"; };
+		04D80B7F232F923400617689 /* GQHTabBarController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GQHTabBarController.m; sourceTree = "<group>"; };
+		04D80B80232F923400617689 /* GQHBaseModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GQHBaseModel.m; sourceTree = "<group>"; };
+		04D80B81232F923400617689 /* GQHLogger.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GQHLogger.h; sourceTree = "<group>"; };
+		04D80B82232F923400617689 /* GQHBaseModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GQHBaseModel.h; sourceTree = "<group>"; };
+		04D80B83232F923400617689 /* GQHLogger.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GQHLogger.m; sourceTree = "<group>"; };
+		04D80B84232F923400617689 /* GQHBaseCollectionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GQHBaseCollectionViewController.h; sourceTree = "<group>"; };
+		04D80B85232F923400617689 /* GQHWebController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GQHWebController.h; sourceTree = "<group>"; };
+		04D80B86232F923400617689 /* GQHBaseView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GQHBaseView.m; sourceTree = "<group>"; };
+		04D80B87232F923400617689 /* GQHUIController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GQHUIController.m; sourceTree = "<group>"; };
+		04D80B88232F923400617689 /* GQHWebController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GQHWebController.m; sourceTree = "<group>"; };
+		04D80B89232F923400617689 /* GQHTabBarController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GQHTabBarController.h; sourceTree = "<group>"; };
+		04D80B8A232F923400617689 /* GQHBaseCollectionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GQHBaseCollectionViewController.m; sourceTree = "<group>"; };
+		04D80B8B232F923400617689 /* GQHUIController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GQHUIController.h; sourceTree = "<group>"; };
 		1F9022C94008243A6972068F /* libPods-Seed.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Seed.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		26432BFBF9351331B984F0C8 /* Pods-Seed.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Seed.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Seed/Pods-Seed.debug.xcconfig"; sourceTree = "<group>"; };
 		2B3DBF78FB0941BD23D9ADA4 /* Pods-Seed.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Seed.release.xcconfig"; path = "Pods/Target Support Files/Pods-Seed/Pods-Seed.release.xcconfig"; sourceTree = "<group>"; };
@@ -226,14 +245,6 @@
 		D5B15877202D7D55005B76B1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D5B158CD202D7DCA005B76B1 /* specifications.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = specifications.md; sourceTree = "<group>"; };
 		D5B158CE202D7DCA005B76B1 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
-		D5B158D1202D7DCA005B76B1 /* SAMPLESingleton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SAMPLESingleton.h; sourceTree = "<group>"; };
-		D5B158D2202D7DCA005B76B1 /* SAMPLESingleton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SAMPLESingleton.m; sourceTree = "<group>"; };
-		D5B15910202D7DCA005B76B1 /* QHSegmentContentScrollView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QHSegmentContentScrollView.h; sourceTree = "<group>"; };
-		D5B15911202D7DCA005B76B1 /* QHSegmentContentScrollView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QHSegmentContentScrollView.m; sourceTree = "<group>"; };
-		D5B15912202D7DCA005B76B1 /* QHSegmentContentView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QHSegmentContentView.h; sourceTree = "<group>"; };
-		D5B15913202D7DCA005B76B1 /* QHSegmentContentView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QHSegmentContentView.m; sourceTree = "<group>"; };
-		D5B15914202D7DCA005B76B1 /* QHSegmentTitleView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QHSegmentTitleView.h; sourceTree = "<group>"; };
-		D5B15915202D7DCA005B76B1 /* QHSegmentTitleView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QHSegmentTitleView.m; sourceTree = "<group>"; };
 		D5B159E7202D7E23005B76B1 /* Launch Screen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = "Launch Screen.storyboard"; sourceTree = "<group>"; };
 		D5B159E9202D7E31005B76B1 /* Main.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 		D5B159EE202D818B005B76B1 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
@@ -241,7 +252,6 @@
 		D5B159F1202D81A1005B76B1 /* zh-Hant */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hant"; path = "zh-Hant.lproj/Localizable.strings"; sourceTree = "<group>"; };
 		D5C8A62D22FFCC9F00947237 /* data_dictionary_ui.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = data_dictionary_ui.plist; sourceTree = "<group>"; };
 		D5C8A62E22FFCC9F00947237 /* data_dictionary_model.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = data_dictionary_model.plist; sourceTree = "<group>"; };
-		D5C8A63222FFE10100947237 /* UIDashLineView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UIDashLineView.h; sourceTree = "<group>"; };
 		D5C8A63322FFE10100947237 /* UIPaddingLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UIPaddingLabel.m; sourceTree = "<group>"; };
 		D5C8A63522FFE10100947237 /* GQHCommonCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GQHCommonCell.m; sourceTree = "<group>"; };
 		D5C8A63622FFE10100947237 /* GQHCustomCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GQHCustomCell.m; sourceTree = "<group>"; };
@@ -249,32 +259,7 @@
 		D5C8A63822FFE10100947237 /* GQHCommonCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GQHCommonCell.h; sourceTree = "<group>"; };
 		D5C8A63A22FFE10100947237 /* GQHCustomButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GQHCustomButton.m; sourceTree = "<group>"; };
 		D5C8A63B22FFE10100947237 /* GQHCustomButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GQHCustomButton.h; sourceTree = "<group>"; };
-		D5C8A63C22FFE10100947237 /* UIDashLineView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UIDashLineView.m; sourceTree = "<group>"; };
 		D5C8A63D22FFE10100947237 /* UIPaddingLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UIPaddingLabel.h; sourceTree = "<group>"; };
-		D5C8A63F22FFE10100947237 /* GQHBaseViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GQHBaseViewController.m; sourceTree = "<group>"; };
-		D5C8A64022FFE10100947237 /* GQHLogger.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GQHLogger.m; sourceTree = "<group>"; };
-		D5C8A64122FFE10100947237 /* GQHBaseTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GQHBaseTableViewController.h; sourceTree = "<group>"; };
-		D5C8A64222FFE10100947237 /* GQHBaseViewController+GQHNavigationBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "GQHBaseViewController+GQHNavigationBar.h"; sourceTree = "<group>"; };
-		D5C8A64322FFE10100947237 /* GQHBaseCollectionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GQHBaseCollectionViewController.m; sourceTree = "<group>"; };
-		D5C8A64422FFE10100947237 /* GQHTabBarController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GQHTabBarController.m; sourceTree = "<group>"; };
-		D5C8A64522FFE10100947237 /* GQHBaseViewController+GQHNetworking.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "GQHBaseViewController+GQHNetworking.h"; sourceTree = "<group>"; };
-		D5C8A64622FFE10100947237 /* GQHBaseViewController+GQHRefresh.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "GQHBaseViewController+GQHRefresh.m"; sourceTree = "<group>"; };
-		D5C8A64722FFE10100947237 /* GQHBaseModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GQHBaseModel.m; sourceTree = "<group>"; };
-		D5C8A64822FFE10100947237 /* GQHUIController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GQHUIController.h; sourceTree = "<group>"; };
-		D5C8A64922FFE10100947237 /* GQHWebController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GQHWebController.h; sourceTree = "<group>"; };
-		D5C8A64A22FFE10100947237 /* GQHBaseView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GQHBaseView.h; sourceTree = "<group>"; };
-		D5C8A64B22FFE10100947237 /* GQHBaseViewController+GQHNavigationBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "GQHBaseViewController+GQHNavigationBar.m"; sourceTree = "<group>"; };
-		D5C8A64C22FFE10100947237 /* GQHBaseTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GQHBaseTableViewController.m; sourceTree = "<group>"; };
-		D5C8A64D22FFE10100947237 /* GQHBaseViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GQHBaseViewController.h; sourceTree = "<group>"; };
-		D5C8A64E22FFE10100947237 /* GQHLogger.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GQHLogger.h; sourceTree = "<group>"; };
-		D5C8A64F22FFE10100947237 /* GQHBaseViewController+GQHNetworking.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "GQHBaseViewController+GQHNetworking.m"; sourceTree = "<group>"; };
-		D5C8A65022FFE10100947237 /* GQHTabBarController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GQHTabBarController.h; sourceTree = "<group>"; };
-		D5C8A65122FFE10100947237 /* GQHBaseCollectionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GQHBaseCollectionViewController.h; sourceTree = "<group>"; };
-		D5C8A65222FFE10100947237 /* GQHBaseViewController+GQHRefresh.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "GQHBaseViewController+GQHRefresh.h"; sourceTree = "<group>"; };
-		D5C8A65322FFE10100947237 /* GQHWebController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GQHWebController.m; sourceTree = "<group>"; };
-		D5C8A65422FFE10100947237 /* GQHBaseView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GQHBaseView.m; sourceTree = "<group>"; };
-		D5C8A65522FFE10100947237 /* GQHUIController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GQHUIController.m; sourceTree = "<group>"; };
-		D5C8A65622FFE10100947237 /* GQHBaseModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GQHBaseModel.h; sourceTree = "<group>"; };
 		D5C8A65922FFE10100947237 /* UIView+GQHAnimation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+GQHAnimation.m"; sourceTree = "<group>"; };
 		D5C8A65A22FFE10100947237 /* UIView+GQHHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+GQHHUD.m"; sourceTree = "<group>"; };
 		D5C8A65B22FFE10100947237 /* UIDevice+GQHDevice.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIDevice+GQHDevice.m"; sourceTree = "<group>"; };
@@ -423,6 +408,21 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		04D80B74232F923400617689 /* GQHBaseViewController */ = {
+			isa = PBXGroup;
+			children = (
+				04D80B75232F923400617689 /* GQHBaseViewController+GQHNavigationBar.h */,
+				04D80B76232F923400617689 /* GQHBaseViewController+GQHNavigationBar.m */,
+				04D80B77232F923400617689 /* GQHBaseViewController+GQHNetworking.h */,
+				04D80B78232F923400617689 /* GQHBaseViewController+GQHNetworking.m */,
+				04D80B79232F923400617689 /* GQHBaseViewController+GQHRefresh.h */,
+				04D80B7A232F923400617689 /* GQHBaseViewController+GQHRefresh.m */,
+				04D80B7B232F923400617689 /* GQHBaseViewController.h */,
+				04D80B7C232F923400617689 /* GQHBaseViewController.m */,
+			);
+			path = GQHBaseViewController;
+			sourceTree = "<group>";
+		};
 		08A4B0D0ACA3B7291CF4D6E4 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -622,31 +622,13 @@
 		D5B158CB202D7DCA005B76B1 /* Documentation */ = {
 			isa = PBXGroup;
 			children = (
-				D5B158CC202D7DCA005B76B1 /* Documentation */,
-				D5B158D0202D7DCA005B76B1 /* SampleCode */,
-			);
-			name = Documentation;
-			path = Seed/Documentation;
-			sourceTree = SOURCE_ROOT;
-		};
-		D5B158CC202D7DCA005B76B1 /* Documentation */ = {
-			isa = PBXGroup;
-			children = (
 				D5B158CE202D7DCA005B76B1 /* README.md */,
 				D5B158CD202D7DCA005B76B1 /* specifications.md */,
 				D53523052093407600EEAC0A /* catalog.md */,
 			);
-			path = Documentation;
-			sourceTree = "<group>";
-		};
-		D5B158D0202D7DCA005B76B1 /* SampleCode */ = {
-			isa = PBXGroup;
-			children = (
-				D5B158D1202D7DCA005B76B1 /* SAMPLESingleton.h */,
-				D5B158D2202D7DCA005B76B1 /* SAMPLESingleton.m */,
-			);
-			path = SampleCode;
-			sourceTree = "<group>";
+			name = Documentation;
+			path = Seed/Documentation;
+			sourceTree = SOURCE_ROOT;
 		};
 		D5B158ED202D7DCA005B76B1 /* Library */ = {
 			isa = PBXGroup;
@@ -656,24 +638,10 @@
 				D5C8A6D422FFE29C00947237 /* GQHGlobalTimer */,
 				D5C8A6D722FFE29D00947237 /* GQHLockView */,
 				D5C8A6DA22FFE29D00947237 /* GQHSinglePicker */,
-				D5B1590F202D7DCA005B76B1 /* SegmentView */,
 			);
 			name = Library;
 			path = Seed/Library;
 			sourceTree = SOURCE_ROOT;
-		};
-		D5B1590F202D7DCA005B76B1 /* SegmentView */ = {
-			isa = PBXGroup;
-			children = (
-				D5B15910202D7DCA005B76B1 /* QHSegmentContentScrollView.h */,
-				D5B15911202D7DCA005B76B1 /* QHSegmentContentScrollView.m */,
-				D5B15912202D7DCA005B76B1 /* QHSegmentContentView.h */,
-				D5B15913202D7DCA005B76B1 /* QHSegmentContentView.m */,
-				D5B15914202D7DCA005B76B1 /* QHSegmentTitleView.h */,
-				D5B15915202D7DCA005B76B1 /* QHSegmentTitleView.m */,
-			);
-			path = SegmentView;
-			sourceTree = "<group>";
 		};
 		D5B1596E202D7DCB005B76B1 /* Header */ = {
 			isa = PBXGroup;
@@ -704,8 +672,6 @@
 			children = (
 				D5C8A63922FFE10100947237 /* Button */,
 				D5C8A63422FFE10100947237 /* Cell */,
-				D5C8A63222FFE10100947237 /* UIDashLineView.h */,
-				D5C8A63C22FFE10100947237 /* UIDashLineView.m */,
 				D5C8A63D22FFE10100947237 /* UIPaddingLabel.h */,
 				D5C8A63322FFE10100947237 /* UIPaddingLabel.m */,
 			);
@@ -735,30 +701,23 @@
 		D5C8A63E22FFE10100947237 /* Class */ = {
 			isa = PBXGroup;
 			children = (
-				D5C8A65122FFE10100947237 /* GQHBaseCollectionViewController.h */,
-				D5C8A64322FFE10100947237 /* GQHBaseCollectionViewController.m */,
-				D5C8A65622FFE10100947237 /* GQHBaseModel.h */,
-				D5C8A64722FFE10100947237 /* GQHBaseModel.m */,
-				D5C8A64122FFE10100947237 /* GQHBaseTableViewController.h */,
-				D5C8A64C22FFE10100947237 /* GQHBaseTableViewController.m */,
-				D5C8A64A22FFE10100947237 /* GQHBaseView.h */,
-				D5C8A65422FFE10100947237 /* GQHBaseView.m */,
-				D5C8A64D22FFE10100947237 /* GQHBaseViewController.h */,
-				D5C8A63F22FFE10100947237 /* GQHBaseViewController.m */,
-				D5C8A64222FFE10100947237 /* GQHBaseViewController+GQHNavigationBar.h */,
-				D5C8A64B22FFE10100947237 /* GQHBaseViewController+GQHNavigationBar.m */,
-				D5C8A64522FFE10100947237 /* GQHBaseViewController+GQHNetworking.h */,
-				D5C8A64F22FFE10100947237 /* GQHBaseViewController+GQHNetworking.m */,
-				D5C8A65222FFE10100947237 /* GQHBaseViewController+GQHRefresh.h */,
-				D5C8A64622FFE10100947237 /* GQHBaseViewController+GQHRefresh.m */,
-				D5C8A64E22FFE10100947237 /* GQHLogger.h */,
-				D5C8A64022FFE10100947237 /* GQHLogger.m */,
-				D5C8A65022FFE10100947237 /* GQHTabBarController.h */,
-				D5C8A64422FFE10100947237 /* GQHTabBarController.m */,
-				D5C8A64822FFE10100947237 /* GQHUIController.h */,
-				D5C8A65522FFE10100947237 /* GQHUIController.m */,
-				D5C8A64922FFE10100947237 /* GQHWebController.h */,
-				D5C8A65322FFE10100947237 /* GQHWebController.m */,
+				04D80B84232F923400617689 /* GQHBaseCollectionViewController.h */,
+				04D80B8A232F923400617689 /* GQHBaseCollectionViewController.m */,
+				04D80B82232F923400617689 /* GQHBaseModel.h */,
+				04D80B80232F923400617689 /* GQHBaseModel.m */,
+				04D80B7E232F923400617689 /* GQHBaseTableViewController.h */,
+				04D80B7D232F923400617689 /* GQHBaseTableViewController.m */,
+				04D80B73232F923300617689 /* GQHBaseView.h */,
+				04D80B86232F923400617689 /* GQHBaseView.m */,
+				04D80B74232F923400617689 /* GQHBaseViewController */,
+				04D80B81232F923400617689 /* GQHLogger.h */,
+				04D80B83232F923400617689 /* GQHLogger.m */,
+				04D80B89232F923400617689 /* GQHTabBarController.h */,
+				04D80B7F232F923400617689 /* GQHTabBarController.m */,
+				04D80B8B232F923400617689 /* GQHUIController.h */,
+				04D80B87232F923400617689 /* GQHUIController.m */,
+				04D80B85232F923400617689 /* GQHWebController.h */,
+				04D80B88232F923400617689 /* GQHWebController.m */,
 			);
 			path = Class;
 			sourceTree = "<group>";
@@ -1254,28 +1213,29 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D5C8A69A22FFE10100947237 /* GQHTabBarController.m in Sources */,
 				D5C8A6EF22FFE29D00947237 /* UIBarButtonItem+GQHBadge.m in Sources */,
 				D5A5C0E922FFE8DC00A21A77 /* GQHUserModel.m in Sources */,
+				04D80B8D232F923400617689 /* GQHBaseViewController+GQHNetworking.m in Sources */,
 				D5C8A6BE22FFE10100947237 /* NSString+GQHSafety.m in Sources */,
 				D5C8A6CE22FFE18F00947237 /* GQHNetworkResult.m in Sources */,
+				04D80B90232F923400617689 /* GQHBaseTableViewController.m in Sources */,
 				D5C8A6A922FFE10100947237 /* UIApplication+GQHApplication.m in Sources */,
 				D5A5C0D522FFE8C600A21A77 /* GQHGalleryController.m in Sources */,
 				D5C8A6CF22FFE18F00947237 /* GQHNetworkHelper.m in Sources */,
 				D5A5C10222FFE8F200A21A77 /* GQHHomeView.m in Sources */,
 				D5C8A6AD22FFE10100947237 /* UITextView+GQHPlaceholder.m in Sources */,
 				D5C8A6BA22FFE10100947237 /* NSObject+GQHSwizzling.m in Sources */,
-				D5C8A69F22FFE10100947237 /* GQHBaseViewController+GQHNetworking.m in Sources */,
 				D5C8A6F222FFE29D00947237 /* GQHDatePickerView.m in Sources */,
 				D5C8A6F022FFE29D00947237 /* CAAnimation+GQHAnimation.m in Sources */,
 				D5C8A6AB22FFE10100947237 /* AppDelegate+GQHEasterEggs.m in Sources */,
+				04D80B8C232F923400617689 /* GQHBaseViewController+GQHNavigationBar.m in Sources */,
 				D5C8A6A622FFE10100947237 /* AppDelegate+GQHShare.m in Sources */,
 				D5C8A6EB22FFE29D00947237 /* GQHGlobalTimer.m in Sources */,
 				D5C8A6AC22FFE10100947237 /* UIButton+GQHButton.m in Sources */,
+				04D80B97232F923400617689 /* GQHBaseCollectionViewController.m in Sources */,
 				D5A5C0D322FFE8C600A21A77 /* GQHAppAboutController.m in Sources */,
 				D5C8A69322FFE10100947237 /* GQHCommonCell.m in Sources */,
 				D5C8A6BD22FFE10100947237 /* NSDictionary+GQHSafety.m in Sources */,
-				D5C8A69E22FFE10100947237 /* GQHBaseTableViewController.m in Sources */,
 				D5C8A6AA22FFE10100947237 /* UIView+GQHFrame.m in Sources */,
 				D5C8A69222FFE10100947237 /* UIPaddingLabel.m in Sources */,
 				D5C8A6B322FFE10100947237 /* UIFont+GQHFont.m in Sources */,
@@ -1285,16 +1245,17 @@
 				D5A5C0EB22FFE8DC00A21A77 /* GQHRecordModel.m in Sources */,
 				D5A5C0F122FFE8DC00A21A77 /* GQHImageModel.m in Sources */,
 				D5A5C0EC22FFE8DC00A21A77 /* GQHLevelModel.m in Sources */,
+				04D80B91232F923400617689 /* GQHTabBarController.m in Sources */,
 				D5C8A6B022FFE10100947237 /* UIResponder+GQHRouter.m in Sources */,
-				D5C8A69B22FFE10100947237 /* GQHBaseViewController+GQHRefresh.m in Sources */,
+				04D80B92232F923400617689 /* GQHBaseModel.m in Sources */,
 				D5C8A6B822FFE10100947237 /* NSDate+GQHFormatter.m in Sources */,
 				D5A5C0EA22FFE8DC00A21A77 /* GQHAppVersionModel.m in Sources */,
 				D5C8A6B122FFE10100947237 /* AppDelegate+GQH3DTouch.m in Sources */,
+				04D80B8F232F923400617689 /* GQHBaseViewController.m in Sources */,
 				D5A5C10122FFE8F200A21A77 /* GQHAppAboutView.m in Sources */,
 				D5A5C0D222FFE8C600A21A77 /* GQHLaunchController.m in Sources */,
 				D5A5C0D422FFE8C600A21A77 /* GQHHomeController.m in Sources */,
 				D5C8A6A822FFE10100947237 /* UIViewController+GQHAlert.m in Sources */,
-				D5C8A6A022FFE10100947237 /* GQHWebController.m in Sources */,
 				D5C8A69422FFE10100947237 /* GQHCustomCell.m in Sources */,
 				D5A5C10022FFE8F200A21A77 /* GQHRecordsView.m in Sources */,
 				D5C8A6B722FFE10100947237 /* NSDictionary+GQHJSON.m in Sources */,
@@ -1302,9 +1263,9 @@
 				D5C8A6EE22FFE29D00947237 /* UITabBarItem+GQHBadge.m in Sources */,
 				D5A5C0D122FFE8C600A21A77 /* GQHLevelsController.m in Sources */,
 				D5C8A6ED22FFE29D00947237 /* GQHSinglePickerView.m in Sources */,
+				04D80B95232F923400617689 /* GQHUIController.m in Sources */,
 				D5A5C0D622FFE8C600A21A77 /* GQHRecordsController.m in Sources */,
 				D5C8A6D322FFE1AD00947237 /* GQHImageCuttingHelper.m in Sources */,
-				D5B159BD202D7DCB005B76B1 /* QHSegmentContentScrollView.m in Sources */,
 				D5C8A6A322FFE10100947237 /* UIView+GQHAnimation.m in Sources */,
 				D5A5C0ED22FFE8DC00A21A77 /* GQHAppFeedbackModel.m in Sources */,
 				D5C8A6F122FFE29D00947237 /* UIView+GQHBadge.m in Sources */,
@@ -1313,34 +1274,27 @@
 				D5C8A69522FFE10100947237 /* GQHCustomButton.m in Sources */,
 				D5C8A6B922FFE10100947237 /* NSArray+GQHSafety.m in Sources */,
 				D5C8A6BC22FFE10100947237 /* NSObject+GQHProperty.m in Sources */,
-				D5C8A69C22FFE10100947237 /* GQHBaseModel.m in Sources */,
 				D5C8A6D022FFE18F00947237 /* GQHConstantHelper.m in Sources */,
 				D5A5C10622FFE8F200A21A77 /* GQHGameView.m in Sources */,
 				D5C8A6BB22FFE10100947237 /* NSMutableAttributedString+GQHAttributed.m in Sources */,
+				04D80B94232F923400617689 /* GQHBaseView.m in Sources */,
+				04D80B93232F923400617689 /* GQHLogger.m in Sources */,
 				D5C8A6B222FFE10100947237 /* UIColor+GQHColor.m in Sources */,
 				D5C8A6AE22FFE10100947237 /* UIImage+GQHImage.m in Sources */,
-				D5C8A69D22FFE10100947237 /* GQHBaseViewController+GQHNavigationBar.m in Sources */,
-				D5C8A6A122FFE10100947237 /* GQHBaseView.m in Sources */,
 				D5B15861202D7D55005B76B1 /* main.m in Sources */,
-				D5C8A69622FFE10100947237 /* UIDashLineView.m in Sources */,
 				D5B15853202D7D55005B76B1 /* AppDelegate.m in Sources */,
-				D5C8A69722FFE10100947237 /* GQHBaseViewController.m in Sources */,
-				D5B159A4202D7DCB005B76B1 /* SAMPLESingleton.m in Sources */,
-				D5C8A69822FFE10100947237 /* GQHLogger.m in Sources */,
 				D5C8A6A522FFE10100947237 /* UIDevice+GQHDevice.m in Sources */,
 				D5C8A6AF22FFE10100947237 /* UIViewController+GQHPermission.m in Sources */,
 				D5A5C10522FFE8F200A21A77 /* GQHLaunchView.m in Sources */,
-				D5C8A6A222FFE10100947237 /* GQHUIController.m in Sources */,
 				D5C8A6B422FFE10100947237 /* NSObject+GQHValidator.m in Sources */,
+				04D80B96232F923400617689 /* GQHWebController.m in Sources */,
 				D5A5C0EF22FFE8DC00A21A77 /* GQHAppAboutModel.m in Sources */,
+				04D80B8E232F923400617689 /* GQHBaseViewController+GQHRefresh.m in Sources */,
 				D5A5C0D022FFE8C600A21A77 /* GQHGameController.m in Sources */,
 				D5A5C10422FFE8F200A21A77 /* GQHLevelsView.m in Sources */,
-				D5B159BF202D7DCB005B76B1 /* QHSegmentTitleView.m in Sources */,
 				D5A5C10322FFE8F200A21A77 /* GQHGalleryView.m in Sources */,
 				D5C8A6EC22FFE29D00947237 /* GQHLockView.m in Sources */,
 				D5C8A6A722FFE10100947237 /* UIApplication+GQHFileManager.m in Sources */,
-				D5C8A69922FFE10100947237 /* GQHBaseCollectionViewController.m in Sources */,
-				D5B159BE202D7DCB005B76B1 /* QHSegmentContentView.m in Sources */,
 				D5A5C0F022FFE8DC00A21A77 /* GQHMenuModel.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

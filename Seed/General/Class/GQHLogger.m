@@ -28,6 +28,12 @@
 
 @end
 
+/// 日志板高度
+static CGFloat const kLogBoardHeight = 250.0f;
+/// 日志板透明度
+static CGFloat const kLogBoardAlpha = 0.15f;
+
+
 @implementation GQHLog
 
 /**
@@ -62,7 +68,7 @@
 /**
  日志记录数组
  */
-@property (nonatomic, strong) NSMutableArray *logArray;
+@property (nonatomic, strong) NSMutableArray<GQHLog *> *logArray;
 
 @end
 
@@ -148,11 +154,11 @@ static GQHLogger *logger = nil;
  */
 - (instancetype)init {
     
-    if (self = [super initWithFrame:CGRectMake(0.0f, 0.0f, CGRectGetWidth(UIScreen.mainScreen.bounds), 200.0f)]) {
+    if (self = [super initWithFrame:CGRectMake(0.0f, 0.0f, CGRectGetWidth(UIScreen.mainScreen.bounds), kLogBoardHeight)]) {
         
         self.rootViewController = [UIViewController new];
         self.windowLevel = UIWindowLevelAlert;
-        self.backgroundColor = [UIColor colorWithWhite:0.0f alpha:0.2f];
+        self.backgroundColor = [UIColor colorWithWhite:0.0f alpha:kLogBoardAlpha];
         self.userInteractionEnabled = NO;
         
         [self addSubview:self.textView];
@@ -170,15 +176,16 @@ static GQHLogger *logger = nil;
     
     double timeStamp = [[NSDate date] timeIntervalSince1970];
     
-    for (GQHLog *log in self.logArray) {
+    [self.logArray enumerateObjectsUsingBlock:^(GQHLog * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
         
-        NSMutableAttributedString *string = [[NSMutableAttributedString alloc] initWithString:log.logText];
+        NSMutableAttributedString *string = [[NSMutableAttributedString alloc] initWithString:obj.logText];
         
-        UIColor *color = timeStamp - log.timeStamp > 0.1f ? UIColor.whiteColor : UIColor.yellowColor;
+        UIColor *color = (timeStamp - obj.timeStamp > 0.1f) ? UIColor.whiteColor : UIColor.yellowColor;
+        
         [string addAttribute:NSForegroundColorAttributeName value:color range:NSMakeRange(0, string.length)];
         
         [attributedStringM appendAttributedString:string];
-    }
+    }];
     
     self.textView.attributedText = attributedStringM;
     [self.textView scrollRangeToVisible:NSMakeRange(attributedStringM.length - 1, 1)];
@@ -186,7 +193,7 @@ static GQHLogger *logger = nil;
 
 - (void)layoutSubviews {
     
-    self.frame = CGRectMake(0.0f, 0.0f, CGRectGetWidth(UIScreen.mainScreen.bounds), 200.0f);
+    self.frame = CGRectMake(0.0f, 0.0f, CGRectGetWidth(UIScreen.mainScreen.bounds), kLogBoardHeight);
 }
 
 #pragma mark --Setter
@@ -203,7 +210,7 @@ static GQHLogger *logger = nil;
     return _textView;
 }
 
-- (NSMutableArray *)logArray {
+- (NSMutableArray<GQHLog *> *)logArray {
     
     if (!_logArray) {
         

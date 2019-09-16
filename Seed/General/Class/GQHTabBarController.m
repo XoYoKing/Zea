@@ -10,27 +10,21 @@
 #import "GQHHeader.h"
 
 #pragma mark Model
-#import "GQHUserModel.h"
 
 #pragma mark View
 
 #pragma mark Controller
 #import "GQHTabBarController.h"
-#import "GQHHomeController.h"
+//#import "GQHHomeController.h"
+//#import "GQHDepartmentController.h"
+//#import "GQHDiscoverController.h"
+//#import "GQHCartController.h"
+//#import "GQHMeController.h"
+
 
 #pragma mark -
 
 @interface GQHTabBarController () <UITabBarControllerDelegate>
-
-/**
- 点击次数
- */
-@property (nonatomic, assign) NSInteger clicks;
-
-/**
- 时间戳
- */
-@property (nonatomic, assign) CGFloat oldTimeStamp;
 
 @end
 
@@ -137,6 +131,31 @@
  */
 - (void)loadTabBarControllers {
     
+    /**
+    GQHHomeController *homeController = [[GQHHomeController alloc] init];
+    UINavigationController *homeNavController = [[UINavigationController alloc]initWithRootViewController:homeController];
+    homeNavController.tabBarItem = [self createTabBarItem:NSLocalizedString(@"home", @"首页") imageNamed:GQHTabBarItemHomeNormal selectedImageNamed:GQHTabBarItemHomeSelected];
+    
+    GQHDepartmentController *departmentController = [[GQHDepartmentController alloc] init];
+    UINavigationController *departmentNavController = [[UINavigationController alloc]initWithRootViewController:departmentController];
+    departmentNavController.tabBarItem = [self createTabBarItem:NSLocalizedString(@"department", @"分类") imageNamed:GQHTabBarItemDepartmentNormal selectedImageNamed:GQHTabBarItemDepartmentSelected];
+    
+    GQHDiscoverController *discoverController = [[GQHDiscoverController alloc] init];
+    UINavigationController *discoverNavController = [[UINavigationController alloc]initWithRootViewController:discoverController];
+    discoverNavController.tabBarItem = [self createTabBarItem:NSLocalizedString(@"discover", @"发现") imageNamed:GQHTabBarItemDiscoverNormal selectedImageNamed:GQHTabBarItemDiscoverSelected];
+    
+    GQHCartController *cartController = [[GQHCartController alloc] init];
+    UINavigationController *cartNavController = [[UINavigationController alloc]initWithRootViewController:cartController];
+    cartNavController.tabBarItem = [self createTabBarItem:NSLocalizedString(@"cart", @"购物车") imageNamed:GQHTabBarItemCartNormal selectedImageNamed:GQHTabBarItemCartSelected];
+    
+    GQHMeController *meController = [[GQHMeController alloc]init];
+    UINavigationController *meNavController = [[UINavigationController alloc]initWithRootViewController:meController];
+    meNavController.tabBarItem = [self createTabBarItem:NSLocalizedString(@"me", @"我的") imageNamed:GQHTabBarItemMeNormal selectedImageNamed:GQHTabBarItemMeSelected];
+    
+    [self setViewControllers:@[homeNavController, departmentNavController, discoverNavController, cartNavController, meNavController]];
+    
+    [self setSelectedIndex:0];
+     */
 }
 
 
@@ -151,8 +170,8 @@
 - (UITabBarItem *)createTabBarItem:(NSString *)title imageNamed:(NSString *)imageName selectedImageNamed:(NSString *)selectedImageName {
     
     // font
-    NSDictionary *unselected = @{NSFontAttributeName:[UIFont systemFontOfSize:GQHSmallestFont],NSForegroundColorAttributeName:[UIColor blackColor]};
-    NSDictionary *selected = @{NSFontAttributeName:[UIFont systemFontOfSize:GQHSmallestFont],NSForegroundColorAttributeName:[UIColor blackColor]};
+    NSDictionary *unselected = @{NSFontAttributeName:[UIFont systemFontOfSize:GQHFontSizeSmallest],NSForegroundColorAttributeName:[UIColor blackColor]};
+    NSDictionary *selected = @{NSFontAttributeName:[UIFont systemFontOfSize:GQHFontSizeSmallest],NSForegroundColorAttributeName:[UIColor blackColor]};
     // image
     UIImage *image = [[UIImage imageNamed:imageName] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
     UIImage *selectedImage = [[UIImage imageNamed:selectedImageName] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];

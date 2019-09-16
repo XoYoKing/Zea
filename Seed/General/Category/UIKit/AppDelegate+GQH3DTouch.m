@@ -20,22 +20,22 @@
     // 创建系统风格的icon
     UIApplicationShortcutIcon *systemAddIcon = [UIApplicationShortcutIcon iconWithType:UIApplicationShortcutIconTypeAdd];
     // 创建应用程序主屏3D Touch快捷选项
-    UIApplicationShortcutItem *addShortcut = [[UIApplicationShortcutItem alloc]initWithType:@"identifier.add" localizedTitle:@"Add" localizedSubtitle:@"" icon:systemAddIcon userInfo:nil];
+    UIApplicationShortcutItem *addShortcut = [[UIApplicationShortcutItem alloc]initWithType:@"identifier.add" localizedTitle:NSLocalizedString(@"Add", @"") localizedSubtitle:NSLocalizedString(@"", @"") icon:systemAddIcon userInfo:nil];
     
     // 创建系统风格的icon
     UIApplicationShortcutIcon *composeIcon = [UIApplicationShortcutIcon iconWithType:UIApplicationShortcutIconTypeCompose];
     // 创建应用程序主屏3D Touch快捷选项
-    UIApplicationShortcutItem *composeShortcut = [[UIApplicationShortcutItem alloc]initWithType:@"identifier.compose" localizedTitle:@"Compose" localizedSubtitle:@"" icon:composeIcon userInfo:nil];
+    UIApplicationShortcutItem *composeShortcut = [[UIApplicationShortcutItem alloc]initWithType:@"identifier.compose" localizedTitle:NSLocalizedString(@"Compose", @"") localizedSubtitle:NSLocalizedString(@"", @"") icon:composeIcon userInfo:nil];
     
     // 创建系统风格的icon
     UIApplicationShortcutIcon *systemSearchIcon = [UIApplicationShortcutIcon iconWithType:UIApplicationShortcutIconTypeSearch];
     // 创建应用程序主屏3D Touch快捷选项
-    UIApplicationShortcutItem *searchShortcut = [[UIApplicationShortcutItem alloc]initWithType:@"identifier.search" localizedTitle:@"Search" localizedSubtitle:@"" icon:systemSearchIcon userInfo:nil];
+    UIApplicationShortcutItem *searchShortcut = [[UIApplicationShortcutItem alloc]initWithType:@"identifier.search" localizedTitle:NSLocalizedString(@"Search", @"") localizedSubtitle:NSLocalizedString(@"", @"") icon:systemSearchIcon userInfo:nil];
     
     // 创建自定义风格的icon 图片大小35×35
     UIApplicationShortcutIcon *customPraiseIcon = [UIApplicationShortcutIcon iconWithTemplateImageName:@"icon.png"];
     // 创建应用程序主屏3D Touch快捷选项
-    UIApplicationShortcutItem *praiseShortcut = [[UIApplicationShortcutItem alloc]initWithType:@"identifier.praise" localizedTitle:@"Praise" localizedSubtitle:@"" icon:customPraiseIcon userInfo:nil];
+    UIApplicationShortcutItem *praiseShortcut = [[UIApplicationShortcutItem alloc]initWithType:@"identifier.praise" localizedTitle:NSLocalizedString(@"Praise", @"") localizedSubtitle:NSLocalizedString(@"", @"") icon:customPraiseIcon userInfo:nil];
     
     // 添加到快捷选项数组  启用3D Touch功能后应用上架自动添加一个分享快捷选项
     [UIApplication sharedApplication].shortcutItems = @[addShortcut,composeShortcut,searchShortcut,praiseShortcut];

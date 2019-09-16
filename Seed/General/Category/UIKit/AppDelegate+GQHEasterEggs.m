@@ -23,6 +23,7 @@ NSInteger kCount;
     CGPoint touchPoint = [[touches anyObject] locationInView:self.window];
     CGRect statusBarFrame = UIApplication.sharedApplication.statusBarFrame;
     
+    // 3秒内点击状态栏10次以上
     if (CGRectContainsPoint(statusBarFrame, touchPoint)) {
         
         kClicks++;

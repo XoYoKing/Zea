@@ -19,6 +19,16 @@
  */
 + (void)qh_outputPropertyCodeWithDictionary:(NSDictionary *)dictionary {
     
+    if (![dictionary isKindOfClass:[NSDictionary class]]) {
+        
+        return ;
+    }
+    
+    if ([dictionary count] <= 0) {
+        
+        return ;
+    }
+    
     NSMutableString *autoCode = [NSMutableString string];
     
     [dictionary enumerateKeysAndObjectsUsingBlock:^(id  _Nonnull key, id  _Nonnull obj, BOOL * _Nonnull stop) {

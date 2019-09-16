@@ -39,7 +39,7 @@
 @end
 
 /// 加载进度属性监听键值
-static NSString *kWebKeyPath = @"estimatedProgress";
+static NSString * const kWebKeyPath = @"estimatedProgress";
 
 @implementation GQHWebController
 

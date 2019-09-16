@@ -311,39 +311,69 @@
 }
 
 /**
+ 根据字符串生成条形码图片
+ 
+ @param string 条形码图片字符串
+ @param size 条形码图片大小
+ @return 条形码图片
+ */
++ (UIImage *)qh_barCodeImageWithString:(NSString *)string size:(CGFloat)size {
+    
+    return [self createNonInterpolatedUIImageFormCIImage:[self createBarCodeFromString:string] withSize:size];
+}
+
+/**
+ 根据字符串生成条形码图片, 图片格式为CIImage
+
+ @param string 条形码字符串
+ @return 条形码图片(CIImage)
+ */
++ (CIImage *)createBarCodeFromString:(NSString *)string {
+    
+    NSData *stringData = [string dataUsingEncoding:NSUTF8StringEncoding];
+    
+    CIFilter *filter = [CIFilter filterWithName:@"CICode128BarcodeGenerator"];
+    [filter setValue:stringData forKey:@"inputMessage"];
+    // 设置生成的条形码的上\下\左\右的margin的值
+    [filter setValue:[NSNumber numberWithFloat:0.0f] forKey:@"inputQuietSpace"];
+    
+    return filter.outputImage;
+}
+
+/**
  根据字符串生成二维码图片
  
- @param QRString 二维码图片字符串
+ @param string 二维码图片字符串
  @param size 二维码图片大小
  @return 二维码图片
  */
-+ (UIImage *)qh_QRImageFromString:(NSString *)QRString size:(CGFloat)size {
++ (UIImage *)qh_QRCodeImageWithString:(NSString *)string size:(CGFloat)size {
     
-    return [self createNonInterpolatedUIImageFormCIImage:[self createQRFromString:QRString] withSize:size];
+    return [self createNonInterpolatedUIImageFormCIImage:[self createQRFromString:string] withSize:size];
 }
 
 /**
  根据字符串生成二维码图片, 图片格式为CIImage
  
- @param QRString 二维码字符串
+ @param string 二维码字符串
  @return 二维码图片(CIImage)
  */
-+ (CIImage *)createQRFromString:(NSString *)QRString {
++ (CIImage *)createQRFromString:(NSString *)string {
     
-    NSData *stringData = [QRString dataUsingEncoding:NSUTF8StringEncoding];
+    NSData *stringData = [string dataUsingEncoding:NSUTF8StringEncoding];
     
-    CIFilter *QRFilter = [CIFilter filterWithName:@"CIQRCodeGenerator"];
-    [QRFilter setValue:stringData forKey:@"inputMessage"];
-    [QRFilter setValue:@"M" forKey:@"inputCorrectionLevel"];
+    CIFilter *filter = [CIFilter filterWithName:@"CIQRCodeGenerator"];
+    [filter setValue:stringData forKey:@"inputMessage"];
+    [filter setValue:@"M" forKey:@"inputCorrectionLevel"];
     
-    return QRFilter.outputImage;
+    return filter.outputImage;
 }
 
 /**
  将CIImage转换成可以控制大小的UIImage
  
  @param image 需要转换的图片(CIImage)
- @param size 二维码图片指定大小
+ @param size 图片指定大小
  @return 图片(UIImage)
  */
 + (UIImage *)createNonInterpolatedUIImageFormCIImage:(CIImage *)image withSize:(CGFloat) size {
@@ -354,20 +384,24 @@
     size_t width = CGRectGetWidth(extent) * scale;
     size_t height = CGRectGetHeight(extent) * scale;
     
-    CGColorSpaceRef cs = CGColorSpaceCreateDeviceGray();
-    CGContextRef bitmapRef = CGBitmapContextCreate(nil, width, height, 8, 0, cs, (CGBitmapInfo)kCGImageAlphaNone);
-    CIContext *context = [CIContext contextWithOptions:nil];
+    CGColorSpaceRef colorSpace = CGColorSpaceCreateDeviceGray();
+    CGContextRef bitmapRef = CGBitmapContextCreate(nil, width, height, 8, 0, colorSpace, (CGBitmapInfo)kCGImageAlphaNone);
     
+    CIContext *context = [CIContext contextWithOptions:nil];
     CGImageRef bitmapImage = [context createCGImage:image fromRect:extent];
+    
     CGContextSetInterpolationQuality(bitmapRef, kCGInterpolationNone);
     CGContextScaleCTM(bitmapRef, scale, scale);
     CGContextDrawImage(bitmapRef, extent, bitmapImage);
     CGImageRef scaledImage = CGBitmapContextCreateImage(bitmapRef);
     
+    UIImage *result = [UIImage imageWithCGImage:scaledImage];
+    
     CGContextRelease(bitmapRef);
     CGImageRelease(bitmapImage);
+    CGImageRelease(scaledImage);
     
-    return [UIImage imageWithCGImage:scaledImage];
+    return result;
 }
 
 /**
@@ -459,13 +493,14 @@
     NSDictionary *gifProperties = properties[(NSString *)kCGImagePropertyGIFDictionary];
     
     NSNumber *unclampedDelayTime = gifProperties[(NSString *)kCGImagePropertyGIFUnclampedDelayTime];
-    if (unclampedDelayTime) {
+    
+    if (unclampedDelayTime != nil) {
         
         duration = [unclampedDelayTime floatValue];
     } else {
         
         NSNumber *delayTime = gifProperties[(NSString *)kCGImagePropertyGIFDelayTime];
-        if (delayTime) {
+        if (delayTime != nil) {
             
             duration = [delayTime floatValue];
         }

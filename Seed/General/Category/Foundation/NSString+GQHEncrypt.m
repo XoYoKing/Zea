@@ -9,10 +9,21 @@
 #import "NSString+GQHEncrypt.h"
 #import <CommonCrypto/CommonDigest.h>
 
+
 @implementation NSString (GQHEncrypt)
 
-// 不可逆(加密无解密)
-+ (NSString *)qh_encryptMD5WithString:(NSString *)string {
+/**
+ MD5加密 32位小写16进制
+
+ @param string 需要加密的字符串
+ @return 加密后的字符串
+ */
++ (NSString *)qh_encryptWithMD5:(NSString *)string {
+    
+    if (!string) {
+        
+        return nil;
+    }
     
     // 转换为UTF8字符串
     const char *cString = [string UTF8String];
@@ -29,8 +40,12 @@
     // 32位16进制字符串
     for(int i = 0; i < CC_MD5_DIGEST_LENGTH; i++) {
         
+        // 小写
         [cipherString appendFormat:@"%02x",cipher[i]];
+        // 大写
+//        [cipherString appendFormat:@"%02X",cipher[i]];
     }
+    
     return cipherString;
 }
 

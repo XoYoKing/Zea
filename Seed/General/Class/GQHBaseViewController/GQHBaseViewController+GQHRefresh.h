@@ -14,7 +14,7 @@ NS_ASSUME_NONNULL_BEGIN
 @interface GQHBaseViewController (GQHRefresh)
 
 /**
- 下拉刷新上拉加载当前页码
+ 当前页码
  */
 @property (nonatomic, assign) NSInteger qh_pageNumber;
 
@@ -25,26 +25,27 @@ NS_ASSUME_NONNULL_BEGIN
 
 /**
  设置并立即刷新
- 
- @param view 滚动视图
+
+ @param scrollView 视图
  @param handler 刷新时的操作
  */
-- (void)qh_beginRefreshingWith:(UIView *)view handler:(void(^)(void))handler;
+- (void)qh_beginRefreshingWith:(__kindof UIScrollView *)scrollView handler:(void(^)(void))handler;
 
 /**
  开始刷新
- 
- @param view 滚动视图及其子类
+
+ @param scrollView 视图
  */
-- (void)qh_startRefresh:(__kindof UIScrollView *)view;
+- (void)qh_startRefresh:(__kindof UIScrollView *)scrollView;
+
 
 /**
  结束刷新
- 
- @param view 滚动视图及其子类
+
+ @param scrollView 视图
  @param response 刷新返回数据(直接与页码相关的数据)
  */
-- (void)qh_view:(UIScrollView *)view endRefresh:(id)response;
+- (void)qh_scrollView:(__kindof UIScrollView *)scrollView endRefresh:(nullable id)response;
 
 @end
 
