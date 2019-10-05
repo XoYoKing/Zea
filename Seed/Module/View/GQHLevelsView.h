@@ -40,9 +40,9 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, strong) id qh_data;
 
 /**
- 列表视图
+ 集合视图
  */
-@property (nonatomic, strong) UITableView *qh_tableView;
+@property (nonatomic, strong) UICollectionView *qh_collectionView;
 
 @end
 
@@ -54,9 +54,9 @@ NS_ASSUME_NONNULL_END
 NS_ASSUME_NONNULL_BEGIN
 
 /**
- 列表视图的自定义行视图
+ 集合视图Cell
  */
-@interface GQHLevelsTableViewCell : UITableViewCell
+@interface GQHLevelsCollectionViewCell : UICollectionViewCell
 
 /**
  视图代理
@@ -69,79 +69,19 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, strong) id qh_data;
 
 /**
- 根据视图数据创建列表视图的行视图
+ 索引
+ */
+@property (nonatomic, assign) NSIndexPath *qh_indexPath;
+
+/**
+ 根据视图数据创建集合视图的单元格视图
  
- @param tableView 列表视图
- @param data 列表行视图数据
- @return 自定义行视图
+ @param collectionView 集合视图
+ @param indexPath 单元格视图的索引值
+ @param data 视图数据
+ @return 集合视图自定义单元格视图
  */
-+ (instancetype)qh_tableView:(UITableView *)tableView cellWithData:(nullable id)data;
-
-@end
-
-NS_ASSUME_NONNULL_END
-
-
-#pragma mark -
-
-NS_ASSUME_NONNULL_BEGIN
-
-/**
- 列表视图的自定义头视图
- */
-@interface GQHLevelsTableViewHeaderView : UITableViewHeaderFooterView
-
-/**
- 视图代理
- */
-@property (nonatomic, weak) id<GQHLevelsViewDelegate> qh_delegate;
-
-/**
- 视图数据
- */
-@property (nonatomic, strong) id qh_data;
-
-/**
- 根据视图数据创建列表视图的头视图
- 
- @param tableView 列表视图
- @param data 列表头视图数据
- @return 自定义头视图
- */
-+ (instancetype)qh_tableView:(UITableView *)tableView headerViewWithData:(nullable id)data;
-
-@end
-
-NS_ASSUME_NONNULL_END
-
-
-#pragma mark -
-
-NS_ASSUME_NONNULL_BEGIN
-
-/**
- 列表视图的自定义尾视图
- */
-@interface GQHLevelsTableViewFooterView : UITableViewHeaderFooterView
-
-/**
- 视图代理
- */
-@property (nonatomic, weak) id<GQHLevelsViewDelegate> qh_delegate;
-
-/**
- 视图数据
- */
-@property (nonatomic, strong) id qh_data;
-
-/**
- 根据视图数据创建列表视图的尾视图
- 
- @param tableView 列表视图
- @param data 列表尾视图数据
- @return 自定义尾视图
- */
-+ (instancetype)qh_tableView:(UITableView *)tableView footerViewWithData:(nullable id)data;
++ (instancetype)qh_collectionView:(UICollectionView *)collectionView cellForIndexPath:(NSIndexPath *)indexPath data:(nullable id)data;
 
 @end
 

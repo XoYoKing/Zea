@@ -19,7 +19,7 @@
 
 #pragma mark -
 
-@interface GQHLevelsController () <UITableViewDelegate, UITableViewDataSource, GQHLevelsViewDelegate>
+@interface GQHLevelsController () <UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout, GQHLevelsViewDelegate>
 
 /**
  自定义根视图
@@ -53,6 +53,7 @@
     [super viewDidLoad];
     NSLog(@"");
     
+    self.qh_navigationBar.hidden = YES;
 }
 
 /**
@@ -125,142 +126,52 @@
     
 }
 
-#pragma mark - UITableViewDataSource
-/**
- 列表视图的总组数
- 
- @param tableView 列表视图
- @return 列表视图的总组数
- */
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    NSLog(@"");
+#pragma mark - UICollectionViewDelegateFlowLayout
+
+- (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath {
     
-    return 1;
+    return CGSizeMake(100, 100);
 }
 
-/**
- 列表视图的各组行数
- 
- @param tableView 列表视图
- @param section 列表视图的某组索引值
- @return 列表视图的某组的行数
- */
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    NSLog(@"");
+- (UIEdgeInsets)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout insetForSectionAtIndex:(NSInteger)section {
+    
+    return UIEdgeInsetsZero;
+}
+
+- (CGFloat)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout minimumLineSpacingForSectionAtIndex:(NSInteger)section {
+    
+    return 20.0f;
+}
+
+- (CGFloat)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout minimumInteritemSpacingForSectionAtIndex:(NSInteger)section {
+    
+    return 20.0f;
+}
+
+#pragma mark - UICollectionViewDataSource
+
+- (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
     
     return 5;
 }
 
-/**
- 列表视图的行视图
- 
- @param tableView 列表视图
- @param indexPath 列表视图某行的索引值
- @return 列表视图某行视图
- */
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    NSLog(@"");
+- (__kindof UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
     
-    // 数据data
-    NSMutableDictionary *data = [NSMutableDictionary dictionary];
-    
-    // 视图cell
-    GQHLevelsTableViewCell *cell = [GQHLevelsTableViewCell qh_tableView:tableView cellWithData:data];
+    GQHLevelsCollectionViewCell *cell = [GQHLevelsCollectionViewCell qh_collectionView:collectionView cellForIndexPath:indexPath data:nil];
     cell.qh_delegate = self;
     
     return cell;
 }
 
-#pragma mark - UITableViewDelegate
-/**
- 列表视图的各行高度
- 
- @param tableView 列表视图
- @param indexPath 列表视图某行的索引值
- @return 列表视图某行视图的高度值
- */
-- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-    NSLog(@"");
+- (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView {
     
-    return 50.0f;
+    return 1;
 }
 
-/**
- 选中列表视图的某行视图
- 
- @param tableView 列表视图
- @param indexPath 选中列表视图的某行视图的索引值
- */
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    NSLog(@"");
-    
-    [tableView deselectRowAtIndexPath:indexPath animated:YES];
-}
+#pragma mark - UICollectionViewDelegate
 
-/**
- 列表视图的组头视图高度
- 
- @param tableView 列表视图
- @param section 列表视图的某组索引值
- @return 列表视图的某组头视图高度
- */
-- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
-    NSLog(@"");
+- (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
     
-    return CGFLOAT_MIN;
-}
-
-/**
- 列表视图的组自定义头视图
- 
- @param tableView 列表视图
- @param section 列表视图的某组索引值
- @return 列表视图的某组自定义头视图
- */
-- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
-    NSLog(@"");
-    
-    // 头视图数据data
-    NSMutableDictionary *data = [NSMutableDictionary dictionary];
-    
-    // 自定义头视图
-    GQHLevelsTableViewHeaderView *headerView = [GQHLevelsTableViewHeaderView qh_tableView:tableView headerViewWithData:data];
-    headerView.qh_delegate = self;
-    
-    return headerView;
-}
-
-/**
- 列表视图的组尾视图高度
- 
- @param tableView 列表视图
- @param section 列表视图的某组索引值
- @return 列表视图的某组尾视图高度
- */
-- (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section {
-    NSLog(@"");
-    
-    return CGFLOAT_MIN;
-}
-
-/**
- 列表视图的组自定义尾视图
- 
- @param tableView 列表视图
- @param section 列表视图的某组索引值
- @return 列表视图的某组自定义尾视图
- */
-- (UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section {
-    NSLog(@"");
-    
-    // 尾视图数据data
-    NSMutableDictionary *data = [NSMutableDictionary dictionary];
-    
-    // 自定义尾视图
-    GQHLevelsTableViewFooterView *footerView = [GQHLevelsTableViewFooterView qh_tableView:tableView footerViewWithData:data];
-    footerView.qh_delegate = self;
-    
-    return footerView;
 }
 
 #pragma mark - GQHLevelsViewDelegate
@@ -278,8 +189,8 @@
         
         _rootView = [[GQHLevelsView alloc] initWithFrame:UIScreen.mainScreen.bounds];
         _rootView.backgroundColor = [UIColor whiteColor];
-        _rootView.qh_tableView.delegate = self;
-        _rootView.qh_tableView.dataSource = self;
+        _rootView.qh_collectionView.delegate = self;
+        _rootView.qh_collectionView.dataSource = self;
         _rootView.qh_delegate = self;
     }
     
