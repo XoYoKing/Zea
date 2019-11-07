@@ -11,7 +11,7 @@
 
 @implementation UIColor (GQHColor)
 
-#pragma mark --Constant
+#pragma mark - Constant
 + (UIColor *)qh_grayColor {
     
     return [UIColor colorWithRed:153/255.0f green:153/255.0f blue:153/255.0f alpha:1.0f];
@@ -52,7 +52,7 @@
     return [UIColor colorWithRed:249/255.0f green:249/255.0f blue:249/255.0f alpha:1.0f];
 }
 
-#pragma mark --Converter
+#pragma mark - Converter
 
 /**
  RGB颜色

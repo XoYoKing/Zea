@@ -11,7 +11,7 @@
 
 /**
  按钮图文排版方式
-
+ 
  - GQHButtonGraphicLayoutStyleVerticalDefault: 上图下字
  - GQHButtonGraphicLayoutStyleVerticalOpposite: 上字下图
  - GQHButtonGraphicLayoutStyleHorizontalDefault: 左图右字
@@ -38,5 +38,10 @@ typedef NS_ENUM(NSUInteger, GQHButtonGraphicLayoutStyle) {
  按钮图文间距
  */
 @property (nonatomic, assign) float qh_buttonGraphicLayoutSpacing;
+
+/**
+ 点击事件时间间隔
+ */
+@property (nonatomic, assign) NSTimeInterval qh_timeIntervalOnclick;
 
 @end

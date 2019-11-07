@@ -106,12 +106,12 @@
     
     // 导航栏安全边距
     CGFloat safeAreaLeft = 0.0f;
-    CGFloat safeAreaRight = 0.0f;
+    CGFloat safeAreaRight = 8.0f;
     
     if (@available(iOS 11.0, *)) {
         
-        safeAreaLeft = UIApplication.sharedApplication.delegate.window.safeAreaInsets.left;
-        safeAreaRight = UIApplication.sharedApplication.delegate.window.safeAreaInsets.right;
+        safeAreaLeft += UIApplication.sharedApplication.delegate.window.safeAreaInsets.left;
+        safeAreaRight += UIApplication.sharedApplication.delegate.window.safeAreaInsets.right;
     }
     
     // 自定义导航栏
@@ -121,7 +121,7 @@
         make.height.mas_equalTo(self.view.qh_statusBarHeight + self.view.qh_navigationBarHeight);
     }];
     
-    // 自定义导航栏标题栏
+    // 导航栏分割线
     [self.qh_navigationBarLine mas_remakeConstraints:^(MASConstraintMaker *make) {
         
         make.left.and.bottom.and.right.mas_equalTo(self.qh_navigationBar);
@@ -133,34 +133,35 @@
 
         make.top.mas_equalTo(self.qh_navigationBar).with.inset(self.view.qh_statusBarHeight);
         make.left.mas_equalTo(self.qh_navigationBar).with.inset(safeAreaLeft);
-        make.size.mas_equalTo(CGSizeMake(self.view.qh_navigationBarHeight, self.view.qh_navigationBarHeight));
+        make.bottom.mas_equalTo(self.qh_navigationBar);
+        make.width.mas_greaterThanOrEqualTo(self.view.qh_navigationBarHeight);
     }];
 
     // 自定义导航栏左按钮
     [self.qh_leftButton mas_remakeConstraints:^(MASConstraintMaker *make) {
 
-        make.top.mas_equalTo(self.qh_backButton);
+        make.top.mas_equalTo(self.qh_navigationBar).with.inset(self.view.qh_statusBarHeight);
+        make.bottom.mas_equalTo(self.qh_navigationBar);
         make.left.mas_equalTo(self.qh_backButton.mas_right);
         make.width.mas_greaterThanOrEqualTo(self.view.qh_navigationBarHeight);
-        make.height.mas_equalTo(self.view.qh_navigationBarHeight);
     }];
 
     // 自定义导航栏最右按钮
     [self.qh_rightMostButton mas_remakeConstraints:^(MASConstraintMaker *make) {
 
-        make.top.mas_equalTo(self.qh_backButton);
+        make.top.mas_equalTo(self.qh_navigationBar).with.inset(self.view.qh_statusBarHeight);
+        make.bottom.mas_equalTo(self.qh_navigationBar);
         make.right.mas_equalTo(self.qh_navigationBar).with.inset(safeAreaRight);
         make.width.mas_greaterThanOrEqualTo(self.view.qh_navigationBarHeight);
-        make.height.mas_equalTo(self.view.qh_navigationBarHeight);
     }];
 
     // 自定义导航栏右按钮
     [self.qh_rightButton mas_remakeConstraints:^(MASConstraintMaker *make) {
 
-        make.top.mas_equalTo(self.qh_backButton);
+        make.top.mas_equalTo(self.qh_navigationBar).with.inset(self.view.qh_statusBarHeight);
+        make.bottom.mas_equalTo(self.qh_navigationBar);
         make.right.mas_equalTo(self.qh_rightMostButton.mas_left);
         make.width.mas_greaterThanOrEqualTo(self.view.qh_navigationBarHeight);
-        make.height.mas_equalTo(self.view.qh_navigationBarHeight);
     }];
 
     // 自定义导航栏标题栏

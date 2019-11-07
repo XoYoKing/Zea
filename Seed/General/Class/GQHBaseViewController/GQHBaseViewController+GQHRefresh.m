@@ -91,8 +91,8 @@
                 self.qh_lastPage = YES;
             }
             
+            //TODO:空白页
             // 空白页设置
-            
             NSInteger total = [response[@"total"] integerValue];
             if (0 == total) {
                 

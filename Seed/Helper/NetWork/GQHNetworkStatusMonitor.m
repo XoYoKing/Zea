@@ -19,16 +19,21 @@ NSString * const GQHNetStatusMonitorNotificationKey = @"GQHNetStatusMonitorNotif
  
  @return 网络状态监听单例
  */
-+ (instancetype)qh_shareNetStatusMonitor {
++ (instancetype)qh_sharedNetStatusMonitor {
     
     static GQHNetworkStatusMonitor *monitor = nil;
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
         
-        monitor = [[GQHNetworkStatusMonitor alloc] init];
+        monitor = [[super allocWithZone:NULL] init];
     });
     
     return monitor;
+}
+
++ (instancetype)allocWithZone:(struct _NSZone *)zone {
+    
+    return  [[self class] qh_sharedNetStatusMonitor];
 }
 
 /**

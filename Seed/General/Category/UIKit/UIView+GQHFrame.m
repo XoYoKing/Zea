@@ -392,7 +392,13 @@ CGFloat const GQHFrameDoubleMargin = 2 * GQHFrameSingleMargin;
 
 - (CGFloat)qh_statusBarHeight {
     
-    return CGRectGetHeight(UIApplication.sharedApplication.statusBarFrame);
+    if (@available(iOS 13, *)) {
+        
+        return CGRectGetHeight(UIApplication.sharedApplication.keyWindow.windowScene.statusBarManager.statusBarFrame);
+    } else {
+        
+        return CGRectGetHeight(UIApplication.sharedApplication.statusBarFrame);
+    }
 }
 
 - (CGFloat)qh_navigationBarHeight {

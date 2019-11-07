@@ -8,6 +8,7 @@
 
 #import "NSString+GQHSafety.h"
 
+
 @implementation NSString (GQHSafety)
 
 /**

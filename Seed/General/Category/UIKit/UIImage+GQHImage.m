@@ -131,45 +131,6 @@
 }
 
 /**
- 添加图片水印
- 
- @param rect 水印位置
- @param anImage 水印图片
- @return 带图片水印的图片
- */
-- (nonnull UIImage *)qh_watermarkImageWithRect:(CGRect)rect image:(nullable UIImage *)anImage {
-    
-    UIGraphicsBeginImageContextWithOptions(self.size, NO, 0.0f);
-    [self drawAtPoint:CGPointZero];
-    
-    [anImage drawInRect:rect];
-    UIImage *watermarkImage = UIGraphicsGetImageFromCurrentImageContext();
-    UIGraphicsEndImageContext();
-    
-    return watermarkImage;
-}
-
-/**
- 添加文字水印
- 
- @param rect 水印位置
- @param aString 水印文字
- @return 带文字水印的图片
- */
-- (nonnull UIImage *)qh_watermarkImageWithRect:(CGRect)rect string:(nullable NSAttributedString *)aString {
-    
-    UIGraphicsBeginImageContextWithOptions(self.size, NO, 0.0f);
-    [self drawAtPoint:CGPointZero];
-    
-    [aString drawWithRect:rect options:NSStringDrawingUsesLineFragmentOrigin context:nil];
-    UIImage *watermarkImage = UIGraphicsGetImageFromCurrentImageContext();
-    UIGraphicsEndImageContext();
-    
-    return watermarkImage;
-}
-
-
-/**
  获取纯色图片
  
  @param color 颜色
@@ -251,7 +212,7 @@
 
 /**
  压缩图片到指定大小(质量和尺寸)
-
+ 
  @param image 图片
  @param maxValue 指定大小(单位KB)
  @return 图片数据
@@ -324,7 +285,7 @@
 
 /**
  根据字符串生成条形码图片, 图片格式为CIImage
-
+ 
  @param string 条形码字符串
  @return 条形码图片(CIImage)
  */
@@ -514,6 +475,152 @@
     CFRelease(propertiesCF);
     
     return duration;
+}
+
+@end
+
+
+@implementation UIImage (GQHWatermark)
+
+/**
+ 添加图片水印
+ 
+ @param rect 水印的位置
+ @param anImage 图片的水印
+ @return 带水印的图片
+ */
+- (nonnull UIImage *)qh_watermarkInRect:(CGRect)rect image:(nullable UIImage *)anImage {
+    
+    UIGraphicsBeginImageContextWithOptions(self.size, NO, 0.0f);
+    [self drawAtPoint:CGPointZero];
+    
+    [anImage drawInRect:rect];
+    UIImage *watermarkImage = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    
+    return watermarkImage;
+}
+
+/**
+ 添加文字水印
+ 
+ @param rect 水印位置
+ @param aString 图片的文字水印
+ @return 带文字水印的图片
+ */
+- (nonnull UIImage *)qh_watermarkInRect:(CGRect)rect string:(nullable NSAttributedString *)aString {
+    
+    UIGraphicsBeginImageContextWithOptions(self.size, NO, 0.0f);
+    [self drawAtPoint:CGPointZero];
+    
+    [aString drawWithRect:rect options:NSStringDrawingUsesLineFragmentOrigin context:nil];
+    UIImage *watermarkImage = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    
+    return watermarkImage;
+}
+
+/**
+ 显示图片水印
+ 原图水印要求: 深色深且高透明度
+
+ @return 显示水印的图片
+ */
+- (nonnull UIImage *)qh_watermarkCanVisible {
+    
+    // 所有像素点 32位整形指针
+    UInt32 *pixels;
+    
+    // 获取CGImageRef
+    CGImageRef imageRef = [self CGImage];
+    
+    // width & height
+    NSUInteger width = CGImageGetWidth(imageRef);
+    NSUInteger height = CGImageGetHeight(imageRef);
+    NSUInteger sum = width * height;
+    
+    // color
+    CGColorSpaceRef colorSpaceRef = CGColorSpaceCreateDeviceRGB();
+    
+    // 每个像素字节数
+    NSUInteger bytesPerPixel = 4;
+    // 每一行字节数
+    NSUInteger bytesPerRow = bytesPerPixel * width;
+    // 内存中像素的每个组件的位数
+    NSUInteger bitsPerComponent = 8;
+    
+    // 开辟内存区域, 指向首像素地址
+    pixels = (UInt32 *)calloc(sum, sizeof(UInt32));
+    
+    // 创建像素层
+    CGContextRef contextRef = CGBitmapContextCreate(pixels, width, height, bitsPerComponent, bytesPerRow, colorSpaceRef, kCGImageAlphaPremultipliedLast|kCGBitmapByteOrder32Big);
+    // 绘制图像
+    CGContextDrawImage(contextRef, CGRectMake(0.0f, 0.0f, width, height), imageRef);
+    
+    // 处理像素
+    for (NSInteger i = 0; i < sum; i++) {
+        
+        NSInteger row = i/width;
+        NSInteger column = i%width;
+        
+        //        NSLog(@"row=%@--column=%@\n",@(row),@(column));
+        
+        @autoreleasepool {
+            
+            UInt32 *pixel = pixels + (row * width) + column;
+            UInt32 color = *pixel;
+            
+            UInt32 originalRed;
+            UInt32 originalGreen;
+            UInt32 originalBlue;
+            UInt32 originalAlpha;
+            
+            originalRed = ((color)&0xFF);
+            originalGreen = ((color >> 8)&0xFF);
+            originalBlue = ((color >> 16)&0xFF);
+            originalAlpha = ((color >> 24)&0xFF);
+            
+            UInt32 mixedRed;
+            UInt32 mixedGreen;
+            UInt32 mixedBlue;
+            
+            mixedRed = [self mixedColor:originalRed];
+            mixedGreen = [self mixedColor:originalGreen];
+            mixedBlue = [self mixedColor:originalBlue];
+            
+            *pixel = ((mixedRed&0xFF) | (mixedGreen&0xFF) << 8 | (mixedBlue&0xFF) << 16 | (originalAlpha&0xFF) << 24);
+        }
+    }
+    
+    // 创建新图
+    CGImageRef newImageRef = CGBitmapContextCreateImage(contextRef);
+    UIImage *newImage = [UIImage imageWithCGImage:newImageRef];
+    
+    // 释放内存
+    CGColorSpaceRelease(colorSpaceRef);
+    CGContextRelease(contextRef);
+    free(pixels);
+    
+    return newImage;
+}
+
+/**
+ 混色(添加图层并颜色加深)
+ 
+ @param value 基色
+ @return 结果色
+ */
+- (int)mixedColor:(int)value {
+    
+    // 公式: 结果色 = 基色 - (基色反相X混合色反相) / 混合色
+    // 混合色(1-255), 值越小, 混合结果越明显
+    int mixedValue = 1;
+    
+    // 混合结果
+    int result = 0;
+    result = value - (255 - value) * (255 - mixedValue) / mixedValue;
+    
+    return (result < 0) ? 0 : result;
 }
 
 @end

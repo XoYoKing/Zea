@@ -35,7 +35,7 @@
  */
 - (void)networkingStatus:(NSNotification *)sender {
     
-    if ([GQHNetworkStatusMonitor qh_shareNetStatusMonitor].qh_networking) {
+    if ([GQHNetworkStatusMonitor qh_sharedNetStatusMonitor].qh_networking) {
         
         GQHNetworkStatus networkStatus = (GQHNetworkStatus)[[sender.userInfo objectForKey:@"status"] integerValue];
         
@@ -67,7 +67,7 @@
  */
 - (void)qh_handleNetworkError:(GQHNetworkError *)error {
     
-#warning to-do 统一处理请求错误
+    //TODO:统一处理请求错误
     
 }
 

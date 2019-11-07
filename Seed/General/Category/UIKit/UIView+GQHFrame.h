@@ -160,7 +160,7 @@ UIKIT_EXTERN CGFloat const GQHFrameDoubleMargin;
 
 /**
  视图切圆角
-
+ 
  @param radius 圆角半径
  @param corners 圆角位置
  */
@@ -174,7 +174,7 @@ UIKIT_EXTERN CGFloat const GQHFrameDoubleMargin;
 
 /**
  查询子视图(子视图的子视图)
-
+ 
  @param className 子视图类名字符串
  @return 子视图
  */
@@ -182,7 +182,7 @@ UIKIT_EXTERN CGFloat const GQHFrameDoubleMargin;
 
 /**
  查询子视图(子视图的子视图)
-
+ 
  @param classType 子视图类型
  @return 子视图
  */
@@ -190,7 +190,7 @@ UIKIT_EXTERN CGFloat const GQHFrameDoubleMargin;
 
 /**
  查询父视图
-
+ 
  @param classType 父视图类型
  @return 父视图
  */
@@ -204,14 +204,14 @@ UIKIT_EXTERN CGFloat const GQHFrameDoubleMargin;
 
 /**
  视图的视图控制器
-
+ 
  @return 视图控制器
  */
 - (UIViewController *)qh_currentViewController;
 
 /**
  视图导航控制器
-
+ 
  @return 视图导航控制器
  */
 - (UINavigationController *)qh_navigationController;

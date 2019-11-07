@@ -53,13 +53,10 @@ typedef NS_ENUM(NSUInteger, GQHDeviceModel) {
     iPhone_XS_Max,
     iPhone_XS_Max_China,
     iPhone_XR,
-    
-#warning to-do 2018
-    
     iPhone_11,
     iPhone_11_Pro,
     iPhone_11_Pro_Max,
-    
+//TODO:2019
     
     // iPod设备
     iPod_Touch_1G = 2000,
@@ -69,6 +66,7 @@ typedef NS_ENUM(NSUInteger, GQHDeviceModel) {
     iPod_Touch_5,
     iPod_Touch_6,
     iPod_Touch_7,
+//TODO:2018
     
     // iPad设备
     iPad_1 = 3000,
@@ -119,8 +117,7 @@ typedef NS_ENUM(NSUInteger, GQHDeviceModel) {
     iPad_Mini_5_Cellular,
     iPad_Air_3_WiFi,
     iPad_Air_3_Cellular,
-    
-#warning to-do 2018
+//TODO:2018
     
     // Apple Watch设备
     Apple_Watch_38MM = 4000,
@@ -137,9 +134,7 @@ typedef NS_ENUM(NSUInteger, GQHDeviceModel) {
     Apple_Watch_4_44MM,
     Apple_Watch_4_40MM_LTE,
     Apple_Watch_4_44MM_LTE,
-    
-#warning to-do 2018
-    
+//TODO:2018
 };
 
 
@@ -162,28 +157,16 @@ NS_ASSUME_NONNULL_BEGIN
 @interface UIDevice (GQHDevice)
 
 /**
- 运营商名称
+ 运营商信息(单双卡)(名称-手机国际代号-手机网络代号)
  */
-@property (nonatomic, readonly, copy) NSString *qh_carrierName;
+@property (nonatomic, readonly, copy) NSArray<NSString *> *qh_carriers;
 
 /**
- 运营商名称
+ 运营商信息(单双卡)(名称-手机国际代号-手机网络代号)
  
- @return 运营商名称
+ @return 运营商名称(单双卡)(名称-手机国际代号-手机网络代号)
  */
-- (NSString *)qh_carrierName;
-
-/**
- 运营商代号
- */
-@property (nonatomic, readonly, copy) NSString *qh_carrierCode;
-
-/**
- 运营商代号
- 
- @return 运营商代号
- */
-- (NSString *)qh_carrierCode;
+- (NSArray<NSString *> *)qh_carriers;
 
 /**
  手机磁盘总量(GB)

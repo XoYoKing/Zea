@@ -7,6 +7,13 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		044544C323727C06000A7A28 /* GQHPathSearcher.m in Sources */ = {isa = PBXBuildFile; fileRef = 044544C223727C06000A7A28 /* GQHPathSearcher.m */; };
+		044544C623729BCE000A7A28 /* GQHBreadthFirstSearcher.m in Sources */ = {isa = PBXBuildFile; fileRef = 044544C523729BCE000A7A28 /* GQHBreadthFirstSearcher.m */; };
+		04953FE82370131400C3CFE4 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 04953FE72370131400C3CFE4 /* LaunchScreen.storyboard */; };
+		04974AB7237165BE00095393 /* GQHPriorityQueue.m in Sources */ = {isa = PBXBuildFile; fileRef = 04974AB6237165BE00095393 /* GQHPriorityQueue.m */; };
+		04CBE6D62373B3F700AA694A /* GQHDoubleBreadthFirstSearcher.m in Sources */ = {isa = PBXBuildFile; fileRef = 04CBE6D52373B3F700AA694A /* GQHDoubleBreadthFirstSearcher.m */; };
+		04CBE6D92373BE2C00AA694A /* GQHAStarSearcher.m in Sources */ = {isa = PBXBuildFile; fileRef = 04CBE6D82373BE2C00AA694A /* GQHAStarSearcher.m */; };
+		04CBE6DE2373BF9000AA694A /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 04CBE6DD2373BF9000AA694A /* StoreKit.framework */; };
 		04D80B8C232F923400617689 /* GQHBaseViewController+GQHNavigationBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 04D80B76232F923400617689 /* GQHBaseViewController+GQHNavigationBar.m */; };
 		04D80B8D232F923400617689 /* GQHBaseViewController+GQHNetworking.m in Sources */ = {isa = PBXBuildFile; fileRef = 04D80B78232F923400617689 /* GQHBaseViewController+GQHNetworking.m */; };
 		04D80B8E232F923400617689 /* GQHBaseViewController+GQHRefresh.m in Sources */ = {isa = PBXBuildFile; fileRef = 04D80B7A232F923400617689 /* GQHBaseViewController+GQHRefresh.m */; };
@@ -52,7 +59,6 @@
 		D5B15876202D7D55005B76B1 /* SeedUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = D5B15875202D7D55005B76B1 /* SeedUITests.m */; };
 		D5B159A1202D7DCB005B76B1 /* specifications.md in Resources */ = {isa = PBXBuildFile; fileRef = D5B158CD202D7DCA005B76B1 /* specifications.md */; };
 		D5B159A2202D7DCB005B76B1 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = D5B158CE202D7DCA005B76B1 /* README.md */; };
-		D5B159E8202D7E23005B76B1 /* Launch Screen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D5B159E7202D7E23005B76B1 /* Launch Screen.storyboard */; };
 		D5B159EA202D7E31005B76B1 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D5B159E9202D7E31005B76B1 /* Main.storyboard */; };
 		D5B159ED202D818B005B76B1 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = D5B159EF202D818B005B76B1 /* Localizable.strings */; };
 		D5C8A62F22FFCC9F00947237 /* data_dictionary_ui.plist in Resources */ = {isa = PBXBuildFile; fileRef = D5C8A62D22FFCC9F00947237 /* data_dictionary_ui.plist */; };
@@ -151,6 +157,19 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		044544C123727C06000A7A28 /* GQHPathSearcher.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GQHPathSearcher.h; sourceTree = "<group>"; };
+		044544C223727C06000A7A28 /* GQHPathSearcher.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GQHPathSearcher.m; sourceTree = "<group>"; };
+		044544C423729BCE000A7A28 /* GQHBreadthFirstSearcher.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GQHBreadthFirstSearcher.h; sourceTree = "<group>"; };
+		044544C523729BCE000A7A28 /* GQHBreadthFirstSearcher.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GQHBreadthFirstSearcher.m; sourceTree = "<group>"; };
+		04953FE72370131400C3CFE4 /* LaunchScreen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
+		04974AB5237165BE00095393 /* GQHPriorityQueue.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GQHPriorityQueue.h; sourceTree = "<group>"; };
+		04974AB6237165BE00095393 /* GQHPriorityQueue.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GQHPriorityQueue.m; sourceTree = "<group>"; };
+		04CBE6D42373B3F700AA694A /* GQHDoubleBreadthFirstSearcher.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GQHDoubleBreadthFirstSearcher.h; sourceTree = "<group>"; };
+		04CBE6D52373B3F700AA694A /* GQHDoubleBreadthFirstSearcher.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GQHDoubleBreadthFirstSearcher.m; sourceTree = "<group>"; };
+		04CBE6D72373BE2C00AA694A /* GQHAStarSearcher.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GQHAStarSearcher.h; sourceTree = "<group>"; };
+		04CBE6D82373BE2C00AA694A /* GQHAStarSearcher.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GQHAStarSearcher.m; sourceTree = "<group>"; };
+		04CBE6DC2373BF8800AA694A /* Seed.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Seed.entitlements; sourceTree = "<group>"; };
+		04CBE6DD2373BF9000AA694A /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
 		04D80B73232F923300617689 /* GQHBaseView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GQHBaseView.h; sourceTree = "<group>"; };
 		04D80B75232F923400617689 /* GQHBaseViewController+GQHNavigationBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "GQHBaseViewController+GQHNavigationBar.h"; sourceTree = "<group>"; };
 		04D80B76232F923400617689 /* GQHBaseViewController+GQHNavigationBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "GQHBaseViewController+GQHNavigationBar.m"; sourceTree = "<group>"; };
@@ -245,7 +264,6 @@
 		D5B15877202D7D55005B76B1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D5B158CD202D7DCA005B76B1 /* specifications.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = specifications.md; sourceTree = "<group>"; };
 		D5B158CE202D7DCA005B76B1 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
-		D5B159E7202D7E23005B76B1 /* Launch Screen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = "Launch Screen.storyboard"; sourceTree = "<group>"; };
 		D5B159E9202D7E31005B76B1 /* Main.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 		D5B159EE202D818B005B76B1 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		D5B159F0202D8199005B76B1 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Localizable.strings"; sourceTree = "<group>"; };
@@ -386,6 +404,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				1A46AACB389F9172E3FD8D47 /* libPods-Seed.a in Frameworks */,
+				04CBE6DE2373BF9000AA694A /* StoreKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -411,14 +430,14 @@
 		04D80B74232F923400617689 /* GQHBaseViewController */ = {
 			isa = PBXGroup;
 			children = (
+				04D80B7B232F923400617689 /* GQHBaseViewController.h */,
+				04D80B7C232F923400617689 /* GQHBaseViewController.m */,
 				04D80B75232F923400617689 /* GQHBaseViewController+GQHNavigationBar.h */,
 				04D80B76232F923400617689 /* GQHBaseViewController+GQHNavigationBar.m */,
 				04D80B77232F923400617689 /* GQHBaseViewController+GQHNetworking.h */,
 				04D80B78232F923400617689 /* GQHBaseViewController+GQHNetworking.m */,
 				04D80B79232F923400617689 /* GQHBaseViewController+GQHRefresh.h */,
 				04D80B7A232F923400617689 /* GQHBaseViewController+GQHRefresh.m */,
-				04D80B7B232F923400617689 /* GQHBaseViewController.h */,
-				04D80B7C232F923400617689 /* GQHBaseViewController.m */,
 			);
 			path = GQHBaseViewController;
 			sourceTree = "<group>";
@@ -426,6 +445,7 @@
 		08A4B0D0ACA3B7291CF4D6E4 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				04CBE6DD2373BF9000AA694A /* StoreKit.framework */,
 				1F9022C94008243A6972068F /* libPods-Seed.a */,
 				965655FC3B0AA93F8EE6E1B7 /* libPods-SeedTests.a */,
 				CBB22A5583A8D587340B3181 /* libPods-SeedUITests.a */,
@@ -535,6 +555,7 @@
 		D5B15850202D7D55005B76B1 /* Seed */ = {
 			isa = PBXGroup;
 			children = (
+				04CBE6DC2373BF8800AA694A /* Seed.entitlements */,
 				D5B15883202D7D85005B76B1 /* AppDelegate */,
 				D5B158CB202D7DCA005B76B1 /* Documentation */,
 				D5B15884202D7DCA005B76B1 /* General */,
@@ -594,6 +615,16 @@
 				D5C8A6D222FFE1AD00947237 /* GQHImageCuttingHelper.h */,
 				D5C8A6D122FFE1AD00947237 /* GQHImageCuttingHelper.m */,
 				D5C8A6C222FFE18F00947237 /* NetWork */,
+				044544C123727C06000A7A28 /* GQHPathSearcher.h */,
+				044544C223727C06000A7A28 /* GQHPathSearcher.m */,
+				044544C423729BCE000A7A28 /* GQHBreadthFirstSearcher.h */,
+				044544C523729BCE000A7A28 /* GQHBreadthFirstSearcher.m */,
+				04CBE6D42373B3F700AA694A /* GQHDoubleBreadthFirstSearcher.h */,
+				04CBE6D52373B3F700AA694A /* GQHDoubleBreadthFirstSearcher.m */,
+				04CBE6D72373BE2C00AA694A /* GQHAStarSearcher.h */,
+				04CBE6D82373BE2C00AA694A /* GQHAStarSearcher.m */,
+				04974AB5237165BE00095393 /* GQHPriorityQueue.h */,
+				04974AB6237165BE00095393 /* GQHPriorityQueue.m */,
 			);
 			path = Helper;
 			sourceTree = "<group>";
@@ -659,7 +690,7 @@
 				D5B1585A202D7D55005B76B1 /* Assets.xcassets */,
 				D5B1585F202D7D55005B76B1 /* Info.plist */,
 				D5B15860202D7D55005B76B1 /* main.m */,
-				D5B159E7202D7E23005B76B1 /* Launch Screen.storyboard */,
+				04953FE72370131400C3CFE4 /* LaunchScreen.storyboard */,
 				D5B159E9202D7E31005B76B1 /* Main.storyboard */,
 				D5B159EF202D818B005B76B1 /* Localizable.strings */,
 				D5E56CFF212DA5A9001BCD74 /* InfoPlist.strings */,
@@ -681,10 +712,10 @@
 		D5C8A63422FFE10100947237 /* Cell */ = {
 			isa = PBXGroup;
 			children = (
-				D5C8A63522FFE10100947237 /* GQHCommonCell.m */,
-				D5C8A63622FFE10100947237 /* GQHCustomCell.m */,
-				D5C8A63722FFE10100947237 /* GQHCustomCell.h */,
 				D5C8A63822FFE10100947237 /* GQHCommonCell.h */,
+				D5C8A63522FFE10100947237 /* GQHCommonCell.m */,
+				D5C8A63722FFE10100947237 /* GQHCustomCell.h */,
+				D5C8A63622FFE10100947237 /* GQHCustomCell.m */,
 			);
 			path = Cell;
 			sourceTree = "<group>";
@@ -692,8 +723,8 @@
 		D5C8A63922FFE10100947237 /* Button */ = {
 			isa = PBXGroup;
 			children = (
-				D5C8A63A22FFE10100947237 /* GQHCustomButton.m */,
 				D5C8A63B22FFE10100947237 /* GQHCustomButton.h */,
+				D5C8A63A22FFE10100947237 /* GQHCustomButton.m */,
 			);
 			path = Button;
 			sourceTree = "<group>";
@@ -805,13 +836,13 @@
 			isa = PBXGroup;
 			children = (
 				D5C8A6C322FFE18F00947237 /* GQHNetworkError.h */,
-				D5C8A6C422FFE18F00947237 /* GQHNetworkStatusMonitor.m */,
-				D5C8A6C522FFE18F00947237 /* GQHNetworkResult.h */,
-				D5C8A6C622FFE18F00947237 /* GQHNetworkHelper.h */,
-				D5C8A6C722FFE18F00947237 /* GQHNetworkStatusMonitor.h */,
 				D5C8A6C822FFE18F00947237 /* GQHNetworkError.m */,
-				D5C8A6C922FFE18F00947237 /* GQHNetworkResult.m */,
+				D5C8A6C622FFE18F00947237 /* GQHNetworkHelper.h */,
 				D5C8A6CA22FFE18F00947237 /* GQHNetworkHelper.m */,
+				D5C8A6C522FFE18F00947237 /* GQHNetworkResult.h */,
+				D5C8A6C922FFE18F00947237 /* GQHNetworkResult.m */,
+				D5C8A6C722FFE18F00947237 /* GQHNetworkStatusMonitor.h */,
+				D5C8A6C422FFE18F00947237 /* GQHNetworkStatusMonitor.m */,
 			);
 			path = NetWork;
 			sourceTree = "<group>";
@@ -990,7 +1021,7 @@
 		D5B15846202D7D55005B76B1 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0940;
+				LastUpgradeCheck = 1120;
 				ORGANIZATIONNAME = GuanQinghao;
 				TargetAttributes = {
 					D5B1584D202D7D55005B76B1 = {
@@ -1045,6 +1076,7 @@
 				D5E56CDA2128780C001BCD74 /* puzzle_0.png in Resources */,
 				D5E56CE52128780C001BCD74 /* basic_back@3x.png in Resources */,
 				D5E56CE72128780C001BCD74 /* game_reset@3x.png in Resources */,
+				04953FE82370131400C3CFE4 /* LaunchScreen.storyboard in Resources */,
 				D5E56CF22128780C001BCD74 /* puzzle_7.png in Resources */,
 				D5B159ED202D818B005B76B1 /* Localizable.strings in Resources */,
 				D5E56CE92128780C001BCD74 /* home_about@3x.png in Resources */,
@@ -1068,7 +1100,6 @@
 				D5E56CEC2128780C001BCD74 /* gallery_add@3x.png in Resources */,
 				D5B159A1202D7DCB005B76B1 /* specifications.md in Resources */,
 				D5E56CDE2128780C001BCD74 /* menu_music.png in Resources */,
-				D5B159E8202D7E23005B76B1 /* Launch Screen.storyboard in Resources */,
 				D5C8A63022FFCC9F00947237 /* data_dictionary_model.plist in Resources */,
 				D5E56CDC2128780C001BCD74 /* puzzle_4.png in Resources */,
 				D5E56CEB2128780C001BCD74 /* gallery_add@2x.png in Resources */,
@@ -1098,7 +1129,7 @@
 			files = (
 			);
 			inputPaths = (
-				"${SRCROOT}/Pods/Target Support Files/Pods-Seed/Pods-Seed-resources.sh",
+				"${PODS_ROOT}/Target Support Files/Pods-Seed/Pods-Seed-resources.sh",
 				"${PODS_ROOT}/IQKeyboardManager/IQKeyboardManager/Resources/IQKeyboardManager.bundle",
 				"${PODS_ROOT}/MJRefresh/MJRefresh/MJRefresh.bundle",
 			);
@@ -1109,7 +1140,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Seed/Pods-Seed-resources.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Seed/Pods-Seed-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		521444F92796084D8F5DC9CE /* [CP] Copy Pods Resources */ = {
@@ -1118,7 +1149,7 @@
 			files = (
 			);
 			inputPaths = (
-				"${SRCROOT}/Pods/Target Support Files/Pods-SeedTests/Pods-SeedTests-resources.sh",
+				"${PODS_ROOT}/Target Support Files/Pods-SeedTests/Pods-SeedTests-resources.sh",
 				"${PODS_ROOT}/IQKeyboardManager/IQKeyboardManager/Resources/IQKeyboardManager.bundle",
 				"${PODS_ROOT}/MJRefresh/MJRefresh/MJRefresh.bundle",
 			);
@@ -1129,7 +1160,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-SeedTests/Pods-SeedTests-resources.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-SeedTests/Pods-SeedTests-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		533526484C1711CFFD56D46B /* [CP] Check Pods Manifest.lock */ = {
@@ -1174,7 +1205,7 @@
 			files = (
 			);
 			inputPaths = (
-				"${SRCROOT}/Pods/Target Support Files/Pods-SeedUITests/Pods-SeedUITests-resources.sh",
+				"${PODS_ROOT}/Target Support Files/Pods-SeedUITests/Pods-SeedUITests-resources.sh",
 				"${PODS_ROOT}/IQKeyboardManager/IQKeyboardManager/Resources/IQKeyboardManager.bundle",
 				"${PODS_ROOT}/MJRefresh/MJRefresh/MJRefresh.bundle",
 			);
@@ -1185,7 +1216,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-SeedUITests/Pods-SeedUITests-resources.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-SeedUITests/Pods-SeedUITests-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		EB22D5766C82D4397F0730A4 /* [CP] Check Pods Manifest.lock */ = {
@@ -1213,6 +1244,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				044544C323727C06000A7A28 /* GQHPathSearcher.m in Sources */,
 				D5C8A6EF22FFE29D00947237 /* UIBarButtonItem+GQHBadge.m in Sources */,
 				D5A5C0E922FFE8DC00A21A77 /* GQHUserModel.m in Sources */,
 				04D80B8D232F923400617689 /* GQHBaseViewController+GQHNetworking.m in Sources */,
@@ -1225,6 +1257,7 @@
 				D5A5C10222FFE8F200A21A77 /* GQHHomeView.m in Sources */,
 				D5C8A6AD22FFE10100947237 /* UITextView+GQHPlaceholder.m in Sources */,
 				D5C8A6BA22FFE10100947237 /* NSObject+GQHSwizzling.m in Sources */,
+				044544C623729BCE000A7A28 /* GQHBreadthFirstSearcher.m in Sources */,
 				D5C8A6F222FFE29D00947237 /* GQHDatePickerView.m in Sources */,
 				D5C8A6F022FFE29D00947237 /* CAAnimation+GQHAnimation.m in Sources */,
 				D5C8A6AB22FFE10100947237 /* AppDelegate+GQHEasterEggs.m in Sources */,
@@ -1240,6 +1273,7 @@
 				D5C8A69222FFE10100947237 /* UIPaddingLabel.m in Sources */,
 				D5C8A6B322FFE10100947237 /* UIFont+GQHFont.m in Sources */,
 				D5C8A6B522FFE10100947237 /* NSString+GQHFormatter.m in Sources */,
+				04CBE6D92373BE2C00AA694A /* GQHAStarSearcher.m in Sources */,
 				D5C8A6B622FFE10100947237 /* NSString+GQHEncrypt.m in Sources */,
 				D5A5C0EE22FFE8DC00A21A77 /* GQHTokenModel.m in Sources */,
 				D5A5C0EB22FFE8DC00A21A77 /* GQHRecordModel.m in Sources */,
@@ -1249,6 +1283,7 @@
 				D5C8A6B022FFE10100947237 /* UIResponder+GQHRouter.m in Sources */,
 				04D80B92232F923400617689 /* GQHBaseModel.m in Sources */,
 				D5C8A6B822FFE10100947237 /* NSDate+GQHFormatter.m in Sources */,
+				04974AB7237165BE00095393 /* GQHPriorityQueue.m in Sources */,
 				D5A5C0EA22FFE8DC00A21A77 /* GQHAppVersionModel.m in Sources */,
 				D5C8A6B122FFE10100947237 /* AppDelegate+GQH3DTouch.m in Sources */,
 				04D80B8F232F923400617689 /* GQHBaseViewController.m in Sources */,
@@ -1296,6 +1331,7 @@
 				D5C8A6EC22FFE29D00947237 /* GQHLockView.m in Sources */,
 				D5C8A6A722FFE10100947237 /* UIApplication+GQHFileManager.m in Sources */,
 				D5A5C0F022FFE8DC00A21A77 /* GQHMenuModel.m in Sources */,
+				04CBE6D62373B3F700AA694A /* GQHDoubleBreadthFirstSearcher.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1469,7 +1505,7 @@
 			baseConfigurationReference = 26432BFBF9351331B984F0C8 /* Pods-Seed.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_ENTITLEMENTS = Seed/Seed.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = JM52XZKNAA;
 				INFOPLIST_FILE = "$(SRCROOT)/Seed/Support Files/Info.plist";
@@ -1486,7 +1522,7 @@
 			baseConfigurationReference = 2B3DBF78FB0941BD23D9ADA4 /* Pods-Seed.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_ENTITLEMENTS = Seed/Seed.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = JM52XZKNAA;
 				INFOPLIST_FILE = "$(SRCROOT)/Seed/Support Files/Info.plist";

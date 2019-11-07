@@ -50,7 +50,7 @@ NS_ASSUME_NONNULL_BEGIN
  
  @return 网络状态监听单例
  */
-+ (instancetype)qh_shareNetStatusMonitor;
++ (instancetype)qh_sharedNetStatusMonitor;
 
 /**
  监听网络

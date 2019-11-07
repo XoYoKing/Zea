@@ -17,45 +17,40 @@
 @implementation UIDevice (GQHDevice)
 
 /**
- 运营商名称
+ 运营商信息(单双卡)(名称-手机国际代号-手机网络代号)
  
- @return 运营商名称
+ @return 运营商名称(单双卡)(名称-手机国际代号-手机网络代号)
  */
-- (NSString *)qh_carrierName {
+- (NSArray<NSString *> *)qh_carriers {
     
-    NSString *carrierName = @"";
+    // 运营商信息
+    __block NSMutableArray *carriers = [NSMutableArray array];
     
-    CTTelephonyNetworkInfo *netInfo = [[CTTelephonyNetworkInfo alloc] init];
-    CTCarrier *carrier = [netInfo subscriberCellularProvider];
+    CTTelephonyNetworkInfo *networkInfo = [[CTTelephonyNetworkInfo alloc] init];
     
-    if (carrier) {
-        
-        carrierName = [[carrier carrierName] copy];
-    }
+    NSMutableDictionary<NSString *, CTCarrier *> *providers = [NSMutableDictionary dictionary];
     
-    return carrierName;
-}
+    if (@available(iOS 12, *)) {
 
-/**
- 运营商代号
- 
- @return 运营商代号
- */
-- (NSString *)qh_carrierCode {
-    
-    NSString *carrierCode = @"";
-    
-    CTTelephonyNetworkInfo *netInfo = [[CTTelephonyNetworkInfo alloc] init];
-    CTCarrier *carrier = [netInfo subscriberCellularProvider];
-    
-    if (carrier) {
+        providers = [[networkInfo serviceSubscriberCellularProviders] mutableCopy];
+    } else {
         
-        NSString *mcc = [carrier mobileCountryCode];
-        NSString *mnc = [carrier mobileNetworkCode];
-        carrierCode = [NSString stringWithFormat:@"%@%@", mcc, mnc];
+        CTCarrier *provider = [networkInfo subscriberCellularProvider];
+        if (provider) {
+            
+            [providers setObject:provider forKey:@"0000000100000001"];
+        }
     }
     
-    return carrierCode;
+    [providers enumerateKeysAndObjectsUsingBlock:^(NSString * _Nonnull key, CTCarrier * _Nonnull obj, BOOL * _Nonnull stop) {
+        
+        NSString *name = [obj carrierName];
+        NSString *mcc = [obj mobileCountryCode];
+        NSString *mnc = [obj mobileNetworkCode];
+        [carriers addObject:[NSString stringWithFormat:@"%@-%@-%@",name,mcc,mnc]];
+    }];
+    
+    return carriers;
 }
 
 /**
@@ -125,7 +120,7 @@
 
 /**
  设备类型
-
+ 
  @return 设备类型
  */
 - (GQHDeviceType)qh_deviceType {
@@ -154,7 +149,7 @@
 
 /**
  设备机型
-
+ 
  @return 设备机型
  */
 - (GQHDeviceModel)qh_deviceModel {
@@ -273,6 +268,15 @@
     } else if ([machine isEqualToString:@"iPhone11,8"]) {
         
         return iPhone_XR;
+    } else if ([machine isEqualToString:@"iPhone12,1"]) {
+        
+        return iPhone_11;
+    } else if ([machine isEqualToString:@"iPhone12,3"]) {
+        
+        return iPhone_11_Pro;
+    } else if ([machine isEqualToString:@"iPhone12,5"]) {
+        
+        return iPhone_11_Pro_Max;
     }
     
     // iPod

@@ -9,6 +9,7 @@
 #import "NSDictionary+GQHJSON.h"
 #import <objc/message.h>
 
+
 @implementation NSDictionary (GQHJSON)
 
 /**
@@ -83,7 +84,7 @@ static inline void qh_swizzleSelector(Class class, SEL originalSelector, SEL alt
  
  @return JSON字符串
  */
-- (NSString *)toJSONString {
+- (NSString *)qh_toJSONString {
     
     if (![NSJSONSerialization isValidJSONObject:self]) {
         
@@ -110,7 +111,7 @@ static inline void qh_swizzleSelector(Class class, SEL originalSelector, SEL alt
 
 - (NSString *)qh_debugDescription {
     
-    NSString *JSONString = [self toJSONString];
+    NSString *JSONString = [self qh_toJSONString];
     if (!JSONString) {
         
         return [self qh_debugDescription];
@@ -121,7 +122,7 @@ static inline void qh_swizzleSelector(Class class, SEL originalSelector, SEL alt
 
 - (NSString *)qh_descriptionWithLocale:(id)locale {
     
-    NSString *JSONString = [self toJSONString];
+    NSString *JSONString = [self qh_toJSONString];
     if (!JSONString) {
         
         return [self qh_descriptionWithLocale:locale];
@@ -132,7 +133,7 @@ static inline void qh_swizzleSelector(Class class, SEL originalSelector, SEL alt
 
 - (NSString *)qh_descriptionWithLocale:(id)locale indent:(NSUInteger)level {
     
-    NSString *JSONString = [self toJSONString];
+    NSString *JSONString = [self qh_toJSONString];
     if (!JSONString) {
         
         return [self qh_descriptionWithLocale:locale indent:level];
@@ -162,7 +163,7 @@ static inline void qh_swizzleSelector(Class class, SEL originalSelector, SEL alt
 
 - (NSString *)qh_debugDescription {
     
-    NSString *JSONString = [self toJSONString];
+    NSString *JSONString = [self qh_toJSONString];
     if (!JSONString) {
         
         return [self qh_debugDescription];
@@ -173,7 +174,7 @@ static inline void qh_swizzleSelector(Class class, SEL originalSelector, SEL alt
 
 - (NSString *)qh_descriptionWithLocale:(id)locale {
     
-    NSString *JSONString = [self toJSONString];
+    NSString *JSONString = [self qh_toJSONString];
     if (!JSONString) {
         
         return [self qh_descriptionWithLocale:locale];
@@ -184,7 +185,7 @@ static inline void qh_swizzleSelector(Class class, SEL originalSelector, SEL alt
 
 - (NSString *)qh_descriptionWithLocale:(id)locale indent:(NSUInteger)level {
     
-    NSString *JSONString = [self toJSONString];
+    NSString *JSONString = [self qh_toJSONString];
     if (!JSONString) {
         
         return [self qh_descriptionWithLocale:locale indent:level];

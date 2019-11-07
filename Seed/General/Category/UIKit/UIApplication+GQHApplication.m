@@ -61,18 +61,11 @@
     // telprompt 可以上架
     NSString *URLString = [NSString stringWithFormat:@"telprompt:%@",mobile];
     
-    if (@available(iOS 10.0, *)) {
-        // iOS10后可用
-        [[UIApplication sharedApplication] openURL:[NSURL URLWithString:URLString] options:@{ } completionHandler:^(BOOL success) {
-            
-            // 拨打电话完成后处理
-            
-        }];
-    } else {
+    [[UIApplication sharedApplication] openURL:[NSURL URLWithString:URLString] options:@{ } completionHandler:^(BOOL success) {
         
-        // iOS10前可用
-        [[UIApplication sharedApplication] openURL:[NSURL URLWithString:URLString]];
-    }
+        // 拨打电话完成后处理
+        
+    }];
 }
 
 /**
@@ -84,18 +77,11 @@
     
     NSString *URLString = [NSString stringWithFormat:@"sms:%@",mobile];
     
-    if (@available(iOS 10.0, *)) {
-        // iOS10后可用
-        [[UIApplication sharedApplication] openURL:[NSURL URLWithString:URLString] options:@{ } completionHandler:^(BOOL success) {
-            
-            // 完成后处理
-            
-        }];
-    } else {
+    [[UIApplication sharedApplication] openURL:[NSURL URLWithString:URLString] options:@{ } completionHandler:^(BOOL success) {
         
-        // iOS10前可用
-        [[UIApplication sharedApplication] openURL:[NSURL URLWithString:URLString]];
-    }
+        // 完成后处理
+        
+    }];
 }
 
 /**
@@ -107,18 +93,11 @@
     
     NSString *URLString = [NSString stringWithFormat:@"mailto:%@",email];
     
-    if (@available(iOS 10.0, *)) {
-        // iOS10后可用
-        [[UIApplication sharedApplication] openURL:[NSURL URLWithString:URLString] options:@{ } completionHandler:^(BOOL success) {
-            
-            // 完成后处理
-            
-        }];
-    } else {
+    [[UIApplication sharedApplication] openURL:[NSURL URLWithString:URLString] options:@{ } completionHandler:^(BOOL success) {
         
-        // iOS10前可用
-        [[UIApplication sharedApplication] openURL:[NSURL URLWithString:URLString]];
-    }
+        // 完成后处理
+        
+    }];
 }
 
 /**
@@ -130,18 +109,11 @@
     
     NSString *URLString = [NSString stringWithFormat:@"itms-apps://itunes.apple.com/cn/app/id%@?mt=8",appID];
     
-    if (@available(iOS 10.0, *)) {
-        // iOS10后可用
-        [[UIApplication sharedApplication] openURL:[NSURL URLWithString:URLString] options:@{ } completionHandler:^(BOOL success) {
-            
-            // 完成后处理
-            
-        }];
-    } else {
+    [[UIApplication sharedApplication] openURL:[NSURL URLWithString:URLString] options:@{ } completionHandler:^(BOOL success) {
         
-        // iOS10前可用
-        [[UIApplication sharedApplication] openURL:[NSURL URLWithString:URLString]];
-    }
+        // 完成后处理
+        
+    }];
 }
 
 @end

@@ -51,10 +51,10 @@
     [self defaultAppConfiguration];
     
     // 5.监听网络
-    [[GQHNetworkStatusMonitor qh_shareNetStatusMonitor] qh_monitorNetStatus];
+    [[GQHNetworkStatusMonitor qh_sharedNetStatusMonitor] qh_monitorNetStatus];
     
     // 6.3D Touch 功能
-    [self qh_creatAppShortcutItems];
+//    [self qh_creatAppShortcutItems];
     
     // 7、添加全局定时器
     [[GQHGlobalTimer qh_sharedGlobalTimer] qh_resumeTimer];

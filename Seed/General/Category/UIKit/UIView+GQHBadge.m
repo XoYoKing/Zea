@@ -79,7 +79,7 @@ static CGFloat const kDotWidth = 8.0f;
 
 /**
  计数样式
-
+ 
  @param count 消息计数
  */
 - (void)showCounterBadgeView:(NSInteger)count {
@@ -112,7 +112,7 @@ static CGFloat const kDotWidth = 8.0f;
 
 /**
  重布局标识视图
-
+ 
  @param badgeLabel 消息标识视图
  */
 - (void)layoutBadgeView:(UILabel *)badgeLabel {

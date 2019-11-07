@@ -7,7 +7,6 @@
 //
 
 #import "NSObject+GQHProperty.h"
-#import "GQHMacro.h"
 
 
 @implementation NSObject (GQHProperty)
@@ -67,7 +66,10 @@
         }
     }];
     
+#ifdef DEBUG
     NSLog(@"%@",autoCode);
+#endif
+    
 }
 
 @end

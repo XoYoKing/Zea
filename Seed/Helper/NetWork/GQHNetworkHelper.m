@@ -63,11 +63,14 @@ NSString * const kAPIAuthorizationKey = @"Authorization";
         [manager.requestSerializer setValue:auth forHTTPHeaderField:kAPIAuthorizationKey];
     } else {
         
-        // 设置初始鉴权
-        [manager.requestSerializer setValue:@"Basic Y2xvdWRfdmlldzphZG1pbg==" forHTTPHeaderField:kAPIAuthorizationKey];
+        //TODO: 初始鉴权
+        [manager.requestSerializer setValue:@"Basic emp0Yy1wYXJrLWFwcDphcHA=" forHTTPHeaderField:kAPIAuthorizationKey];
     }
     
-    request(manager);
+    if (request) {
+        
+        request(manager);
+    }
 }
 
 + (void)qh_authRequestGET:(NSString *)auth URL:(NSString *)URLString parameters:(id)parameters progress:(void (^)(NSProgress * _Nullable))progress handler:(GQHNetworkRequestHandler)handler {
@@ -282,7 +285,7 @@ NSString * const kAPIAuthorizationKey = @"Authorization";
             
             NSString *fileName = [NSString stringWithFormat:@"%@_%lu.png",dateString,idx];
             NSData *imageData = [UIImage qh_compressImage:obj toKilobytes:100];
-            [formData appendPartWithFileData:imageData name:@"files" fileName:fileName mimeType:@"image/jpg/png/jpeg"];
+            [formData appendPartWithFileData:imageData name:@"images" fileName:fileName mimeType:@"image/jpg/png/jpeg"];
         }];
     } progress:progress success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         
@@ -304,7 +307,7 @@ NSString * const kAPIAuthorizationKey = @"Authorization";
  @param handler 请求成功处理回调
  */
 + (void)requestSuccessful:(id)response handler:(GQHNetworkRequestHandler)handler {
-    NSLog(@"网络请求返回的内容:%@", [response toJSONString]);
+    NSLog(@"网络请求返回的内容:%@", [response qh_toJSONString]);
     
     GQHNetworkResult *result = nil;
     

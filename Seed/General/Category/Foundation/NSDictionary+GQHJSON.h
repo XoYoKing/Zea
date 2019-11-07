@@ -13,7 +13,7 @@
 
 /**
  JSON字符串转字典
-
+ 
  @param JSON JSON字符串
  @return 字典
  */
@@ -21,7 +21,7 @@
 
 /**
  字典转JSON字符串
-
+ 
  @return JSON字符串
  */
 - (NSString *)qh_JSONString;
@@ -33,10 +33,10 @@
 
 /**
  Objective-C对象转JSON字符串
-
+ 
  @return JSON字符串
  */
-- (NSString *)toJSONString;
+- (NSString *)qh_toJSONString;
 
 @end
 

@@ -6,9 +6,10 @@
 //
 
 #import <Foundation/Foundation.h>
-
-
 @class AFHTTPSessionManager,GQHNetworkResult;
+
+
+NS_ASSUME_NONNULL_BEGIN
 
 /**
  网络请求结果回调
@@ -39,7 +40,7 @@ typedef void(^GQHNetworkRequestHandler)(GQHNetworkResult *result);
  @param progress 请求进度
  @param handler 请求结果回调
  */
-+ (void)qh_authRequestGET:(NSString *)auth URL:(NSString *)URLString parameters:(id)parameters progress:(void (^)(NSProgress * _Nullable))progress handler:(GQHNetworkRequestHandler)handler;
++ (void)qh_authRequestGET:(nullable NSString *)auth URL:(NSString *)URLString parameters:(nullable id)parameters progress:(void (^)(NSProgress *))progress handler:(GQHNetworkRequestHandler)handler;
 
 /**
  自定义封装POST鉴权网络请求
@@ -50,7 +51,7 @@ typedef void(^GQHNetworkRequestHandler)(GQHNetworkResult *result);
  @param progress 请求进度
  @param handler 请求结果回调
  */
-+ (void)qh_authRequestPOST:(NSString *)auth URL:(NSString *)URLString parameters:(id)parameters progress:(void (^)(NSProgress * _Nonnull))progress handler:(GQHNetworkRequestHandler)handler;
++ (void)qh_authRequestPOST:(nullable NSString *)auth URL:(NSString *)URLString parameters:(nullable id)parameters progress:(void (^)(NSProgress *))progress handler:(GQHNetworkRequestHandler)handler;
 
 /**
  自定义封装PUT鉴权网络请求
@@ -60,7 +61,7 @@ typedef void(^GQHNetworkRequestHandler)(GQHNetworkResult *result);
  @param parameters 请求参数
  @param handler 请求结果回调
  */
-+ (void)qh_authRequestPUT:(NSString *)auth URL:(NSString *)URLString parameters:(id)parameters handler:(GQHNetworkRequestHandler)handler;
++ (void)qh_authRequestPUT:(nullable NSString *)auth URL:(NSString *)URLString parameters:(nullable id)parameters handler:(GQHNetworkRequestHandler)handler;
 
 /**
  自定义封装DELETE鉴权网络请求
@@ -70,7 +71,7 @@ typedef void(^GQHNetworkRequestHandler)(GQHNetworkResult *result);
  @param parameters 请求参数
  @param handler 请求结果回调
  */
-+ (void)qh_authRequestDELETE:(NSString *)auth URL:(NSString *)URLString parameters:(id)parameters handler:(GQHNetworkRequestHandler)handler;
++ (void)qh_authRequestDELETE:(nullable NSString *)auth URL:(NSString *)URLString parameters:(nullable id)parameters handler:(GQHNetworkRequestHandler)handler;
 
 #pragma mark - 公共网络请求
 /**
@@ -81,7 +82,7 @@ typedef void(^GQHNetworkRequestHandler)(GQHNetworkResult *result);
  @param progress 请求进度
  @param handler 请求结果回调
  */
-+ (void)qh_requestGET:(NSString *)URLString parameters:(id)parameters progress:(void (^)(NSProgress * _Nonnull))progress handler:(GQHNetworkRequestHandler)handler;
++ (void)qh_requestGET:(NSString *)URLString parameters:(nullable id)parameters progress:(void (^)(NSProgress *))progress handler:(GQHNetworkRequestHandler)handler;
 
 /**
  自定义封装POST公共网络请求
@@ -91,7 +92,7 @@ typedef void(^GQHNetworkRequestHandler)(GQHNetworkResult *result);
  @param progress 请求进度
  @param handler 请求结果回调
  */
-+ (void)qh_requestPOST:(NSString *)URLString parameters:(id)parameters progress:(void (^)(NSProgress * _Nonnull))progress handler:(GQHNetworkRequestHandler)handler;
++ (void)qh_requestPOST:(NSString *)URLString parameters:(nullable id)parameters progress:(void (^)(NSProgress *))progress handler:(GQHNetworkRequestHandler)handler;
 
 /**
  自定义封装PUT公共网络请求
@@ -100,7 +101,7 @@ typedef void(^GQHNetworkRequestHandler)(GQHNetworkResult *result);
  @param parameters 请求参数
  @param handler 请求结果回调
  */
-+ (void)qh_requestPUT:(NSString *)URLString parameters:(id)parameters handler:(GQHNetworkRequestHandler)handler;
++ (void)qh_requestPUT:(NSString *)URLString parameters:(nullable id)parameters handler:(GQHNetworkRequestHandler)handler;
 
 /**
  自定义封装DELETE公共网络请求
@@ -109,7 +110,7 @@ typedef void(^GQHNetworkRequestHandler)(GQHNetworkResult *result);
  @param parameters 请求参数
  @param handler 请求结果回调
  */
-+ (void)qh_requestDELETE:(NSString *)URLString parameters:(id)parameters handler:(GQHNetworkRequestHandler)handler;
++ (void)qh_requestDELETE:(NSString *)URLString parameters:(nullable id)parameters handler:(GQHNetworkRequestHandler)handler;
 
 #pragma mark - 多图上传
 /**
@@ -122,6 +123,8 @@ typedef void(^GQHNetworkRequestHandler)(GQHNetworkResult *result);
  @param progress 上传进度
  @param handler 请求结果回调
  */
-+ (void)qh_authUpload:(NSString *)auth pictures:(NSArray *)pictures URL:(NSString *)URLString parameters:(id)parameters progress:(void (^)(NSProgress * _Nonnull))progress handler:(GQHNetworkRequestHandler)handler;
++ (void)qh_authUpload:(nullable NSString *)auth pictures:(nullable NSArray *)pictures URL:(NSString *)URLString parameters:(nullable id)parameters progress:(void (^)(NSProgress *))progress handler:(GQHNetworkRequestHandler)handler;
 
 @end
+
+NS_ASSUME_NONNULL_END

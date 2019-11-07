@@ -14,7 +14,7 @@
 
 /**
  占位文字
-
+ 
  @param qh_placeholder 占位文字
  */
 - (void)setQh_placeholder:(NSString *)qh_placeholder {
@@ -45,7 +45,7 @@
 
 /**
  占位文字
-
+ 
  @return 占位文字
  */
 - (NSString *)qh_placeholder {
@@ -55,7 +55,7 @@
 
 /**
  占位文字颜色
-
+ 
  @param qh_placeholderColor 占位文字颜色
  */
 - (void)setQh_placeholderColor:(UIColor *)qh_placeholderColor {
@@ -82,7 +82,7 @@
 
 /**
  占位文字颜色
-
+ 
  @return 占位文字颜色
  */
 - (UIColor *)qh_placeholderColor {

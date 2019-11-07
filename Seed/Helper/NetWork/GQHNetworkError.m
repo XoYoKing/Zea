@@ -20,8 +20,11 @@
         if (error) {
             
             // AFNetworking返回的错误信息
-            _qh_code = @(error.code);
-            _qh_message = error.domain;
+            NSHTTPURLResponse *response = error.userInfo[@"com.alamofire.serialization.response.error.response"];
+            // 真实的code
+            _qh_code = @(response.statusCode);
+            // 错误描述
+            _qh_message = error.userInfo[@"NSLocalizedDescription"];
             _qh_networkError = YES;
         } else {
             
