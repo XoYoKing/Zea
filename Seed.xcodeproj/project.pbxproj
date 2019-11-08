@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		044544C323727C06000A7A28 /* GQHPathSearcher.m in Sources */ = {isa = PBXBuildFile; fileRef = 044544C223727C06000A7A28 /* GQHPathSearcher.m */; };
 		044544C623729BCE000A7A28 /* GQHBreadthFirstSearcher.m in Sources */ = {isa = PBXBuildFile; fileRef = 044544C523729BCE000A7A28 /* GQHBreadthFirstSearcher.m */; };
+		04719BED23751DBF008A10A8 /* GQHPuzzlePiece.m in Sources */ = {isa = PBXBuildFile; fileRef = 04719BEC23751DBF008A10A8 /* GQHPuzzlePiece.m */; };
+		04719BF023752036008A10A8 /* GQHPuzzleStatus.m in Sources */ = {isa = PBXBuildFile; fileRef = 04719BEF23752036008A10A8 /* GQHPuzzleStatus.m */; };
 		04953FE82370131400C3CFE4 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 04953FE72370131400C3CFE4 /* LaunchScreen.storyboard */; };
 		04974AB7237165BE00095393 /* GQHPriorityQueue.m in Sources */ = {isa = PBXBuildFile; fileRef = 04974AB6237165BE00095393 /* GQHPriorityQueue.m */; };
 		04CBE6D62373B3F700AA694A /* GQHDoubleBreadthFirstSearcher.m in Sources */ = {isa = PBXBuildFile; fileRef = 04CBE6D52373B3F700AA694A /* GQHDoubleBreadthFirstSearcher.m */; };
@@ -161,6 +163,10 @@
 		044544C223727C06000A7A28 /* GQHPathSearcher.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GQHPathSearcher.m; sourceTree = "<group>"; };
 		044544C423729BCE000A7A28 /* GQHBreadthFirstSearcher.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GQHBreadthFirstSearcher.h; sourceTree = "<group>"; };
 		044544C523729BCE000A7A28 /* GQHBreadthFirstSearcher.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GQHBreadthFirstSearcher.m; sourceTree = "<group>"; };
+		04719BEB23751DBF008A10A8 /* GQHPuzzlePiece.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GQHPuzzlePiece.h; sourceTree = "<group>"; };
+		04719BEC23751DBF008A10A8 /* GQHPuzzlePiece.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GQHPuzzlePiece.m; sourceTree = "<group>"; };
+		04719BEE23752036008A10A8 /* GQHPuzzleStatus.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GQHPuzzleStatus.h; sourceTree = "<group>"; };
+		04719BEF23752036008A10A8 /* GQHPuzzleStatus.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GQHPuzzleStatus.m; sourceTree = "<group>"; };
 		04953FE72370131400C3CFE4 /* LaunchScreen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
 		04974AB5237165BE00095393 /* GQHPriorityQueue.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GQHPriorityQueue.h; sourceTree = "<group>"; };
 		04974AB6237165BE00095393 /* GQHPriorityQueue.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GQHPriorityQueue.m; sourceTree = "<group>"; };
@@ -456,6 +462,10 @@
 		D5A5C07622FFE87600A21A77 /* Module */ = {
 			isa = PBXGroup;
 			children = (
+				04719BEB23751DBF008A10A8 /* GQHPuzzlePiece.h */,
+				04719BEC23751DBF008A10A8 /* GQHPuzzlePiece.m */,
+				04719BEE23752036008A10A8 /* GQHPuzzleStatus.h */,
+				04719BEF23752036008A10A8 /* GQHPuzzleStatus.m */,
 				D5A5C08C22FFE87600A21A77 /* Model */,
 				D5A5C07722FFE87600A21A77 /* Controller */,
 				D5A5C09722FFE87600A21A77 /* View */,
@@ -1254,6 +1264,7 @@
 				D5C8A6A922FFE10100947237 /* UIApplication+GQHApplication.m in Sources */,
 				D5A5C0D522FFE8C600A21A77 /* GQHGalleryController.m in Sources */,
 				D5C8A6CF22FFE18F00947237 /* GQHNetworkHelper.m in Sources */,
+				04719BF023752036008A10A8 /* GQHPuzzleStatus.m in Sources */,
 				D5A5C10222FFE8F200A21A77 /* GQHHomeView.m in Sources */,
 				D5C8A6AD22FFE10100947237 /* UITextView+GQHPlaceholder.m in Sources */,
 				D5C8A6BA22FFE10100947237 /* NSObject+GQHSwizzling.m in Sources */,
@@ -1284,6 +1295,7 @@
 				04D80B92232F923400617689 /* GQHBaseModel.m in Sources */,
 				D5C8A6B822FFE10100947237 /* NSDate+GQHFormatter.m in Sources */,
 				04974AB7237165BE00095393 /* GQHPriorityQueue.m in Sources */,
+				04719BED23751DBF008A10A8 /* GQHPuzzlePiece.m in Sources */,
 				D5A5C0EA22FFE8DC00A21A77 /* GQHAppVersionModel.m in Sources */,
 				D5C8A6B122FFE10100947237 /* AppDelegate+GQH3DTouch.m in Sources */,
 				04D80B8F232F923400617689 /* GQHBaseViewController.m in Sources */,
@@ -1441,7 +1453,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
@@ -1493,7 +1505,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;

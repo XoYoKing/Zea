@@ -258,16 +258,16 @@
     if (!_aboutButton) {
         
         _aboutButton = [UIButton buttonWithType:UIButtonTypeCustom];
-        _aboutButton.backgroundColor = [UIColor redColor];
+        _aboutButton.backgroundColor = [UIColor qh_colorWithHexString:GQHDarkGreen];
         _aboutButton.titleLabel.font = [UIFont systemFontOfSize:16.0f];
         
         [_aboutButton setImage:nil forState:UIControlStateNormal];
         [_aboutButton setBackgroundImage:nil forState:UIControlStateNormal];
-        [_aboutButton setTitle:NSLocalizedString(@"Button", @"Button") forState:UIControlStateNormal];
-        [_aboutButton setTitleColor:[UIColor darkTextColor] forState:UIControlStateNormal];
+        [_aboutButton setTitle:NSLocalizedString(@"about", @"关于") forState:UIControlStateNormal];
+        [_aboutButton setTitleColor:[UIColor lightTextColor] forState:UIControlStateNormal];
         [_aboutButton addTarget:self action:@selector(didClickAboutButton:) forControlEvents:UIControlEventTouchUpInside];
         
-        _aboutButton.layer.cornerRadius = 0.0f;
+        _aboutButton.layer.cornerRadius = 8.0f;
         _aboutButton.layer.masksToBounds = YES;
     }
     
@@ -279,16 +279,16 @@
     if (!_recordButton) {
         
         _recordButton = [UIButton buttonWithType:UIButtonTypeCustom];
-        _recordButton.backgroundColor = [UIColor redColor];
+        _recordButton.backgroundColor = [UIColor qh_colorWithHexString:GQHDarkGreen];
         _recordButton.titleLabel.font = [UIFont systemFontOfSize:16.0f];
         
         [_recordButton setImage:nil forState:UIControlStateNormal];
         [_recordButton setBackgroundImage:nil forState:UIControlStateNormal];
-        [_recordButton setTitle:NSLocalizedString(@"Button", @"Button") forState:UIControlStateNormal];
-        [_recordButton setTitleColor:[UIColor darkTextColor] forState:UIControlStateNormal];
+        [_recordButton setTitle:NSLocalizedString(@"record", @"记录") forState:UIControlStateNormal];
+        [_recordButton setTitleColor:[UIColor lightTextColor] forState:UIControlStateNormal];
         [_recordButton addTarget:self action:@selector(didClickRecordButton:) forControlEvents:UIControlEventTouchUpInside];
         
-        _recordButton.layer.cornerRadius = 0.0f;
+        _recordButton.layer.cornerRadius = 8.0f;
         _recordButton.layer.masksToBounds = YES;
     }
     
@@ -300,16 +300,16 @@
     if (!_startButton) {
         
         _startButton = [UIButton buttonWithType:UIButtonTypeCustom];
-        _startButton.backgroundColor = [UIColor redColor];
+        _startButton.backgroundColor = [UIColor qh_colorWithHexString:GQHDarkestGreen];
         _startButton.titleLabel.font = [UIFont systemFontOfSize:16.0f];
         
         [_startButton setImage:nil forState:UIControlStateNormal];
         [_startButton setBackgroundImage:nil forState:UIControlStateNormal];
-        [_startButton setTitle:NSLocalizedString(@"Button", @"Button") forState:UIControlStateNormal];
+        [_startButton setTitle:NSLocalizedString(@"start", @"开始") forState:UIControlStateNormal];
         [_startButton setTitleColor:[UIColor darkTextColor] forState:UIControlStateNormal];
         [_startButton addTarget:self action:@selector(didClickStartButton:) forControlEvents:UIControlEventTouchUpInside];
         
-        _startButton.layer.cornerRadius = 0.0f;
+        _startButton.layer.cornerRadius = 32.0f;
         _startButton.layer.masksToBounds = YES;
     }
     
@@ -321,16 +321,16 @@
     if (!_levelButton) {
         
         _levelButton = [UIButton buttonWithType:UIButtonTypeCustom];
-        _levelButton.backgroundColor = [UIColor redColor];
+        _levelButton.backgroundColor = [UIColor qh_colorWithHexString:GQHDarkestGreen];
         _levelButton.titleLabel.font = [UIFont systemFontOfSize:16.0f];
         
         [_levelButton setImage:nil forState:UIControlStateNormal];
         [_levelButton setBackgroundImage:nil forState:UIControlStateNormal];
-        [_levelButton setTitle:NSLocalizedString(@"Button", @"Button") forState:UIControlStateNormal];
+        [_levelButton setTitle:NSLocalizedString(@"level", @"等级") forState:UIControlStateNormal];
         [_levelButton setTitleColor:[UIColor darkTextColor] forState:UIControlStateNormal];
         [_levelButton addTarget:self action:@selector(didClickLevelButton:) forControlEvents:UIControlEventTouchUpInside];
         
-        _levelButton.layer.cornerRadius = 0.0f;
+        _levelButton.layer.cornerRadius =16.0f;
         _levelButton.layer.masksToBounds = YES;
     }
     
@@ -342,16 +342,16 @@
     if (!_galleryButton) {
         
         _galleryButton = [UIButton buttonWithType:UIButtonTypeCustom];
-        _galleryButton.backgroundColor = [UIColor redColor];
+        _galleryButton.backgroundColor = [UIColor qh_colorWithHexString:GQHDarkestGreen];
         _galleryButton.titleLabel.font = [UIFont systemFontOfSize:16.0f];
         
         [_galleryButton setImage:nil forState:UIControlStateNormal];
         [_galleryButton setBackgroundImage:nil forState:UIControlStateNormal];
-        [_galleryButton setTitle:NSLocalizedString(@"Button", @"Button") forState:UIControlStateNormal];
+        [_galleryButton setTitle:NSLocalizedString(@"gallery", @"图库") forState:UIControlStateNormal];
         [_galleryButton setTitleColor:[UIColor darkTextColor] forState:UIControlStateNormal];
         [_galleryButton addTarget:self action:@selector(didClickGalleryButton:) forControlEvents:UIControlEventTouchUpInside];
         
-        _galleryButton.layer.cornerRadius = 0.0f;
+        _galleryButton.layer.cornerRadius = 16.0f;
         _galleryButton.layer.masksToBounds = YES;
     }
     

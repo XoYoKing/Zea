@@ -41,6 +41,16 @@ UIKIT_EXTERN NSString * const GQHUserRecordKey;
 
 #pragma mark - color
 
+UIKIT_EXTERN NSString * const GQHLightestGreen;
+
+UIKIT_EXTERN NSString * const GQHLightGreen;
+
+UIKIT_EXTERN NSString * const GQHGreen;
+
+UIKIT_EXTERN NSString * const GQHDarkGreen;
+
+UIKIT_EXTERN NSString * const GQHDarkestGreen;
+
 
 #pragma mark - font color
 /// 黑色

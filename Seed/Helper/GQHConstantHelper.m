@@ -20,7 +20,16 @@ NSString * const GQHUserRecordKey = @"user_record";
 
 
 #pragma mark - color
+///
+NSString * const GQHLightestGreen = @"#e7f7e8";
 
+NSString * const GQHLightGreen = @"#8cda93";
+
+NSString * const GQHGreen = @"#36a93f";
+
+NSString * const GQHDarkGreen = @"#26762c";
+
+NSString * const GQHDarkestGreen = @"#154219";
 
 #pragma mark - font color
 /// 黑色 #111111
