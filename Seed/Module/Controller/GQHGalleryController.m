@@ -19,7 +19,7 @@
 
 #pragma mark -
 
-@interface GQHGalleryController () <UITableViewDelegate, UITableViewDataSource, GQHGalleryViewDelegate>
+@interface GQHGalleryController () <UICollectionViewDelegate, UICollectionViewDataSource, GQHGalleryViewDelegate>
 
 /**
  自定义根视图
@@ -53,6 +53,7 @@
     [super viewDidLoad];
     NSLog(@"");
     
+    self.qh_navigationBar.hidden = YES;
 }
 
 /**
@@ -125,142 +126,58 @@
     
 }
 
-#pragma mark - UITableViewDataSource
-/**
- 列表视图的总组数
- 
- @param tableView 列表视图
- @return 列表视图的总组数
- */
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    NSLog(@"");
+#pragma mark - UICollectionViewDelegateFlowLayout
+- (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath {
+    
+    CGFloat width = 0.5f * (self.rootView.qh_contentAreaWidth - 30.0f);
+    CGFloat height = width + 35.0f;
+    
+    return CGSizeMake(width,height);
+}
+
+- (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout referenceSizeForHeaderInSection:(NSInteger)section {
+
+    return CGSizeZero;
+}
+
+- (UIEdgeInsets)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout insetForSectionAtIndex:(NSInteger)section {
+    
+    return UIEdgeInsetsZero;
+}
+
+- (CGFloat)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout minimumLineSpacingForSectionAtIndex:(NSInteger)section {
+    
+    return CGFLOAT_MIN;
+}
+
+- (CGFloat)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout minimumInteritemSpacingForSectionAtIndex:(NSInteger)section {
+    
+    return CGFLOAT_MIN;
+}
+
+#pragma mark - UICollectionViewDataSource
+- (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView {
     
     return 1;
 }
 
-/**
- 列表视图的各组行数
- 
- @param tableView 列表视图
- @param section 列表视图的某组索引值
- @return 列表视图的某组的行数
- */
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    NSLog(@"");
+- (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
     
-    return 5;
+    return self.dataSourceArray.count;
 }
 
-/**
- 列表视图的行视图
- 
- @param tableView 列表视图
- @param indexPath 列表视图某行的索引值
- @return 列表视图某行视图
- */
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    NSLog(@"");
+- (__kindof UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
     
-    // 数据data
-    NSMutableDictionary *data = [NSMutableDictionary dictionary];
+    GQHGalleryViewImagesCollecionViewCell *cell = [GQHGalleryViewImagesCollecionViewCell qh_collectionView:collectionView cellForIndexPath:indexPath data:self.dataSourceArray[indexPath.row]];
     
-    // 视图cell
-    GQHGalleryTableViewCell *cell = [GQHGalleryTableViewCell qh_tableView:tableView cellWithData:data];
     cell.qh_delegate = self;
     
     return cell;
 }
 
-#pragma mark - UITableViewDelegate
-/**
- 列表视图的各行高度
- 
- @param tableView 列表视图
- @param indexPath 列表视图某行的索引值
- @return 列表视图某行视图的高度值
- */
-- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-    NSLog(@"");
+#pragma mark - UICollectionViewDelegate
+- (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
     
-    return 50.0f;
-}
-
-/**
- 选中列表视图的某行视图
- 
- @param tableView 列表视图
- @param indexPath 选中列表视图的某行视图的索引值
- */
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    NSLog(@"");
-    
-    [tableView deselectRowAtIndexPath:indexPath animated:YES];
-}
-
-/**
- 列表视图的组头视图高度
- 
- @param tableView 列表视图
- @param section 列表视图的某组索引值
- @return 列表视图的某组头视图高度
- */
-- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
-    NSLog(@"");
-    
-    return CGFLOAT_MIN;
-}
-
-/**
- 列表视图的组自定义头视图
- 
- @param tableView 列表视图
- @param section 列表视图的某组索引值
- @return 列表视图的某组自定义头视图
- */
-- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
-    NSLog(@"");
-    
-    // 头视图数据data
-    NSMutableDictionary *data = [NSMutableDictionary dictionary];
-    
-    // 自定义头视图
-    GQHGalleryTableViewHeaderView *headerView = [GQHGalleryTableViewHeaderView qh_tableView:tableView headerViewWithData:data];
-    headerView.qh_delegate = self;
-    
-    return headerView;
-}
-
-/**
- 列表视图的组尾视图高度
- 
- @param tableView 列表视图
- @param section 列表视图的某组索引值
- @return 列表视图的某组尾视图高度
- */
-- (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section {
-    NSLog(@"");
-    
-    return CGFLOAT_MIN;
-}
-
-/**
- 列表视图的组自定义尾视图
- 
- @param tableView 列表视图
- @param section 列表视图的某组索引值
- @return 列表视图的某组自定义尾视图
- */
-- (UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section {
-    NSLog(@"");
-    
-    // 尾视图数据data
-    NSMutableDictionary *data = [NSMutableDictionary dictionary];
-    
-    // 自定义尾视图
-    GQHGalleryTableViewFooterView *footerView = [GQHGalleryTableViewFooterView qh_tableView:tableView footerViewWithData:data];
-    footerView.qh_delegate = self;
-    
-    return footerView;
 }
 
 #pragma mark - GQHGalleryViewDelegate
@@ -278,8 +195,8 @@
         
         _rootView = [[GQHGalleryView alloc] initWithFrame:UIScreen.mainScreen.bounds];
         _rootView.backgroundColor = [UIColor whiteColor];
-        _rootView.qh_tableView.delegate = self;
-        _rootView.qh_tableView.dataSource = self;
+        _rootView.qh_collectionView.delegate = self;
+        _rootView.qh_collectionView.dataSource = self;
         _rootView.qh_delegate = self;
     }
     
@@ -291,6 +208,13 @@
     if (!_dataSourceArray) {
         
         _dataSourceArray = [NSMutableArray array];
+        
+        _dataSourceArray = @[@{@"image":@"",@"title":@"start"}.mutableCopy,
+        @{@"image":@"",@"title":@"record"}.mutableCopy,
+        @{@"image":@"",@"title":@"gallery"}.mutableCopy,
+        @{@"image":@"",@"title":@"level"}.mutableCopy,
+        @{@"image":@"",@"title":@"help"}.mutableCopy,
+        @{@"image":@"",@"title":@"about"}.mutableCopy].mutableCopy;
     }
     
     return _dataSourceArray;

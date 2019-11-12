@@ -24,7 +24,7 @@
 
 #pragma mark -
 
-@interface GQHHomeController () <UITableViewDelegate, UITableViewDataSource, GQHHomeViewDelegate>
+@interface GQHHomeController () <UICollectionViewDelegate, UICollectionViewDataSource,UICollectionViewDelegateFlowLayout, GQHHomeViewDelegate>
 
 /**
  自定义根视图
@@ -131,195 +131,122 @@
     
 }
 
-#pragma mark - UITableViewDataSource
-/**
- 列表视图的总组数
- 
- @param tableView 列表视图
- @return 列表视图的总组数
- */
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    NSLog(@"");
+#pragma mark - UICollectionViewDelegateFlowLayout
+- (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath {
+    
+    CGFloat width = 0.5f * (self.rootView.qh_contentAreaWidth - 30.0f);
+    CGFloat height = width;
+    
+    return CGSizeMake(width,height);
+}
+
+- (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout referenceSizeForHeaderInSection:(NSInteger)section {
+
+    CGSize size = CGSizeMake(self.view.qh_contentAreaWidth - 30.0f, 150.0f);
+    return size;
+}
+
+- (UIEdgeInsets)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout insetForSectionAtIndex:(NSInteger)section {
+    
+    return UIEdgeInsetsZero;
+}
+
+- (CGFloat)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout minimumLineSpacingForSectionAtIndex:(NSInteger)section {
+    
+    return CGFLOAT_MIN;
+}
+
+- (CGFloat)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout minimumInteritemSpacingForSectionAtIndex:(NSInteger)section {
+    
+    return CGFLOAT_MIN;
+}
+
+#pragma mark - UICollectionViewDataSource
+- (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView {
     
     return 1;
 }
 
-/**
- 列表视图的各组行数
- 
- @param tableView 列表视图
- @param section 列表视图的某组索引值
- @return 列表视图的某组的行数
- */
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    NSLog(@"");
+- (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
     
-    return 5;
+    return self.dataSourceArray.count;
 }
 
-/**
- 列表视图的行视图
- 
- @param tableView 列表视图
- @param indexPath 列表视图某行的索引值
- @return 列表视图某行视图
- */
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    NSLog(@"");
+- (__kindof UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
     
-    // 数据data
-    NSMutableDictionary *data = [NSMutableDictionary dictionary];
+    GQHHomeViewMenusCollecionViewCell *cell = [GQHHomeViewMenusCollecionViewCell qh_collectionView:collectionView cellForIndexPath:indexPath data:self.dataSourceArray[indexPath.row]];
     
-    // 视图cell
-    GQHHomeTableViewCell *cell = [GQHHomeTableViewCell qh_tableView:tableView cellWithData:data];
     cell.qh_delegate = self;
     
     return cell;
 }
 
-#pragma mark - UITableViewDelegate
-/**
- 列表视图的各行高度
- 
- @param tableView 列表视图
- @param indexPath 列表视图某行的索引值
- @return 列表视图某行视图的高度值
- */
-- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-    NSLog(@"");
-    
-    return 50.0f;
+- (UICollectionReusableView *)collectionView:(UICollectionView *)collectionView viewForSupplementaryElementOfKind:(NSString *)kind atIndexPath:(NSIndexPath *)indexPath {
+
+    if ([kind isEqualToString:UICollectionElementKindSectionHeader]) {
+
+        GQHHomeViewWelcomCollectionViewReusableHeaderView *headerView = [GQHHomeViewWelcomCollectionViewReusableHeaderView qh_collectionView:collectionView headerViewForIndexPath:indexPath data:nil];
+        headerView.qh_delegate = self;
+
+        return headerView;
+    }
+
+    return [UICollectionReusableView new];
 }
 
-/**
- 选中列表视图的某行视图
- 
- @param tableView 列表视图
- @param indexPath 选中列表视图的某行视图的索引值
- */
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    NSLog(@"");
+#pragma mark - UICollectionViewDelegate
+- (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
     
-    [tableView deselectRowAtIndexPath:indexPath animated:YES];
-}
-
-/**
- 列表视图的组头视图高度
- 
- @param tableView 列表视图
- @param section 列表视图的某组索引值
- @return 列表视图的某组头视图高度
- */
-- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
-    NSLog(@"");
-    
-    return CGFLOAT_MIN;
-}
-
-/**
- 列表视图的组自定义头视图
- 
- @param tableView 列表视图
- @param section 列表视图的某组索引值
- @return 列表视图的某组自定义头视图
- */
-- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
-    NSLog(@"");
-    
-    // 头视图数据data
-    NSMutableDictionary *data = [NSMutableDictionary dictionary];
-    
-    // 自定义头视图
-    GQHHomeTableViewHeaderView *headerView = [GQHHomeTableViewHeaderView qh_tableView:tableView headerViewWithData:data];
-    headerView.qh_delegate = self;
-    
-    return headerView;
-}
-
-/**
- 列表视图的组尾视图高度
- 
- @param tableView 列表视图
- @param section 列表视图的某组索引值
- @return 列表视图的某组尾视图高度
- */
-- (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section {
-    NSLog(@"");
-    
-    return CGFLOAT_MIN;
-}
-
-/**
- 列表视图的组自定义尾视图
- 
- @param tableView 列表视图
- @param section 列表视图的某组索引值
- @return 列表视图的某组自定义尾视图
- */
-- (UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section {
-    NSLog(@"");
-    
-    // 尾视图数据data
-    NSMutableDictionary *data = [NSMutableDictionary dictionary];
-    
-    // 自定义尾视图
-    GQHHomeTableViewFooterView *footerView = [GQHHomeTableViewFooterView qh_tableView:tableView footerViewWithData:data];
-    footerView.qh_delegate = self;
-    
-    return footerView;
+    //TODO:push
+    switch (indexPath.row) {
+            
+        case 0: {
+            
+            // 开始游戏
+            GQHGameController *gameController = [[GQHGameController alloc] init];
+            [self.navigationController pushViewController:gameController animated:YES];
+        }
+            break;
+        case 1: {
+            
+            // 游戏记录
+            GQHRecordsController *recordsController = [[GQHRecordsController alloc] init];
+            [self.navigationController pushViewController:recordsController animated:YES];
+        }
+            break;
+        case 2: {
+            
+            // 游戏图库
+            GQHGalleryController *galleryController = [[GQHGalleryController alloc] init];
+            [self.navigationController pushViewController:galleryController animated:YES];
+        }
+            break;
+        case 3: {
+            
+            // 游戏等级
+            GQHLevelsController *levelsController = [[GQHLevelsController alloc] init];
+            [self.navigationController pushViewController:levelsController animated:YES];
+        }
+            break;
+        case 4: {
+            
+            // 游戏帮助
+            
+        }
+            break;
+        case 5: {
+            
+            // 关于我们
+            GQHAppAboutController *appAboutController = [[GQHAppAboutController alloc] init];
+            [self.navigationController pushViewController:appAboutController animated:YES];
+        }
+            break;
+        default:
+            break;
+    }
 }
 
 #pragma mark - GQHHomeViewDelegate
-
-/**
- 跳转关于我们页面
- */
-- (void)qh_forwardAboutUsPage {
-    NSLog(@"");
-    
-    GQHAppAboutController *appAboutController = [[GQHAppAboutController alloc] init];
-    [self.navigationController pushViewController:appAboutController animated:YES];
-}
-
-/**
- 跳转游戏记录页面
- */
-- (void)qh_forwardRecordsPage {
-    NSLog(@"");
-    
-    GQHRecordsController *recordsController = [[GQHRecordsController alloc] init];
-    [self.navigationController pushViewController:recordsController animated:YES];
-}
-
-/**
- 跳转开始游戏页面
- */
-- (void)qh_forwardGamePage {
-    NSLog(@"");
-    
-    GQHGameController *gameController = [[GQHGameController alloc] init];
-    [self.navigationController pushViewController:gameController animated:YES];
-}
-
-/**
- 跳转图库页面
- */
-- (void)qh_forwardGallaryPage {
-    NSLog(@"");
-    
-    GQHGalleryController *galleryController = [[GQHGalleryController alloc] init];
-    [self.navigationController pushViewController:galleryController animated:YES];
-}
-
-/**
- 跳转游戏等级页面
- */
-- (void)qh_forwardLevelsPage {
-    NSLog(@"");
-    
-    GQHLevelsController *levelsController = [[GQHLevelsController alloc] init];
-    [self.navigationController pushViewController:levelsController animated:YES];
-}
 
 #pragma mark - TargetMethod
 
@@ -334,8 +261,8 @@
         
         _rootView = [[GQHHomeView alloc] initWithFrame:UIScreen.mainScreen.bounds];
         _rootView.backgroundColor = [UIColor whiteColor];
-        _rootView.qh_tableView.delegate = self;
-        _rootView.qh_tableView.dataSource = self;
+        _rootView.qh_collectionView.delegate = self;
+        _rootView.qh_collectionView.dataSource = self;
         _rootView.qh_delegate = self;
     }
     
@@ -347,6 +274,13 @@
     if (!_dataSourceArray) {
         
         _dataSourceArray = [NSMutableArray array];
+        
+        _dataSourceArray = @[@{@"image":@"",@"title":@"start"}.mutableCopy,
+                             @{@"image":@"",@"title":@"record"}.mutableCopy,
+                             @{@"image":@"",@"title":@"gallery"}.mutableCopy,
+                             @{@"image":@"",@"title":@"level"}.mutableCopy,
+                             @{@"image":@"",@"title":@"help"}.mutableCopy,
+                             @{@"image":@"",@"title":@"about"}.mutableCopy].mutableCopy;
     }
     
     return _dataSourceArray;

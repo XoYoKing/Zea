@@ -107,5 +107,20 @@
 			</dict>
 		</array>
 	</dict>
+	<dict>
+		<key>module</key>
+		<string>帮助</string>
+		<key>expand</key>
+		<true/>
+		<key>controllers</key>
+		<array>
+			<dict>
+				<key>title</key>
+				<string>Help</string>
+				<key>description</key>
+				<string>帮助</string>
+			</dict>
+		</array>
+	</dict>
 </array>
 </plist>

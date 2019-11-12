@@ -13,30 +13,11 @@
 
 @interface GQHHomeView ()
 
+//TODO:彩蛋
 /**
- 关于按钮
+ 背景视图-(普通:渐变色 彩蛋:背景图片)
  */
-@property (nonatomic, strong) UIButton *aboutButton;
-
-/**
- 游戏记录按钮
- */
-@property (nonatomic, strong) UIButton *recordButton;
-
-/**
- 开始游戏按钮
- */
-@property (nonatomic, strong) UIButton *startButton;
-
-/**
- 游戏等级按钮
- */
-@property (nonatomic, strong) UIButton *levelButton;
-
-/**
- 图库按钮
- */
-@property (nonatomic, strong) UIButton *galleryButton;
+@property (nonatomic, strong) UIImageView *gradientImageView;
 
 @end
 
@@ -79,135 +60,19 @@
 - (void)autoLayoutWithConstraints {
     NSLog(@"");
     
-    /**
-     关于按钮
-     */
-    [self addSubview:self.aboutButton];
-    [self.aboutButton mas_makeConstraints:^(MASConstraintMaker *make) {
+    // 集合视图
+    [self addSubview:self.qh_collectionView];
+    [self.qh_collectionView mas_makeConstraints:^(MASConstraintMaker *make) {
         
-        make.centerX.mas_equalTo(self).with.multipliedBy(0.3f);
-        make.centerY.mas_equalTo(self).with.multipliedBy(0.3f);
-        make.size.mas_equalTo(CGSizeMake(50.0f, 50.0f));
-    }];
-    
-    /**
-     游戏记录按钮
-     */
-    [self addSubview:self.recordButton];
-    [self.recordButton mas_makeConstraints:^(MASConstraintMaker *make) {
-        
-        make.centerX.mas_equalTo(self).with.multipliedBy(1.7f);
-        make.centerY.mas_equalTo(self).with.multipliedBy(0.3f);
-        make.size.mas_equalTo(CGSizeMake(50.0f, 50.0f));
-    }];
-    
-    /**
-     开始游戏按钮
-     */
-    [self addSubview:self.startButton];
-    [self.startButton mas_makeConstraints:^(MASConstraintMaker *make) {
-        
-        make.center.mas_equalTo(self);
-        make.size.mas_equalTo(CGSizeMake(200.0f, 200.0f));
-    }];
-    
-    /**
-     游戏等级按钮
-     */
-    [self addSubview:self.levelButton];
-    [self.levelButton mas_makeConstraints:^(MASConstraintMaker *make) {
-        
-        make.centerX.mas_equalTo(self).with.multipliedBy(0.5f);
-        make.centerY.mas_equalTo(self).with.multipliedBy(1.5f);
-        make.size.mas_equalTo(CGSizeMake(100.0f, 100.0f));
-    }];
-    
-    /**
-     图库按钮
-     */
-    [self addSubview:self.galleryButton];
-    [self.galleryButton mas_makeConstraints:^(MASConstraintMaker *make) {
-        
-        
-        make.centerX.mas_equalTo(self).with.multipliedBy(1.5f);
-        make.centerY.mas_equalTo(self).with.multipliedBy(1.5f);
-        make.size.mas_equalTo(CGSizeMake(100.0f, 100.0f));
+        make.top.mas_equalTo(self).with.inset(self.qh_statusBarHeight);
+        make.bottom.mas_equalTo(self).with.inset(self.qh_homeIndicatorHeight);
+        make.left.and.right.mas_equalTo(self).with.inset(15.0f);
     }];
 }
 
 #pragma mark - Delegate
 
 #pragma mark - TargetMethod
-
-/**
- 点击关于按钮
-
- @param sender 关于按钮
- */
-- (IBAction)didClickAboutButton:(UIButton *)sender {
-    NSLog(@"");
-    
-    if ([self.qh_delegate respondsToSelector:@selector(qh_forwardAboutUsPage)]) {
-        
-        [self.qh_delegate qh_forwardAboutUsPage];
-    }
-}
-
-/**
- 点击游戏记录按钮
- 
- @param sender 游戏记录按钮
- */
-- (IBAction)didClickRecordButton:(UIButton *)sender {
-    NSLog(@"");
-    
-    if ([self.qh_delegate respondsToSelector:@selector(qh_forwardRecordsPage)]) {
-        
-        [self.qh_delegate qh_forwardRecordsPage];
-    }
-}
-
-/**
- 点击开始游戏按钮
- 
- @param sender 开始游戏按钮
- */
-- (IBAction)didClickStartButton:(UIButton *)sender {
-    NSLog(@"");
-    
-    if ([self.qh_delegate respondsToSelector:@selector(qh_forwardGamePage)]) {
-        
-        [self.qh_delegate qh_forwardGamePage];
-    }
-}
-
-/**
- 点击游戏等级按钮
- 
- @param sender 游戏等级按钮
- */
-- (IBAction)didClickLevelButton:(UIButton *)sender {
-    NSLog(@"");
-    
-    if ([self.qh_delegate respondsToSelector:@selector(qh_forwardLevelsPage)]) {
-        
-        [self.qh_delegate qh_forwardLevelsPage];
-    }
-}
-
-/**
- 点击图库按钮
- 
- @param sender 图库按钮
- */
-- (IBAction)didClickGalleryButton:(UIButton *)sender {
-    NSLog(@"");
-    
-    if ([self.qh_delegate respondsToSelector:@selector(qh_forwardGallaryPage)]) {
-        
-        [self.qh_delegate qh_forwardGallaryPage];
-    }
-}
 
 #pragma mark - PrivateMethod
 /**
@@ -230,132 +95,35 @@
 }
 
 #pragma mark - Getter
-- (UITableView *)qh_tableView {
+- (UICollectionView *)qh_collectionView {
     
-    if (!_qh_tableView) {
+    if (!_qh_collectionView) {
         
-        _qh_tableView = [[UITableView alloc] initWithFrame:CGRectZero style:UITableViewStyleGrouped];
-        _qh_tableView.backgroundColor = [UIColor whiteColor];
-        _qh_tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
-        _qh_tableView.showsVerticalScrollIndicator = NO;
-        _qh_tableView.showsHorizontalScrollIndicator = NO;
+        UICollectionViewFlowLayout *flowLayout = [[UICollectionViewFlowLayout alloc]init];
+        flowLayout.scrollDirection = UICollectionViewScrollDirectionVertical;
         
-        // 列表自动计算行高
-        _qh_tableView.estimatedRowHeight = 200.0f;
-        _qh_tableView.rowHeight = UITableViewAutomaticDimension;
+        // CGRectZero
+        _qh_collectionView = [[UICollectionView alloc]initWithFrame:CGRectZero collectionViewLayout:flowLayout];
+        _qh_collectionView.showsHorizontalScrollIndicator = NO;
+        _qh_collectionView.showsVerticalScrollIndicator = NO;
+        _qh_collectionView.pagingEnabled = NO;
+        _qh_collectionView.bounces = YES;
+        _qh_collectionView.alwaysBounceVertical = YES;
+        _qh_collectionView.backgroundColor = UIColor.clearColor;
         
+        // 注册cell
+        [_qh_collectionView registerClass:[GQHHomeViewMenusCollecionViewCell class] forCellWithReuseIdentifier:NSStringFromClass([GQHHomeViewMenusCollecionViewCell class])];
+        
+        // 注册headerView
+        [_qh_collectionView registerClass:[GQHHomeViewWelcomCollectionViewReusableHeaderView class] forSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:NSStringFromClass([GQHHomeViewWelcomCollectionViewReusableHeaderView class])];
+
         if (@available(iOS 11.0, *)) {
             
-            _qh_tableView.contentInsetAdjustmentBehavior = UIScrollViewContentInsetAdjustmentNever;
+            _qh_collectionView.contentInsetAdjustmentBehavior = UIScrollViewContentInsetAdjustmentNever;
         }
     }
     
-    return _qh_tableView;
-}
-
-- (UIButton *)aboutButton {
-    
-    if (!_aboutButton) {
-        
-        _aboutButton = [UIButton buttonWithType:UIButtonTypeCustom];
-        _aboutButton.backgroundColor = [UIColor qh_colorWithHexString:GQHDarkGreen];
-        _aboutButton.titleLabel.font = [UIFont systemFontOfSize:16.0f];
-        
-        [_aboutButton setImage:nil forState:UIControlStateNormal];
-        [_aboutButton setBackgroundImage:nil forState:UIControlStateNormal];
-        [_aboutButton setTitle:NSLocalizedString(@"about", @"关于") forState:UIControlStateNormal];
-        [_aboutButton setTitleColor:[UIColor lightTextColor] forState:UIControlStateNormal];
-        [_aboutButton addTarget:self action:@selector(didClickAboutButton:) forControlEvents:UIControlEventTouchUpInside];
-        
-        _aboutButton.layer.cornerRadius = 8.0f;
-        _aboutButton.layer.masksToBounds = YES;
-    }
-    
-    return _aboutButton;
-}
-
-- (UIButton *)recordButton {
-    
-    if (!_recordButton) {
-        
-        _recordButton = [UIButton buttonWithType:UIButtonTypeCustom];
-        _recordButton.backgroundColor = [UIColor qh_colorWithHexString:GQHDarkGreen];
-        _recordButton.titleLabel.font = [UIFont systemFontOfSize:16.0f];
-        
-        [_recordButton setImage:nil forState:UIControlStateNormal];
-        [_recordButton setBackgroundImage:nil forState:UIControlStateNormal];
-        [_recordButton setTitle:NSLocalizedString(@"record", @"记录") forState:UIControlStateNormal];
-        [_recordButton setTitleColor:[UIColor lightTextColor] forState:UIControlStateNormal];
-        [_recordButton addTarget:self action:@selector(didClickRecordButton:) forControlEvents:UIControlEventTouchUpInside];
-        
-        _recordButton.layer.cornerRadius = 8.0f;
-        _recordButton.layer.masksToBounds = YES;
-    }
-    
-    return _recordButton;
-}
-
-- (UIButton *)startButton {
-    
-    if (!_startButton) {
-        
-        _startButton = [UIButton buttonWithType:UIButtonTypeCustom];
-        _startButton.backgroundColor = [UIColor qh_colorWithHexString:GQHDarkestGreen];
-        _startButton.titleLabel.font = [UIFont systemFontOfSize:16.0f];
-        
-        [_startButton setImage:nil forState:UIControlStateNormal];
-        [_startButton setBackgroundImage:nil forState:UIControlStateNormal];
-        [_startButton setTitle:NSLocalizedString(@"start", @"开始") forState:UIControlStateNormal];
-        [_startButton setTitleColor:[UIColor darkTextColor] forState:UIControlStateNormal];
-        [_startButton addTarget:self action:@selector(didClickStartButton:) forControlEvents:UIControlEventTouchUpInside];
-        
-        _startButton.layer.cornerRadius = 32.0f;
-        _startButton.layer.masksToBounds = YES;
-    }
-    
-    return _startButton;
-}
-
-- (UIButton *)levelButton {
-    
-    if (!_levelButton) {
-        
-        _levelButton = [UIButton buttonWithType:UIButtonTypeCustom];
-        _levelButton.backgroundColor = [UIColor qh_colorWithHexString:GQHDarkestGreen];
-        _levelButton.titleLabel.font = [UIFont systemFontOfSize:16.0f];
-        
-        [_levelButton setImage:nil forState:UIControlStateNormal];
-        [_levelButton setBackgroundImage:nil forState:UIControlStateNormal];
-        [_levelButton setTitle:NSLocalizedString(@"level", @"等级") forState:UIControlStateNormal];
-        [_levelButton setTitleColor:[UIColor darkTextColor] forState:UIControlStateNormal];
-        [_levelButton addTarget:self action:@selector(didClickLevelButton:) forControlEvents:UIControlEventTouchUpInside];
-        
-        _levelButton.layer.cornerRadius =16.0f;
-        _levelButton.layer.masksToBounds = YES;
-    }
-    
-    return _levelButton;
-}
-
-- (UIButton *)galleryButton {
-    
-    if (!_galleryButton) {
-        
-        _galleryButton = [UIButton buttonWithType:UIButtonTypeCustom];
-        _galleryButton.backgroundColor = [UIColor qh_colorWithHexString:GQHDarkestGreen];
-        _galleryButton.titleLabel.font = [UIFont systemFontOfSize:16.0f];
-        
-        [_galleryButton setImage:nil forState:UIControlStateNormal];
-        [_galleryButton setBackgroundImage:nil forState:UIControlStateNormal];
-        [_galleryButton setTitle:NSLocalizedString(@"gallery", @"图库") forState:UIControlStateNormal];
-        [_galleryButton setTitleColor:[UIColor darkTextColor] forState:UIControlStateNormal];
-        [_galleryButton addTarget:self action:@selector(didClickGalleryButton:) forControlEvents:UIControlEventTouchUpInside];
-        
-        _galleryButton.layer.cornerRadius = 16.0f;
-        _galleryButton.layer.masksToBounds = YES;
-    }
-    
-    return _galleryButton;
+    return _qh_collectionView;
 }
 
 @end
@@ -363,48 +131,56 @@
 
 #pragma mark -
 
-@interface GQHHomeTableViewCell ()
+@interface GQHHomeViewMenusCollecionViewCell ()
+
+/**
+ 容器视图
+ */
+@property (nonatomic, strong) UIView *containerView;
+
+/**
+ 图片
+ */
+@property (nonatomic, strong) UIImageView *menuImageView;
+
+/**
+ 标题
+ */
+@property (nonatomic, strong) UILabel *menuTitleLabel;
+
+/**
+ 索引
+ */
+@property (nonatomic, assign) NSIndexPath *index;
 
 @end
 
-@implementation GQHHomeTableViewCell
+@implementation GQHHomeViewMenusCollecionViewCell
 
 #pragma mark - Lifecycle
-/**
- 根据视图数据创建列表视图的行视图
- 
- @param tableView 列表视图
- @param data 列表行视图数据
- @return 自定义行视图
- */
-+ (instancetype)qh_tableView:(UITableView *)tableView cellWithData:(id)data {
++ (instancetype)qh_collectionView:(UICollectionView *)collectionView cellForIndexPath:(NSIndexPath *)indexPath data:(nullable id)data {
     NSLog(@"");
     
-    static NSString *identifier = @"GQHHomeTableViewCell";
-    GQHHomeTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:identifier];
-    if (!cell) {
-        
-        cell = [[GQHHomeTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:identifier];
-        cell.selectionStyle = UITableViewCellSelectionStyleNone;
-    }
+    GQHHomeViewMenusCollecionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:NSStringFromClass([GQHHomeViewMenusCollecionViewCell class]) forIndexPath:indexPath];
     
     // 根据视图数据更新视图
-    cell.qh_data = data;
+    [cell updateCellWithData:data];
+    
+    cell.index = indexPath;
     
     return cell;
 }
 
 /**
- 初始化列表自定义行视图
+ 初始化自定义单元格视图
  
- @param style 列表自定义行视图样式
- @param reuseIdentifier 列表行视图复用标识
- @return 列表自定义行视图
+ @param frame 单元格视图frame
+ @return 自定义单元格视图
  */
-- (instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier {
+- (instancetype)initWithFrame:(CGRect)frame {
     NSLog(@"");
     
-    if (self = [super initWithStyle:style reuseIdentifier:reuseIdentifier]) {
+    if (self = [super initWithFrame:frame]) {
         
         // 初始化自动布局
         [self autoLayoutWithConstraints];
@@ -426,11 +202,35 @@
 }
 
 /**
- 自动布局子视图 -> 约束(mas_make只有一次,自动约束,不要计算)
+ 自动布局子视图 -> 约束(mas_make只有一次,自动约束，不要计算)
  */
 - (void)autoLayoutWithConstraints {
     NSLog(@"");
     
+    // 容器视图
+    [self.contentView addSubview:self.containerView];
+    [self.containerView mas_makeConstraints:^(MASConstraintMaker *make) {
+        
+        make.edges.mas_equalTo(self.contentView).with.insets(UIEdgeInsetsMake(8.0f, 8.0f, 8.0f, 8.0f));
+    }];
+    
+    // 菜单标题
+    [self.containerView addSubview:self.menuTitleLabel];
+    [self.menuTitleLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+        
+        make.left.and.bottom.and.right.mas_equalTo(self.containerView).with.inset(10.0f);
+        make.height.mas_greaterThanOrEqualTo(GQHMinLayoutValue);
+    }];
+    
+    // 菜单图片
+    [self.containerView addSubview:self.menuImageView];
+    [self.menuImageView mas_makeConstraints:^(MASConstraintMaker *make) {
+        
+        make.centerX.mas_equalTo(self.containerView);
+        make.top.mas_equalTo(self.containerView).with.inset(GQHMinLayoutValue);
+        make.bottom.mas_equalTo(self.menuTitleLabel.mas_top).with.inset(GQHMinLayoutValue);
+        make.width.mas_equalTo(self.menuImageView.mas_height).with.multipliedBy(1.0f);
+    }];
 }
 
 #pragma mark - Delegate
@@ -441,11 +241,18 @@
 /**
  根据视图数据更新视图
  
- @param data 列表行视图数据
+ @param data 单元格视图数据
  */
 - (void)updateCellWithData:(id)data {
     NSLog(@"");
     
+    if (data) {
+        
+        self.menuImageView.image = [UIImage imageNamed:[data objectForKey:@"image"]];
+        self.menuTitleLabel.text = NSLocalizedString([data objectForKey:@"title"], @"title");
+    }
+    
+    self.menuImageView.backgroundColor = [UIColor qh_randomColor];
 }
 
 #pragma mark - Setter
@@ -459,51 +266,104 @@
 
 #pragma mark - Getter
 
+- (UIView *)containerView {
+    
+    if (!_containerView) {
+        
+        _containerView = [[UIView alloc] init];
+        _containerView.backgroundColor = [UIColor whiteColor];
+        
+        _containerView.layer.shadowColor = UIColor.lightGrayColor.CGColor;
+        _containerView.layer.shadowOpacity = 0.6f;
+        _containerView.layer.shadowRadius = 4.0f;
+        _containerView.layer.shadowOffset = CGSizeMake(4.0f, 4.0f);
+    }
+    
+    return _containerView;
+}
+
+- (UIImageView *)menuImageView {
+    
+    if (!_menuImageView) {
+        
+        _menuImageView = [[UIImageView alloc] init];
+        _menuImageView.backgroundColor = [UIColor clearColor];
+        
+        _menuImageView.image = [UIImage imageNamed:@""];
+        
+        _menuImageView.layer.cornerRadius = 0.0f;
+        _menuImageView.layer.masksToBounds = YES;
+    }
+    
+    return _menuImageView;
+}
+
+- (UILabel *)menuTitleLabel {
+    
+    if (!_menuTitleLabel) {
+        
+        _menuTitleLabel = [[UILabel alloc] init];
+        _menuTitleLabel.backgroundColor = [UIColor clearColor];
+        
+        _menuTitleLabel.font = [UIFont boldSystemFontOfSize:24.0f];
+        _menuTitleLabel.textColor = [UIColor darkTextColor];
+        _menuTitleLabel.textAlignment = NSTextAlignmentCenter;
+        _menuTitleLabel.numberOfLines = 1;
+    }
+    
+    return _menuTitleLabel;
+}
+
 @end
 
 
 #pragma mark -
 
-@interface GQHHomeTableViewHeaderView ()
+@interface GQHHomeViewWelcomCollectionViewReusableHeaderView ()
+
+/**
+ 容器视图
+ */
+@property (nonatomic, strong) UIView *containerView;
+
+/**
+ 欢迎标题
+ */
+@property (nonatomic, strong) UILabel *welcomTitleLabel;
+
+/**
+ 索引
+ */
+@property (nonatomic, assign) NSIndexPath *index;
 
 @end
 
-@implementation GQHHomeTableViewHeaderView
+@implementation GQHHomeViewWelcomCollectionViewReusableHeaderView
 
 #pragma mark - Lifecycle
-/**
- 根据视图数据创建列表视图的头视图
- 
- @param tableView 列表视图
- @param data 列表头视图数据
- @return 自定义头视图
- */
-+ (instancetype)qh_tableView:(UITableView *)tableView headerViewWithData:(id)data {
++ (instancetype)qh_collectionView:(UICollectionView *)collectionView headerViewForIndexPath:(NSIndexPath *)indexPath data:(id)data {
     NSLog(@"");
     
-    static NSString *identifier = @"GQHHomeTableViewHeaderView";
-    GQHHomeTableViewHeaderView *headerView = [tableView dequeueReusableHeaderFooterViewWithIdentifier:identifier];
-    if (!headerView) {
-        
-        headerView = [[GQHHomeTableViewHeaderView alloc] initWithReuseIdentifier:identifier];
-    }
+    GQHHomeViewWelcomCollectionViewReusableHeaderView *headerView = [collectionView dequeueReusableSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier: NSStringFromClass([GQHHomeViewWelcomCollectionViewReusableHeaderView class]) forIndexPath:indexPath];
     
     // 根据视图数据更新视图
-    headerView.qh_data = data;
+    [headerView updateHeaderViewWithData:data];
+    
+    headerView.index = indexPath;
     
     return headerView;
 }
 
 /**
- 初始化列表自定义头视图
+ 初始化集合视图自定义头视图
  
- @param reuseIdentifier 列表头视图复用标识
- @return 列表自定义头视图
+ @param frame 集合视图头视图frame
+ @return 自定义集合头视图
  */
-- (instancetype)initWithReuseIdentifier:(NSString *)reuseIdentifier {
+- (instancetype)initWithFrame:(CGRect)frame {
     NSLog(@"");
     
-    if (self = [super initWithReuseIdentifier:reuseIdentifier]) {
+    if (self = [super initWithFrame:frame]) {
         
         // 初始化自动布局
         [self autoLayoutWithConstraints];
@@ -525,11 +385,24 @@
 }
 
 /**
- 自动布局子视图 -> 约束(mas_make只有一次,自动约束,不要计算)
+ 自动布局子视图 -> 约束(mas_make只有一次,自动约束，不要计算)
  */
 - (void)autoLayoutWithConstraints {
     NSLog(@"");
     
+    // 容器视图
+    [self addSubview:self.containerView];
+    [self.containerView mas_makeConstraints:^(MASConstraintMaker *make) {
+        
+        make.edges.mas_equalTo(self);
+    }];
+    
+    // 欢迎标题
+    [self.containerView addSubview:self.welcomTitleLabel];
+    [self.welcomTitleLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+        
+        make.edges.mas_equalTo(self);
+    }];
 }
 
 #pragma mark - Delegate
@@ -540,11 +413,12 @@
 /**
  根据视图数据更新视图
  
- @param data 列表头视图数据
+ @param data 集合头视图数据
  */
 - (void)updateHeaderViewWithData:(id)data {
     NSLog(@"");
     
+    self.welcomTitleLabel.backgroundColor = [UIColor qh_randomColor];
 }
 
 #pragma mark - Setter
@@ -558,103 +432,35 @@
 
 #pragma mark - Getter
 
-@end
-
-
-#pragma mark -
-
-@interface GQHHomeTableViewFooterView ()
-
-@end
-
-@implementation GQHHomeTableViewFooterView
-
-#pragma mark - Lifecycle
-/**
- 根据视图数据创建列表视图的尾视图
- 
- @param tableView 列表视图
- @param data 列表尾视图数据
- @return 自定义尾视图
- */
-+ (instancetype)qh_tableView:(UITableView *)tableView footerViewWithData:(id)data {
-    NSLog(@"");
+- (UIView *)containerView {
     
-    static NSString *identifier = @"GQHHomeTableViewFooterView";
-    GQHHomeTableViewFooterView *footerView = [tableView dequeueReusableHeaderFooterViewWithIdentifier:identifier];
-    if (!footerView) {
+    if (!_containerView) {
         
-        footerView = [[GQHHomeTableViewFooterView alloc] initWithReuseIdentifier:identifier];
+        _containerView = [[UIView alloc] init];
+        _containerView.backgroundColor = [UIColor whiteColor];
+        
+        _containerView.layer.cornerRadius = 0.0f;
+        _containerView.layer.masksToBounds = YES;
     }
     
-    // 根据视图数据更新视图
-    footerView.qh_data = data;
-    
-    return footerView;
+    return _containerView;
 }
 
-/**
- 初始化列表自定义尾视图
- 
- @param reuseIdentifier 列表尾视图复用标识
- @return 列表自定义尾视图
- */
-- (instancetype)initWithReuseIdentifier:(NSString *)reuseIdentifier {
-    NSLog(@"");
+- (UILabel *)welcomTitleLabel {
     
-    if (self = [super initWithReuseIdentifier:reuseIdentifier]) {
+    if (!_welcomTitleLabel) {
         
-        // 初始化自动布局
-        [self autoLayoutWithConstraints];
+        _welcomTitleLabel = [[UILabel alloc] init];
+        _welcomTitleLabel.backgroundColor = [UIColor whiteColor];
         
-        // 其他初始化
-        
+        _welcomTitleLabel.font = [UIFont systemFontOfSize:32.0f];
+        _welcomTitleLabel.text = NSLocalizedString(@"Welcome\nPuzzle", @"Label");
+        _welcomTitleLabel.textColor = [UIColor darkTextColor];
+        _welcomTitleLabel.textAlignment = NSTextAlignmentCenter;
+        _welcomTitleLabel.numberOfLines = 0;
     }
     
-    return self;
+    return _welcomTitleLabel;
 }
-
-/**
- 布局子视图 -> frame计算
- */
-- (void)layoutSubviews {
-    [super layoutSubviews];
-    NSLog(@"");
-    
-}
-
-/**
- 自动布局子视图 -> 约束(mas_make只有一次,自动约束,不要计算)
- */
-- (void)autoLayoutWithConstraints {
-    NSLog(@"");
-    
-}
-
-#pragma mark - Delegate
-
-#pragma mark - TargetMethod
-
-#pragma mark - PrivateMethod
-/**
- 根据视图数据更新视图
- 
- @param data 列表尾视图数据
- */
-- (void)updateFooterViewWithData:(id)data {
-    NSLog(@"");
-    
-}
-
-#pragma mark - Setter
-- (void)setQh_data:(id)qh_data {
-    
-    _qh_data = qh_data;
-    
-    // 更新根视图数据
-    [self updateFooterViewWithData:qh_data];
-}
-
-#pragma mark - Getter
 
 @end

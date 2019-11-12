@@ -54,12 +54,13 @@
 - (void)autoLayoutWithConstraints {
     NSLog(@"");
     
-    // 列表视图
-    [self addSubview:self.qh_tableView];
-    [self.qh_tableView mas_makeConstraints:^(MASConstraintMaker *make) {
+    // 集合视图
+    [self addSubview:self.qh_collectionView];
+    [self.qh_collectionView mas_makeConstraints:^(MASConstraintMaker *make) {
         
-        make.top.mas_equalTo(self).with.inset(self.qh_statusBarHeight + self.qh_navigationBarHeight);
-        make.left.and.right.and.bottom.mas_equalTo(self);
+        make.top.mas_equalTo(self).with.inset(self.qh_statusBarHeight);
+        make.bottom.mas_equalTo(self).with.inset(self.qh_homeIndicatorHeight);
+        make.left.and.right.mas_equalTo(self).with.inset(15.0f);
     }];
 }
 
@@ -88,27 +89,32 @@
 }
 
 #pragma mark - Getter
-- (UITableView *)qh_tableView {
+- (UICollectionView *)qh_collectionView {
     
-    if (!_qh_tableView) {
+    if (!_qh_collectionView) {
         
-        _qh_tableView = [[UITableView alloc] initWithFrame:CGRectZero style:UITableViewStyleGrouped];
-        _qh_tableView.backgroundColor = [UIColor whiteColor];
-        _qh_tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
-        _qh_tableView.showsVerticalScrollIndicator = NO;
-        _qh_tableView.showsHorizontalScrollIndicator = NO;
+        UICollectionViewFlowLayout *flowLayout = [[UICollectionViewFlowLayout alloc]init];
+        flowLayout.scrollDirection = UICollectionViewScrollDirectionVertical;
         
-        // 列表自动计算行高
-        _qh_tableView.estimatedRowHeight = 200.0f;
-        _qh_tableView.rowHeight = UITableViewAutomaticDimension;
+        // CGRectZero
+        _qh_collectionView = [[UICollectionView alloc]initWithFrame:CGRectZero collectionViewLayout:flowLayout];
+        _qh_collectionView.showsHorizontalScrollIndicator = NO;
+        _qh_collectionView.showsVerticalScrollIndicator = NO;
+        _qh_collectionView.pagingEnabled = NO;
+        _qh_collectionView.bounces = YES;
+        _qh_collectionView.alwaysBounceVertical = YES;
+        _qh_collectionView.backgroundColor = UIColor.clearColor;
+        
+        // 注册cell
+        [_qh_collectionView registerClass:[GQHGalleryViewImagesCollecionViewCell class] forCellWithReuseIdentifier:NSStringFromClass([GQHGalleryViewImagesCollecionViewCell class])];
         
         if (@available(iOS 11.0, *)) {
             
-            _qh_tableView.contentInsetAdjustmentBehavior = UIScrollViewContentInsetAdjustmentNever;
+            _qh_collectionView.contentInsetAdjustmentBehavior = UIScrollViewContentInsetAdjustmentNever;
         }
     }
     
-    return _qh_tableView;
+    return _qh_collectionView;
 }
 
 @end
@@ -116,48 +122,51 @@
 
 #pragma mark -
 
-@interface GQHGalleryTableViewCell ()
+@interface GQHGalleryViewImagesCollecionViewCell ()
+
+/**
+ 游戏图片
+ */
+@property (nonatomic, strong) UIImageView *gameImageView;
+
+/**
+ 图片标题
+ */
+@property (nonatomic, strong) UILabel *titleLabel;
+
+/**
+ 索引
+ */
+@property (nonatomic, assign) NSIndexPath *index;
 
 @end
 
-@implementation GQHGalleryTableViewCell
+@implementation GQHGalleryViewImagesCollecionViewCell
 
 #pragma mark - Lifecycle
-/**
- 根据视图数据创建列表视图的行视图
- 
- @param tableView 列表视图
- @param data 列表行视图数据
- @return 自定义行视图
- */
-+ (instancetype)qh_tableView:(UITableView *)tableView cellWithData:(id)data {
++ (instancetype)qh_collectionView:(UICollectionView *)collectionView cellForIndexPath:(NSIndexPath *)indexPath data:(nullable id)data {
     NSLog(@"");
     
-    static NSString *identifier = @"GQHGalleryTableViewCell";
-    GQHGalleryTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:identifier];
-    if (!cell) {
-        
-        cell = [[GQHGalleryTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:identifier];
-        cell.selectionStyle = UITableViewCellSelectionStyleNone;
-    }
+    GQHGalleryViewImagesCollecionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:NSStringFromClass([GQHGalleryViewImagesCollecionViewCell class]) forIndexPath:indexPath];
     
     // 根据视图数据更新视图
-    cell.qh_data = data;
+    [cell updateCellWithData:data];
+    
+    cell.index = indexPath;
     
     return cell;
 }
 
 /**
- 初始化列表自定义行视图
+ 初始化自定义单元格视图
  
- @param style 列表自定义行视图样式
- @param reuseIdentifier 列表行视图复用标识
- @return 列表自定义行视图
+ @param frame 单元格视图frame
+ @return 自定义单元格视图
  */
-- (instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier {
+- (instancetype)initWithFrame:(CGRect)frame {
     NSLog(@"");
     
-    if (self = [super initWithStyle:style reuseIdentifier:reuseIdentifier]) {
+    if (self = [super initWithFrame:frame]) {
         
         // 初始化自动布局
         [self autoLayoutWithConstraints];
@@ -179,11 +188,26 @@
 }
 
 /**
- 自动布局子视图 -> 约束(mas_make只有一次,自动约束,不要计算)
+ 自动布局子视图 -> 约束(mas_make只有一次,自动约束，不要计算)
  */
 - (void)autoLayoutWithConstraints {
     NSLog(@"");
     
+    // 游戏图片
+    [self.contentView addSubview:self.gameImageView];
+    [self.gameImageView mas_makeConstraints:^(MASConstraintMaker *make) {
+        
+        make.top.and.left.and.right.mas_equalTo(self.contentView).with.inset(10.0f);
+        make.width.mas_equalTo(self.gameImageView.mas_height).with.multipliedBy(1.0f);
+    }];
+    
+    // 图片标题
+    [self.contentView addSubview:self.titleLabel];
+    [self.titleLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+        
+        make.height.mas_greaterThanOrEqualTo(GQHMinLayoutValue);
+        make.left.and.bottom.and.right.mas_equalTo(self.contentView).with.inset(10.0f);
+    }];
 }
 
 #pragma mark - Delegate
@@ -194,11 +218,18 @@
 /**
  根据视图数据更新视图
  
- @param data 列表行视图数据
+ @param data 单元格视图数据
  */
 - (void)updateCellWithData:(id)data {
     NSLog(@"");
     
+    if (data) {
+        
+        self.gameImageView.image = [UIImage imageNamed:[data objectForKey:@"image"]];
+        self.titleLabel.text = NSLocalizedString([data objectForKey:@"title"], @"title");
+    }
+    
+    self.gameImageView.backgroundColor = [UIColor qh_randomColor];
 }
 
 #pragma mark - Setter
@@ -212,202 +243,36 @@
 
 #pragma mark - Getter
 
-@end
-
-
-#pragma mark -
-
-@interface GQHGalleryTableViewHeaderView ()
-
-@end
-
-@implementation GQHGalleryTableViewHeaderView
-
-#pragma mark - Lifecycle
-/**
- 根据视图数据创建列表视图的头视图
- 
- @param tableView 列表视图
- @param data 列表头视图数据
- @return 自定义头视图
- */
-+ (instancetype)qh_tableView:(UITableView *)tableView headerViewWithData:(id)data {
-    NSLog(@"");
+- (UIImageView *)gameImageView {
     
-    static NSString *identifier = @"GQHGalleryTableViewHeaderView";
-    GQHGalleryTableViewHeaderView *headerView = [tableView dequeueReusableHeaderFooterViewWithIdentifier:identifier];
-    if (!headerView) {
+    if (!_gameImageView) {
         
-        headerView = [[GQHGalleryTableViewHeaderView alloc] initWithReuseIdentifier:identifier];
+        _gameImageView = [[UIImageView alloc] init];
+        _gameImageView.backgroundColor = [UIColor clearColor];
+        
+        _gameImageView.image = [UIImage imageNamed:@""];
+        
+        _gameImageView.layer.cornerRadius = 0.0f;
+        _gameImageView.layer.masksToBounds = YES;
     }
     
-    // 根据视图数据更新视图
-    headerView.qh_data = data;
-    
-    return headerView;
+    return _gameImageView;
 }
 
-/**
- 初始化列表自定义头视图
- 
- @param reuseIdentifier 列表头视图复用标识
- @return 列表自定义头视图
- */
-- (instancetype)initWithReuseIdentifier:(NSString *)reuseIdentifier {
-    NSLog(@"");
+- (UILabel *)titleLabel {
     
-    if (self = [super initWithReuseIdentifier:reuseIdentifier]) {
+    if (!_titleLabel) {
         
-        // 初始化自动布局
-        [self autoLayoutWithConstraints];
+        _titleLabel = [[UILabel alloc] init];
+        _titleLabel.backgroundColor = [UIColor clearColor];
         
-        // 其他初始化
-        
+        _titleLabel.font = [UIFont boldSystemFontOfSize:18.0f];
+        _titleLabel.textColor = [UIColor darkTextColor];
+        _titleLabel.textAlignment = NSTextAlignmentCenter;
+        _titleLabel.numberOfLines = 1;
     }
     
-    return self;
+    return _titleLabel;
 }
-
-/**
- 布局子视图 -> frame计算
- */
-- (void)layoutSubviews {
-    [super layoutSubviews];
-    NSLog(@"");
-    
-}
-
-/**
- 自动布局子视图 -> 约束(mas_make只有一次,自动约束,不要计算)
- */
-- (void)autoLayoutWithConstraints {
-    NSLog(@"");
-    
-}
-
-#pragma mark - Delegate
-
-#pragma mark - TargetMethod
-
-#pragma mark - PrivateMethod
-/**
- 根据视图数据更新视图
- 
- @param data 列表头视图数据
- */
-- (void)updateHeaderViewWithData:(id)data {
-    NSLog(@"");
-    
-}
-
-#pragma mark - Setter
-- (void)setQh_data:(id)qh_data {
-    
-    _qh_data = qh_data;
-    
-    // 更新头视图数据
-    [self updateHeaderViewWithData:qh_data];
-}
-
-#pragma mark - Getter
-
-@end
-
-
-#pragma mark -
-
-@interface GQHGalleryTableViewFooterView ()
-
-@end
-
-@implementation GQHGalleryTableViewFooterView
-
-#pragma mark - Lifecycle
-/**
- 根据视图数据创建列表视图的尾视图
- 
- @param tableView 列表视图
- @param data 列表尾视图数据
- @return 自定义尾视图
- */
-+ (instancetype)qh_tableView:(UITableView *)tableView footerViewWithData:(id)data {
-    NSLog(@"");
-    
-    static NSString *identifier = @"GQHGalleryTableViewFooterView";
-    GQHGalleryTableViewFooterView *footerView = [tableView dequeueReusableHeaderFooterViewWithIdentifier:identifier];
-    if (!footerView) {
-        
-        footerView = [[GQHGalleryTableViewFooterView alloc] initWithReuseIdentifier:identifier];
-    }
-    
-    // 根据视图数据更新视图
-    footerView.qh_data = data;
-    
-    return footerView;
-}
-
-/**
- 初始化列表自定义尾视图
- 
- @param reuseIdentifier 列表尾视图复用标识
- @return 列表自定义尾视图
- */
-- (instancetype)initWithReuseIdentifier:(NSString *)reuseIdentifier {
-    NSLog(@"");
-    
-    if (self = [super initWithReuseIdentifier:reuseIdentifier]) {
-        
-        // 初始化自动布局
-        [self autoLayoutWithConstraints];
-        
-        // 其他初始化
-        
-    }
-    
-    return self;
-}
-
-/**
- 布局子视图 -> frame计算
- */
-- (void)layoutSubviews {
-    [super layoutSubviews];
-    NSLog(@"");
-    
-}
-
-/**
- 自动布局子视图 -> 约束(mas_make只有一次,自动约束,不要计算)
- */
-- (void)autoLayoutWithConstraints {
-    NSLog(@"");
-    
-}
-
-#pragma mark - Delegate
-
-#pragma mark - TargetMethod
-
-#pragma mark - PrivateMethod
-/**
- 根据视图数据更新视图
- 
- @param data 列表尾视图数据
- */
-- (void)updateFooterViewWithData:(id)data {
-    NSLog(@"");
-    
-}
-
-#pragma mark - Setter
-- (void)setQh_data:(id)qh_data {
-    
-    _qh_data = qh_data;
-    
-    // 更新根视图数据
-    [self updateFooterViewWithData:qh_data];
-}
-
-#pragma mark - Getter
 
 @end

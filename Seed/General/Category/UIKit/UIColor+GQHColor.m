@@ -216,7 +216,7 @@
  
  @return 随机颜色
  */
-+ (UIColor *)qh_colorWithRandomRGB {
++ (UIColor *)qh_randomColor {
     
     NSUInteger red = arc4random()%256;
     NSUInteger green = arc4random()%256;

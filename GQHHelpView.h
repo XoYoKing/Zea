@@ -1,7 +1,7 @@
 //
-//  GQHLevelsView.h
+//  GQHHelpView.h
 //
-//  Created by GuanQinghao on 2019-08-11.
+//  Created by GuanQinghao on 2019-11-12.
 //  Copyright © 2019 GuanQinghao. All rights reserved.
 //
 
@@ -11,14 +11,11 @@
 /**
  自定义视图的代理
  */
-@protocol GQHLevelsViewDelegate <NSObject>
+@protocol GQHHelpViewDelegate <NSObject>
 
 @required
 
 @optional
-
-/// 返回首页
-- (void)qh_popToRoot;
 
 @end
 
@@ -30,12 +27,12 @@ NS_ASSUME_NONNULL_BEGIN
 /**
  自定义根视图
  */
-@interface GQHLevelsView : GQHBaseView
+@interface GQHHelpView : GQHBaseView
 
 /**
  视图代理
  */
-@property (nonatomic, weak) id<GQHLevelsViewDelegate> qh_delegate;
+@property (nonatomic, weak) id<GQHHelpViewDelegate> qh_delegate;
 
 /**
  视图数据
@@ -59,12 +56,12 @@ NS_ASSUME_NONNULL_BEGIN
 /**
  列表视图的自定义行视图
  */
-@interface GQHLevelsViewTableViewCell : UITableViewCell
+@interface GQHHelpTableViewCell : UITableViewCell
 
 /**
  视图代理
  */
-@property (nonatomic, weak) id<GQHLevelsViewDelegate> qh_delegate;
+@property (nonatomic, weak) id<GQHHelpViewDelegate> qh_delegate;
 
 /**
  视图数据
@@ -92,12 +89,12 @@ NS_ASSUME_NONNULL_BEGIN
 /**
  列表视图的自定义头视图
  */
-@interface GQHLevelsViewTableViewHeaderView : UITableViewHeaderFooterView
+@interface GQHHelpTableViewHeaderView : UITableViewHeaderFooterView
 
 /**
  视图代理
  */
-@property (nonatomic, weak) id<GQHLevelsViewDelegate> qh_delegate;
+@property (nonatomic, weak) id<GQHHelpViewDelegate> qh_delegate;
 
 /**
  视图数据
@@ -125,12 +122,12 @@ NS_ASSUME_NONNULL_BEGIN
 /**
  列表视图的自定义尾视图
  */
-@interface GQHLevelsViewTableViewFooterView : UITableViewHeaderFooterView
+@interface GQHHelpTableViewFooterView : UITableViewHeaderFooterView
 
 /**
  视图代理
  */
-@property (nonatomic, weak) id<GQHLevelsViewDelegate> qh_delegate;
+@property (nonatomic, weak) id<GQHHelpViewDelegate> qh_delegate;
 
 /**
  视图数据

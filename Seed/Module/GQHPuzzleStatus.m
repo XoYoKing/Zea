@@ -8,7 +8,7 @@
 
 #import "GQHPuzzleStatus.h"
 
-@interface GQHPuzzleStatus () {
+@implementation GQHPuzzleStatus {
     
     /// 父状态
     id<GQHPathSearcherStatus> _qh_superStatus;
@@ -22,10 +22,6 @@
     /// 总代价 f = g + h
     NSInteger _f;
 }
-
-@end
-
-@implementation GQHPuzzleStatus
 
 + (instancetype)qh_puzzleStatusWithOrder:(NSInteger)order image:(UIImage *)image {
     
@@ -281,16 +277,6 @@
     return _qh_superStatus;
 }
 
-
-
-
-
-
-
-
-
-
-
 #pragma mark - GQHAStarSearcherStatus
 
 /// 估价函数, 估算从当前状态到目标状态的代价
@@ -349,16 +335,5 @@
     
     return _f;
 }
-
-
-
-
-
-
-
-
-
-
-
 
 @end

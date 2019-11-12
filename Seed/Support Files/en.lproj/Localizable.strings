@@ -6,13 +6,21 @@
   Copyright © 2018 GuanQinghao. All rights reserved.
 */
 
-
-"puzzle" = "PUZZLE";
-"about" = "ABOUT";
+// 菜单标题
+"start" = "START";
 "record" = "RECORD";
 "gallery" = "GALLERY";
-"music" = "MUSIC";
 "level" = "LEVEL";
+"help" = "HELP";
+"about" = "ABOUT";
+
+
+
+
+
+
+"puzzle" = "PUZZLE";
+"music" = "MUSIC";
 
 /// 游戏
 "time" = "CurrentTime";

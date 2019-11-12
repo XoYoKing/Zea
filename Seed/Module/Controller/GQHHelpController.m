@@ -1,7 +1,7 @@
 //
-//  GQHLevelsController.m
+//  GQHHelpController.m
 //
-//  Created by GuanQinghao on 2019-08-11.
+//  Created by GuanQinghao on 2019-11-12.
 //  Copyright © 2019 GuanQinghao. All rights reserved.
 //
 
@@ -11,20 +11,20 @@
 #pragma mark Model
 
 #pragma mark View
-#import "GQHLevelsView.h"
+#import "GQHHelpView.h"
 
 #pragma mark Controller
-#import "GQHLevelsController.h"
+#import "GQHHelpController.h"
 
 
 #pragma mark -
 
-@interface GQHLevelsController () <UITableViewDelegate, UITableViewDataSource, GQHLevelsViewDelegate>
+@interface GQHHelpController () <UITableViewDelegate, UITableViewDataSource, GQHHelpViewDelegate>
 
 /**
  自定义根视图
  */
-@property (nonatomic, strong) GQHLevelsView *rootView;
+@property (nonatomic, strong) GQHHelpView *rootView;
 
 /**
  数据源
@@ -33,7 +33,7 @@
 
 @end
 
-@implementation GQHLevelsController
+@implementation GQHHelpController
 
 #pragma mark - Lifecycle
 /**
@@ -53,7 +53,6 @@
     [super viewDidLoad];
     NSLog(@"");
     
-    self.qh_navigationBar.hidden = YES;
 }
 
 /**
@@ -149,7 +148,7 @@
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     NSLog(@"");
     
-    return self.dataSourceArray.count;
+    return 5;
 }
 
 /**
@@ -162,8 +161,11 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     NSLog(@"");
     
+    // 数据data
+    NSMutableDictionary *data = [NSMutableDictionary dictionary];
+    
     // 视图cell
-    GQHLevelsViewTableViewCell *cell = [GQHLevelsViewTableViewCell qh_tableView:tableView cellWithData:self.dataSourceArray[indexPath.row]];
+    GQHHelpTableViewCell *cell = [GQHHelpTableViewCell qh_tableView:tableView cellWithData:data];
     cell.qh_delegate = self;
     
     return cell;
@@ -180,7 +182,7 @@
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     NSLog(@"");
     
-    return 110.0f;
+    return 50.0f;
 }
 
 /**
@@ -222,7 +224,7 @@
     NSMutableDictionary *data = [NSMutableDictionary dictionary];
     
     // 自定义头视图
-    GQHLevelsViewTableViewHeaderView *headerView = [GQHLevelsViewTableViewHeaderView qh_tableView:tableView headerViewWithData:data];
+    GQHHelpTableViewHeaderView *headerView = [GQHHelpTableViewHeaderView qh_tableView:tableView headerViewWithData:data];
     headerView.qh_delegate = self;
     
     return headerView;
@@ -255,13 +257,13 @@
     NSMutableDictionary *data = [NSMutableDictionary dictionary];
     
     // 自定义尾视图
-    GQHLevelsViewTableViewFooterView *footerView = [GQHLevelsViewTableViewFooterView qh_tableView:tableView footerViewWithData:data];
+    GQHHelpTableViewFooterView *footerView = [GQHHelpTableViewFooterView qh_tableView:tableView footerViewWithData:data];
     footerView.qh_delegate = self;
     
     return footerView;
 }
 
-#pragma mark - GQHLevelsViewDelegate
+#pragma mark - GQHHelpViewDelegate
 
 #pragma mark - TargetMethod
 
@@ -270,11 +272,11 @@
 #pragma mark - Setter
 
 #pragma mark - Getter
-- (GQHLevelsView *)rootView {
+- (GQHHelpView *)rootView {
     
     if (!_rootView) {
         
-        _rootView = [[GQHLevelsView alloc] initWithFrame:UIScreen.mainScreen.bounds];
+        _rootView = [[GQHHelpView alloc] initWithFrame:UIScreen.mainScreen.bounds];
         _rootView.backgroundColor = [UIColor whiteColor];
         _rootView.qh_tableView.delegate = self;
         _rootView.qh_tableView.dataSource = self;
@@ -289,13 +291,6 @@
     if (!_dataSourceArray) {
         
         _dataSourceArray = [NSMutableArray array];
-        
-        _dataSourceArray = @[@{@"title":@"newbie",@"order":@"3",@"detail":@"新手入门级"}.mutableCopy,
-                             @{@"title":@"junior",@"order":@"4",@"detail":@"初级"}.mutableCopy,
-                             @{@"title":@"senior",@"order":@"5",@"detail":@"高级"}.mutableCopy,
-                             @{@"title":@"master",@"order":@"7",@"detail":@"大师级"}.mutableCopy,
-                             @{@"title":@"guru",@"order":@"9",@"detail":@"宗师级"}.mutableCopy,
-                             @{@"title":@"god",@"order":@"11",@"detail":@"惊为天人"}.mutableCopy].mutableCopy;
     }
     
     return _dataSourceArray;

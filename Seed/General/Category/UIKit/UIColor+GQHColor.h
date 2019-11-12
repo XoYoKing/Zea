@@ -139,7 +139,7 @@ NS_ASSUME_NONNULL_BEGIN
  
  @return 随机颜色
  */
-+ (UIColor *)qh_colorWithRandomRGB;
++ (UIColor *)qh_randomColor;
 
 /**
  渐变色

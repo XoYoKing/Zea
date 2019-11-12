@@ -6,16 +6,29 @@
   Copyright © 2018 GuanQinghao. All rights reserved.
 */
 
-
-"puzzle" = "拼图";
-"about" = "关于";
+// 菜单标题
+"start" = "开始";
 "record" = "记录";
 "gallery" = "图库";
-"music" = "音乐";
 "level" = "等级";
+"help" = "帮助";
+"about" = "关于";
+
+
+
+"puzzle" = "拼图";
+"music" = "音乐";
+
 
 /// 游戏
 "time" = "当前时间";
 "count" = "当前计数";
 "besttime" = "最好时间";
 "leastcount" = "最少计数";
+
+//新手3 Newbie
+//初级4 Junior
+//高级5 Senior
+//大师7 Master
+//宗师9 Guru
+//天人11 God

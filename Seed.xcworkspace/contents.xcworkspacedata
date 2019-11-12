@@ -2,6 +2,12 @@
 <Workspace
    version = "1.0">
    <FileRef
+      location = "group:GQHHelpView.h">
+   </FileRef>
+   <FileRef
+      location = "group:GQHHelpView.m">
+   </FileRef>
+   <FileRef
       location = "group:Seed.xcodeproj">
    </FileRef>
    <FileRef
