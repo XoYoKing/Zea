@@ -13,21 +13,6 @@
 
 @interface GQHLevelsView ()
 
-/**
- 容器视图
- */
-@property (nonatomic, strong) UIView *containerView;
-
-/**
- 返回按钮
- */
-@property (nonatomic, strong) UIButton *backButton;
-
-/**
- 标题
- */
-@property (nonatomic, strong) UILabel *titleLabel;
-
 @end
 
 @implementation GQHLevelsView
@@ -67,53 +52,17 @@
 - (void)autoLayoutWithConstraints {
     NSLog(@"");
     
-    // 容器视图
-    [self addSubview:self.containerView];
-    [self.containerView mas_makeConstraints:^(MASConstraintMaker *make) {
-        
-        make.top.and.left.and.right.mas_equalTo(self);
-        make.height.mas_equalTo(self.qh_statusBarHeight + 100.0f);
-    }];
-    
-    // 返回按钮
-    [self.containerView addSubview:self.backButton];
-    [self.backButton mas_makeConstraints:^(MASConstraintMaker *make) {
-        
-        make.top.mas_equalTo(self.containerView).with.inset(self.qh_statusBarHeight);
-        make.left.mas_equalTo(self.containerView).with.inset(20.0f);
-        make.size.mas_equalTo(CGSizeMake(44.0f, 44.0f));
-    }];
-    
-    // 标题
-    [self.containerView addSubview:self.titleLabel];
-    [self.titleLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        
-        make.top.mas_equalTo(self.backButton.mas_bottom);
-        make.left.and.right.mas_equalTo(self.containerView).with.inset(20.0f);
-        make.bottom.mas_equalTo(self.containerView);
-    }];
-    
-    // 集合视图
+    // 列表视图
     [self addSubview:self.qh_tableView];
     [self.qh_tableView mas_makeConstraints:^(MASConstraintMaker *make) {
         
-        make.top.mas_equalTo(self.containerView.mas_bottom).with.inset(5.0f);
-        make.left.and.right.mas_equalTo(self);
-        make.bottom.mas_equalTo(self);
+        make.edges.mas_equalTo(self).with.insets(UIEdgeInsetsMake(self.qh_statusBarHeight + self.qh_navigationBarHeight + 10.0f, 0.0f, 0.0f, 0.0f));
     }];
 }
 
 #pragma mark - Delegate
 
 #pragma mark - TargetMethod
-- (IBAction)didClickBackButton:(id)sender {
-    NSLog(@"返回首页");
-    
-    if ([self.qh_delegate respondsToSelector:@selector(qh_popToRoot)]) {
-        
-        [self.qh_delegate qh_popToRoot];
-    }
-}
 
 #pragma mark - PrivateMethod
 /**
@@ -157,58 +106,6 @@
     }
     
     return _qh_tableView;
-}
-
-- (UIView *)containerView {
-    
-    if (!_containerView) {
-        
-        _containerView = [[UIView alloc] init];
-        _containerView.backgroundColor = [UIColor qh_randomColor];
-        
-        _containerView.layer.cornerRadius = 0.0f;
-        _containerView.layer.masksToBounds = YES;
-    }
-    
-    return _containerView;
-}
-
-- (UIButton *)backButton {
-    
-    if (!_backButton) {
-        
-        _backButton = [UIButton buttonWithType:UIButtonTypeCustom];
-        _backButton.backgroundColor = [UIColor qh_randomColor];
-        _backButton.titleLabel.font = [UIFont systemFontOfSize:16.0f];
-        
-        [_backButton setImage:nil forState:UIControlStateNormal];
-        [_backButton setBackgroundImage:nil forState:UIControlStateNormal];
-        [_backButton setTitle:NSLocalizedString(@"back", @"Button") forState:UIControlStateNormal];
-        [_backButton setTitleColor:[UIColor darkTextColor] forState:UIControlStateNormal];
-        [_backButton addTarget:self action:@selector(didClickBackButton:) forControlEvents:UIControlEventTouchUpInside];
-        
-        _backButton.layer.cornerRadius = 0.0f;
-        _backButton.layer.masksToBounds = YES;
-    }
-    
-    return _backButton;
-}
-
-- (UILabel *)titleLabel {
-    
-    if (!_titleLabel) {
-        
-        _titleLabel = [[UILabel alloc] init];
-        _titleLabel.backgroundColor = [UIColor qh_randomColor];
-        
-        _titleLabel.font = [UIFont systemFontOfSize:28.0f];
-        _titleLabel.text = NSLocalizedString(@"选择游戏等级", @"Label");
-        _titleLabel.textColor = [UIColor darkTextColor];
-        _titleLabel.textAlignment = NSTextAlignmentLeft;
-        _titleLabel.numberOfLines = 0;
-    }
-    
-    return _titleLabel;
 }
 
 @end

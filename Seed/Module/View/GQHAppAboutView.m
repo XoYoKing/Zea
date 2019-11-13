@@ -13,9 +13,30 @@
 
 @interface GQHAppAboutView ()
 
+/**
+ 容器视图
+ */
+@property (nonatomic, strong) UIView *containerView;
+
+/**
+ 图标视图
+ */
 @property (nonatomic, strong) UIImageView *iconImageView;
 
-@property (nonatomic, strong) UILabel *titleLabel;
+/**
+ 应用名称
+ */
+@property (nonatomic, strong) UILabel *nameLabel;
+
+/**
+ 版本信息
+ */
+@property (nonatomic, strong) UILabel *versionLabel;
+
+/**
+ 版权信息
+ */
+@property (nonatomic, strong) UILabel *copyrightLabel;
 
 @end
 
@@ -58,12 +79,61 @@
 - (void)autoLayoutWithConstraints {
     NSLog(@"");
     
+    // 容器视图
+    [self addSubview:self.containerView];
+    [self.containerView mas_makeConstraints:^(MASConstraintMaker *make) {
+        
+        make.top.mas_equalTo(self).with.inset(self.qh_statusBarHeight + self.qh_navigationBarHeight + 10.0f);
+        make.left.and.right.mas_equalTo(self);
+        make.height.mas_equalTo(120.0f);
+    }];
+    
+    //MARK: app
+    // 版权信息
+    [self.containerView addSubview:self.copyrightLabel];
+    [self.copyrightLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+        
+        make.left.and.right.mas_equalTo(self.containerView).with.inset(10.0f);
+        make.bottom.mas_equalTo(self.containerView);
+        make.height.mas_equalTo(20.0f);
+    }];
+    
+    // 图标视图
+    [self.containerView addSubview:self.iconImageView];
+    [self.iconImageView mas_makeConstraints:^(MASConstraintMaker *make) {
+        
+        make.bottom.mas_equalTo(self.copyrightLabel.mas_top).with.inset(10.0f);
+        make.left.mas_equalTo(self.containerView).with.inset(10.0f);
+        make.size.mas_equalTo(CGSizeMake(60.0f, 60.0f));
+    }];
+    
+    // 应用名称
+    [self.containerView addSubview:self.nameLabel];
+    [self.nameLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+        
+        make.top.mas_equalTo(self.iconImageView);
+        make.left.mas_equalTo(self.iconImageView.mas_right).with.inset(10.0f);
+        make.right.mas_equalTo(self.containerView).with.inset(10.0f);
+        make.height.mas_equalTo(30.0f);
+    }];
+    
+    // 版本信息
+    [self.containerView addSubview:self.versionLabel];
+    [self.versionLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+        
+        make.bottom.mas_equalTo(self.iconImageView);
+        make.left.mas_equalTo(self.iconImageView.mas_right).with.inset(10.0f);
+        make.right.mas_equalTo(self.containerView).with.inset(10.0f);
+        make.height.mas_equalTo(30.0f);
+    }];
+    
     // 列表视图
     [self addSubview:self.qh_tableView];
     [self.qh_tableView mas_makeConstraints:^(MASConstraintMaker *make) {
         
-        make.top.mas_equalTo(self).with.inset(self.qh_statusBarHeight + self.qh_navigationBarHeight);
-        make.left.and.right.and.bottom.mas_equalTo(self);
+        make.top.mas_equalTo(self.containerView.mas_bottom).with.inset(10.0f);
+        make.left.and.right.mas_equalTo(self);
+        make.bottom.mas_equalTo(self);
     }];
 }
 
@@ -113,6 +183,87 @@
     }
     
     return _qh_tableView;
+}
+
+- (UIView *)containerView {
+    
+    if (!_containerView) {
+        
+        _containerView = [[UIView alloc] init];
+        _containerView.backgroundColor = [UIColor qh_randomColor];
+        
+        _containerView.layer.cornerRadius = 0.0f;
+        _containerView.layer.masksToBounds = YES;
+    }
+    
+    return _containerView;
+}
+
+- (UIImageView *)iconImageView {
+    
+    if (!_iconImageView) {
+        
+        _iconImageView = [[UIImageView alloc] init];
+        _iconImageView.backgroundColor = [UIColor whiteColor];
+        
+        _iconImageView.image = [UIImage imageNamed:@"iconstore_1024pt"];
+        
+        _iconImageView.layer.cornerRadius = 2.0f;
+        _iconImageView.layer.masksToBounds = YES;
+    }
+    
+    return _iconImageView;
+}
+
+- (UILabel *)nameLabel {
+    
+    if (!_nameLabel) {
+        
+        _nameLabel = [[UILabel alloc] init];
+        _nameLabel.backgroundColor = [UIColor whiteColor];
+        
+        _nameLabel.font = [UIFont systemFontOfSize:20.0f];
+        _nameLabel.text = UIApplication.sharedApplication.qh_applicationDisplayName;
+        _nameLabel.textColor = [UIColor darkTextColor];
+        _nameLabel.textAlignment = NSTextAlignmentLeft;
+        _nameLabel.numberOfLines = 1;
+    }
+    
+    return _nameLabel;
+}
+
+- (UILabel *)versionLabel {
+    
+    if (!_versionLabel) {
+        
+        _versionLabel = [[UILabel alloc] init];
+        _versionLabel.backgroundColor = [UIColor whiteColor];
+        
+        _versionLabel.font = [UIFont systemFontOfSize:18.0f];
+        _versionLabel.text = [NSString stringWithFormat:@"v %@",UIApplication.sharedApplication.qh_applicationShortVersion];
+        _versionLabel.textColor = [UIColor darkTextColor];
+        _versionLabel.textAlignment = NSTextAlignmentLeft;
+        _versionLabel.numberOfLines = 1;
+    }
+    
+    return _versionLabel;
+}
+
+- (UILabel *)copyrightLabel {
+    
+    if (!_copyrightLabel) {
+        
+        _copyrightLabel = [[UILabel alloc] init];
+        _copyrightLabel.backgroundColor = [UIColor whiteColor];
+        
+        _copyrightLabel.font = [UIFont systemFontOfSize:16.0f];
+        _copyrightLabel.text = NSLocalizedString(@"Copyright © 2016-2019 Guan Qinghao. All rights reserved.", @"Label");
+        _copyrightLabel.textColor = [UIColor darkTextColor];
+        _copyrightLabel.textAlignment = NSTextAlignmentLeft;
+        _copyrightLabel.numberOfLines = 1;
+    }
+    
+    return _copyrightLabel;
 }
 
 @end

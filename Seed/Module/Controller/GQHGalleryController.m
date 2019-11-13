@@ -53,7 +53,7 @@
     [super viewDidLoad];
     NSLog(@"");
     
-    self.qh_navigationBar.hidden = YES;
+    [self.qh_titleButton setTitle:@"选择游戏图片" forState:UIControlStateNormal];
 }
 
 /**

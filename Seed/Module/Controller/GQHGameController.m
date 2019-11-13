@@ -19,7 +19,7 @@
 
 #pragma mark -
 
-@interface GQHGameController () <UITableViewDelegate, UITableViewDataSource, GQHGameViewDelegate>
+@interface GQHGameController () <GQHGameViewDelegate>
 
 /**
  自定义根视图
@@ -53,6 +53,7 @@
     [super viewDidLoad];
     NSLog(@"");
     
+    [self.qh_titleButton setTitle:@"新手(3*3)" forState:UIControlStateNormal];
 }
 
 /**
@@ -125,144 +126,6 @@
     
 }
 
-#pragma mark - UITableViewDataSource
-/**
- 列表视图的总组数
- 
- @param tableView 列表视图
- @return 列表视图的总组数
- */
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    NSLog(@"");
-    
-    return 1;
-}
-
-/**
- 列表视图的各组行数
- 
- @param tableView 列表视图
- @param section 列表视图的某组索引值
- @return 列表视图的某组的行数
- */
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    NSLog(@"");
-    
-    return 5;
-}
-
-/**
- 列表视图的行视图
- 
- @param tableView 列表视图
- @param indexPath 列表视图某行的索引值
- @return 列表视图某行视图
- */
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    NSLog(@"");
-    
-    // 数据data
-    NSMutableDictionary *data = [NSMutableDictionary dictionary];
-    
-    // 视图cell
-    GQHGameTableViewCell *cell = [GQHGameTableViewCell qh_tableView:tableView cellWithData:data];
-    cell.qh_delegate = self;
-    
-    return cell;
-}
-
-#pragma mark - UITableViewDelegate
-/**
- 列表视图的各行高度
- 
- @param tableView 列表视图
- @param indexPath 列表视图某行的索引值
- @return 列表视图某行视图的高度值
- */
-- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-    NSLog(@"");
-    
-    return 50.0f;
-}
-
-/**
- 选中列表视图的某行视图
- 
- @param tableView 列表视图
- @param indexPath 选中列表视图的某行视图的索引值
- */
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    NSLog(@"");
-    
-    [tableView deselectRowAtIndexPath:indexPath animated:YES];
-}
-
-/**
- 列表视图的组头视图高度
- 
- @param tableView 列表视图
- @param section 列表视图的某组索引值
- @return 列表视图的某组头视图高度
- */
-- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
-    NSLog(@"");
-    
-    return CGFLOAT_MIN;
-}
-
-/**
- 列表视图的组自定义头视图
- 
- @param tableView 列表视图
- @param section 列表视图的某组索引值
- @return 列表视图的某组自定义头视图
- */
-- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
-    NSLog(@"");
-    
-    // 头视图数据data
-    NSMutableDictionary *data = [NSMutableDictionary dictionary];
-    
-    // 自定义头视图
-    GQHGameTableViewHeaderView *headerView = [GQHGameTableViewHeaderView qh_tableView:tableView headerViewWithData:data];
-    headerView.qh_delegate = self;
-    
-    return headerView;
-}
-
-/**
- 列表视图的组尾视图高度
- 
- @param tableView 列表视图
- @param section 列表视图的某组索引值
- @return 列表视图的某组尾视图高度
- */
-- (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section {
-    NSLog(@"");
-    
-    return CGFLOAT_MIN;
-}
-
-/**
- 列表视图的组自定义尾视图
- 
- @param tableView 列表视图
- @param section 列表视图的某组索引值
- @return 列表视图的某组自定义尾视图
- */
-- (UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section {
-    NSLog(@"");
-    
-    // 尾视图数据data
-    NSMutableDictionary *data = [NSMutableDictionary dictionary];
-    
-    // 自定义尾视图
-    GQHGameTableViewFooterView *footerView = [GQHGameTableViewFooterView qh_tableView:tableView footerViewWithData:data];
-    footerView.qh_delegate = self;
-    
-    return footerView;
-}
-
 #pragma mark - GQHGameViewDelegate
 
 #pragma mark - TargetMethod
@@ -277,9 +140,7 @@
     if (!_rootView) {
         
         _rootView = [[GQHGameView alloc] initWithFrame:UIScreen.mainScreen.bounds];
-        _rootView.backgroundColor = [UIColor whiteColor];
-        _rootView.qh_tableView.delegate = self;
-        _rootView.qh_tableView.dataSource = self;
+        _rootView.backgroundColor = [UIColor lightGrayColor];
         _rootView.qh_delegate = self;
     }
     

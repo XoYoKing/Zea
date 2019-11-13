@@ -58,8 +58,7 @@
     [self addSubview:self.qh_tableView];
     [self.qh_tableView mas_makeConstraints:^(MASConstraintMaker *make) {
         
-        make.top.mas_equalTo(self).with.inset(self.qh_statusBarHeight + self.qh_navigationBarHeight);
-        make.left.and.right.and.bottom.mas_equalTo(self);
+        make.edges.mas_equalTo(self).with.insets(UIEdgeInsetsMake(self.qh_statusBarHeight + self.qh_navigationBarHeight + 10.0f, 0.0f, 0.0f, 0.0f));
     }];
 }
 
@@ -117,6 +116,31 @@
 #pragma mark -
 
 @interface GQHRecordsTableViewCell ()
+
+/**
+ 游戏等级
+ */
+@property (nonatomic, strong) UILabel *levelLabel;
+
+/**
+ 游戏完成时间
+ */
+@property (nonatomic, strong) UILabel *dateLabel;
+
+/**
+ 游戏用时
+ */
+@property (nonatomic, strong) UILabel *timeLabel;
+
+/**
+ 游戏计数
+ */
+@property (nonatomic, strong) UILabel *countLabel;
+
+/**
+ 分割线
+ */
+@property (nonatomic, strong) UIView *line;
 
 @end
 
@@ -184,6 +208,52 @@
 - (void)autoLayoutWithConstraints {
     NSLog(@"");
     
+    // 游戏等级
+    [self.contentView addSubview:self.levelLabel];
+    [self.levelLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+        
+        make.top.mas_equalTo(self.contentView).with.inset(10.0f);
+        make.left.mas_equalTo(self.contentView).with.inset(15.0f);
+        make.height.mas_equalTo(50.0f);
+        make.right.mas_equalTo(self.contentView.mas_centerX);
+    }];
+    
+    // 游戏完成时间
+    [self.contentView addSubview:self.dateLabel];
+    [self.dateLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+        
+        make.bottom.mas_equalTo(self.contentView).with.inset(10.0f);
+        make.left.and.right.mas_equalTo(self.levelLabel);
+        make.height.mas_equalTo(30.0f);
+    }];
+    
+    // 游戏用时
+    [self.contentView addSubview:self.timeLabel];
+    [self.timeLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+        
+        make.top.mas_equalTo(self.levelLabel);
+        make.right.mas_equalTo(self.contentView).with.inset(15.0f);
+        make.left.mas_equalTo(self.levelLabel.mas_right);
+        make.height.mas_equalTo(40.0f);
+    }];
+    
+    // 游戏计数
+    [self.contentView addSubview:self.countLabel];
+    [self.countLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+        
+        make.bottom.mas_equalTo(self.dateLabel);
+        make.left.and.right.mas_equalTo(self.timeLabel);
+        make.height.mas_equalTo(40.0f);
+    }];
+    
+    // 分割线
+    [self.contentView addSubview:self.line];
+    [self.line mas_makeConstraints:^(MASConstraintMaker *make) {
+        
+        make.left.and.right.mas_equalTo(self.contentView).with.inset(15.0f);
+        make.bottom.mas_equalTo(self.contentView);
+        make.height.mas_equalTo(0.75f);
+    }];
 }
 
 #pragma mark - Delegate
@@ -211,6 +281,88 @@
 }
 
 #pragma mark - Getter
+
+- (UILabel *)levelLabel {
+    
+    if (!_levelLabel) {
+        
+        _levelLabel = [[UILabel alloc] init];
+        _levelLabel.backgroundColor = [UIColor qh_randomColor];
+        
+        _levelLabel.font = [UIFont systemFontOfSize:40.0f];
+        _levelLabel.text = NSLocalizedString(@"宗师", @"Label");
+        _levelLabel.textColor = [UIColor darkTextColor];
+        _levelLabel.textAlignment = NSTextAlignmentLeft;
+        _levelLabel.numberOfLines = 1;
+    }
+    
+    return _levelLabel;
+}
+
+- (UILabel *)dateLabel {
+    
+    if (!_dateLabel) {
+        
+        _dateLabel = [[UILabel alloc] init];
+        _dateLabel.backgroundColor = [UIColor qh_randomColor];
+        
+        _dateLabel.font = [UIFont systemFontOfSize:16.0f];
+        _dateLabel.text = NSLocalizedString(@"2019-11-13 14:47:38", @"Label");
+        _dateLabel.textColor = [UIColor darkTextColor];
+        _dateLabel.textAlignment = NSTextAlignmentLeft;
+        _dateLabel.numberOfLines = 1;
+    }
+    
+    return _dateLabel;
+}
+
+- (UILabel *)timeLabel {
+    
+    if (!_timeLabel) {
+        
+        _timeLabel = [[UILabel alloc] init];
+        _timeLabel.backgroundColor = [UIColor qh_randomColor];
+        
+        _timeLabel.font = [UIFont systemFontOfSize:32.0f];
+        _timeLabel.text = NSLocalizedString(@"00:23:39", @"Label");
+        _timeLabel.textColor = [UIColor darkTextColor];
+        _timeLabel.textAlignment = NSTextAlignmentRight;
+        _timeLabel.numberOfLines = 0;
+    }
+    
+    return _timeLabel;
+}
+
+- (UILabel *)countLabel {
+    
+    if (!_countLabel) {
+        
+        _countLabel = [[UILabel alloc] init];
+        _countLabel.backgroundColor = [UIColor whiteColor];
+        
+        _countLabel.font = [UIFont systemFontOfSize:32.0f];
+        _countLabel.text = NSLocalizedString(@"999999", @"Label");
+        _countLabel.textColor = [UIColor darkTextColor];
+        _countLabel.textAlignment = NSTextAlignmentRight;
+        _countLabel.numberOfLines = 1;
+    }
+    
+    return _countLabel;
+}
+
+- (UIView *)line {
+    
+    if (!_line) {
+        
+        _line = [[UIView alloc] init];
+        _line.backgroundColor = [UIColor qh_randomColor];
+        
+        _line.layer.cornerRadius = 0.0f;
+        _line.layer.masksToBounds = YES;
+    }
+    
+    return _line;
+}
 
 @end
 

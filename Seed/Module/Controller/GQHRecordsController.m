@@ -53,6 +53,7 @@
     [super viewDidLoad];
     NSLog(@"");
     
+    [self.qh_titleButton setTitle:@"记录" forState:UIControlStateNormal];
 }
 
 /**
@@ -182,7 +183,7 @@
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     NSLog(@"");
     
-    return 50.0f;
+    return 100.0f;
 }
 
 /**

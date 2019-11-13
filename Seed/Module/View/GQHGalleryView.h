@@ -17,6 +17,9 @@
 
 @optional
 
+/// 返回首页
+- (void)qh_popToRoot;
+
 @end
 
 

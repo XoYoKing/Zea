@@ -58,9 +58,7 @@
     [self addSubview:self.qh_collectionView];
     [self.qh_collectionView mas_makeConstraints:^(MASConstraintMaker *make) {
         
-        make.top.mas_equalTo(self).with.inset(self.qh_statusBarHeight);
-        make.bottom.mas_equalTo(self).with.inset(self.qh_homeIndicatorHeight);
-        make.left.and.right.mas_equalTo(self).with.inset(15.0f);
+        make.edges.mas_equalTo(self).with.insets(UIEdgeInsetsMake(self.qh_statusBarHeight + self.qh_navigationBarHeight + 10.0f, 0.0f, 0.0f, 0.0f));
     }];
 }
 
@@ -268,7 +266,7 @@
         
         _titleLabel.font = [UIFont boldSystemFontOfSize:18.0f];
         _titleLabel.textColor = [UIColor darkTextColor];
-        _titleLabel.textAlignment = NSTextAlignmentCenter;
+        _titleLabel.textAlignment = NSTextAlignmentLeft;
         _titleLabel.numberOfLines = 1;
     }
     

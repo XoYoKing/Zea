@@ -29,6 +29,7 @@
 		04D80B96232F923400617689 /* GQHWebController.m in Sources */ = {isa = PBXBuildFile; fileRef = 04D80B88232F923400617689 /* GQHWebController.m */; };
 		04D80B97232F923400617689 /* GQHBaseCollectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 04D80B8A232F923400617689 /* GQHBaseCollectionViewController.m */; };
 		04DA1960237AB6D9000F0CBA /* GQHHelpController.m in Sources */ = {isa = PBXBuildFile; fileRef = 04DA195F237AB6D9000F0CBA /* GQHHelpController.m */; };
+		04DA1963237AB8FE000F0CBA /* GQHHelpView.m in Sources */ = {isa = PBXBuildFile; fileRef = 04DA1961237AB8FE000F0CBA /* GQHHelpView.m */; };
 		1A46AACB389F9172E3FD8D47 /* libPods-Seed.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 1F9022C94008243A6972068F /* libPods-Seed.a */; };
 		714D41090B87C418AAE32C7B /* libPods-SeedUITests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = CBB22A5583A8D587340B3181 /* libPods-SeedUITests.a */; };
 		C7EBE85CA3FAE16267B15F16 /* libPods-SeedTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 965655FC3B0AA93F8EE6E1B7 /* libPods-SeedTests.a */; };
@@ -203,6 +204,8 @@
 		04D80B8B232F923400617689 /* GQHUIController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GQHUIController.h; sourceTree = "<group>"; };
 		04DA195E237AB6D8000F0CBA /* GQHHelpController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GQHHelpController.h; sourceTree = "<group>"; };
 		04DA195F237AB6D9000F0CBA /* GQHHelpController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GQHHelpController.m; sourceTree = "<group>"; };
+		04DA1961237AB8FE000F0CBA /* GQHHelpView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GQHHelpView.m; sourceTree = "<group>"; };
+		04DA1962237AB8FE000F0CBA /* GQHHelpView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GQHHelpView.h; sourceTree = "<group>"; };
 		1F9022C94008243A6972068F /* libPods-Seed.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Seed.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		26432BFBF9351331B984F0C8 /* Pods-Seed.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Seed.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Seed/Pods-Seed.debug.xcconfig"; sourceTree = "<group>"; };
 		2B3DBF78FB0941BD23D9ADA4 /* Pods-Seed.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Seed.release.xcconfig"; path = "Pods/Target Support Files/Pods-Seed/Pods-Seed.release.xcconfig"; sourceTree = "<group>"; };
@@ -496,22 +499,22 @@
 		D5A5C07722FFE87600A21A77 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
-				D5A5C0CC22FFE8C500A21A77 /* GQHAppAboutController.h */,
-				D5A5C0C922FFE8C500A21A77 /* GQHAppAboutController.m */,
+				D5A5C0C522FFE8C400A21A77 /* GQHLaunchController.h */,
+				D5A5C0C622FFE8C400A21A77 /* GQHLaunchController.m */,
+				D5A5C0CA22FFE8C500A21A77 /* GQHHomeController.h */,
+				D5A5C0CB22FFE8C500A21A77 /* GQHHomeController.m */,
+				D5A5C0C722FFE8C500A21A77 /* GQHLevelsController.h */,
+				D5A5C0C322FFE8C400A21A77 /* GQHLevelsController.m */,
 				D5A5C0CD22FFE8C500A21A77 /* GQHGalleryController.h */,
 				D5A5C0CE22FFE8C600A21A77 /* GQHGalleryController.m */,
 				D5A5C0C422FFE8C400A21A77 /* GQHGameController.h */,
 				D5A5C0C222FFE8C400A21A77 /* GQHGameController.m */,
-				04DA195E237AB6D8000F0CBA /* GQHHelpController.h */,
-				04DA195F237AB6D9000F0CBA /* GQHHelpController.m */,
-				D5A5C0CA22FFE8C500A21A77 /* GQHHomeController.h */,
-				D5A5C0CB22FFE8C500A21A77 /* GQHHomeController.m */,
-				D5A5C0C522FFE8C400A21A77 /* GQHLaunchController.h */,
-				D5A5C0C622FFE8C400A21A77 /* GQHLaunchController.m */,
-				D5A5C0C722FFE8C500A21A77 /* GQHLevelsController.h */,
-				D5A5C0C322FFE8C400A21A77 /* GQHLevelsController.m */,
 				D5A5C0C822FFE8C500A21A77 /* GQHRecordsController.h */,
 				D5A5C0CF22FFE8C600A21A77 /* GQHRecordsController.m */,
+				04DA195E237AB6D8000F0CBA /* GQHHelpController.h */,
+				04DA195F237AB6D9000F0CBA /* GQHHelpController.m */,
+				D5A5C0CC22FFE8C500A21A77 /* GQHAppAboutController.h */,
+				D5A5C0C922FFE8C500A21A77 /* GQHAppAboutController.m */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -544,20 +547,22 @@
 		D5A5C09722FFE87600A21A77 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				D5A5C0FD22FFE8F200A21A77 /* GQHAppAboutView.h */,
-				D5A5C0F322FFE8F000A21A77 /* GQHAppAboutView.m */,
+				D5A5C0FB22FFE8F200A21A77 /* GQHLaunchView.h */,
+				D5A5C0FC22FFE8F200A21A77 /* GQHLaunchView.m */,
+				D5A5C0FA22FFE8F100A21A77 /* GQHHomeView.h */,
+				D5A5C0F422FFE8F100A21A77 /* GQHHomeView.m */,
+				D5A5C0F522FFE8F100A21A77 /* GQHLevelsView.h */,
+				D5A5C0F822FFE8F100A21A77 /* GQHLevelsView.m */,
 				D5A5C0FE22FFE8F200A21A77 /* GQHGalleryView.h */,
 				D5A5C0F622FFE8F100A21A77 /* GQHGalleryView.m */,
 				D5A5C0F922FFE8F100A21A77 /* GQHGameView.h */,
 				D5A5C0FF22FFE8F200A21A77 /* GQHGameView.m */,
-				D5A5C0FA22FFE8F100A21A77 /* GQHHomeView.h */,
-				D5A5C0F422FFE8F100A21A77 /* GQHHomeView.m */,
-				D5A5C0FB22FFE8F200A21A77 /* GQHLaunchView.h */,
-				D5A5C0FC22FFE8F200A21A77 /* GQHLaunchView.m */,
-				D5A5C0F522FFE8F100A21A77 /* GQHLevelsView.h */,
-				D5A5C0F822FFE8F100A21A77 /* GQHLevelsView.m */,
 				D5A5C0F722FFE8F100A21A77 /* GQHRecordsView.h */,
 				D5A5C0F222FFE8F000A21A77 /* GQHRecordsView.m */,
+				04DA1962237AB8FE000F0CBA /* GQHHelpView.h */,
+				04DA1961237AB8FE000F0CBA /* GQHHelpView.m */,
+				D5A5C0FD22FFE8F200A21A77 /* GQHAppAboutView.h */,
+				D5A5C0F322FFE8F000A21A77 /* GQHAppAboutView.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -1271,6 +1276,7 @@
 				D5C8A6EF22FFE29D00947237 /* UIBarButtonItem+GQHBadge.m in Sources */,
 				D5A5C0E922FFE8DC00A21A77 /* GQHUserModel.m in Sources */,
 				04D80B8D232F923400617689 /* GQHBaseViewController+GQHNetworking.m in Sources */,
+				04DA1963237AB8FE000F0CBA /* GQHHelpView.m in Sources */,
 				D5C8A6BE22FFE10100947237 /* NSString+GQHSafety.m in Sources */,
 				D5C8A6CE22FFE18F00947237 /* GQHNetworkResult.m in Sources */,
 				04D80B90232F923400617689 /* GQHBaseTableViewController.m in Sources */,
@@ -1533,7 +1539,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = Seed/Seed.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = JM52XZKNAA;
+				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = "$(SRCROOT)/Seed/Support Files/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -1550,7 +1556,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = Seed/Seed.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = JM52XZKNAA;
+				DEVELOPMENT_TEAM = 563G9T67Z2;
 				INFOPLIST_FILE = "$(SRCROOT)/Seed/Support Files/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";

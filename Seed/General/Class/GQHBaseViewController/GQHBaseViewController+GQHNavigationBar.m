@@ -105,8 +105,8 @@
     NSLog(@"");
     
     // 导航栏安全边距
-    CGFloat safeAreaLeft = 0.0f;
-    CGFloat safeAreaRight = 8.0f;
+    CGFloat safeAreaLeft = 4.0f;
+    CGFloat safeAreaRight = 4.0f;
     
     if (@available(iOS 11.0, *)) {
         
@@ -134,7 +134,7 @@
         make.top.mas_equalTo(self.qh_navigationBar).with.inset(self.view.qh_statusBarHeight);
         make.left.mas_equalTo(self.qh_navigationBar).with.inset(safeAreaLeft);
         make.bottom.mas_equalTo(self.qh_navigationBar);
-        make.width.mas_greaterThanOrEqualTo(self.view.qh_navigationBarHeight);
+        make.width.mas_equalTo(self.view.qh_navigationBarHeight);
     }];
 
     // 自定义导航栏左按钮
@@ -143,7 +143,7 @@
         make.top.mas_equalTo(self.qh_navigationBar).with.inset(self.view.qh_statusBarHeight);
         make.bottom.mas_equalTo(self.qh_navigationBar);
         make.left.mas_equalTo(self.qh_backButton.mas_right);
-        make.width.mas_greaterThanOrEqualTo(self.view.qh_navigationBarHeight);
+        make.width.mas_equalTo(CGFLOAT_MIN);
     }];
 
     // 自定义导航栏最右按钮
@@ -161,7 +161,7 @@
         make.top.mas_equalTo(self.qh_navigationBar).with.inset(self.view.qh_statusBarHeight);
         make.bottom.mas_equalTo(self.qh_navigationBar);
         make.right.mas_equalTo(self.qh_rightMostButton.mas_left);
-        make.width.mas_greaterThanOrEqualTo(self.view.qh_navigationBarHeight);
+        make.width.mas_equalTo(CGFLOAT_MIN);
     }];
 
     // 自定义导航栏标题栏
@@ -169,7 +169,8 @@
 
         make.top.mas_equalTo(self.qh_backButton);
         make.bottom.mas_equalTo(self.qh_navigationBar);
-        make.centerX.mas_equalTo(self.qh_navigationBar);
+        make.left.mas_equalTo(self.qh_backButton.mas_right);
+        make.right.mas_equalTo(self.qh_rightMostButton.mas_left);
     }];
     
     // 分割线放到最前面
@@ -241,7 +242,6 @@
         backButton = [UIButton buttonWithType:UIButtonTypeCustom];
         backButton.backgroundColor = [UIColor clearColor];
         backButton.titleLabel.font = [UIFont systemFontOfSize:15.0f];
-        backButton.titleLabel.textAlignment = NSTextAlignmentCenter;
         [backButton setTitleColor:[UIColor qh_colorWithHexString:GQHFontColorLightBlack] forState:UIControlStateNormal];
         [backButton setImage:[UIImage imageNamed:GQHNavigationBarLeftArrowBlack] forState:UIControlStateNormal];
         [backButton addTarget:self action:@selector(qh_didClickBackButton:) forControlEvents:UIControlEventTouchUpInside];
@@ -269,7 +269,6 @@
         leftButton = [UIButton buttonWithType:UIButtonTypeCustom];
         leftButton.backgroundColor = [UIColor clearColor];
         leftButton.titleLabel.font = [UIFont systemFontOfSize:15.0f];
-        leftButton.titleLabel.textAlignment = NSTextAlignmentCenter;
         [leftButton setTitleColor:[UIColor qh_colorWithHexString:GQHFontColorLightBlack] forState:UIControlStateNormal];
         [leftButton addTarget:self action:@selector(qh_didClickLeftButton:) forControlEvents:UIControlEventTouchUpInside];
         
@@ -295,8 +294,8 @@
         
         titleButton = [UIButton buttonWithType:UIButtonTypeCustom];
         titleButton.backgroundColor = [UIColor clearColor];
-        titleButton.titleLabel.font = [UIFont systemFontOfSize:17.0f];
-        titleButton.titleLabel.textAlignment = NSTextAlignmentCenter;
+        titleButton.titleLabel.font = [UIFont systemFontOfSize:32.0f];
+        titleButton.contentHorizontalAlignment = UIControlContentHorizontalAlignmentLeft;
         [titleButton setTitleColor:[UIColor qh_colorWithHexString:GQHFontColorLightBlack] forState:UIControlStateNormal];
         [titleButton addTarget:self action:@selector(qh_didClickTitleButton:) forControlEvents:UIControlEventTouchUpInside];
         
@@ -323,7 +322,6 @@
         rightButton = [UIButton buttonWithType:UIButtonTypeCustom];
         rightButton.backgroundColor = [UIColor clearColor];
         rightButton.titleLabel.font = [UIFont systemFontOfSize:15.0f];
-        rightButton.titleLabel.textAlignment = NSTextAlignmentCenter;
         [rightButton setTitleColor:[UIColor qh_colorWithHexString:GQHFontColorLightBlack] forState:UIControlStateNormal];
         [rightButton addTarget:self action:@selector(qh_didClickRightButton:) forControlEvents:UIControlEventTouchUpInside];
         
@@ -350,7 +348,6 @@
         rightMostButton = [UIButton buttonWithType:UIButtonTypeCustom];
         rightMostButton.backgroundColor = [UIColor clearColor];
         rightMostButton.titleLabel.font = [UIFont systemFontOfSize:15.0f];
-        rightMostButton.titleLabel.textAlignment = NSTextAlignmentCenter;
         [rightMostButton setTitleColor:[UIColor qh_colorWithHexString:GQHFontColorLightBlack] forState:UIControlStateNormal];
         [rightMostButton addTarget:self action:@selector(qh_didClickRightMostButton:) forControlEvents:UIControlEventTouchUpInside];
         
