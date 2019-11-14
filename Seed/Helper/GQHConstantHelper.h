@@ -53,16 +53,18 @@ UIKIT_EXTERN NSString * const GQHDarkestGreen;
 
 
 #pragma mark - font color
-/// 黑色
+/// 黑色 #111111
 UIKIT_EXTERN NSString * const GQHFontColorBlack;
-/// 浅黑色
-UIKIT_EXTERN NSString * const GQHFontColorLightBlack;
-/// 深灰色
+/// 深黑色 #333333
+UIKIT_EXTERN NSString * const GQHFontColorDarkBlack;
+/// 深灰色 #666666
 UIKIT_EXTERN NSString * const GQHFontColorDarkGray;
-/// 灰色 #878787
+/// 灰色 #999999
 UIKIT_EXTERN NSString * const GQHFontColorGray;
-/// 浅灰色 #adadad
+/// 浅灰色 #CCCCCC
 UIKIT_EXTERN NSString * const GQHFontColorLightGray;
+/// 白色 #FFFFFF
+UIKIT_EXTERN NSString * const GQHFontColorWhite;
 
 
 #pragma mark - font size
@@ -88,6 +90,8 @@ UIKIT_EXTERN NSString * const GQHFontNamePFSRegular;
 
 
 #pragma mark - UI
+/// 全局常量-间距
+UIKIT_EXTERN CGFloat const GQHSpacing;
 /// 全局常量-单倍外边距
 UIKIT_EXTERN CGFloat const GQHSingleMargin;
 /// 全局常量-双倍外边距
@@ -133,6 +137,16 @@ UIKIT_EXTERN NSString * const GQHUMShareAppKey;
 
 
 #pragma mark - assets
+/// NavigationBar
+UIKIT_EXTERN NSString * const GQHNavigationBarBackArrowBlackOnClear;
+UIKIT_EXTERN NSString * const GQHNavigationBarBackArrowWhiteOnBlack;
+UIKIT_EXTERN NSString * const GQHNavigationBarBackArrowWhiteOnClear;
+UIKIT_EXTERN NSString * const GQHNavigationBarResetBlackOnClear;
+
+
+
+
+
 /// TabBar
 UIKIT_EXTERN NSString * const GQHTabBarItemHomeNormal;
 UIKIT_EXTERN NSString * const GQHTabBarItemHomeSelected;
@@ -144,10 +158,6 @@ UIKIT_EXTERN NSString * const GQHTabBarItemDiscoverNormal;
 UIKIT_EXTERN NSString * const GQHTabBarItemDiscoverSelected;
 UIKIT_EXTERN NSString * const GQHTabBarItemMeNormal;
 UIKIT_EXTERN NSString * const GQHTabBarItemMeSelected;
-
-/// NavigationBar
-UIKIT_EXTERN NSString * const GQHNavigationBarLeftArrowWhite;
-UIKIT_EXTERN NSString * const GQHNavigationBarLeftArrowBlack;
 
 /// Me
 UIKIT_EXTERN NSString * const GQHMeAppFeedbackAddPicture;

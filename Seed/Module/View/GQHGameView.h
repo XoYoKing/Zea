@@ -39,6 +39,11 @@ NS_ASSUME_NONNULL_BEGIN
  */
 @property (nonatomic, strong) id qh_data;
 
+/**
+ 游戏板视图
+ */
+@property (nonatomic, strong) UIView *qh_gameboardView;
+
 @end
 
 NS_ASSUME_NONNULL_END

@@ -56,7 +56,7 @@
     [self addSubview:self.qh_tableView];
     [self.qh_tableView mas_makeConstraints:^(MASConstraintMaker *make) {
         
-        make.edges.mas_equalTo(self).with.insets(UIEdgeInsetsMake(self.qh_statusBarHeight + self.qh_navigationBarHeight + 10.0f, 0.0f, 0.0f, 0.0f));
+        make.edges.mas_equalTo(self).with.insets(UIEdgeInsetsMake(self.qh_statusBarHeight + self.qh_navigationBarHeight, 0.0f, 0.0f, 0.0f));
     }];
 }
 
@@ -90,7 +90,7 @@
     if (!_qh_tableView) {
         
         _qh_tableView = [[UITableView alloc] initWithFrame:CGRectZero style:UITableViewStyleGrouped];
-        _qh_tableView.backgroundColor = [UIColor whiteColor];
+        _qh_tableView.backgroundColor = [UIColor clearColor];
         _qh_tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
         _qh_tableView.showsVerticalScrollIndicator = NO;
         _qh_tableView.showsHorizontalScrollIndicator = NO;
@@ -180,7 +180,7 @@
         [self autoLayoutWithConstraints];
         
         // 其他初始化
-        
+        self.backgroundColor = [UIColor clearColor];
     }
     
     return self;
@@ -205,33 +205,34 @@
     [self.contentView addSubview:self.containerView];
     [self.containerView mas_makeConstraints:^(MASConstraintMaker *make) {
         
-        make.left.and.right.mas_equalTo(self.contentView).with.inset(20.0f);
-        make.top.and.bottom.mas_equalTo(self.contentView).with.inset(5.0f);
+        make.left.and.right.mas_equalTo(self.contentView).with.inset(GQHSingleMargin);
+        make.top.mas_equalTo(self.contentView).with.inset(GQHSpacing);
+        make.bottom.mas_equalTo(self.contentView);
     }];
     
     // 等级阶数
     [self.containerView addSubview:self.orderLabel];
     [self.orderLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         
-        make.top.and.right.mas_equalTo(self.containerView).with.inset(10.0f);
-        make.size.mas_equalTo(CGSizeMake(44.0f, 44.0f));
+        make.top.and.right.mas_equalTo(self.containerView).with.inset(GQHSpacing);
+        make.size.mas_equalTo(CGSizeMake(GQHButtonNormalHeight, GQHButtonNormalHeight));
     }];
     
     // 等级标题
     [self.containerView addSubview:self.titleLabel];
     [self.titleLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         
-        make.top.and.left.mas_equalTo(self.containerView).with.inset(10.0f);
-        make.right.mas_equalTo(self.orderLabel.mas_left).with.inset(10.0f);
-        make.height.mas_equalTo(44.0f);
+        make.top.and.left.mas_equalTo(self.containerView).with.inset(GQHSpacing);
+        make.right.mas_equalTo(self.orderLabel.mas_left).with.inset(GQHSpacing);
+        make.height.mas_equalTo(GQHButtonNormalHeight);
     }];
     
     // 等级说明
     [self.containerView addSubview:self.detailLabel];
     [self.detailLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         
-        make.top.mas_equalTo(self.titleLabel.mas_bottom).with.inset(10.0f);
-        make.left.and.right.and.bottom.mas_equalTo(self.containerView).with.inset(10.0f);
+        make.top.mas_equalTo(self.titleLabel.mas_bottom).with.inset(GQHSpacing);
+        make.left.and.right.and.bottom.mas_equalTo(self.containerView).with.inset(GQHSpacing);
     }];
 }
 
@@ -274,7 +275,7 @@
         _containerView = [[UIView alloc] init];
         _containerView.backgroundColor = [UIColor qh_randomColor];
         
-        _containerView.layer.cornerRadius = 0.0f;
+        _containerView.layer.cornerRadius = 2.0f;
         _containerView.layer.masksToBounds = YES;
     }
     
@@ -286,10 +287,10 @@
     if (!_titleLabel) {
         
         _titleLabel = [[UILabel alloc] init];
-        _titleLabel.backgroundColor = [UIColor qh_randomColor];
+        _titleLabel.backgroundColor = [UIColor clearColor];
         
-        _titleLabel.font = [UIFont systemFontOfSize:28.0f];
-        _titleLabel.textColor = [UIColor darkTextColor];
+        _titleLabel.font = [UIFont fontWithName:GQHFontNamePFSMedium size:28.0f];
+        _titleLabel.textColor = [UIColor qh_colorWithHexString:GQHFontColorDarkBlack];
         _titleLabel.textAlignment = NSTextAlignmentLeft;
         _titleLabel.numberOfLines = 1;
     }
@@ -304,10 +305,13 @@
         _orderLabel = [[UILabel alloc] init];
         _orderLabel.backgroundColor = [UIColor qh_randomColor];
         
-        _orderLabel.font = [UIFont systemFontOfSize:18.0f];
+        _orderLabel.font = [UIFont fontWithName:GQHFontNamePFSSemibold size:24.0f];
         _orderLabel.textColor = [UIColor redColor];
         _orderLabel.textAlignment = NSTextAlignmentCenter;
         _orderLabel.numberOfLines = 1;
+        
+        _orderLabel.layer.cornerRadius = 0.5f * GQHButtonNormalHeight;
+        _orderLabel.layer.masksToBounds = YES;
     }
     
     return _orderLabel;
@@ -318,10 +322,10 @@
     if (!_detailLabel) {
         
         _detailLabel = [[UILabel alloc] init];
-        _detailLabel.backgroundColor = [UIColor qh_randomColor];
+        _detailLabel.backgroundColor = [UIColor clearColor];
         
-        _detailLabel.font = [UIFont systemFontOfSize:16.0f];
-        _detailLabel.textColor = [UIColor darkTextColor];
+        _detailLabel.font = [UIFont fontWithName:GQHFontNamePFSRegular size:16.0f];
+        _detailLabel.textColor = [UIColor qh_colorWithHexString:GQHFontColorDarkGray];
         _detailLabel.textAlignment = NSTextAlignmentLeft;
         _detailLabel.numberOfLines = 1;
     }

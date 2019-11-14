@@ -84,7 +84,7 @@
     
     // 自定义导航栏返回按钮
     [self.qh_navigationBar addSubview:self.qh_backButton];
-   
+    
     // 自定义导航栏左按钮
     [self.qh_navigationBar addSubview:self.qh_leftButton];
     
@@ -116,7 +116,7 @@
     
     // 自定义导航栏
     [self.qh_navigationBar mas_remakeConstraints:^(MASConstraintMaker *make) {
-
+        
         make.top.and.left.and.right.mas_equalTo(self.view);
         make.height.mas_equalTo(self.view.qh_statusBarHeight + self.view.qh_navigationBarHeight);
     }];
@@ -127,46 +127,46 @@
         make.left.and.bottom.and.right.mas_equalTo(self.qh_navigationBar);
         make.height.mas_equalTo(1.0f);
     }];
-
+    
     // 自定义导航栏返回按钮
     [self.qh_backButton mas_remakeConstraints:^(MASConstraintMaker *make) {
-
+        
         make.top.mas_equalTo(self.qh_navigationBar).with.inset(self.view.qh_statusBarHeight);
         make.left.mas_equalTo(self.qh_navigationBar).with.inset(safeAreaLeft);
         make.bottom.mas_equalTo(self.qh_navigationBar);
         make.width.mas_equalTo(self.view.qh_navigationBarHeight);
     }];
-
+    
     // 自定义导航栏左按钮
     [self.qh_leftButton mas_remakeConstraints:^(MASConstraintMaker *make) {
-
+        
         make.top.mas_equalTo(self.qh_navigationBar).with.inset(self.view.qh_statusBarHeight);
         make.bottom.mas_equalTo(self.qh_navigationBar);
         make.left.mas_equalTo(self.qh_backButton.mas_right);
         make.width.mas_equalTo(CGFLOAT_MIN);
     }];
-
+    
     // 自定义导航栏最右按钮
     [self.qh_rightMostButton mas_remakeConstraints:^(MASConstraintMaker *make) {
-
+        
         make.top.mas_equalTo(self.qh_navigationBar).with.inset(self.view.qh_statusBarHeight);
         make.bottom.mas_equalTo(self.qh_navigationBar);
         make.right.mas_equalTo(self.qh_navigationBar).with.inset(safeAreaRight);
-        make.width.mas_greaterThanOrEqualTo(self.view.qh_navigationBarHeight);
+        make.width.mas_equalTo(self.view.qh_navigationBarHeight);
     }];
-
+    
     // 自定义导航栏右按钮
     [self.qh_rightButton mas_remakeConstraints:^(MASConstraintMaker *make) {
-
+        
         make.top.mas_equalTo(self.qh_navigationBar).with.inset(self.view.qh_statusBarHeight);
         make.bottom.mas_equalTo(self.qh_navigationBar);
         make.right.mas_equalTo(self.qh_rightMostButton.mas_left);
         make.width.mas_equalTo(CGFLOAT_MIN);
     }];
-
+    
     // 自定义导航栏标题栏
     [self.qh_titleButton mas_remakeConstraints:^(MASConstraintMaker *make) {
-
+        
         make.top.mas_equalTo(self.qh_backButton);
         make.bottom.mas_equalTo(self.qh_navigationBar);
         make.left.mas_equalTo(self.qh_backButton.mas_right);
@@ -190,15 +190,15 @@
 - (UIView *)qh_navigationBar {
     
     UIView *navigationBar = objc_getAssociatedObject(self, _cmd);
-
+    
     if (!navigationBar) {
-
+        
         navigationBar = [[UIView alloc] init];
         navigationBar.backgroundColor = [UIColor whiteColor];
         
         self.qh_navigationBar = navigationBar;
     }
-
+    
     return navigationBar;
 }
 
@@ -217,7 +217,7 @@
     if (!line) {
         
         line = [[UIView alloc] init];
-        line.backgroundColor = [UIColor groupTableViewBackgroundColor];
+        line.backgroundColor = [UIColor clearColor];
         
         self.qh_navigationBarLine = line;
     }
@@ -242,8 +242,8 @@
         backButton = [UIButton buttonWithType:UIButtonTypeCustom];
         backButton.backgroundColor = [UIColor clearColor];
         backButton.titleLabel.font = [UIFont systemFontOfSize:15.0f];
-        [backButton setTitleColor:[UIColor qh_colorWithHexString:GQHFontColorLightBlack] forState:UIControlStateNormal];
-        [backButton setImage:[UIImage imageNamed:GQHNavigationBarLeftArrowBlack] forState:UIControlStateNormal];
+        [backButton setTitleColor:[UIColor qh_colorWithHexString:GQHFontColorDarkBlack] forState:UIControlStateNormal];
+        [backButton setImage:[UIImage imageNamed:GQHNavigationBarBackArrowBlackOnClear] forState:UIControlStateNormal];
         [backButton addTarget:self action:@selector(qh_didClickBackButton:) forControlEvents:UIControlEventTouchUpInside];
         
         self.qh_backButton = backButton;
@@ -269,7 +269,7 @@
         leftButton = [UIButton buttonWithType:UIButtonTypeCustom];
         leftButton.backgroundColor = [UIColor clearColor];
         leftButton.titleLabel.font = [UIFont systemFontOfSize:15.0f];
-        [leftButton setTitleColor:[UIColor qh_colorWithHexString:GQHFontColorLightBlack] forState:UIControlStateNormal];
+        [leftButton setTitleColor:[UIColor qh_colorWithHexString:GQHFontColorDarkBlack] forState:UIControlStateNormal];
         [leftButton addTarget:self action:@selector(qh_didClickLeftButton:) forControlEvents:UIControlEventTouchUpInside];
         
         self.qh_leftButton = leftButton;
@@ -294,9 +294,9 @@
         
         titleButton = [UIButton buttonWithType:UIButtonTypeCustom];
         titleButton.backgroundColor = [UIColor clearColor];
-        titleButton.titleLabel.font = [UIFont systemFontOfSize:32.0f];
+        titleButton.titleLabel.font = [UIFont fontWithName:GQHFontNamePFSMedium size:24.0f];
         titleButton.contentHorizontalAlignment = UIControlContentHorizontalAlignmentLeft;
-        [titleButton setTitleColor:[UIColor qh_colorWithHexString:GQHFontColorLightBlack] forState:UIControlStateNormal];
+        [titleButton setTitleColor:[UIColor qh_colorWithHexString:GQHFontColorDarkBlack] forState:UIControlStateNormal];
         [titleButton addTarget:self action:@selector(qh_didClickTitleButton:) forControlEvents:UIControlEventTouchUpInside];
         
         self.qh_titleButton = titleButton;
@@ -322,7 +322,7 @@
         rightButton = [UIButton buttonWithType:UIButtonTypeCustom];
         rightButton.backgroundColor = [UIColor clearColor];
         rightButton.titleLabel.font = [UIFont systemFontOfSize:15.0f];
-        [rightButton setTitleColor:[UIColor qh_colorWithHexString:GQHFontColorLightBlack] forState:UIControlStateNormal];
+        [rightButton setTitleColor:[UIColor qh_colorWithHexString:GQHFontColorDarkBlack] forState:UIControlStateNormal];
         [rightButton addTarget:self action:@selector(qh_didClickRightButton:) forControlEvents:UIControlEventTouchUpInside];
         
         self.qh_rightButton = rightButton;
@@ -348,7 +348,7 @@
         rightMostButton = [UIButton buttonWithType:UIButtonTypeCustom];
         rightMostButton.backgroundColor = [UIColor clearColor];
         rightMostButton.titleLabel.font = [UIFont systemFontOfSize:15.0f];
-        [rightMostButton setTitleColor:[UIColor qh_colorWithHexString:GQHFontColorLightBlack] forState:UIControlStateNormal];
+        [rightMostButton setTitleColor:[UIColor qh_colorWithHexString:GQHFontColorDarkBlack] forState:UIControlStateNormal];
         [rightMostButton addTarget:self action:@selector(qh_didClickRightMostButton:) forControlEvents:UIControlEventTouchUpInside];
         
         self.qh_rightMostButton = rightMostButton;

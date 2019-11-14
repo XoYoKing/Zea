@@ -149,7 +149,7 @@
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     NSLog(@"");
     
-    return 5;
+    return 50;
 }
 
 /**
@@ -241,7 +241,8 @@
 - (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section {
     NSLog(@"");
     
-    return CGFLOAT_MIN;
+    //MARK:适配刘海屏底部操作区
+    return self.rootView.qh_homeIndicatorHeight;
 }
 
 /**
@@ -278,7 +279,7 @@
     if (!_rootView) {
         
         _rootView = [[GQHRecordsView alloc] initWithFrame:UIScreen.mainScreen.bounds];
-        _rootView.backgroundColor = [UIColor whiteColor];
+        _rootView.backgroundColor = [UIColor qh_colorWithHexString:@"#f8f8f8"];
         _rootView.qh_tableView.delegate = self;
         _rootView.qh_tableView.dataSource = self;
         _rootView.qh_delegate = self;

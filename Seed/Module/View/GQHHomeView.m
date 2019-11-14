@@ -13,11 +13,15 @@
 
 @interface GQHHomeView ()
 
-//TODO:彩蛋
 /**
- 背景视图-(普通:渐变色 彩蛋:背景图片)
+ 容器视图
  */
-@property (nonatomic, strong) UIImageView *gradientImageView;
+@property (nonatomic, strong) UIView *containerView;
+
+/**
+ 欢迎标题
+ */
+@property (nonatomic, strong) UILabel *welcomeLabel;
 
 @end
 
@@ -60,13 +64,29 @@
 - (void)autoLayoutWithConstraints {
     NSLog(@"");
     
+    // 容器视图
+    [self addSubview:self.containerView];
+    [self.containerView mas_makeConstraints:^(MASConstraintMaker *make) {
+        
+        make.top.and.left.and.right.mas_equalTo(self);
+        make.height.mas_equalTo(self.mas_width).with.multipliedBy(0.4f);
+    }];
+    
+    // 欢迎标题
+    [self.containerView addSubview:self.welcomeLabel];
+    [self.welcomeLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+        
+        make.top.mas_equalTo(self.containerView).with.inset(self.qh_statusBarHeight);
+        make.bottom.and.left.and.right.mas_equalTo(self.containerView);
+    }];
+    
     // 集合视图
     [self addSubview:self.qh_collectionView];
     [self.qh_collectionView mas_makeConstraints:^(MASConstraintMaker *make) {
         
-        make.top.mas_equalTo(self).with.inset(self.qh_statusBarHeight);
-        make.bottom.mas_equalTo(self).with.inset(self.qh_homeIndicatorHeight);
-        make.left.and.right.mas_equalTo(self).with.inset(15.0f);
+        make.top.mas_equalTo(self.containerView.mas_bottom).with.inset(GQHSpacing);
+        make.left.and.right.mas_equalTo(self).with.inset(GQHSingleMargin);
+        make.bottom.mas_equalTo(self);
     }];
 }
 
@@ -107,16 +127,14 @@
         _qh_collectionView.showsHorizontalScrollIndicator = NO;
         _qh_collectionView.showsVerticalScrollIndicator = NO;
         _qh_collectionView.pagingEnabled = NO;
-        _qh_collectionView.bounces = YES;
-        _qh_collectionView.alwaysBounceVertical = YES;
-        _qh_collectionView.backgroundColor = UIColor.clearColor;
+        _qh_collectionView.bounces = NO;
+        _qh_collectionView.alwaysBounceVertical = NO;
+        _qh_collectionView.scrollEnabled = NO;
+        _qh_collectionView.backgroundColor = [UIColor clearColor];
         
         // 注册cell
         [_qh_collectionView registerClass:[GQHHomeViewMenusCollecionViewCell class] forCellWithReuseIdentifier:NSStringFromClass([GQHHomeViewMenusCollecionViewCell class])];
         
-        // 注册headerView
-        [_qh_collectionView registerClass:[GQHHomeViewWelcomCollectionViewReusableHeaderView class] forSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:NSStringFromClass([GQHHomeViewWelcomCollectionViewReusableHeaderView class])];
-
         if (@available(iOS 11.0, *)) {
             
             _qh_collectionView.contentInsetAdjustmentBehavior = UIScrollViewContentInsetAdjustmentNever;
@@ -124,6 +142,37 @@
     }
     
     return _qh_collectionView;
+}
+
+- (UIView *)containerView {
+    
+    if (!_containerView) {
+        
+        _containerView = [[UIView alloc] init];
+        _containerView.backgroundColor = [UIColor qh_randomColor];
+        
+        _containerView.layer.cornerRadius = 0.0f;
+        _containerView.layer.masksToBounds = YES;
+    }
+    
+    return _containerView;
+}
+
+- (UILabel *)welcomeLabel {
+    
+    if (!_welcomeLabel) {
+        
+        _welcomeLabel = [[UILabel alloc] init];
+        _welcomeLabel.backgroundColor = [UIColor clearColor];
+        
+        _welcomeLabel.font = [UIFont fontWithName:GQHFontNamePFSSemibold size:38.0f];
+        _welcomeLabel.text = NSLocalizedString(@"Welcome\nPuzzle", @"Label");
+        _welcomeLabel.textColor = [UIColor qh_colorWithHexString:GQHFontColorDarkBlack];
+        _welcomeLabel.textAlignment = NSTextAlignmentCenter;
+        _welcomeLabel.numberOfLines = 0;
+    }
+    
+    return _welcomeLabel;
 }
 
 @end
@@ -186,7 +235,7 @@
         [self autoLayoutWithConstraints];
         
         // 其他初始化
-        
+        self.backgroundColor = [UIColor clearColor];
     }
     
     return self;
@@ -218,7 +267,7 @@
     [self.containerView addSubview:self.menuTitleLabel];
     [self.menuTitleLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         
-        make.left.and.bottom.and.right.mas_equalTo(self.containerView).with.inset(10.0f);
+        make.left.and.bottom.and.right.mas_equalTo(self.containerView).with.inset(GQHSpacing);
         make.height.mas_greaterThanOrEqualTo(GQHMinLayoutValue);
     }];
     
@@ -273,10 +322,8 @@
         _containerView = [[UIView alloc] init];
         _containerView.backgroundColor = [UIColor whiteColor];
         
-        _containerView.layer.shadowColor = UIColor.lightGrayColor.CGColor;
-        _containerView.layer.shadowOpacity = 0.6f;
-        _containerView.layer.shadowRadius = 4.0f;
-        _containerView.layer.shadowOffset = CGSizeMake(4.0f, 4.0f);
+        _containerView.layer.cornerRadius = 2.0f;
+        _containerView.layer.masksToBounds = YES;
     }
     
     return _containerView;
@@ -305,162 +352,13 @@
         _menuTitleLabel = [[UILabel alloc] init];
         _menuTitleLabel.backgroundColor = [UIColor clearColor];
         
-        _menuTitleLabel.font = [UIFont boldSystemFontOfSize:24.0f];
-        _menuTitleLabel.textColor = [UIColor darkTextColor];
+        _menuTitleLabel.font = [UIFont fontWithName:GQHFontNamePFSMedium size:24.0f];
+        _menuTitleLabel.textColor = [UIColor qh_colorWithHexString:GQHFontColorDarkBlack];
         _menuTitleLabel.textAlignment = NSTextAlignmentCenter;
         _menuTitleLabel.numberOfLines = 1;
     }
     
     return _menuTitleLabel;
-}
-
-@end
-
-
-#pragma mark -
-
-@interface GQHHomeViewWelcomCollectionViewReusableHeaderView ()
-
-/**
- 容器视图
- */
-@property (nonatomic, strong) UIView *containerView;
-
-/**
- 欢迎标题
- */
-@property (nonatomic, strong) UILabel *welcomTitleLabel;
-
-/**
- 索引
- */
-@property (nonatomic, assign) NSIndexPath *index;
-
-@end
-
-@implementation GQHHomeViewWelcomCollectionViewReusableHeaderView
-
-#pragma mark - Lifecycle
-+ (instancetype)qh_collectionView:(UICollectionView *)collectionView headerViewForIndexPath:(NSIndexPath *)indexPath data:(id)data {
-    NSLog(@"");
-    
-    GQHHomeViewWelcomCollectionViewReusableHeaderView *headerView = [collectionView dequeueReusableSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier: NSStringFromClass([GQHHomeViewWelcomCollectionViewReusableHeaderView class]) forIndexPath:indexPath];
-    
-    // 根据视图数据更新视图
-    [headerView updateHeaderViewWithData:data];
-    
-    headerView.index = indexPath;
-    
-    return headerView;
-}
-
-/**
- 初始化集合视图自定义头视图
- 
- @param frame 集合视图头视图frame
- @return 自定义集合头视图
- */
-- (instancetype)initWithFrame:(CGRect)frame {
-    NSLog(@"");
-    
-    if (self = [super initWithFrame:frame]) {
-        
-        // 初始化自动布局
-        [self autoLayoutWithConstraints];
-        
-        // 其他初始化
-        
-    }
-    
-    return self;
-}
-
-/**
- 布局子视图 -> frame计算
- */
-- (void)layoutSubviews {
-    [super layoutSubviews];
-    NSLog(@"");
-    
-}
-
-/**
- 自动布局子视图 -> 约束(mas_make只有一次,自动约束，不要计算)
- */
-- (void)autoLayoutWithConstraints {
-    NSLog(@"");
-    
-    // 容器视图
-    [self addSubview:self.containerView];
-    [self.containerView mas_makeConstraints:^(MASConstraintMaker *make) {
-        
-        make.edges.mas_equalTo(self);
-    }];
-    
-    // 欢迎标题
-    [self.containerView addSubview:self.welcomTitleLabel];
-    [self.welcomTitleLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        
-        make.edges.mas_equalTo(self);
-    }];
-}
-
-#pragma mark - Delegate
-
-#pragma mark - TargetMethod
-
-#pragma mark - PrivateMethod
-/**
- 根据视图数据更新视图
- 
- @param data 集合头视图数据
- */
-- (void)updateHeaderViewWithData:(id)data {
-    NSLog(@"");
-    
-    self.welcomTitleLabel.backgroundColor = [UIColor qh_randomColor];
-}
-
-#pragma mark - Setter
-- (void)setQh_data:(id)qh_data {
-    
-    _qh_data = qh_data;
-    
-    // 更新头视图数据
-    [self updateHeaderViewWithData:qh_data];
-}
-
-#pragma mark - Getter
-
-- (UIView *)containerView {
-    
-    if (!_containerView) {
-        
-        _containerView = [[UIView alloc] init];
-        _containerView.backgroundColor = [UIColor whiteColor];
-        
-        _containerView.layer.cornerRadius = 0.0f;
-        _containerView.layer.masksToBounds = YES;
-    }
-    
-    return _containerView;
-}
-
-- (UILabel *)welcomTitleLabel {
-    
-    if (!_welcomTitleLabel) {
-        
-        _welcomTitleLabel = [[UILabel alloc] init];
-        _welcomTitleLabel.backgroundColor = [UIColor whiteColor];
-        
-        _welcomTitleLabel.font = [UIFont systemFontOfSize:32.0f];
-        _welcomTitleLabel.text = NSLocalizedString(@"Welcome\nPuzzle", @"Label");
-        _welcomTitleLabel.textColor = [UIColor darkTextColor];
-        _welcomTitleLabel.textAlignment = NSTextAlignmentCenter;
-        _welcomTitleLabel.numberOfLines = 0;
-    }
-    
-    return _welcomTitleLabel;
 }
 
 @end

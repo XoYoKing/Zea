@@ -19,7 +19,7 @@
 
 #pragma mark -
 
-@interface GQHGalleryController () <UICollectionViewDelegate, UICollectionViewDataSource, GQHGalleryViewDelegate>
+@interface GQHGalleryController () <UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout, GQHGalleryViewDelegate>
 
 /**
  自定义根视图
@@ -129,7 +129,7 @@
 #pragma mark - UICollectionViewDelegateFlowLayout
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath {
     
-    CGFloat width = 0.5f * (self.rootView.qh_contentAreaWidth - 30.0f);
+    CGFloat width = 0.5f * (self.rootView.qh_contentAreaWidth - GQHDoubleMargin);
     CGFloat height = width + 35.0f;
     
     return CGSizeMake(width,height);
@@ -138,6 +138,11 @@
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout referenceSizeForHeaderInSection:(NSInteger)section {
 
     return CGSizeZero;
+}
+
+- (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout referenceSizeForFooterInSection:(NSInteger)section {
+    
+    return CGSizeMake(self.rootView.qh_contentAreaWidth, self.rootView.qh_homeIndicatorHeight);
 }
 
 - (UIEdgeInsets)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout insetForSectionAtIndex:(NSInteger)section {
@@ -163,12 +168,14 @@
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
     
-    return self.dataSourceArray.count;
+//    return self.dataSourceArray.count;
+    return 100;
 }
 
 - (__kindof UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
     
-    GQHGalleryViewImagesCollecionViewCell *cell = [GQHGalleryViewImagesCollecionViewCell qh_collectionView:collectionView cellForIndexPath:indexPath data:self.dataSourceArray[indexPath.row]];
+//    GQHGalleryViewImagesCollecionViewCell *cell = [GQHGalleryViewImagesCollecionViewCell qh_collectionView:collectionView cellForIndexPath:indexPath data:self.dataSourceArray[indexPath.row]];
+    GQHGalleryViewImagesCollecionViewCell *cell = [GQHGalleryViewImagesCollecionViewCell qh_collectionView:collectionView cellForIndexPath:indexPath data:nil];
     
     cell.qh_delegate = self;
     
@@ -194,7 +201,7 @@
     if (!_rootView) {
         
         _rootView = [[GQHGalleryView alloc] initWithFrame:UIScreen.mainScreen.bounds];
-        _rootView.backgroundColor = [UIColor whiteColor];
+        _rootView.backgroundColor = [UIColor qh_colorWithHexString:@"#f8f8f8"];
         _rootView.qh_collectionView.delegate = self;
         _rootView.qh_collectionView.dataSource = self;
         _rootView.qh_delegate = self;

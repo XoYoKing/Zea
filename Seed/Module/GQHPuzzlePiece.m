@@ -8,6 +8,7 @@
 
 #import "GQHPuzzlePiece.h"
 
+
 @implementation GQHPuzzlePiece
 
 + (instancetype)qh_puzzlePiece:(NSInteger)position image:(UIImage *)image {

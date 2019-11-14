@@ -15,11 +15,12 @@
 
 #pragma mark Controller
 #import "GQHHomeController.h"
-#import "GQHAppAboutController.h"
-#import "GQHRecordsController.h"
 #import "GQHGameController.h"
-#import "GQHLevelsController.h"
+#import "GQHRecordsController.h"
 #import "GQHGalleryController.h"
+#import "GQHLevelsController.h"
+#import "GQHHelpController.h"
+#import "GQHAppAboutController.h"
 
 
 #pragma mark -
@@ -59,6 +60,13 @@
     NSLog(@"");
     
     self.qh_navigationBar.hidden = YES;
+    
+    
+    NSArray *fonts = [UIFont familyNames];
+    [fonts enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+        
+        NSLog(@"%@",obj);
+    }];
 }
 
 /**
@@ -140,12 +148,6 @@
     return CGSizeMake(width,height);
 }
 
-- (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout referenceSizeForHeaderInSection:(NSInteger)section {
-
-    CGSize size = CGSizeMake(self.view.qh_contentAreaWidth - 30.0f, 150.0f);
-    return size;
-}
-
 - (UIEdgeInsets)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout insetForSectionAtIndex:(NSInteger)section {
     
     return UIEdgeInsetsZero;
@@ -179,19 +181,6 @@
     cell.qh_delegate = self;
     
     return cell;
-}
-
-- (UICollectionReusableView *)collectionView:(UICollectionView *)collectionView viewForSupplementaryElementOfKind:(NSString *)kind atIndexPath:(NSIndexPath *)indexPath {
-
-    if ([kind isEqualToString:UICollectionElementKindSectionHeader]) {
-
-        GQHHomeViewWelcomCollectionViewReusableHeaderView *headerView = [GQHHomeViewWelcomCollectionViewReusableHeaderView qh_collectionView:collectionView headerViewForIndexPath:indexPath data:nil];
-        headerView.qh_delegate = self;
-
-        return headerView;
-    }
-
-    return [UICollectionReusableView new];
 }
 
 #pragma mark - UICollectionViewDelegate
@@ -231,7 +220,8 @@
         case 4: {
             
             // 游戏帮助
-            
+            GQHHelpController *helpController = [[GQHHelpController alloc] init];
+            [self.navigationController pushViewController:helpController animated:YES];
         }
             break;
         case 5: {
@@ -260,7 +250,7 @@
     if (!_rootView) {
         
         _rootView = [[GQHHomeView alloc] initWithFrame:UIScreen.mainScreen.bounds];
-        _rootView.backgroundColor = [UIColor whiteColor];
+        _rootView.backgroundColor = [UIColor qh_colorWithHexString:@"#f8f8f8"];
         _rootView.qh_collectionView.delegate = self;
         _rootView.qh_collectionView.dataSource = self;
         _rootView.qh_delegate = self;

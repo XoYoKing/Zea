@@ -53,6 +53,7 @@
     [super viewDidLoad];
     NSLog(@"");
     
+    [self.qh_titleButton setTitle:@"帮助" forState:UIControlStateNormal];
 }
 
 /**
@@ -277,7 +278,7 @@
     if (!_rootView) {
         
         _rootView = [[GQHHelpView alloc] initWithFrame:UIScreen.mainScreen.bounds];
-        _rootView.backgroundColor = [UIColor whiteColor];
+        _rootView.backgroundColor = [UIColor qh_colorWithHexString:@"#f8f8f8"];
         _rootView.qh_tableView.delegate = self;
         _rootView.qh_tableView.dataSource = self;
         _rootView.qh_delegate = self;

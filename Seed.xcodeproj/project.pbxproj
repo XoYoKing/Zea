@@ -503,14 +503,14 @@
 				D5A5C0C622FFE8C400A21A77 /* GQHLaunchController.m */,
 				D5A5C0CA22FFE8C500A21A77 /* GQHHomeController.h */,
 				D5A5C0CB22FFE8C500A21A77 /* GQHHomeController.m */,
-				D5A5C0C722FFE8C500A21A77 /* GQHLevelsController.h */,
-				D5A5C0C322FFE8C400A21A77 /* GQHLevelsController.m */,
-				D5A5C0CD22FFE8C500A21A77 /* GQHGalleryController.h */,
-				D5A5C0CE22FFE8C600A21A77 /* GQHGalleryController.m */,
-				D5A5C0C422FFE8C400A21A77 /* GQHGameController.h */,
-				D5A5C0C222FFE8C400A21A77 /* GQHGameController.m */,
 				D5A5C0C822FFE8C500A21A77 /* GQHRecordsController.h */,
 				D5A5C0CF22FFE8C600A21A77 /* GQHRecordsController.m */,
+				D5A5C0CD22FFE8C500A21A77 /* GQHGalleryController.h */,
+				D5A5C0CE22FFE8C600A21A77 /* GQHGalleryController.m */,
+				D5A5C0C722FFE8C500A21A77 /* GQHLevelsController.h */,
+				D5A5C0C322FFE8C400A21A77 /* GQHLevelsController.m */,
+				D5A5C0C422FFE8C400A21A77 /* GQHGameController.h */,
+				D5A5C0C222FFE8C400A21A77 /* GQHGameController.m */,
 				04DA195E237AB6D8000F0CBA /* GQHHelpController.h */,
 				04DA195F237AB6D9000F0CBA /* GQHHelpController.m */,
 				D5A5C0CC22FFE8C500A21A77 /* GQHAppAboutController.h */,
@@ -551,14 +551,14 @@
 				D5A5C0FC22FFE8F200A21A77 /* GQHLaunchView.m */,
 				D5A5C0FA22FFE8F100A21A77 /* GQHHomeView.h */,
 				D5A5C0F422FFE8F100A21A77 /* GQHHomeView.m */,
-				D5A5C0F522FFE8F100A21A77 /* GQHLevelsView.h */,
-				D5A5C0F822FFE8F100A21A77 /* GQHLevelsView.m */,
-				D5A5C0FE22FFE8F200A21A77 /* GQHGalleryView.h */,
-				D5A5C0F622FFE8F100A21A77 /* GQHGalleryView.m */,
-				D5A5C0F922FFE8F100A21A77 /* GQHGameView.h */,
-				D5A5C0FF22FFE8F200A21A77 /* GQHGameView.m */,
 				D5A5C0F722FFE8F100A21A77 /* GQHRecordsView.h */,
 				D5A5C0F222FFE8F000A21A77 /* GQHRecordsView.m */,
+				D5A5C0FE22FFE8F200A21A77 /* GQHGalleryView.h */,
+				D5A5C0F622FFE8F100A21A77 /* GQHGalleryView.m */,
+				D5A5C0F522FFE8F100A21A77 /* GQHLevelsView.h */,
+				D5A5C0F822FFE8F100A21A77 /* GQHLevelsView.m */,
+				D5A5C0F922FFE8F100A21A77 /* GQHGameView.h */,
+				D5A5C0FF22FFE8F200A21A77 /* GQHGameView.m */,
 				04DA1962237AB8FE000F0CBA /* GQHHelpView.h */,
 				04DA1961237AB8FE000F0CBA /* GQHHelpView.m */,
 				D5A5C0FD22FFE8F200A21A77 /* GQHAppAboutView.h */,
@@ -993,6 +993,7 @@
 				D5B1584B202D7D55005B76B1 /* Frameworks */,
 				D5B1584C202D7D55005B76B1 /* Resources */,
 				382FFFA5827E3674163FCC96 /* [CP] Copy Pods Resources */,
+				0405A536237D0E6D0059405E /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -1151,6 +1152,23 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		0405A536237D0E6D0059405E /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "#获取plist文件\nplist=\"${INFOPLIST_FILE}\"\n#获取编译版本号\nbuild_number=$(/usr/libexec/PlistBuddy -c \"Print :CFBundleVersion\" \"${plist}\")\n#是否存在编译版本号\nif [[ \"${build_number}\" == \"\" ]]; then\necho \"No build number in $plist\"\nexit 2\nfi\n\n#获取主版本号\nshort_version=$(/usr/libexec/PlistBuddy -c \"Print :CFBundleShortVersionString\" \"${plist}\")\n\n#编译版本号规则\n#年月日时分\n#build_number=`date +\"%Y%m%d%H%M\"`\n\n#数字自增1\nbuild_number=$(expr $build_number + 1)\n\n#月日时分\n#build_number=`date +\"%m%d%H%M\"`\n\n#主版本.编译版本(日期)\n#build_number=`date +\"m%d\"`\n#build_number=\"$short_version.$build_number\"\n\n\n\n#设置版本号\nif [ $CONFIGURATION == Release ]; then\n\n#发布\n/usr/libexec/Plistbuddy -c \"Set CFBundleVersion $build_number\" \"${plist}\"\necho \"Bumped build number to $build_number\"\n\nelse\n\n#调试\n/usr/libexec/Plistbuddy -c \"Set CFBundleVersion $build_number\" \"${plist}\"\necho \"Bumped build number to $build_number\"\n\nfi\n";
+		};
 		382FFFA5827E3674163FCC96 /* [CP] Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;

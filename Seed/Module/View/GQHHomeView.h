@@ -81,37 +81,3 @@ NS_ASSUME_NONNULL_BEGIN
 @end
 
 NS_ASSUME_NONNULL_END
-
-
-#pragma mark -
-
-NS_ASSUME_NONNULL_BEGIN
-
-/**
- 首页欢迎视图(头部视图)
- */
-@interface GQHHomeViewWelcomCollectionViewReusableHeaderView : UICollectionReusableView
-
-/**
- 视图代理
- */
-@property (nonatomic, weak) id<GQHHomeViewDelegate> qh_delegate;
-
-/**
- 视图数据
- */
-@property (nonatomic, strong) id qh_data;
-
-/**
- 根据视图数据创建集合视图的头视图
- 
- @param collectionView 集合视图
- @param indexPath 集合视图头视图索引值
- @param data 集合视图头视图数据
- @return 自定义集合视图头视图
- */
-+ (instancetype)qh_collectionView:(UICollectionView *)collectionView headerViewForIndexPath:(NSIndexPath *)indexPath data:(nullable id)data;
-
-@end
-
-NS_ASSUME_NONNULL_END

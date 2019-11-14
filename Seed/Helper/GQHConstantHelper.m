@@ -34,14 +34,16 @@ NSString * const GQHDarkestGreen = @"#154219";
 #pragma mark - font color
 /// 黑色 #111111
 NSString * const GQHFontColorBlack = @"#111111";
-/// 浅黑色
-NSString * const GQHFontColorLightBlack = @"#333333";
-/// 深灰色
-NSString * const GQHFontColorDarkGray = @"#878787";
-/// 灰色 #878787
-NSString * const GQHFontColorGray = @"#878787";
-/// 浅灰色 #adadad
-NSString * const GQHFontColorLightGray = @"#adadad";
+/// 深黑色 #333333
+NSString * const GQHFontColorDarkBlack = @"#333333";
+/// 深灰色 #666666
+NSString * const GQHFontColorDarkGray = @"#666666";
+/// 灰色 #999999
+NSString * const GQHFontColorGray = @"#999999";
+/// 浅灰色 #CCCCCC
+NSString * const GQHFontColorLightGray = @"#CCCCCC";
+/// 白色 #FFFFFF
+NSString * const GQHFontColorWhite = @"#FFFFFF";
 
 
 #pragma mark - font size
@@ -67,6 +69,8 @@ NSString * const GQHFontNamePFSRegular = @"PingFangSC-Regular";
 
 
 #pragma mark - UI
+/// 全局常量-间距
+CGFloat const GQHSpacing = 10.0f;
 /// 全局常量-单倍外边距
 CGFloat const GQHSingleMargin = 15.0f;
 /// 全局常量-双倍外边距
@@ -77,6 +81,8 @@ CGFloat const GQHLineWidth = 0.75f;
 CGFloat const GQHMinLayoutValue = 10.0f;
 /// 普通按钮高度
 CGFloat const GQHButtonNormalHeight = 44.0f;
+
+
 
 
 #pragma makr - network
@@ -128,6 +134,15 @@ NSString * const GQHUMShareAppKey = @"5c43f1c4f1f556893f0004d2";
 
 
 #pragma mark - assets
+/// NavigationBar
+NSString * const GQHNavigationBarBackArrowBlackOnClear = @"NavigationBarBackArrowBlackOnClear";
+NSString * const GQHNavigationBarBackArrowWhiteOnBlack = @"NavigationBarBackArrowWhiteOnBlack";
+NSString * const GQHNavigationBarBackArrowWhiteOnClear = @"NavigationBarBackArrowWhiteOnClear";
+NSString * const GQHNavigationBarResetBlackOnClear = @"NavigationBarResetBlackOnClear";
+
+
+
+
 /// TabBar
 NSString * const GQHTabBarItemHomeNormal = @"TabBarItemHomeNormal";
 NSString * const GQHTabBarItemHomeSelected = @"TabBarItemHomeSelected";
@@ -140,9 +155,6 @@ NSString * const GQHTabBarItemDiscoverSelected = @"TabBarItemDiscoverSelected";
 NSString * const GQHTabBarItemMeNormal = @"TabBarItemMeNormal";
 NSString * const GQHTabBarItemMeSelected = @"TabBarItemMeSelected";
 
-/// NavigationBar
-NSString * const GQHNavigationBarLeftArrowWhite = @"NavigationBarLeftArrowWhite";
-NSString * const GQHNavigationBarLeftArrowBlack = @"NavigationBarLeftArrowBlack";
 
 /// Me
 NSString * const GQHMeAppFeedbackAddPicture = @"MeAppFeedbackAddPicture";

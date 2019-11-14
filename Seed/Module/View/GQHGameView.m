@@ -14,7 +14,6 @@
 @interface GQHGameView ()
 
 //MARK: 记分板(scoreboard)
-
 /**
  记分板背景视图
  */
@@ -81,11 +80,6 @@
  */
 @property (nonatomic, strong) UIView *gameboardBackgroundView;
 
-/**
- 游戏板视图
- */
-@property (nonatomic, strong) UIView *gameboardView;
-
 @end
 
 @implementation GQHGameView
@@ -132,16 +126,16 @@
     [self addSubview:self.scoreboardBackgroundView];
     [self.scoreboardBackgroundView mas_makeConstraints:^(MASConstraintMaker *make) {
         
-        make.top.mas_equalTo(self).with.inset(self.qh_statusBarHeight + self.qh_navigationBarHeight + 10.0f);
+        make.top.mas_equalTo(self).with.inset(self.qh_statusBarHeight + self.qh_navigationBarHeight + GQHSpacing);
         make.left.and.right.mas_equalTo(self);
-        make.height.mas_equalTo(170.0f);
+        make.height.mas_equalTo(0.5f * self.qh_contentAreaWidth);
     }];
     
     // 图片预览视图
     [self.scoreboardBackgroundView addSubview:self.previewImageView];
     [self.previewImageView mas_makeConstraints:^(MASConstraintMaker *make) {
         
-        make.top.and.left.and.bottom.mas_equalTo(self.scoreboardBackgroundView).with.inset(10.0f);
+        make.top.and.left.and.bottom.mas_equalTo(self.scoreboardBackgroundView).with.inset(GQHSpacing);
         make.width.mas_equalTo(self.previewImageView.mas_height).with.multipliedBy(1.0f);
     }];
     
@@ -149,98 +143,95 @@
     [self.scoreboardBackgroundView addSubview:self.bestBackgroundView];
     [self.bestBackgroundView mas_makeConstraints:^(MASConstraintMaker *make) {
         
-        make.top.and.right.mas_equalTo(self.scoreboardBackgroundView).with.inset(10.0f);
-        make.left.mas_equalTo(self.previewImageView.mas_right).with.inset(10.0f);
-        make.height.mas_equalTo(70.0f);
+        make.top.and.right.mas_equalTo(self.scoreboardBackgroundView).with.inset(GQHSpacing);
+        make.left.mas_equalTo(self.previewImageView.mas_right).with.inset(GQHSpacing);
+        make.height.mas_greaterThanOrEqualTo(CGFLOAT_MIN);
     }];
     
     // 最佳时间标题
     [self.bestBackgroundView addSubview:self.bestTimeTitleLabel];
     [self.bestTimeTitleLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         
-        make.top.mas_equalTo(self.bestBackgroundView).with.inset(5.0f);
-        make.left.mas_equalTo(self.bestBackgroundView);
-        make.width.mas_equalTo(self.bestBackgroundView.mas_width).with.multipliedBy(0.5f);
-        make.height.mas_equalTo(30.0f);
+        make.top.and.left.mas_equalTo(self.bestBackgroundView);
+        make.height.mas_equalTo(self.bestBackgroundView.mas_height).with.multipliedBy(0.5f);
+        make.width.mas_greaterThanOrEqualTo(CGFLOAT_MIN);
     }];
     
     // 最佳时间
     [self.bestBackgroundView addSubview:self.bestTimeTextLabel];
     [self.bestTimeTextLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         
-        make.top.mas_equalTo(self.bestBackgroundView).with.inset(5.0f);
-        make.right.mas_equalTo(self.bestBackgroundView);
-        make.width.mas_equalTo(self.bestBackgroundView.mas_width).with.multipliedBy(0.5f);
-        make.height.mas_equalTo(30.0f);
+        make.top.and.right.mas_equalTo(self.bestBackgroundView);
+        make.left.mas_equalTo(self.bestTimeTitleLabel.mas_right).with.inset(GQHSpacing);
+        make.height.mas_equalTo(self.bestTimeTitleLabel);
+        make.width.mas_equalTo(self.bestTimeTitleLabel.mas_width);
     }];
     
     // 最佳计数标题
     [self.bestBackgroundView addSubview:self.bestCountTittleLabel];
     [self.bestCountTittleLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         
-        make.bottom.mas_equalTo(self.bestBackgroundView).with.inset(5.0f);
-        make.left.mas_equalTo(self.bestBackgroundView);
-        make.width.mas_equalTo(self.bestBackgroundView.mas_width).with.multipliedBy(0.5f);
-        make.height.mas_equalTo(30.0f);
+        make.bottom.and.left.mas_equalTo(self.bestBackgroundView);
+        make.height.mas_equalTo(self.bestBackgroundView.mas_height).with.multipliedBy(0.5f);
+        make.width.mas_greaterThanOrEqualTo(CGFLOAT_MIN);
     }];
     
     // 最佳计数
     [self.bestBackgroundView addSubview:self.bestCountTextLabel];
     [self.bestCountTextLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         
-        make.bottom.mas_equalTo(self.bestBackgroundView).with.inset(5.0f);
-        make.right.mas_equalTo(self.bestBackgroundView);
-        make.width.mas_equalTo(self.bestBackgroundView.mas_width).with.multipliedBy(0.5f);
-        make.height.mas_equalTo(30.0f);
+        make.bottom.and.right.mas_equalTo(self.bestBackgroundView);
+        make.left.mas_equalTo(self.bestCountTittleLabel.mas_right).with.inset(GQHSpacing);
+        make.height.mas_equalTo(self.bestCountTittleLabel);
+        make.width.mas_equalTo(self.bestCountTittleLabel.mas_width);
     }];
     
     // 当前记录背景视图
     [self.scoreboardBackgroundView addSubview:self.currentBackgroundView];
     [self.currentBackgroundView mas_makeConstraints:^(MASConstraintMaker *make) {
         
-        make.bottom.and.right.mas_equalTo(self.scoreboardBackgroundView).with.inset(10.0f);
-        make.left.mas_equalTo(self.previewImageView.mas_right).with.inset(10.0f);
-        make.height.mas_equalTo(70.0f);
+        make.top.mas_equalTo(self.bestBackgroundView.mas_bottom).with.inset(GQHSpacing);
+        make.bottom.and.right.mas_equalTo(self.scoreboardBackgroundView).with.inset(GQHSpacing);
+        make.left.mas_equalTo(self.previewImageView.mas_right).with.inset(GQHSpacing);
+        make.height.mas_equalTo(self.bestBackgroundView);
     }];
     
     // 当前时间标题
     [self.currentBackgroundView addSubview:self.currentTimeTitleLabel];
     [self.currentTimeTitleLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         
-        make.top.mas_equalTo(self.currentBackgroundView).with.inset(5.0f);
-        make.left.mas_equalTo(self.currentBackgroundView);
-        make.width.mas_equalTo(self.currentBackgroundView.mas_width).with.multipliedBy(0.5f);
-        make.height.mas_equalTo(30.0f);
+        make.top.and.left.mas_equalTo(self.currentBackgroundView);
+        make.height.mas_equalTo(self.currentBackgroundView.mas_height).with.multipliedBy(0.5f);
+        make.width.mas_greaterThanOrEqualTo(CGFLOAT_MIN);
     }];
     
     // 当前时间
     [self.currentBackgroundView addSubview:self.currentTimeTextLabel];
     [self.currentTimeTextLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         
-        make.top.mas_equalTo(self.currentBackgroundView).with.inset(5.0f);
-        make.right.mas_equalTo(self.currentBackgroundView);
-        make.width.mas_equalTo(self.currentBackgroundView.mas_width).with.multipliedBy(0.5f);
-        make.height.mas_equalTo(30.0f);
+        make.top.and.right.mas_equalTo(self.currentBackgroundView);
+        make.left.mas_equalTo(self.currentTimeTitleLabel.mas_right).with.inset(GQHSpacing);
+        make.height.mas_equalTo(self.currentTimeTitleLabel);
+        make.width.mas_equalTo(self.currentTimeTitleLabel.mas_width);
     }];
     
     // 当前计数标题
     [self.currentBackgroundView addSubview:self.currentCountTittleLabel];
     [self.currentCountTittleLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         
-        make.bottom.mas_equalTo(self.currentBackgroundView).with.inset(5.0f);
-        make.left.mas_equalTo(self.currentBackgroundView);
-        make.width.mas_equalTo(self.currentBackgroundView.mas_width).with.multipliedBy(0.5f);
-        make.height.mas_equalTo(30.0f);
+        make.bottom.and.left.mas_equalTo(self.currentBackgroundView);
+        make.height.mas_equalTo(self.currentBackgroundView.mas_height).with.multipliedBy(0.5f);
+        make.width.mas_greaterThanOrEqualTo(CGFLOAT_MIN);
     }];
     
     // 当前计数
     [self.currentBackgroundView addSubview:self.currentCountTextLabel];
     [self.currentCountTextLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         
-        make.bottom.mas_equalTo(self.currentBackgroundView).with.inset(5.0f);
-        make.right.mas_equalTo(self.currentBackgroundView);
-        make.width.mas_equalTo(self.currentBackgroundView.mas_width).with.multipliedBy(0.5f);
-        make.height.mas_equalTo(30.0f);
+        make.bottom.and.right.mas_equalTo(self.currentBackgroundView);
+        make.left.mas_equalTo(self.currentCountTittleLabel.mas_right).with.inset(GQHSpacing);
+        make.height.mas_equalTo(self.currentCountTittleLabel);
+        make.width.mas_equalTo(self.currentCountTittleLabel.mas_width);
     }];
     
     //MARK: 游戏板(gameboard)
@@ -248,16 +239,16 @@
     [self addSubview:self.gameboardBackgroundView];
     [self.gameboardBackgroundView mas_makeConstraints:^(MASConstraintMaker *make) {
         
-        make.top.mas_equalTo(self.scoreboardBackgroundView.mas_bottom).with.inset(10.0f);
+        make.top.mas_equalTo(self.scoreboardBackgroundView.mas_bottom).with.inset(GQHSpacing);
         make.left.and.right.mas_equalTo(self);
         make.height.mas_equalTo(self.gameboardBackgroundView.mas_width).with.multipliedBy(1.0f);
     }];
     
     // 游戏板视图
-    [self.gameboardBackgroundView addSubview:self.gameboardView];
-    [self.gameboardView mas_makeConstraints:^(MASConstraintMaker *make) {
+    [self.gameboardBackgroundView addSubview:self.qh_gameboardView];
+    [self.qh_gameboardView mas_makeConstraints:^(MASConstraintMaker *make) {
         
-        make.edges.mas_equalTo(self.gameboardBackgroundView).with.insets(UIEdgeInsetsMake(10.0f, 10.0f, 10.0f, 10.0f));
+        make.edges.mas_equalTo(self.gameboardBackgroundView).with.insets(UIEdgeInsetsMake(GQHSpacing, GQHSpacing, GQHSpacing, GQHSpacing));
     }];
 }
 
@@ -310,7 +301,7 @@
         
         _previewImageView.image = [UIImage imageNamed:@""];
         
-        _previewImageView.layer.cornerRadius = 0.0f;
+        _previewImageView.layer.cornerRadius = 2.0f;
         _previewImageView.layer.masksToBounds = YES;
     }
     
@@ -324,7 +315,7 @@
         _bestBackgroundView = [[UIView alloc] init];
         _bestBackgroundView.backgroundColor = [UIColor qh_randomColor];
         
-        _bestBackgroundView.layer.cornerRadius = 0.0f;
+        _bestBackgroundView.layer.cornerRadius = 2.0f;
         _bestBackgroundView.layer.masksToBounds = YES;
     }
     
@@ -338,11 +329,11 @@
         _bestTimeTitleLabel = [[UILabel alloc] init];
         _bestTimeTitleLabel.backgroundColor = [UIColor clearColor];
         
-        _bestTimeTitleLabel.font = [UIFont systemFontOfSize:16.0f];
-        _bestTimeTitleLabel.text = NSLocalizedString(@"Label", @"Label");
-        _bestTimeTitleLabel.textColor = [UIColor darkTextColor];
-        _bestTimeTitleLabel.textAlignment = NSTextAlignmentLeft;
-        _bestTimeTitleLabel.numberOfLines = 0;
+        _bestTimeTitleLabel.font = [UIFont fontWithName:GQHFontNamePFSSemibold size:15.0f];
+        _bestTimeTitleLabel.text = NSLocalizedString(@"BEST TIME", @"Label");
+        _bestTimeTitleLabel.textColor = [UIColor qh_colorWithHexString:GQHFontColorGray];
+        _bestTimeTitleLabel.textAlignment = NSTextAlignmentRight;
+        _bestTimeTitleLabel.numberOfLines = 1;
     }
     
     return _bestTimeTitleLabel;
@@ -355,11 +346,11 @@
         _bestTimeTextLabel = [[UILabel alloc] init];
         _bestTimeTextLabel.backgroundColor = [UIColor clearColor];
         
-        _bestTimeTextLabel.font = [UIFont systemFontOfSize:16.0f];
-        _bestTimeTextLabel.text = NSLocalizedString(@"Label", @"Label");
-        _bestTimeTextLabel.textColor = [UIColor darkTextColor];
+        _bestTimeTextLabel.font = [UIFont fontWithName:GQHFontNamePFSSemibold size:15.0f];
+        _bestTimeTextLabel.text = NSLocalizedString(@"00:38:20", @"Label");
+        _bestTimeTextLabel.textColor = [UIColor redColor];
         _bestTimeTextLabel.textAlignment = NSTextAlignmentLeft;
-        _bestTimeTextLabel.numberOfLines = 0;
+        _bestTimeTextLabel.numberOfLines = 1;
     }
     
     return _bestTimeTextLabel;
@@ -372,11 +363,11 @@
         _bestCountTittleLabel = [[UILabel alloc] init];
         _bestCountTittleLabel.backgroundColor = [UIColor clearColor];
         
-        _bestCountTittleLabel.font = [UIFont systemFontOfSize:16.0f];
-        _bestCountTittleLabel.text = NSLocalizedString(@"Label", @"Label");
-        _bestCountTittleLabel.textColor = [UIColor darkTextColor];
-        _bestCountTittleLabel.textAlignment = NSTextAlignmentLeft;
-        _bestCountTittleLabel.numberOfLines = 0;
+        _bestCountTittleLabel.font = [UIFont fontWithName:GQHFontNamePFSSemibold size:15.0f];
+        _bestCountTittleLabel.text = NSLocalizedString(@"LEAST COUNT", @"Label");
+        _bestCountTittleLabel.textColor = [UIColor qh_colorWithHexString:GQHFontColorGray];
+        _bestCountTittleLabel.textAlignment = NSTextAlignmentRight;
+        _bestCountTittleLabel.numberOfLines = 1;
     }
     
     return _bestCountTittleLabel;
@@ -389,11 +380,11 @@
         _bestCountTextLabel = [[UILabel alloc] init];
         _bestCountTextLabel.backgroundColor = [UIColor clearColor];
         
-        _bestCountTextLabel.font = [UIFont systemFontOfSize:16.0f];
-        _bestCountTextLabel.text = NSLocalizedString(@"Label", @"Label");
-        _bestCountTextLabel.textColor = [UIColor darkTextColor];
+        _bestCountTextLabel.font = [UIFont fontWithName:GQHFontNamePFSSemibold size:15.0f];
+        _bestCountTextLabel.text = NSLocalizedString(@"929939", @"Label");
+        _bestCountTextLabel.textColor = [UIColor redColor];
         _bestCountTextLabel.textAlignment = NSTextAlignmentLeft;
-        _bestCountTextLabel.numberOfLines = 0;
+        _bestCountTextLabel.numberOfLines = 1;
     }
     
     return _bestCountTextLabel;
@@ -406,7 +397,7 @@
         _currentBackgroundView = [[UIView alloc] init];
         _currentBackgroundView.backgroundColor = [UIColor qh_randomColor];
         
-        _currentBackgroundView.layer.cornerRadius = 0.0f;
+        _currentBackgroundView.layer.cornerRadius = 2.0f;
         _currentBackgroundView.layer.masksToBounds = YES;
     }
     
@@ -420,11 +411,11 @@
         _currentTimeTitleLabel = [[UILabel alloc] init];
         _currentTimeTitleLabel.backgroundColor = [UIColor clearColor];
         
-        _currentTimeTitleLabel.font = [UIFont systemFontOfSize:16.0f];
-        _currentTimeTitleLabel.text = NSLocalizedString(@"Label", @"Label");
-        _currentTimeTitleLabel.textColor = [UIColor darkTextColor];
-        _currentTimeTitleLabel.textAlignment = NSTextAlignmentLeft;
-        _currentTimeTitleLabel.numberOfLines = 0;
+        _currentTimeTitleLabel.font = [UIFont fontWithName:GQHFontNamePFSSemibold size:15.0f];
+        _currentTimeTitleLabel.text = NSLocalizedString(@"TIME", @"Label");
+        _currentTimeTitleLabel.textColor = [UIColor qh_colorWithHexString:GQHFontColorGray];
+        _currentTimeTitleLabel.textAlignment = NSTextAlignmentRight;
+        _currentTimeTitleLabel.numberOfLines = 1;
     }
     
     return _currentTimeTitleLabel;
@@ -437,11 +428,11 @@
         _currentTimeTextLabel = [[UILabel alloc] init];
         _currentTimeTextLabel.backgroundColor = [UIColor clearColor];
         
-        _currentTimeTextLabel.font = [UIFont systemFontOfSize:16.0f];
-        _currentTimeTextLabel.text = NSLocalizedString(@"Label", @"Label");
-        _currentTimeTextLabel.textColor = [UIColor darkTextColor];
+        _currentTimeTextLabel.font = [UIFont fontWithName:GQHFontNamePFSSemibold size:15.0f];
+        _currentTimeTextLabel.text = NSLocalizedString(@"00:29:38", @"Label");
+        _currentTimeTextLabel.textColor = [UIColor qh_colorWithHexString:GQHFontColorGray];
         _currentTimeTextLabel.textAlignment = NSTextAlignmentLeft;
-        _currentTimeTextLabel.numberOfLines = 0;
+        _currentTimeTextLabel.numberOfLines = 1;
     }
     
     return _currentTimeTextLabel;
@@ -454,11 +445,11 @@
         _currentCountTittleLabel = [[UILabel alloc] init];
         _currentCountTittleLabel.backgroundColor = [UIColor clearColor];
         
-        _currentCountTittleLabel.font = [UIFont systemFontOfSize:16.0f];
-        _currentCountTittleLabel.text = NSLocalizedString(@"Label", @"Label");
-        _currentCountTittleLabel.textColor = [UIColor darkTextColor];
-        _currentCountTittleLabel.textAlignment = NSTextAlignmentLeft;
-        _currentCountTittleLabel.numberOfLines = 0;
+        _currentCountTittleLabel.font = [UIFont fontWithName:GQHFontNamePFSSemibold size:15.0f];
+        _currentCountTittleLabel.text = NSLocalizedString(@"COUNT", @"Label");
+        _currentCountTittleLabel.textColor = [UIColor qh_colorWithHexString:GQHFontColorGray];
+        _currentCountTittleLabel.textAlignment = NSTextAlignmentRight;
+        _currentCountTittleLabel.numberOfLines = 1;
     }
     
     return _currentCountTittleLabel;
@@ -471,11 +462,11 @@
         _currentCountTextLabel = [[UILabel alloc] init];
         _currentCountTextLabel.backgroundColor = [UIColor clearColor];
         
-        _currentCountTextLabel.font = [UIFont systemFontOfSize:16.0f];
-        _currentCountTextLabel.text = NSLocalizedString(@"Label", @"Label");
-        _currentCountTextLabel.textColor = [UIColor darkTextColor];
+        _currentCountTextLabel.font = [UIFont fontWithName:GQHFontNamePFSSemibold size:15.0f];
+        _currentCountTextLabel.text = NSLocalizedString(@"182382", @"Label");
+        _currentCountTextLabel.textColor = [UIColor qh_colorWithHexString:GQHFontColorGray];
         _currentCountTextLabel.textAlignment = NSTextAlignmentLeft;
-        _currentCountTextLabel.numberOfLines = 0;
+        _currentCountTextLabel.numberOfLines = 1;
     }
     
     return _currentCountTextLabel;
@@ -486,7 +477,7 @@
     if (!_gameboardBackgroundView) {
         
         _gameboardBackgroundView = [[UIView alloc] init];
-        _gameboardBackgroundView.backgroundColor = [UIColor qh_randomColor];
+        _gameboardBackgroundView.backgroundColor = [UIColor whiteColor];
         
         _gameboardBackgroundView.layer.cornerRadius = 0.0f;
         _gameboardBackgroundView.layer.masksToBounds = YES;
@@ -495,18 +486,18 @@
     return _gameboardBackgroundView;
 }
 
-- (UIView *)gameboardView {
+- (UIView *)qh_gameboardView {
     
-    if (!_gameboardView) {
+    if (!_qh_gameboardView) {
         
-        _gameboardView = [[UIView alloc] init];
-        _gameboardView.backgroundColor = [UIColor qh_randomColor];
+        _qh_gameboardView = [[UIView alloc] init];
+        _qh_gameboardView.backgroundColor = [UIColor qh_randomColor];
         
-        _gameboardView.layer.cornerRadius = 0.0f;
-        _gameboardView.layer.masksToBounds = YES;
+        _qh_gameboardView.layer.cornerRadius = 2.0f;
+        _qh_gameboardView.layer.masksToBounds = YES;
     }
     
-    return _gameboardView;
+    return _qh_gameboardView;
 }
 
 @end
