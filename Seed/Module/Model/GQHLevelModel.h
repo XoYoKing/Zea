@@ -1,7 +1,7 @@
 //
 //  GQHLevelModel.h
 //
-//  Created by GuanQinghao on 2019-08-11.
+//  Created by GuanQinghao on 2019-11-15.
 //  Copyright © 2019 GuanQinghao. All rights reserved.
 //
 
@@ -18,12 +18,29 @@ NS_ASSUME_NONNULL_BEGIN
 /**
  ID
  */
-@property (nonatomic, copy) NSString *qh_ID;
+@property (nonatomic, copy) NSString *qh_id;
 
 /**
- 模型类
+ 等级标题
  */
-//@property (nonatomic, strong) NSArray<GQHBookModel *> *qh_books;
+@property (nonatomic, strong) NSString *qh_title;
+
+/**
+ 等级阶数
+ */
+@property (nonatomic, assign) NSInteger qh_order;
+
+/**
+ 等级描述
+ */
+@property (nonatomic, strong) NSString *qh_detail;
+
+//@[@{@"title":@"newbie",@"order":@"3",@"detail":@"新手入门级"}.mutableCopy,
+//@{@"title":@"junior",@"order":@"4",@"detail":@"初级"}.mutableCopy,
+//@{@"title":@"senior",@"order":@"5",@"detail":@"高级"}.mutableCopy,
+//@{@"title":@"master",@"order":@"7",@"detail":@"大师级"}.mutableCopy,
+//@{@"title":@"guru",@"order":@"9",@"detail":@"宗师级"}.mutableCopy,
+//@{@"title":@"god",@"order":@"11",@"detail":@"惊为天人"}.mutableCopy].mutableCopy;
 
 
 #pragma mark -

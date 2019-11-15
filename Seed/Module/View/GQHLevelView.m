@@ -1,21 +1,21 @@
 //
-//  GQHLevelsView.h
+//  GQHLevelView.h
 //
-//  Created by GuanQinghao on 2019-08-11.
+//  Created by GuanQinghao on 2019-11-15.
 //  Copyright © 2019 GuanQinghao. All rights reserved.
 //
 
-#import "GQHLevelsView.h"
+#import "GQHLevelView.h"
 #import "GQHHeader.h"
 
 
 #pragma mark -
 
-@interface GQHLevelsView ()
+@interface GQHLevelView ()
 
 @end
 
-@implementation GQHLevelsView
+@implementation GQHLevelView
 
 #pragma mark - Lifecycle
 /**
@@ -31,6 +31,8 @@
         
         // 初始化自动布局
         [self autoLayoutWithConstraints];
+        
+        // 其他初始化
         
     }
     
@@ -56,7 +58,8 @@
     [self addSubview:self.qh_tableView];
     [self.qh_tableView mas_makeConstraints:^(MASConstraintMaker *make) {
         
-        make.edges.mas_equalTo(self).with.insets(UIEdgeInsetsMake(self.qh_statusBarHeight + self.qh_navigationBarHeight, 0.0f, 0.0f, 0.0f));
+        make.top.mas_equalTo(self).with.inset(self.qh_statusBarHeight + self.qh_navigationBarHeight);
+        make.left.and.right.and.bottom.mas_equalTo(self);
     }];
 }
 
@@ -90,7 +93,7 @@
     if (!_qh_tableView) {
         
         _qh_tableView = [[UITableView alloc] initWithFrame:CGRectZero style:UITableViewStyleGrouped];
-        _qh_tableView.backgroundColor = [UIColor clearColor];
+        _qh_tableView.backgroundColor = [UIColor whiteColor];
         _qh_tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
         _qh_tableView.showsVerticalScrollIndicator = NO;
         _qh_tableView.showsHorizontalScrollIndicator = NO;
@@ -113,7 +116,7 @@
 
 #pragma mark -
 
-@interface GQHLevelsViewTableViewCell ()
+@interface GQHLevelTableViewCell ()
 
 /**
  容器视图
@@ -137,7 +140,7 @@
 
 @end
 
-@implementation GQHLevelsViewTableViewCell
+@implementation GQHLevelTableViewCell
 
 #pragma mark - Lifecycle
 /**
@@ -150,11 +153,11 @@
 + (instancetype)qh_tableView:(UITableView *)tableView cellWithData:(id)data {
     NSLog(@"");
     
-    static NSString *identifier = @"GQHLevelsViewTableViewCell";
-    GQHLevelsViewTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:identifier];
+    static NSString *identifier = @"GQHLevelTableViewCell";
+    GQHLevelTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:identifier];
     if (!cell) {
         
-        cell = [[GQHLevelsViewTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:identifier];
+        cell = [[GQHLevelTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:identifier];
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
     }
     
@@ -251,9 +254,14 @@
     
     if (data) {
         
-        self.titleLabel.text = [data objectForKey:@"title"];
+        NSString *title = [data objectForKey:@"title"];
+        self.titleLabel.text = NSLocalizedString(title, @"等级");
+        
+        // 阶数
         self.orderLabel.text = [data objectForKey:@"order"];
-        self.detailLabel.text = [data objectForKey:@"detail"];
+        
+        NSString *detail = [data objectForKey:@"detail"];
+        self.detailLabel.text = NSLocalizedString(detail, @"说明");
     }
 }
 
@@ -303,7 +311,7 @@
     if (!_orderLabel) {
         
         _orderLabel = [[UILabel alloc] init];
-        _orderLabel.backgroundColor = [UIColor qh_randomColor];
+        _orderLabel.backgroundColor = [UIColor whiteColor];
         
         _orderLabel.font = [UIFont fontWithName:GQHFontNamePFSSemibold size:24.0f];
         _orderLabel.textColor = [UIColor redColor];
@@ -338,11 +346,11 @@
 
 #pragma mark -
 
-@interface GQHLevelsViewTableViewHeaderView ()
+@interface GQHLevelTableViewHeaderView ()
 
 @end
 
-@implementation GQHLevelsViewTableViewHeaderView
+@implementation GQHLevelTableViewHeaderView
 
 #pragma mark - Lifecycle
 /**
@@ -355,11 +363,11 @@
 + (instancetype)qh_tableView:(UITableView *)tableView headerViewWithData:(id)data {
     NSLog(@"");
     
-    static NSString *identifier = @"GQHLevelsViewTableViewHeaderView";
-    GQHLevelsViewTableViewHeaderView *headerView = [tableView dequeueReusableHeaderFooterViewWithIdentifier:identifier];
+    static NSString *identifier = @"GQHLevelTableViewHeaderView";
+    GQHLevelTableViewHeaderView *headerView = [tableView dequeueReusableHeaderFooterViewWithIdentifier:identifier];
     if (!headerView) {
         
-        headerView = [[GQHLevelsViewTableViewHeaderView alloc] initWithReuseIdentifier:identifier];
+        headerView = [[GQHLevelTableViewHeaderView alloc] initWithReuseIdentifier:identifier];
     }
     
     // 根据视图数据更新视图
@@ -437,11 +445,11 @@
 
 #pragma mark -
 
-@interface GQHLevelsViewTableViewFooterView ()
+@interface GQHLevelTableViewFooterView ()
 
 @end
 
-@implementation GQHLevelsViewTableViewFooterView
+@implementation GQHLevelTableViewFooterView
 
 #pragma mark - Lifecycle
 /**
@@ -454,11 +462,11 @@
 + (instancetype)qh_tableView:(UITableView *)tableView footerViewWithData:(id)data {
     NSLog(@"");
     
-    static NSString *identifier = @"GQHLevelsViewTableViewFooterView";
-    GQHLevelsViewTableViewFooterView *footerView = [tableView dequeueReusableHeaderFooterViewWithIdentifier:identifier];
+    static NSString *identifier = @"GQHLevelTableViewFooterView";
+    GQHLevelTableViewFooterView *footerView = [tableView dequeueReusableHeaderFooterViewWithIdentifier:identifier];
     if (!footerView) {
         
-        footerView = [[GQHLevelsViewTableViewFooterView alloc] initWithReuseIdentifier:identifier];
+        footerView = [[GQHLevelTableViewFooterView alloc] initWithReuseIdentifier:identifier];
     }
     
     // 根据视图数据更新视图

@@ -6,7 +6,8 @@
   Copyright © 2018 GuanQinghao. All rights reserved.
 */
 
-// 菜单标题
+// 首页菜单标题
+"welcome" = "Welcom\nPuzzle";
 "start" = "START";
 "record" = "RECORD";
 "gallery" = "GALLERY";
@@ -14,16 +15,19 @@
 "help" = "HELP";
 "about" = "ABOUT";
 
+// 游戏
+"time" = "Time";
+"count" = "Count";
+"best" = "Best";
+"least" = "Least";
 
+// 等级
+"newbie" = "Newbie";
+"junior" = "Junior";
+"senior" = "Senior";
+"master" = "Master";
+"guru" = "Guru";
+"god" = "God";
 
-
-
-
+// 其他
 "puzzle" = "PUZZLE";
-"music" = "MUSIC";
-
-/// 游戏
-"time" = "CurrentTime";
-"count" = "CurrentCount";
-"besttime" = "BestTime";
-"leastcount" = "LeastCount";

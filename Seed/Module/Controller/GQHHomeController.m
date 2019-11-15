@@ -16,10 +16,10 @@
 #pragma mark Controller
 #import "GQHHomeController.h"
 #import "GQHGameController.h"
-#import "GQHRecordsController.h"
+#import "GQHRecordController.h"
 #import "GQHGalleryController.h"
-#import "GQHLevelsController.h"
-#import "GQHHelpController.h"
+#import "GQHLevelController.h"
+#import "GQHAppHelpController.h"
 #import "GQHAppAboutController.h"
 
 
@@ -60,13 +60,6 @@
     NSLog(@"");
     
     self.qh_navigationBar.hidden = YES;
-    
-    
-    NSArray *fonts = [UIFont familyNames];
-    [fonts enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
-        
-        NSLog(@"%@",obj);
-    }];
 }
 
 /**
@@ -199,8 +192,8 @@
         case 1: {
             
             // 游戏记录
-            GQHRecordsController *recordsController = [[GQHRecordsController alloc] init];
-            [self.navigationController pushViewController:recordsController animated:YES];
+            GQHRecordController *recordController = [[GQHRecordController alloc] init];
+            [self.navigationController pushViewController:recordController animated:YES];
         }
             break;
         case 2: {
@@ -213,15 +206,15 @@
         case 3: {
             
             // 游戏等级
-            GQHLevelsController *levelsController = [[GQHLevelsController alloc] init];
-            [self.navigationController pushViewController:levelsController animated:YES];
+            GQHLevelController *levelController = [[GQHLevelController alloc] init];
+            [self.navigationController pushViewController:levelController animated:YES];
         }
             break;
         case 4: {
             
             // 游戏帮助
-            GQHHelpController *helpController = [[GQHHelpController alloc] init];
-            [self.navigationController pushViewController:helpController animated:YES];
+            GQHAppHelpController *appHelpController = [[GQHAppHelpController alloc] init];
+            [self.navigationController pushViewController:appHelpController animated:YES];
         }
             break;
         case 5: {

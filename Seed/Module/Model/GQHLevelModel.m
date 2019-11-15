@@ -1,7 +1,7 @@
 //
 //  GQHLevelModel.m
 //
-//  Created by GuanQinghao on 2019-08-11.
+//  Created by GuanQinghao on 2019-11-15.
 //  Copyright © 2019 GuanQinghao. All rights reserved.
 //
 
@@ -10,7 +10,7 @@
 
 
 /// 本地归档文件名
-static NSString * const kFileName = @"";
+static NSString * const kFileName = @"game_level.f";
 
 @implementation GQHLevelModel
 
@@ -24,7 +24,6 @@ static NSString * const kFileName = @"";
     if (self = [super init]) {
         
         // mock
-        
     }
     return self;
 }
@@ -38,7 +37,7 @@ static NSString * const kFileName = @"";
     
     return @{
              
-             @"qh_ID" : @[@"id",@"iD",@"Id"],
+             @"qh_id" : @[@"id",@"iD",@"Id"],
              };
 }
 
@@ -55,18 +54,16 @@ static NSString * const kFileName = @"";
              };
 }
 
-
 /**
  获取本地文件保存路径
  
  @param file 文件名
  @return 本地文件保存路径
  */
-- (NSString *)filePathWith:(NSString * _Nonnull )file {
++ (NSString *)filePathWith:(NSString * _Nonnull )file {
     
     // 文件夹路径
     NSString *filePath = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES).firstObject;
-    NSLog(@"本地文件保存路径:%@", filePath);
     
     return [NSString stringWithFormat:@"%@/%@", filePath, file];
 }
@@ -81,7 +78,10 @@ static NSString * const kFileName = @"";
     
     if (self = [super init]) {
         
-        self.qh_ID = [aDecoder decodeObjectForKey:@"qh_ID"];
+        self.qh_id = [aDecoder decodeObjectForKey:@"qh_id"];
+        self.qh_title = [aDecoder decodeObjectForKey:@"qh_title"];
+        self.qh_order = [aDecoder decodeIntegerForKey:@"qh_order"];
+        self.qh_detail = [aDecoder decodeObjectForKey:@"qh_detail"];
     }
     
     return self;
@@ -94,7 +94,10 @@ static NSString * const kFileName = @"";
  */
 - (void)encodeWithCoder:(NSCoder *)aCoder {
     
-    [aCoder encodeObject:self.qh_ID forKey:@"qh_ID"];
+    [aCoder encodeObject:self.qh_id forKey:@"qh_id"];
+    [aCoder encodeObject:self.qh_title forKey:@"qh_title"];
+    [aCoder encodeInteger:self.qh_order forKey:@"qh_order"];
+    [aCoder encodeObject:self.qh_detail forKey:@"qh_detail"];
 }
 
 /**

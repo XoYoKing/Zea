@@ -1,21 +1,21 @@
 //
-//  GQHRecordsView.h
+//  GQHAppHelpView.h
 //
-//  Created by GuanQinghao on 2019-08-11.
+//  Created by GuanQinghao on 2019-11-15.
 //  Copyright © 2019 GuanQinghao. All rights reserved.
 //
 
-#import "GQHRecordsView.h"
+#import "GQHAppHelpView.h"
 #import "GQHHeader.h"
 
 
 #pragma mark -
 
-@interface GQHRecordsView ()
+@interface GQHAppHelpView ()
 
 @end
 
-@implementation GQHRecordsView
+@implementation GQHAppHelpView
 
 #pragma mark - Lifecycle
 /**
@@ -58,7 +58,8 @@
     [self addSubview:self.qh_tableView];
     [self.qh_tableView mas_makeConstraints:^(MASConstraintMaker *make) {
         
-        make.edges.mas_equalTo(self).with.insets(UIEdgeInsetsMake(self.qh_statusBarHeight + self.qh_navigationBarHeight, 0.0f, 0.0f, 0.0f));
+        make.top.mas_equalTo(self).with.inset(self.qh_statusBarHeight + self.qh_navigationBarHeight);
+        make.left.and.right.and.bottom.mas_equalTo(self);
     }];
 }
 
@@ -92,7 +93,7 @@
     if (!_qh_tableView) {
         
         _qh_tableView = [[UITableView alloc] initWithFrame:CGRectZero style:UITableViewStyleGrouped];
-        _qh_tableView.backgroundColor = [UIColor clearColor];
+        _qh_tableView.backgroundColor = [UIColor whiteColor];
         _qh_tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
         _qh_tableView.showsVerticalScrollIndicator = NO;
         _qh_tableView.showsHorizontalScrollIndicator = NO;
@@ -115,36 +116,11 @@
 
 #pragma mark -
 
-@interface GQHRecordsTableViewCell ()
-
-/**
- 游戏等级
- */
-@property (nonatomic, strong) UILabel *levelLabel;
-
-/**
- 游戏完成时间
- */
-@property (nonatomic, strong) UILabel *dateLabel;
-
-/**
- 游戏用时
- */
-@property (nonatomic, strong) UILabel *timeLabel;
-
-/**
- 游戏计数
- */
-@property (nonatomic, strong) UILabel *countLabel;
-
-/**
- 分割条
- */
-@property (nonatomic, strong) UIView *line;
+@interface GQHAppHelpTableViewCell ()
 
 @end
 
-@implementation GQHRecordsTableViewCell
+@implementation GQHAppHelpTableViewCell
 
 #pragma mark - Lifecycle
 /**
@@ -157,11 +133,11 @@
 + (instancetype)qh_tableView:(UITableView *)tableView cellWithData:(id)data {
     NSLog(@"");
     
-    static NSString *identifier = @"GQHRecordsTableViewCell";
-    GQHRecordsTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:identifier];
+    static NSString *identifier = @"GQHAppHelpTableViewCell";
+    GQHAppHelpTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:identifier];
     if (!cell) {
         
-        cell = [[GQHRecordsTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:identifier];
+        cell = [[GQHAppHelpTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:identifier];
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
     }
     
@@ -208,51 +184,6 @@
 - (void)autoLayoutWithConstraints {
     NSLog(@"");
     
-    // 分割条
-    [self.contentView addSubview:self.line];
-    [self.line mas_makeConstraints:^(MASConstraintMaker *make) {
-        
-        make.top.and.left.and.right.mas_equalTo(self.contentView);
-        make.height.mas_equalTo(GQHMinLayoutValue);
-    }];
-    
-    // 游戏等级
-    [self.contentView addSubview:self.levelLabel];
-    [self.levelLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        
-        make.top.mas_equalTo(self.line.mas_bottom).with.inset(GQHSpacing);
-        make.left.mas_equalTo(self.contentView).with.inset(GQHSingleMargin);
-        make.height.mas_equalTo(50.0f);
-        make.right.mas_equalTo(self.contentView.mas_centerX);
-    }];
-    
-    // 游戏完成时间
-    [self.contentView addSubview:self.dateLabel];
-    [self.dateLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        
-        make.bottom.mas_equalTo(self.contentView);
-        make.left.and.right.mas_equalTo(self.levelLabel);
-        make.height.mas_equalTo(30.0f);
-    }];
-    
-    // 游戏用时
-    [self.contentView addSubview:self.timeLabel];
-    [self.timeLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        
-        make.top.mas_equalTo(self.levelLabel);
-        make.right.mas_equalTo(self.contentView).with.inset(GQHSingleMargin);
-        make.left.mas_equalTo(self.levelLabel.mas_right);
-        make.height.mas_equalTo(40.0f);
-    }];
-    
-    // 游戏计数
-    [self.contentView addSubview:self.countLabel];
-    [self.countLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        
-        make.bottom.mas_equalTo(self.dateLabel);
-        make.left.and.right.mas_equalTo(self.timeLabel);
-        make.height.mas_equalTo(40.0f);
-    }];
 }
 
 #pragma mark - Delegate
@@ -281,98 +212,16 @@
 
 #pragma mark - Getter
 
-- (UILabel *)levelLabel {
-    
-    if (!_levelLabel) {
-        
-        _levelLabel = [[UILabel alloc] init];
-        _levelLabel.backgroundColor = [UIColor whiteColor];
-        
-        _levelLabel.font = [UIFont fontWithName:GQHFontNamePFSSemibold size:27.0f];
-        _levelLabel.text = NSLocalizedString(@"宗师", @"Label");
-        _levelLabel.textColor = [UIColor qh_colorWithHexString:GQHFontColorDarkGray];
-        _levelLabel.textAlignment = NSTextAlignmentLeft;
-        _levelLabel.numberOfLines = 1;
-    }
-    
-    return _levelLabel;
-}
-
-- (UILabel *)dateLabel {
-    
-    if (!_dateLabel) {
-        
-        _dateLabel = [[UILabel alloc] init];
-        _dateLabel.backgroundColor = [UIColor whiteColor];
-        
-        _dateLabel.font = [UIFont fontWithName:GQHFontNamePFSRegular size:15.0f];
-        _dateLabel.text = NSLocalizedString(@"2019-11-13 14:47:38", @"Label");
-        _dateLabel.textColor = [UIColor qh_colorWithHexString:GQHFontColorGray];
-        _dateLabel.textAlignment = NSTextAlignmentLeft;
-        _dateLabel.numberOfLines = 1;
-    }
-    
-    return _dateLabel;
-}
-
-- (UILabel *)timeLabel {
-    
-    if (!_timeLabel) {
-        
-        _timeLabel = [[UILabel alloc] init];
-        _timeLabel.backgroundColor = [UIColor whiteColor];
-        
-        _timeLabel.font = [UIFont fontWithName:GQHFontNamePFSSemibold size:22.0f];
-        _timeLabel.text = NSLocalizedString(@"00:23:39", @"Label");
-        _timeLabel.textColor = [UIColor qh_colorWithHexString:GQHFontColorDarkGray];
-        _timeLabel.textAlignment = NSTextAlignmentRight;
-        _timeLabel.numberOfLines = 0;
-    }
-    
-    return _timeLabel;
-}
-
-- (UILabel *)countLabel {
-    
-    if (!_countLabel) {
-        
-        _countLabel = [[UILabel alloc] init];
-        _countLabel.backgroundColor = [UIColor whiteColor];
-        
-        _countLabel.font = [UIFont fontWithName:GQHFontNamePFSSemibold size:22.0f];
-        _countLabel.text = NSLocalizedString(@"999999", @"Label");
-        _countLabel.textColor = [UIColor qh_colorWithHexString:GQHFontColorDarkGray];
-        _countLabel.textAlignment = NSTextAlignmentRight;
-        _countLabel.numberOfLines = 1;
-    }
-    
-    return _countLabel;
-}
-
-- (UIView *)line {
-    
-    if (!_line) {
-        
-        _line = [[UIView alloc] init];
-        _line.backgroundColor = [UIColor qh_colorWithHexString:@"#f8f8f8"];
-        
-        _line.layer.cornerRadius = 0.0f;
-        _line.layer.masksToBounds = YES;
-    }
-    
-    return _line;
-}
-
 @end
 
 
 #pragma mark -
 
-@interface GQHRecordsTableViewHeaderView ()
+@interface GQHAppHelpTableViewHeaderView ()
 
 @end
 
-@implementation GQHRecordsTableViewHeaderView
+@implementation GQHAppHelpTableViewHeaderView
 
 #pragma mark - Lifecycle
 /**
@@ -385,11 +234,11 @@
 + (instancetype)qh_tableView:(UITableView *)tableView headerViewWithData:(id)data {
     NSLog(@"");
     
-    static NSString *identifier = @"GQHRecordsTableViewHeaderView";
-    GQHRecordsTableViewHeaderView *headerView = [tableView dequeueReusableHeaderFooterViewWithIdentifier:identifier];
+    static NSString *identifier = @"GQHAppHelpTableViewHeaderView";
+    GQHAppHelpTableViewHeaderView *headerView = [tableView dequeueReusableHeaderFooterViewWithIdentifier:identifier];
     if (!headerView) {
         
-        headerView = [[GQHRecordsTableViewHeaderView alloc] initWithReuseIdentifier:identifier];
+        headerView = [[GQHAppHelpTableViewHeaderView alloc] initWithReuseIdentifier:identifier];
     }
     
     // 根据视图数据更新视图
@@ -467,11 +316,11 @@
 
 #pragma mark -
 
-@interface GQHRecordsTableViewFooterView ()
+@interface GQHAppHelpTableViewFooterView ()
 
 @end
 
-@implementation GQHRecordsTableViewFooterView
+@implementation GQHAppHelpTableViewFooterView
 
 #pragma mark - Lifecycle
 /**
@@ -484,11 +333,11 @@
 + (instancetype)qh_tableView:(UITableView *)tableView footerViewWithData:(id)data {
     NSLog(@"");
     
-    static NSString *identifier = @"GQHRecordsTableViewFooterView";
-    GQHRecordsTableViewFooterView *footerView = [tableView dequeueReusableHeaderFooterViewWithIdentifier:identifier];
+    static NSString *identifier = @"GQHAppHelpTableViewFooterView";
+    GQHAppHelpTableViewFooterView *footerView = [tableView dequeueReusableHeaderFooterViewWithIdentifier:identifier];
     if (!footerView) {
         
-        footerView = [[GQHRecordsTableViewFooterView alloc] initWithReuseIdentifier:identifier];
+        footerView = [[GQHAppHelpTableViewFooterView alloc] initWithReuseIdentifier:identifier];
     }
     
     // 根据视图数据更新视图
@@ -512,7 +361,7 @@
         [self autoLayoutWithConstraints];
         
         // 其他初始化
-        self.backgroundColor = [UIColor clearColor];
+        
     }
     
     return self;

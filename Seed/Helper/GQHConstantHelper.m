@@ -10,13 +10,13 @@
 
 
 /// 游戏图片
-NSString * const GQHUserImageKey = @"user_image";
+NSString * const GQHGameImageKey = @"game_image";
 /// 游戏等级
-NSString * const GQHUserLevelKey = @"user_level";
+NSString * const GQHGameLevelKey = @"game_level";
 /// 游戏音效
-NSString * const GQHUserSoundKey = @"user_sound";
+NSString * const GQHGameSoundKey = @"game_sound";
 /// 游戏记录
-NSString * const GQHUserRecordKey = @"user_record";
+NSString * const GQHGameRecordKey = @"game_record";
 
 
 #pragma mark - color
@@ -164,13 +164,7 @@ NSString * const GQHMeAppFeedbackRemovePicture = @"MeAppFeedbackRemovePicture";
 NSString * const GQHLoginEyeOff = @"LoginEyeOff";
 NSString * const GQHLoginEyeOn = @"LoginEyeOn";
 
-@implementation GQHConstantHelper
 
-+ (nonnull NSString *)qh_imagesDirectoryPath {
-    
-    NSString *cachesPath = NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES).firstObject;
-    
-    return [NSString stringWithFormat:@"%@/pictures",cachesPath];
-}
+@implementation GQHConstantHelper
 
 @end

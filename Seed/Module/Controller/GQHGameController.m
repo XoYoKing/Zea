@@ -91,10 +91,10 @@
     [super viewDidLoad];
     NSLog(@"");
     
-    [self.qh_titleButton setTitle:@"新手(3*3)" forState:UIControlStateNormal];
+    [self.qh_titleButton setTitle:NSLocalizedString(@"puzzle", @"拼图") forState:UIControlStateNormal];
     [self.qh_rightMostButton setImage:[UIImage imageNamed:GQHNavigationBarResetBlackOnClear] forState:UIControlStateNormal];
     
-    self.level = 4;
+    self.level = 11;
 }
 
 /**
@@ -179,6 +179,7 @@
 /// 触摸拼图块
 /// @param sender 拼图块
 - (IBAction)touchPuzzlePiece:(GQHPuzzlePiece *)sender {
+    NSLog(@"");
     
     if (self.isAutoGaming) {
         
@@ -292,6 +293,7 @@
 /// 重新加载游戏板
 /// @param status 拼图块状态
 - (void)reloadGameBoardWithStatus:(GQHPuzzleStatus *)status order:(NSInteger)order {
+    NSLog(@"%s",__func__);
     
     [UIView animateWithDuration:0.15f animations:^{
         

@@ -9,34 +9,24 @@
 #import <UIKit/UIKit.h>
 
 /// 游戏等级
-typedef NS_ENUM(NSInteger, GQHUserLevel) {
+typedef NS_ENUM(NSInteger, GQHGameLevel) {
     
-    GQHUserLevelEasy    = 3,
-    GQHUserLevelNormal  = 4,
-    GQHUserLevelHarder  = 6,
-    GQHUserLevelHardest = 8     /// Only in iPad
+    GQHGameLevelNewbie    = 3,
+    GQHGameLevelJunior  = 4,
+    GQHGameLevelSenior  = 5,
+    GQHGameLevelMaster = 7,
+    GQHGameLevelGuru = 9,
+    GQHGameLevelGod = 11
 };
 
-
 /// 游戏图片
-UIKIT_EXTERN NSString * const GQHUserImageKey;
+UIKIT_EXTERN NSString * const GQHGameImageKey;
 /// 游戏等级
-UIKIT_EXTERN NSString * const GQHUserLevelKey;
+UIKIT_EXTERN NSString * const GQHGameLevelKey;
 /// 游戏音效
-UIKIT_EXTERN NSString * const GQHUserSoundKey;
+UIKIT_EXTERN NSString * const GQHGameSoundKey;
 /// 游戏记录
-UIKIT_EXTERN NSString * const GQHUserRecordKey;
-
-
-
-@interface GQHConstantHelper : NSObject
-
-+ (nonnull NSString *)qh_imagesDirectoryPath;
-
-
-
-
-
+UIKIT_EXTERN NSString * const GQHGameRecordKey;
 
 
 #pragma mark - color
@@ -166,5 +156,8 @@ UIKIT_EXTERN NSString * const GQHMeAppFeedbackRemovePicture;
 /// Login
 UIKIT_EXTERN NSString * const GQHLoginEyeOff;
 UIKIT_EXTERN NSString * const GQHLoginEyeOn;
+
+
+@interface GQHConstantHelper : NSObject
 
 @end

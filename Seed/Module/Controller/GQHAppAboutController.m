@@ -53,7 +53,7 @@
     [super viewDidLoad];
     NSLog(@"");
     
-    [self.qh_titleButton setTitle:@"关于" forState:UIControlStateNormal];
+    [self.qh_titleButton setTitle:NSLocalizedString(@"about", @"关于") forState:UIControlStateNormal];
 }
 
 /**

@@ -1,18 +1,18 @@
 //
-//  GQHUserModel.m
+//  GQHHelpModel.m
 //
 //  Created by GuanQinghao on 2019-11-15.
 //  Copyright © 2019 GuanQinghao. All rights reserved.
 //
 
-#import "GQHUserModel.h"
+#import "GQHHelpModel.h"
 #import "GQHHeader.h"
 
 
 /// 本地归档文件名
 static NSString * const kFileName = @"name.file";
 
-@implementation GQHUserModel
+@implementation GQHHelpModel
 
 /**
  初始化Mock数据
@@ -113,7 +113,7 @@ static NSString * const kFileName = @"name.file";
  @param parameters 请求参数
  @param handler 请求结果回调处理
  */
-+ (void)qh_createUserWithParameters:(id)parameters handler:(void(^)(BOOL status, NSNumber *code, NSString *message, id data))handler {
++ (void)qh_createHelpWithParameters:(id)parameters handler:(void(^)(BOOL status, NSNumber *code, NSString *message, id data))handler {
     
 }
 
@@ -123,7 +123,7 @@ static NSString * const kFileName = @"name.file";
  @param parameters 请求参数
  @param handler 请求结果回调处理
  */
-+ (void)qh_readUserWithParameters:(id)parameters handler:(void(^)(BOOL status, NSNumber *code, NSString *message, id data))handler {
++ (void)qh_readHelpWithParameters:(id)parameters handler:(void(^)(BOOL status, NSNumber *code, NSString *message, id data))handler {
     
 }
 
@@ -133,7 +133,7 @@ static NSString * const kFileName = @"name.file";
  @param parameters 请求参数
  @param handler 请求结果回调处理
  */
-+ (void)qh_updateUserWithParameters:(id)parameters handler:(void(^)(BOOL status, NSNumber *code, NSString *message, id data))handler {
++ (void)qh_updateHelpWithParameters:(id)parameters handler:(void(^)(BOOL status, NSNumber *code, NSString *message, id data))handler {
     
 }
 
@@ -143,7 +143,7 @@ static NSString * const kFileName = @"name.file";
  @param parameters 请求参数
  @param handler 请求结果回调处理
  */
-+ (void)qh_deleteUserWithParameters:(id)parameters handler:(void(^)(BOOL status, NSNumber *code, NSString *message, id data))handler {
++ (void)qh_deleteHelpWithParameters:(id)parameters handler:(void(^)(BOOL status, NSNumber *code, NSString *message, id data))handler {
     
 }
 
@@ -153,7 +153,7 @@ static NSString * const kFileName = @"name.file";
  @param parameters 请求参数
  @param handler 请求结果回调处理
  */
-+ (void)qh_fetchUsersWithParameters:(id)parameters handler:(void(^)(BOOL status, NSNumber *code, NSString *message, id data))handler {
++ (void)qh_fetchHelpsWithParameters:(id)parameters handler:(void(^)(BOOL status, NSNumber *code, NSString *message, id data))handler {
     
 }
 

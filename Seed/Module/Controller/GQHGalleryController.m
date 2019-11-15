@@ -53,7 +53,7 @@
     [super viewDidLoad];
     NSLog(@"");
     
-    [self.qh_titleButton setTitle:@"选择游戏图片" forState:UIControlStateNormal];
+    [self.qh_titleButton setTitle:NSLocalizedString(@"gallery", @"图库") forState:UIControlStateNormal];
 }
 
 /**
@@ -215,13 +215,6 @@
     if (!_dataSourceArray) {
         
         _dataSourceArray = [NSMutableArray array];
-        
-        _dataSourceArray = @[@{@"image":@"",@"title":@"start"}.mutableCopy,
-        @{@"image":@"",@"title":@"record"}.mutableCopy,
-        @{@"image":@"",@"title":@"gallery"}.mutableCopy,
-        @{@"image":@"",@"title":@"level"}.mutableCopy,
-        @{@"image":@"",@"title":@"help"}.mutableCopy,
-        @{@"image":@"",@"title":@"about"}.mutableCopy].mutableCopy;
     }
     
     return _dataSourceArray;

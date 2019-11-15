@@ -166,7 +166,7 @@
         _welcomeLabel.backgroundColor = [UIColor clearColor];
         
         _welcomeLabel.font = [UIFont fontWithName:GQHFontNamePFSSemibold size:38.0f];
-        _welcomeLabel.text = NSLocalizedString(@"Welcome\nPuzzle", @"Label");
+        _welcomeLabel.text = NSLocalizedString(@"welcome", @"欢迎语");
         _welcomeLabel.textColor = [UIColor qh_colorWithHexString:GQHFontColorDarkBlack];
         _welcomeLabel.textAlignment = NSTextAlignmentCenter;
         _welcomeLabel.numberOfLines = 0;
@@ -298,7 +298,7 @@
     if (data) {
         
         self.menuImageView.image = [UIImage imageNamed:[data objectForKey:@"image"]];
-        self.menuTitleLabel.text = NSLocalizedString([data objectForKey:@"title"], @"title");
+        self.menuTitleLabel.text = NSLocalizedString([data objectForKey:@"title"], @"标题");
     }
     
     self.menuImageView.backgroundColor = [UIColor qh_randomColor];

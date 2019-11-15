@@ -15,7 +15,6 @@
 #import "GQHBaseModel.h"
 #import "GQHBaseView.h"
 #import "GQHBaseViewController.h"
-#import "GQHTabBarController.h"
 #import "GQHUIController.h"
 #import "GQHWebController.h"
 
@@ -57,6 +56,8 @@
 #import "NSString+GQHEncrypt.h"
 #import "NSString+GQHFormatter.h"
 #import "NSString+GQHSafety.h"
+#import "NSBundle+GQHBundle.h"
+
 
 #pragma mark --UIKit
 #import "AppDelegate+GQH3DTouch.h"

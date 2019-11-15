@@ -7,6 +7,7 @@
 //
 
 #import "AppDelegate+GQHEasterEggs.h"
+#import "GQHHomeController.h"
 #import "GQHHeader.h"
 
 
@@ -42,8 +43,9 @@ NSInteger kCount;
                         self.window.rootViewController = navUIController;
                     } else if ([UIApplication.sharedApplication.keyWindow.rootViewController isKindOfClass:[UINavigationController class]]) {
                         
-                        GQHTabBarController *tabBarController = [[GQHTabBarController alloc] init];
-                        self.window.rootViewController = tabBarController;
+                        GQHHomeController *homeController = [[GQHHomeController alloc] init];
+                        UINavigationController *homeNavController = [[UINavigationController alloc] initWithRootViewController:homeController];
+                        self.window.rootViewController = homeNavController;
                     }
                 }
                 

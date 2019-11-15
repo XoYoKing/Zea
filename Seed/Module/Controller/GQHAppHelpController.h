@@ -1,7 +1,7 @@
 //
-//  GQHLevelsController.h
+//  GQHAppHelpController.h
 //
-//  Created by GuanQinghao on 2019-08-11.
+//  Created by GuanQinghao on 2019-11-15.
 //  Copyright © 2019 GuanQinghao. All rights reserved.
 //
 
@@ -13,7 +13,7 @@ NS_ASSUME_NONNULL_BEGIN
 /**
  <#Description#>
  */
-@interface GQHLevelsController : GQHBaseViewController
+@interface GQHAppHelpController : GQHBaseViewController
 
 @end
 

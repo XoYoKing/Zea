@@ -1,7 +1,7 @@
 //
-//  GQHRecordsController.m
+//  GQHLevelController.m
 //
-//  Created by GuanQinghao on 2019-08-11.
+//  Created by GuanQinghao on 2019-11-15.
 //  Copyright © 2019 GuanQinghao. All rights reserved.
 //
 
@@ -11,20 +11,20 @@
 #pragma mark Model
 
 #pragma mark View
-#import "GQHRecordsView.h"
+#import "GQHLevelView.h"
 
 #pragma mark Controller
-#import "GQHRecordsController.h"
+#import "GQHLevelController.h"
 
 
 #pragma mark -
 
-@interface GQHRecordsController () <UITableViewDelegate, UITableViewDataSource, GQHRecordsViewDelegate>
+@interface GQHLevelController () <UITableViewDelegate, UITableViewDataSource, GQHLevelViewDelegate>
 
 /**
  自定义根视图
  */
-@property (nonatomic, strong) GQHRecordsView *rootView;
+@property (nonatomic, strong) GQHLevelView *rootView;
 
 /**
  数据源
@@ -33,7 +33,7 @@
 
 @end
 
-@implementation GQHRecordsController
+@implementation GQHLevelController
 
 #pragma mark - Lifecycle
 /**
@@ -53,7 +53,7 @@
     [super viewDidLoad];
     NSLog(@"");
     
-    [self.qh_titleButton setTitle:@"记录" forState:UIControlStateNormal];
+    [self.qh_titleButton setTitle:NSLocalizedString(@"level", @"等级") forState:UIControlStateNormal];
 }
 
 /**
@@ -149,7 +149,7 @@
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     NSLog(@"");
     
-    return 50;
+    return self.dataSourceArray.count;
 }
 
 /**
@@ -163,10 +163,10 @@
     NSLog(@"");
     
     // 数据data
-    NSMutableDictionary *data = [NSMutableDictionary dictionary];
+    NSMutableDictionary *data = self.dataSourceArray[indexPath.row];
     
     // 视图cell
-    GQHRecordsTableViewCell *cell = [GQHRecordsTableViewCell qh_tableView:tableView cellWithData:data];
+    GQHLevelTableViewCell *cell = [GQHLevelTableViewCell qh_tableView:tableView cellWithData:data];
     cell.qh_delegate = self;
     
     return cell;
@@ -183,7 +183,7 @@
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     NSLog(@"");
     
-    return 100.0f;
+    return 110.0f;
 }
 
 /**
@@ -225,7 +225,7 @@
     NSMutableDictionary *data = [NSMutableDictionary dictionary];
     
     // 自定义头视图
-    GQHRecordsTableViewHeaderView *headerView = [GQHRecordsTableViewHeaderView qh_tableView:tableView headerViewWithData:data];
+    GQHLevelTableViewHeaderView *headerView = [GQHLevelTableViewHeaderView qh_tableView:tableView headerViewWithData:data];
     headerView.qh_delegate = self;
     
     return headerView;
@@ -241,8 +241,7 @@
 - (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section {
     NSLog(@"");
     
-    //MARK:适配刘海屏底部操作区
-    return self.rootView.qh_homeIndicatorHeight;
+    return CGFLOAT_MIN;
 }
 
 /**
@@ -259,13 +258,13 @@
     NSMutableDictionary *data = [NSMutableDictionary dictionary];
     
     // 自定义尾视图
-    GQHRecordsTableViewFooterView *footerView = [GQHRecordsTableViewFooterView qh_tableView:tableView footerViewWithData:data];
+    GQHLevelTableViewFooterView *footerView = [GQHLevelTableViewFooterView qh_tableView:tableView footerViewWithData:data];
     footerView.qh_delegate = self;
     
     return footerView;
 }
 
-#pragma mark - GQHRecordsViewDelegate
+#pragma mark - GQHLevelViewDelegate
 
 #pragma mark - TargetMethod
 
@@ -274,11 +273,11 @@
 #pragma mark - Setter
 
 #pragma mark - Getter
-- (GQHRecordsView *)rootView {
+- (GQHLevelView *)rootView {
     
     if (!_rootView) {
         
-        _rootView = [[GQHRecordsView alloc] initWithFrame:UIScreen.mainScreen.bounds];
+        _rootView = [[GQHLevelView alloc] initWithFrame:UIScreen.mainScreen.bounds];
         _rootView.backgroundColor = [UIColor qh_colorWithHexString:@"#f8f8f8"];
         _rootView.qh_tableView.delegate = self;
         _rootView.qh_tableView.dataSource = self;
@@ -293,6 +292,13 @@
     if (!_dataSourceArray) {
         
         _dataSourceArray = [NSMutableArray array];
+        
+        _dataSourceArray = @[@{@"title":@"newbie",@"order":@"3",@"detail":@"newbie"}.mutableCopy,
+                             @{@"title":@"junior",@"order":@"4",@"detail":@"junior"}.mutableCopy,
+                             @{@"title":@"senior",@"order":@"5",@"detail":@"senior"}.mutableCopy,
+                             @{@"title":@"master",@"order":@"7",@"detail":@"master"}.mutableCopy,
+                             @{@"title":@"guru",@"order":@"9",@"detail":@"guru"}.mutableCopy,
+                             @{@"title":@"god",@"order":@"11",@"detail":@"god"}.mutableCopy].mutableCopy;
     }
     
     return _dataSourceArray;

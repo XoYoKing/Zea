@@ -31,14 +31,14 @@
 //    self.window.rootViewController = launchNavController;
     
     // 2.2 首页根视图
-//    GQHHomeController *homeController = [[GQHHomeController alloc] init];
-//    UINavigationController *homeNavController = [[UINavigationController alloc] initWithRootViewController:homeController];
-//    self.window.rootViewController = homeNavController;
+    GQHHomeController *homeController = [[GQHHomeController alloc] init];
+    UINavigationController *homeNavController = [[UINavigationController alloc] initWithRootViewController:homeController];
+    self.window.rootViewController = homeNavController;
     
     // 2.3 UI根视图
-    GQHUIController *UIController = [[GQHUIController alloc] init];
-    UINavigationController *UINavController = [[UINavigationController alloc] initWithRootViewController:UIController];
-    self.window.rootViewController = UINavController;
+//    GQHUIController *UIController = [[GQHUIController alloc] init];
+//    UINavigationController *UINavController = [[UINavigationController alloc] initWithRootViewController:UIController];
+//    self.window.rootViewController = UINavController;
     
     // 3.记录器
 #ifdef DEBUG
@@ -103,19 +103,19 @@
  */
 - (void)defaultAppConfiguration {
     
-    if (![NSUserDefaults.standardUserDefaults objectForKey:GQHUserImageKey]) {
+    if (![NSUserDefaults.standardUserDefaults objectForKey:GQHGameImageKey]) {
         
-        [NSUserDefaults.standardUserDefaults setObject:@"puzzle_4" forKey:GQHUserImageKey];
+        [NSUserDefaults.standardUserDefaults setObject:@"puzzle_4" forKey:GQHGameImageKey];
     }
     
-    if (![NSUserDefaults.standardUserDefaults objectForKey:GQHUserLevelKey]) {
+    if (![NSUserDefaults.standardUserDefaults objectForKey:GQHGameLevelKey]) {
         
-        [NSUserDefaults.standardUserDefaults setObject:[NSNumber numberWithInteger:GQHUserLevelNormal] forKey:GQHUserLevelKey];
+        [NSUserDefaults.standardUserDefaults setObject:[NSNumber numberWithInteger:GQHGameLevelNewbie] forKey:GQHGameLevelKey];
     }
     
-    if (![NSUserDefaults.standardUserDefaults objectForKey:GQHUserSoundKey]) {
+    if (![NSUserDefaults.standardUserDefaults objectForKey:GQHGameSoundKey]) {
         
-        [NSUserDefaults.standardUserDefaults setObject:@"sound_0" forKey:GQHUserSoundKey];
+        [NSUserDefaults.standardUserDefaults setObject:@"sound_0" forKey:GQHGameSoundKey];
     }
 }
 

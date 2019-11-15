@@ -330,7 +330,7 @@
         _bestTimeTitleLabel.backgroundColor = [UIColor clearColor];
         
         _bestTimeTitleLabel.font = [UIFont fontWithName:GQHFontNamePFSSemibold size:15.0f];
-        _bestTimeTitleLabel.text = NSLocalizedString(@"BEST TIME", @"Label");
+        _bestTimeTitleLabel.text = NSLocalizedString(@"best", @"标题");
         _bestTimeTitleLabel.textColor = [UIColor qh_colorWithHexString:GQHFontColorGray];
         _bestTimeTitleLabel.textAlignment = NSTextAlignmentRight;
         _bestTimeTitleLabel.numberOfLines = 1;
@@ -347,7 +347,7 @@
         _bestTimeTextLabel.backgroundColor = [UIColor clearColor];
         
         _bestTimeTextLabel.font = [UIFont fontWithName:GQHFontNamePFSSemibold size:15.0f];
-        _bestTimeTextLabel.text = NSLocalizedString(@"00:38:20", @"Label");
+        _bestTimeTextLabel.text = NSLocalizedString(@"00:38:20", @"");
         _bestTimeTextLabel.textColor = [UIColor redColor];
         _bestTimeTextLabel.textAlignment = NSTextAlignmentLeft;
         _bestTimeTextLabel.numberOfLines = 1;
@@ -364,7 +364,7 @@
         _bestCountTittleLabel.backgroundColor = [UIColor clearColor];
         
         _bestCountTittleLabel.font = [UIFont fontWithName:GQHFontNamePFSSemibold size:15.0f];
-        _bestCountTittleLabel.text = NSLocalizedString(@"LEAST COUNT", @"Label");
+        _bestCountTittleLabel.text = NSLocalizedString(@"least", @"标题");
         _bestCountTittleLabel.textColor = [UIColor qh_colorWithHexString:GQHFontColorGray];
         _bestCountTittleLabel.textAlignment = NSTextAlignmentRight;
         _bestCountTittleLabel.numberOfLines = 1;
@@ -381,7 +381,7 @@
         _bestCountTextLabel.backgroundColor = [UIColor clearColor];
         
         _bestCountTextLabel.font = [UIFont fontWithName:GQHFontNamePFSSemibold size:15.0f];
-        _bestCountTextLabel.text = NSLocalizedString(@"929939", @"Label");
+        _bestCountTextLabel.text = NSLocalizedString(@"929939", @"");
         _bestCountTextLabel.textColor = [UIColor redColor];
         _bestCountTextLabel.textAlignment = NSTextAlignmentLeft;
         _bestCountTextLabel.numberOfLines = 1;
@@ -412,7 +412,7 @@
         _currentTimeTitleLabel.backgroundColor = [UIColor clearColor];
         
         _currentTimeTitleLabel.font = [UIFont fontWithName:GQHFontNamePFSSemibold size:15.0f];
-        _currentTimeTitleLabel.text = NSLocalizedString(@"TIME", @"Label");
+        _currentTimeTitleLabel.text = NSLocalizedString(@"time", @"标题");
         _currentTimeTitleLabel.textColor = [UIColor qh_colorWithHexString:GQHFontColorGray];
         _currentTimeTitleLabel.textAlignment = NSTextAlignmentRight;
         _currentTimeTitleLabel.numberOfLines = 1;
@@ -429,7 +429,7 @@
         _currentTimeTextLabel.backgroundColor = [UIColor clearColor];
         
         _currentTimeTextLabel.font = [UIFont fontWithName:GQHFontNamePFSSemibold size:15.0f];
-        _currentTimeTextLabel.text = NSLocalizedString(@"00:29:38", @"Label");
+        _currentTimeTextLabel.text = NSLocalizedString(@"00:29:38", @"");
         _currentTimeTextLabel.textColor = [UIColor qh_colorWithHexString:GQHFontColorGray];
         _currentTimeTextLabel.textAlignment = NSTextAlignmentLeft;
         _currentTimeTextLabel.numberOfLines = 1;
@@ -446,7 +446,7 @@
         _currentCountTittleLabel.backgroundColor = [UIColor clearColor];
         
         _currentCountTittleLabel.font = [UIFont fontWithName:GQHFontNamePFSSemibold size:15.0f];
-        _currentCountTittleLabel.text = NSLocalizedString(@"COUNT", @"Label");
+        _currentCountTittleLabel.text = NSLocalizedString(@"count", @"");
         _currentCountTittleLabel.textColor = [UIColor qh_colorWithHexString:GQHFontColorGray];
         _currentCountTittleLabel.textAlignment = NSTextAlignmentRight;
         _currentCountTittleLabel.numberOfLines = 1;
@@ -463,7 +463,7 @@
         _currentCountTextLabel.backgroundColor = [UIColor clearColor];
         
         _currentCountTextLabel.font = [UIFont fontWithName:GQHFontNamePFSSemibold size:15.0f];
-        _currentCountTextLabel.text = NSLocalizedString(@"182382", @"Label");
+        _currentCountTextLabel.text = NSLocalizedString(@"182382", @"");
         _currentCountTextLabel.textColor = [UIColor qh_colorWithHexString:GQHFontColorGray];
         _currentCountTextLabel.textAlignment = NSTextAlignmentLeft;
         _currentCountTextLabel.numberOfLines = 1;

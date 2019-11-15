@@ -1,5 +1,5 @@
 //
-//  GQHUserModel.h
+//  GQHHelpModel.h
 //
 //  Created by GuanQinghao on 2019-11-15.
 //  Copyright © 2019 GuanQinghao. All rights reserved.
@@ -13,7 +13,7 @@ NS_ASSUME_NONNULL_BEGIN
 /**
  <#Description#>
  */
-@interface GQHUserModel : GQHBaseModel <NSSecureCoding>
+@interface GQHHelpModel : GQHBaseModel <NSSecureCoding>
 
 /**
  ID
@@ -33,7 +33,7 @@ NS_ASSUME_NONNULL_BEGIN
  @param parameters 请求参数
  @param handler 请求结果回调处理
  */
-+ (void)qh_createUserWithParameters:(nullable id)parameters handler:(void(^)(BOOL status, NSNumber *code, NSString *message, id data))handler;
++ (void)qh_createHelpWithParameters:(nullable id)parameters handler:(void(^)(BOOL status, NSNumber *code, NSString *message, id data))handler;
 
 /**
  查-
@@ -41,7 +41,7 @@ NS_ASSUME_NONNULL_BEGIN
  @param parameters 请求参数
  @param handler 请求结果回调处理
  */
-+ (void)qh_readUserWithParameters:(nullable id)parameters handler:(void(^)(BOOL status, NSNumber *code, NSString *message, id data))handler;
++ (void)qh_readHelpWithParameters:(nullable id)parameters handler:(void(^)(BOOL status, NSNumber *code, NSString *message, id data))handler;
 
 /**
  改-
@@ -49,7 +49,7 @@ NS_ASSUME_NONNULL_BEGIN
  @param parameters 请求参数
  @param handler 请求结果回调处理
  */
-+ (void)qh_updateUserWithParameters:(nullable id)parameters handler:(void(^)(BOOL status, NSNumber *code, NSString *message, id data))handler;
++ (void)qh_updateHelpWithParameters:(nullable id)parameters handler:(void(^)(BOOL status, NSNumber *code, NSString *message, id data))handler;
 
 /**
  删-
@@ -57,7 +57,7 @@ NS_ASSUME_NONNULL_BEGIN
  @param parameters 请求参数
  @param handler 请求结果回调处理
  */
-+ (void)qh_deleteUserWithParameters:(nullable id)parameters handler:(void(^)(BOOL status, NSNumber *code, NSString *message, id data))handler;
++ (void)qh_deleteHelpWithParameters:(nullable id)parameters handler:(void(^)(BOOL status, NSNumber *code, NSString *message, id data))handler;
 
 /**
  列表-
@@ -65,7 +65,7 @@ NS_ASSUME_NONNULL_BEGIN
  @param parameters 请求参数
  @param handler 请求结果回调处理
  */
-+ (void)qh_fetchUsersWithParameters:(nullable id)parameters handler:(void(^)(BOOL status, NSNumber *code, NSString *message, id data))handler;
++ (void)qh_fetchHelpsWithParameters:(nullable id)parameters handler:(void(^)(BOOL status, NSNumber *code, NSString *message, id data))handler;
 
 @end
 

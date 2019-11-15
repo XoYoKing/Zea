@@ -1,7 +1,7 @@
 //
-//  GQHHelpController.m
+//  GQHRecordController.m
 //
-//  Created by GuanQinghao on 2019-11-12.
+//  Created by GuanQinghao on 2019-11-15.
 //  Copyright © 2019 GuanQinghao. All rights reserved.
 //
 
@@ -11,20 +11,20 @@
 #pragma mark Model
 
 #pragma mark View
-#import "GQHHelpView.h"
+#import "GQHRecordView.h"
 
 #pragma mark Controller
-#import "GQHHelpController.h"
+#import "GQHRecordController.h"
 
 
 #pragma mark -
 
-@interface GQHHelpController () <UITableViewDelegate, UITableViewDataSource, GQHHelpViewDelegate>
+@interface GQHRecordController () <UITableViewDelegate, UITableViewDataSource, GQHRecordViewDelegate>
 
 /**
  自定义根视图
  */
-@property (nonatomic, strong) GQHHelpView *rootView;
+@property (nonatomic, strong) GQHRecordView *rootView;
 
 /**
  数据源
@@ -33,7 +33,7 @@
 
 @end
 
-@implementation GQHHelpController
+@implementation GQHRecordController
 
 #pragma mark - Lifecycle
 /**
@@ -53,7 +53,7 @@
     [super viewDidLoad];
     NSLog(@"");
     
-    [self.qh_titleButton setTitle:NSLocalizedString(@"help", @"帮助") forState:UIControlStateNormal];
+    [self.qh_titleButton setTitle:NSLocalizedString(@"record", @"标题") forState:UIControlStateNormal];
 }
 
 /**
@@ -149,7 +149,7 @@
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     NSLog(@"");
     
-    return 5;
+    return 50;
 }
 
 /**
@@ -166,7 +166,7 @@
     NSMutableDictionary *data = [NSMutableDictionary dictionary];
     
     // 视图cell
-    GQHHelpTableViewCell *cell = [GQHHelpTableViewCell qh_tableView:tableView cellWithData:data];
+    GQHRecordTableViewCell *cell = [GQHRecordTableViewCell qh_tableView:tableView cellWithData:data];
     cell.qh_delegate = self;
     
     return cell;
@@ -183,7 +183,7 @@
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     NSLog(@"");
     
-    return 50.0f;
+    return 100.0f;
 }
 
 /**
@@ -225,7 +225,7 @@
     NSMutableDictionary *data = [NSMutableDictionary dictionary];
     
     // 自定义头视图
-    GQHHelpTableViewHeaderView *headerView = [GQHHelpTableViewHeaderView qh_tableView:tableView headerViewWithData:data];
+    GQHRecordTableViewHeaderView *headerView = [GQHRecordTableViewHeaderView qh_tableView:tableView headerViewWithData:data];
     headerView.qh_delegate = self;
     
     return headerView;
@@ -241,7 +241,8 @@
 - (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section {
     NSLog(@"");
     
-    return CGFLOAT_MIN;
+    //MARK:适配刘海屏底部操作区
+    return self.rootView.qh_homeIndicatorHeight;
 }
 
 /**
@@ -258,13 +259,13 @@
     NSMutableDictionary *data = [NSMutableDictionary dictionary];
     
     // 自定义尾视图
-    GQHHelpTableViewFooterView *footerView = [GQHHelpTableViewFooterView qh_tableView:tableView footerViewWithData:data];
+    GQHRecordTableViewFooterView *footerView = [GQHRecordTableViewFooterView qh_tableView:tableView footerViewWithData:data];
     footerView.qh_delegate = self;
     
     return footerView;
 }
 
-#pragma mark - GQHHelpViewDelegate
+#pragma mark - GQHRecordViewDelegate
 
 #pragma mark - TargetMethod
 
@@ -273,11 +274,11 @@
 #pragma mark - Setter
 
 #pragma mark - Getter
-- (GQHHelpView *)rootView {
+- (GQHRecordView *)rootView {
     
     if (!_rootView) {
         
-        _rootView = [[GQHHelpView alloc] initWithFrame:UIScreen.mainScreen.bounds];
+        _rootView = [[GQHRecordView alloc] initWithFrame:UIScreen.mainScreen.bounds];
         _rootView.backgroundColor = [UIColor qh_colorWithHexString:@"#f8f8f8"];
         _rootView.qh_tableView.delegate = self;
         _rootView.qh_tableView.dataSource = self;

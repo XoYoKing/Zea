@@ -41,7 +41,7 @@
 		<array>
 			<dict>
 				<key>title</key>
-				<string>Levels</string>
+				<string>Level</string>
 				<key>description</key>
 				<string>游戏等级</string>
 			</dict>
@@ -86,7 +86,7 @@
 		<array>
 			<dict>
 				<key>title</key>
-				<string>Records</string>
+				<string>Record</string>
 				<key>description</key>
 				<string>游戏记录</string>
 			</dict>
@@ -116,7 +116,7 @@
 		<array>
 			<dict>
 				<key>title</key>
-				<string>Help</string>
+				<string>AppHelp</string>
 				<key>description</key>
 				<string>帮助</string>
 			</dict>

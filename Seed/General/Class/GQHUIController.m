@@ -362,7 +362,7 @@
     
     if (!_dataSourceUIArray) {
         
-        NSString *filePath = [[NSBundle mainBundle] pathForResource:@"data_dictionary_ui" ofType:@"plist"];
+        NSString *filePath = [[NSBundle qh_bundle] pathForResource:@"data_dictionary_ui" ofType:@"plist"];
         _dataSourceUIArray = [NSMutableArray arrayWithContentsOfFile:filePath];
     }
     
@@ -373,7 +373,7 @@
     
     if (!_dataSourceModelArray) {
         
-        NSString *filePath = [[NSBundle mainBundle] pathForResource:@"data_dictionary_model" ofType:@"plist"];
+        NSString *filePath = [[NSBundle qh_bundle] pathForResource:@"data_dictionary_model" ofType:@"plist"];
         _dataSourceModelArray = [NSMutableArray arrayWithContentsOfFile:filePath];
     }
     

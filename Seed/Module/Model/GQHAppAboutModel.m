@@ -1,7 +1,7 @@
 //
 //  GQHAppAboutModel.m
 //
-//  Created by GuanQinghao on 2019-08-11.
+//  Created by GuanQinghao on 2019-11-15.
 //  Copyright © 2019 GuanQinghao. All rights reserved.
 //
 
@@ -10,7 +10,7 @@
 
 
 /// 本地归档文件名
-static NSString * const kFileName = @"";
+static NSString * const kFileName = @"name.file";
 
 @implementation GQHAppAboutModel
 
@@ -38,7 +38,7 @@ static NSString * const kFileName = @"";
     
     return @{
              
-             @"qh_ID" : @[@"id",@"iD",@"Id"],
+             @"qh_id" : @[@"id",@"iD",@"Id"],
              };
 }
 
@@ -62,11 +62,10 @@ static NSString * const kFileName = @"";
  @param file 文件名
  @return 本地文件保存路径
  */
-- (NSString *)filePathWith:(NSString * _Nonnull )file {
++ (NSString *)filePathWith:(NSString * _Nonnull )file {
     
     // 文件夹路径
     NSString *filePath = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES).firstObject;
-    NSLog(@"本地文件保存路径:%@", filePath);
     
     return [NSString stringWithFormat:@"%@/%@", filePath, file];
 }
@@ -81,7 +80,7 @@ static NSString * const kFileName = @"";
     
     if (self = [super init]) {
         
-        self.qh_ID = [aDecoder decodeObjectForKey:@"qh_ID"];
+        self.qh_id = [aDecoder decodeObjectForKey:@"qh_id"];
     }
     
     return self;
@@ -94,7 +93,7 @@ static NSString * const kFileName = @"";
  */
 - (void)encodeWithCoder:(NSCoder *)aCoder {
     
-    [aCoder encodeObject:self.qh_ID forKey:@"qh_ID"];
+    [aCoder encodeObject:self.qh_id forKey:@"qh_id"];
 }
 
 /**
