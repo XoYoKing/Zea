@@ -294,7 +294,7 @@
         
         titleButton = [UIButton buttonWithType:UIButtonTypeCustom];
         titleButton.backgroundColor = [UIColor clearColor];
-        titleButton.titleLabel.font = [UIFont fontWithName:GQHFontNamePFSMedium size:24.0f];
+        titleButton.titleLabel.font = [UIFont fontWithName:GQHFontNamePFSMedium size:18.0f];
         titleButton.contentHorizontalAlignment = UIControlContentHorizontalAlignmentLeft;
         [titleButton setTitleColor:[UIColor qh_colorWithHexString:GQHFontColorDarkBlack] forState:UIControlStateNormal];
         [titleButton addTarget:self action:@selector(qh_didClickTitleButton:) forControlEvents:UIControlEventTouchUpInside];

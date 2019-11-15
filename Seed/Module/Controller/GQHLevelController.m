@@ -196,6 +196,11 @@
     NSLog(@"");
     
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    
+    [[NSUserDefaults standardUserDefaults] setObject:@(indexPath.row) forKey:GQHGameLevelKey];
+    [[NSUserDefaults standardUserDefaults] synchronize];
+    
+    [tableView reloadData];
 }
 
 /**
@@ -291,14 +296,8 @@
     
     if (!_dataSourceArray) {
         
-        _dataSourceArray = [NSMutableArray array];
-        
-        _dataSourceArray = @[@{@"title":@"newbie",@"order":@"3",@"detail":@"newbie"}.mutableCopy,
-                             @{@"title":@"junior",@"order":@"4",@"detail":@"junior"}.mutableCopy,
-                             @{@"title":@"senior",@"order":@"5",@"detail":@"senior"}.mutableCopy,
-                             @{@"title":@"master",@"order":@"7",@"detail":@"master"}.mutableCopy,
-                             @{@"title":@"guru",@"order":@"9",@"detail":@"guru"}.mutableCopy,
-                             @{@"title":@"god",@"order":@"11",@"detail":@"god"}.mutableCopy].mutableCopy;
+        NSString *filePath = [[NSBundle qh_bundle] pathForResource:@"data_menu_level" ofType:@"plist"];
+        _dataSourceArray = [NSMutableArray arrayWithContentsOfFile:filePath];
     }
     
     return _dataSourceArray;

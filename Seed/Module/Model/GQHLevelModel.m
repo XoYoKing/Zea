@@ -78,7 +78,7 @@ static NSString * const kFileName = @"game_level.f";
     
     if (self = [super init]) {
         
-        self.qh_id = [aDecoder decodeObjectForKey:@"qh_id"];
+        self.qh_id = [aDecoder decodeIntegerForKey:@"qh_id"];
         self.qh_title = [aDecoder decodeObjectForKey:@"qh_title"];
         self.qh_order = [aDecoder decodeIntegerForKey:@"qh_order"];
         self.qh_detail = [aDecoder decodeObjectForKey:@"qh_detail"];
@@ -94,7 +94,7 @@ static NSString * const kFileName = @"game_level.f";
  */
 - (void)encodeWithCoder:(NSCoder *)aCoder {
     
-    [aCoder encodeObject:self.qh_id forKey:@"qh_id"];
+    [aCoder encodeInteger:self.qh_id forKey:@"qh_id"];
     [aCoder encodeObject:self.qh_title forKey:@"qh_title"];
     [aCoder encodeInteger:self.qh_order forKey:@"qh_order"];
     [aCoder encodeObject:self.qh_detail forKey:@"qh_detail"];

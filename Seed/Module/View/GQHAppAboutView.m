@@ -14,11 +14,6 @@
 @interface GQHAppAboutView ()
 
 /**
- 容器视图
- */
-@property (nonatomic, strong) UIView *containerView;
-
-/**
  图标视图
  */
 @property (nonatomic, strong) UIImageView *iconImageView;
@@ -32,6 +27,11 @@
  版本信息
  */
 @property (nonatomic, strong) UILabel *versionLabel;
+
+/**
+ 公众号二维码
+ */
+@property (nonatomic, strong) UIImageView *wechatImageView;
 
 /**
  版权信息
@@ -79,61 +79,42 @@
 - (void)autoLayoutWithConstraints {
     NSLog(@"");
     
-    // 容器视图
-    [self addSubview:self.containerView];
-    [self.containerView mas_makeConstraints:^(MASConstraintMaker *make) {
-        
-        make.top.mas_equalTo(self).with.inset(self.qh_statusBarHeight + self.qh_navigationBarHeight + 10.0f);
-        make.left.and.right.mas_equalTo(self);
-        make.height.mas_equalTo(120.0f);
-    }];
-    
-    //MARK: app
-    // 版权信息
-    [self.containerView addSubview:self.copyrightLabel];
-    [self.copyrightLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        
-        make.left.and.right.mas_equalTo(self.containerView).with.inset(10.0f);
-        make.bottom.mas_equalTo(self.containerView);
-        make.height.mas_equalTo(20.0f);
-    }];
-    
     // 图标视图
-    [self.containerView addSubview:self.iconImageView];
+    [self addSubview:self.iconImageView];
     [self.iconImageView mas_makeConstraints:^(MASConstraintMaker *make) {
         
-        make.bottom.mas_equalTo(self.copyrightLabel.mas_top).with.inset(10.0f);
-        make.left.mas_equalTo(self.containerView).with.inset(10.0f);
-        make.size.mas_equalTo(CGSizeMake(60.0f, 60.0f));
+        make.top.mas_equalTo(self).with.inset(self.qh_statusBarHeight + self.qh_navigationBarHeight + GQHSpacing);
+        make.centerX.mas_equalTo(self);
+        make.size.mas_equalTo(CGSizeMake(80.0f, 80.0f));
     }];
     
     // 应用名称
-    [self.containerView addSubview:self.nameLabel];
+    [self addSubview:self.nameLabel];
     [self.nameLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         
-        make.top.mas_equalTo(self.iconImageView);
-        make.left.mas_equalTo(self.iconImageView.mas_right).with.inset(10.0f);
-        make.right.mas_equalTo(self.containerView).with.inset(10.0f);
-        make.height.mas_equalTo(30.0f);
+        make.top.mas_equalTo(self.iconImageView.mas_bottom);
+        make.width.mas_greaterThanOrEqualTo(GQHMinLayoutValue);
+        make.centerX.mas_equalTo(self);
+        make.height.mas_equalTo(40.0f);
     }];
     
     // 版本信息
-    [self.containerView addSubview:self.versionLabel];
+    [self addSubview:self.versionLabel];
     [self.versionLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         
-        make.bottom.mas_equalTo(self.iconImageView);
-        make.left.mas_equalTo(self.iconImageView.mas_right).with.inset(10.0f);
-        make.right.mas_equalTo(self.containerView).with.inset(10.0f);
-        make.height.mas_equalTo(30.0f);
+        make.top.mas_equalTo(self.nameLabel.mas_bottom);
+        make.width.mas_greaterThanOrEqualTo(GQHMinLayoutValue);
+        make.centerX.mas_equalTo(self);
+        make.height.mas_equalTo(15.0f);
     }];
     
-    // 列表视图
-    [self addSubview:self.qh_tableView];
-    [self.qh_tableView mas_makeConstraints:^(MASConstraintMaker *make) {
+    // 版权信息
+    [self addSubview:self.copyrightLabel];
+    [self.copyrightLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         
-        make.top.mas_equalTo(self.containerView.mas_bottom).with.inset(10.0f);
-        make.left.and.right.mas_equalTo(self);
-        make.bottom.mas_equalTo(self);
+        make.bottom.mas_equalTo(self).with.inset(self.qh_homeIndicatorHeight);
+        make.left.and.right.mas_equalTo(self).with.inset(GQHSpacing);
+        make.height.mas_greaterThanOrEqualTo(GQHMinLayoutValue);
     }];
 }
 
@@ -185,20 +166,6 @@
     return _qh_tableView;
 }
 
-- (UIView *)containerView {
-    
-    if (!_containerView) {
-        
-        _containerView = [[UIView alloc] init];
-        _containerView.backgroundColor = [UIColor qh_randomColor];
-        
-        _containerView.layer.cornerRadius = 0.0f;
-        _containerView.layer.masksToBounds = YES;
-    }
-    
-    return _containerView;
-}
-
 - (UIImageView *)iconImageView {
     
     if (!_iconImageView) {
@@ -220,12 +187,12 @@
     if (!_nameLabel) {
         
         _nameLabel = [[UILabel alloc] init];
-        _nameLabel.backgroundColor = [UIColor whiteColor];
+        _nameLabel.backgroundColor = [UIColor clearColor];
         
-        _nameLabel.font = [UIFont systemFontOfSize:20.0f];
+        _nameLabel.font = [UIFont fontWithName:GQHFontNamePFSMedium size:20.0f];
         _nameLabel.text = UIApplication.sharedApplication.qh_applicationDisplayName;
-        _nameLabel.textColor = [UIColor darkTextColor];
-        _nameLabel.textAlignment = NSTextAlignmentLeft;
+        _nameLabel.textColor = [UIColor qh_colorWithHexString:GQHFontColorDarkGray];
+        _nameLabel.textAlignment = NSTextAlignmentCenter;
         _nameLabel.numberOfLines = 1;
     }
     
@@ -237,16 +204,32 @@
     if (!_versionLabel) {
         
         _versionLabel = [[UILabel alloc] init];
-        _versionLabel.backgroundColor = [UIColor whiteColor];
+        _versionLabel.backgroundColor = [UIColor clearColor];
         
-        _versionLabel.font = [UIFont systemFontOfSize:18.0f];
+        _versionLabel.font = [UIFont fontWithName:GQHFontNamePFSMedium size:14.0f];
         _versionLabel.text = [NSString stringWithFormat:@"v %@",UIApplication.sharedApplication.qh_applicationShortVersion];
-        _versionLabel.textColor = [UIColor darkTextColor];
-        _versionLabel.textAlignment = NSTextAlignmentLeft;
+        _versionLabel.textColor = [UIColor qh_colorWithHexString:GQHFontColorGray];
+        _versionLabel.textAlignment = NSTextAlignmentCenter;
         _versionLabel.numberOfLines = 1;
     }
     
     return _versionLabel;
+}
+
+- (UIImageView *)wechatImageView {
+    
+    if (!_wechatImageView) {
+        
+        _wechatImageView = [[UIImageView alloc] init];
+        _wechatImageView.backgroundColor = [UIColor qh_randomColor];
+        
+        _wechatImageView.image = [UIImage imageNamed:@""];
+        
+        _wechatImageView.layer.cornerRadius = 0.0f;
+        _wechatImageView.layer.masksToBounds = YES;
+    }
+    
+    return _wechatImageView;
 }
 
 - (UILabel *)copyrightLabel {
@@ -254,13 +237,13 @@
     if (!_copyrightLabel) {
         
         _copyrightLabel = [[UILabel alloc] init];
-        _copyrightLabel.backgroundColor = [UIColor whiteColor];
+        _copyrightLabel.backgroundColor = [UIColor clearColor];
         
-        _copyrightLabel.font = [UIFont systemFontOfSize:16.0f];
-        _copyrightLabel.text = NSLocalizedString(@"Copyright © 2016-2019 Guan Qinghao. All rights reserved.", @"Label");
-        _copyrightLabel.textColor = [UIColor darkTextColor];
-        _copyrightLabel.textAlignment = NSTextAlignmentLeft;
-        _copyrightLabel.numberOfLines = 1;
+        _copyrightLabel.font = [UIFont fontWithName:GQHFontNamePFSRegular size:12.0f];
+        _copyrightLabel.text = NSLocalizedString(@"Copyright © 2016-2019 Guan Qinghao. All rights reserved.", @"版权信息");
+        _copyrightLabel.textColor = [UIColor qh_colorWithHexString:GQHFontColorGray];
+        _copyrightLabel.textAlignment = NSTextAlignmentCenter;
+        _copyrightLabel.numberOfLines = 0;
     }
     
     return _copyrightLabel;

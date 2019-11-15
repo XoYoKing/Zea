@@ -18,7 +18,7 @@ NS_ASSUME_NONNULL_BEGIN
 /**
  ID
  */
-@property (nonatomic, copy) NSString *qh_id;
+@property (nonatomic, assign) NSInteger qh_id;
 
 /**
  等级标题
@@ -83,6 +83,8 @@ NS_ASSUME_NONNULL_BEGIN
  @param handler 请求结果回调处理
  */
 + (void)qh_fetchLevelsWithParameters:(nullable id)parameters handler:(void(^)(BOOL status, NSNumber *code, NSString *message, id data))handler;
+
+
 
 @end
 

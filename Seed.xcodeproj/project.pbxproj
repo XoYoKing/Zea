@@ -120,26 +120,7 @@
 		D5E56CDB2128780C001BCD74 /* puzzle_3.png in Resources */ = {isa = PBXBuildFile; fileRef = D5E56CBD2128780B001BCD74 /* puzzle_3.png */; };
 		D5E56CDC2128780C001BCD74 /* puzzle_4.png in Resources */ = {isa = PBXBuildFile; fileRef = D5E56CBE2128780B001BCD74 /* puzzle_4.png */; };
 		D5E56CDD2128780C001BCD74 /* puzzle_2.png in Resources */ = {isa = PBXBuildFile; fileRef = D5E56CBF2128780B001BCD74 /* puzzle_2.png */; };
-		D5E56CDE2128780C001BCD74 /* menu_music.png in Resources */ = {isa = PBXBuildFile; fileRef = D5E56CC12128780B001BCD74 /* menu_music.png */; };
-		D5E56CDF2128780C001BCD74 /* menu_level.png in Resources */ = {isa = PBXBuildFile; fileRef = D5E56CC22128780B001BCD74 /* menu_level.png */; };
-		D5E56CE02128780C001BCD74 /* menu_gallery.png in Resources */ = {isa = PBXBuildFile; fileRef = D5E56CC32128780B001BCD74 /* menu_gallery.png */; };
-		D5E56CE12128780C001BCD74 /* menu_start.png in Resources */ = {isa = PBXBuildFile; fileRef = D5E56CC42128780B001BCD74 /* menu_start.png */; };
-		D5E56CE22128780C001BCD74 /* home_record@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D5E56CC62128780C001BCD74 /* home_record@2x.png */; };
-		D5E56CE32128780C001BCD74 /* home_record@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = D5E56CC72128780C001BCD74 /* home_record@3x.png */; };
-		D5E56CE42128780C001BCD74 /* basic_back@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D5E56CC82128780C001BCD74 /* basic_back@2x.png */; };
-		D5E56CE52128780C001BCD74 /* basic_back@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = D5E56CC92128780C001BCD74 /* basic_back@3x.png */; };
-		D5E56CE62128780C001BCD74 /* home_about@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D5E56CCA2128780C001BCD74 /* home_about@2x.png */; };
-		D5E56CE72128780C001BCD74 /* game_reset@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = D5E56CCB2128780C001BCD74 /* game_reset@3x.png */; };
-		D5E56CE82128780C001BCD74 /* game_reset@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D5E56CCC2128780C001BCD74 /* game_reset@2x.png */; };
-		D5E56CE92128780C001BCD74 /* home_about@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = D5E56CCD2128780C001BCD74 /* home_about@3x.png */; };
-		D5E56CEA2128780C001BCD74 /* game_gallery@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D5E56CCE2128780C001BCD74 /* game_gallery@2x.png */; };
-		D5E56CEB2128780C001BCD74 /* gallery_add@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D5E56CCF2128780C001BCD74 /* gallery_add@2x.png */; };
-		D5E56CEC2128780C001BCD74 /* gallery_add@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = D5E56CD02128780C001BCD74 /* gallery_add@3x.png */; };
-		D5E56CED2128780C001BCD74 /* game_gallery@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = D5E56CD12128780C001BCD74 /* game_gallery@3x.png */; };
 		D5E56CEE2128780C001BCD74 /* puzzle_6.png in Resources */ = {isa = PBXBuildFile; fileRef = D5E56CD22128780C001BCD74 /* puzzle_6.png */; };
-		D5E56CEF2128780C001BCD74 /* level_hard.png in Resources */ = {isa = PBXBuildFile; fileRef = D5E56CD42128780C001BCD74 /* level_hard.png */; };
-		D5E56CF02128780C001BCD74 /* level_medium.png in Resources */ = {isa = PBXBuildFile; fileRef = D5E56CD52128780C001BCD74 /* level_medium.png */; };
-		D5E56CF12128780C001BCD74 /* level_easy.png in Resources */ = {isa = PBXBuildFile; fileRef = D5E56CD62128780C001BCD74 /* level_easy.png */; };
 		D5E56CF22128780C001BCD74 /* puzzle_7.png in Resources */ = {isa = PBXBuildFile; fileRef = D5E56CD72128780C001BCD74 /* puzzle_7.png */; };
 		D5E56CF32128780C001BCD74 /* puzzle_5.png in Resources */ = {isa = PBXBuildFile; fileRef = D5E56CD82128780C001BCD74 /* puzzle_5.png */; };
 		D5E56CFD212DA5A9001BCD74 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = D5E56CFF212DA5A9001BCD74 /* InfoPlist.strings */; };
@@ -390,26 +371,7 @@
 		D5E56CBD2128780B001BCD74 /* puzzle_3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = puzzle_3.png; sourceTree = "<group>"; };
 		D5E56CBE2128780B001BCD74 /* puzzle_4.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = puzzle_4.png; sourceTree = "<group>"; };
 		D5E56CBF2128780B001BCD74 /* puzzle_2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = puzzle_2.png; sourceTree = "<group>"; };
-		D5E56CC12128780B001BCD74 /* menu_music.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = menu_music.png; sourceTree = "<group>"; };
-		D5E56CC22128780B001BCD74 /* menu_level.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = menu_level.png; sourceTree = "<group>"; };
-		D5E56CC32128780B001BCD74 /* menu_gallery.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = menu_gallery.png; sourceTree = "<group>"; };
-		D5E56CC42128780B001BCD74 /* menu_start.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = menu_start.png; sourceTree = "<group>"; };
-		D5E56CC62128780C001BCD74 /* home_record@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "home_record@2x.png"; sourceTree = "<group>"; };
-		D5E56CC72128780C001BCD74 /* home_record@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "home_record@3x.png"; sourceTree = "<group>"; };
-		D5E56CC82128780C001BCD74 /* basic_back@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "basic_back@2x.png"; sourceTree = "<group>"; };
-		D5E56CC92128780C001BCD74 /* basic_back@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "basic_back@3x.png"; sourceTree = "<group>"; };
-		D5E56CCA2128780C001BCD74 /* home_about@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "home_about@2x.png"; sourceTree = "<group>"; };
-		D5E56CCB2128780C001BCD74 /* game_reset@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "game_reset@3x.png"; sourceTree = "<group>"; };
-		D5E56CCC2128780C001BCD74 /* game_reset@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "game_reset@2x.png"; sourceTree = "<group>"; };
-		D5E56CCD2128780C001BCD74 /* home_about@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "home_about@3x.png"; sourceTree = "<group>"; };
-		D5E56CCE2128780C001BCD74 /* game_gallery@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "game_gallery@2x.png"; sourceTree = "<group>"; };
-		D5E56CCF2128780C001BCD74 /* gallery_add@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "gallery_add@2x.png"; sourceTree = "<group>"; };
-		D5E56CD02128780C001BCD74 /* gallery_add@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "gallery_add@3x.png"; sourceTree = "<group>"; };
-		D5E56CD12128780C001BCD74 /* game_gallery@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "game_gallery@3x.png"; sourceTree = "<group>"; };
 		D5E56CD22128780C001BCD74 /* puzzle_6.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = puzzle_6.png; sourceTree = "<group>"; };
-		D5E56CD42128780C001BCD74 /* level_hard.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = level_hard.png; sourceTree = "<group>"; };
-		D5E56CD52128780C001BCD74 /* level_medium.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = level_medium.png; sourceTree = "<group>"; };
-		D5E56CD62128780C001BCD74 /* level_easy.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = level_easy.png; sourceTree = "<group>"; };
 		D5E56CD72128780C001BCD74 /* puzzle_7.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = puzzle_7.png; sourceTree = "<group>"; };
 		D5E56CD82128780C001BCD74 /* puzzle_5.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = puzzle_5.png; sourceTree = "<group>"; };
 		D5E56CFE212DA5A9001BCD74 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
@@ -674,9 +636,6 @@
 		D5B158AC202D7DCA005B76B1 /* Resource */ = {
 			isa = PBXGroup;
 			children = (
-				D5E56CC52128780C001BCD74 /* icon */,
-				D5E56CD32128780C001BCD74 /* level */,
-				D5E56CC02128780B001BCD74 /* menu */,
 				D5E56CBC2128780B001BCD74 /* puzzle_0.png */,
 				D5E56CBB2128780B001BCD74 /* puzzle_1.png */,
 				D5E56CBF2128780B001BCD74 /* puzzle_2.png */,
@@ -940,46 +899,6 @@
 			path = GQHDatePicker;
 			sourceTree = "<group>";
 		};
-		D5E56CC02128780B001BCD74 /* menu */ = {
-			isa = PBXGroup;
-			children = (
-				D5E56CC12128780B001BCD74 /* menu_music.png */,
-				D5E56CC22128780B001BCD74 /* menu_level.png */,
-				D5E56CC32128780B001BCD74 /* menu_gallery.png */,
-				D5E56CC42128780B001BCD74 /* menu_start.png */,
-			);
-			path = menu;
-			sourceTree = "<group>";
-		};
-		D5E56CC52128780C001BCD74 /* icon */ = {
-			isa = PBXGroup;
-			children = (
-				D5E56CC62128780C001BCD74 /* home_record@2x.png */,
-				D5E56CC72128780C001BCD74 /* home_record@3x.png */,
-				D5E56CC82128780C001BCD74 /* basic_back@2x.png */,
-				D5E56CC92128780C001BCD74 /* basic_back@3x.png */,
-				D5E56CCA2128780C001BCD74 /* home_about@2x.png */,
-				D5E56CCB2128780C001BCD74 /* game_reset@3x.png */,
-				D5E56CCC2128780C001BCD74 /* game_reset@2x.png */,
-				D5E56CCD2128780C001BCD74 /* home_about@3x.png */,
-				D5E56CCE2128780C001BCD74 /* game_gallery@2x.png */,
-				D5E56CCF2128780C001BCD74 /* gallery_add@2x.png */,
-				D5E56CD02128780C001BCD74 /* gallery_add@3x.png */,
-				D5E56CD12128780C001BCD74 /* game_gallery@3x.png */,
-			);
-			path = icon;
-			sourceTree = "<group>";
-		};
-		D5E56CD32128780C001BCD74 /* level */ = {
-			isa = PBXGroup;
-			children = (
-				D5E56CD42128780C001BCD74 /* level_hard.png */,
-				D5E56CD52128780C001BCD74 /* level_medium.png */,
-				D5E56CD62128780C001BCD74 /* level_easy.png */,
-			);
-			path = level;
-			sourceTree = "<group>";
-		};
 		DD00B5823577D52194F3FD7B /* Pods */ = {
 			isa = PBXGroup;
 			children = (
@@ -1108,41 +1027,22 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D5E56CED2128780C001BCD74 /* game_gallery@3x.png in Resources */,
-				D5E56CE12128780C001BCD74 /* menu_start.png in Resources */,
 				D5B1585B202D7D55005B76B1 /* Assets.xcassets in Resources */,
 				D5E56CDD2128780C001BCD74 /* puzzle_2.png in Resources */,
-				D5E56CE22128780C001BCD74 /* home_record@2x.png in Resources */,
-				D5E56CE32128780C001BCD74 /* home_record@3x.png in Resources */,
 				D5E56CDA2128780C001BCD74 /* puzzle_0.png in Resources */,
-				D5E56CE52128780C001BCD74 /* basic_back@3x.png in Resources */,
-				D5E56CE72128780C001BCD74 /* game_reset@3x.png in Resources */,
 				04953FE82370131400C3CFE4 /* LaunchScreen.storyboard in Resources */,
 				D5E56CF22128780C001BCD74 /* puzzle_7.png in Resources */,
 				D5B159ED202D818B005B76B1 /* Localizable.strings in Resources */,
-				D5E56CE92128780C001BCD74 /* home_about@3x.png in Resources */,
-				D5E56CE42128780C001BCD74 /* basic_back@2x.png in Resources */,
 				D5B159EA202D7E31005B76B1 /* Main.storyboard in Resources */,
-				D5E56CE82128780C001BCD74 /* game_reset@2x.png in Resources */,
 				D5E56CEE2128780C001BCD74 /* puzzle_6.png in Resources */,
 				04E695A6237E807700564DF3 /* Seed.bundle in Resources */,
-				D5E56CE02128780C001BCD74 /* menu_gallery.png in Resources */,
 				D5B159A2202D7DCB005B76B1 /* README.md in Resources */,
-				D5E56CE62128780C001BCD74 /* home_about@2x.png in Resources */,
-				D5E56CDF2128780C001BCD74 /* menu_level.png in Resources */,
 				D5E56CD92128780C001BCD74 /* puzzle_1.png in Resources */,
 				D5E56CDB2128780C001BCD74 /* puzzle_3.png in Resources */,
-				D5E56CF02128780C001BCD74 /* level_medium.png in Resources */,
 				D5E56CF32128780C001BCD74 /* puzzle_5.png in Resources */,
 				D5E56CFD212DA5A9001BCD74 /* InfoPlist.strings in Resources */,
-				D5E56CF12128780C001BCD74 /* level_easy.png in Resources */,
-				D5E56CEF2128780C001BCD74 /* level_hard.png in Resources */,
-				D5E56CEA2128780C001BCD74 /* game_gallery@2x.png in Resources */,
-				D5E56CEC2128780C001BCD74 /* gallery_add@3x.png in Resources */,
 				D5B159A1202D7DCB005B76B1 /* specifications.md in Resources */,
-				D5E56CDE2128780C001BCD74 /* menu_music.png in Resources */,
 				D5E56CDC2128780C001BCD74 /* puzzle_4.png in Resources */,
-				D5E56CEB2128780C001BCD74 /* gallery_add@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

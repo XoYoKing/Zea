@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<array>
+	<dict>
+		<key>id</key>
+		<integer>0</integer>
+		<key>title</key>
+		<string>newbie</string>
+		<key>order</key>
+		<integer>3</integer>
+		<key>detail</key>
+		<string>newbie</string>
+	</dict>
+	<dict>
+		<key>id</key>
+		<integer>1</integer>
+		<key>title</key>
+		<string>junior</string>
+		<key>order</key>
+		<integer>4</integer>
+		<key>detail</key>
+		<string>junior</string>
+	</dict>
+	<dict>
+		<key>id</key>
+		<integer>2</integer>
+		<key>title</key>
+		<string>senior</string>
+		<key>order</key>
+		<integer>5</integer>
+		<key>detail</key>
+		<string>senior</string>
+	</dict>
+	<dict>
+		<key>id</key>
+		<integer>3</integer>
+		<key>title</key>
+		<string>master</string>
+		<key>order</key>
+		<integer>7</integer>
+		<key>detail</key>
+		<string>master</string>
+	</dict>
+	<dict>
+		<key>id</key>
+		<integer>4</integer>
+		<key>title</key>
+		<string>guru</string>
+		<key>order</key>
+		<integer>9</integer>
+		<key>detail</key>
+		<string>guru</string>
+	</dict>
+	<dict>
+		<key>id</key>
+		<integer>5</integer>
+		<key>title</key>
+		<string>god</string>
+		<key>order</key>
+		<integer>11</integer>
+		<key>detail</key>
+		<string>god</string>
+	</dict>
+</array>
+</plist>

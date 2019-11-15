@@ -254,14 +254,28 @@
     
     if (data) {
         
+        // 等级标题
         NSString *title = [data objectForKey:@"title"];
         self.titleLabel.text = NSLocalizedString(title, @"等级");
         
         // 阶数
-        self.orderLabel.text = [data objectForKey:@"order"];
+        NSNumber *order = [data objectForKey:@"order"];
+        self.orderLabel.text = [NSString stringWithFormat:@"%@",order];
         
+        // 等级描述
         NSString *detail = [data objectForKey:@"detail"];
         self.detailLabel.text = NSLocalizedString(detail, @"说明");
+        
+        // 选中当前页
+        NSNumber *index = [data objectForKey:@"id"];
+        NSNumber *level = [[NSUserDefaults standardUserDefaults] objectForKey:GQHGameLevelKey];
+        NSLog(@"@@@@@@@@@@@@@@%@-%@",index, level);
+        
+        if ([level isEqualToNumber:index]) {
+            
+            NSLog(@"--------------------");
+            self.containerView.backgroundColor = [UIColor redColor];
+        }
     }
 }
 
@@ -281,7 +295,7 @@
     if (!_containerView) {
         
         _containerView = [[UIView alloc] init];
-        _containerView.backgroundColor = [UIColor qh_randomColor];
+        _containerView.backgroundColor = [UIColor whiteColor];
         
         _containerView.layer.cornerRadius = 2.0f;
         _containerView.layer.masksToBounds = YES;
