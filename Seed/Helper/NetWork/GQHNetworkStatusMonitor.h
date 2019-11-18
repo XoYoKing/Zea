@@ -9,7 +9,7 @@
 
 
 /// 网络状态监听通知key
-UIKIT_EXTERN NSString * const GQHNetStatusMonitorNotificationKey;
+UIKIT_EXTERN NSString * _Nonnull const GQHNetStatusMonitorNotificationKey;
 
 /**
  网络状态

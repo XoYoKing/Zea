@@ -21,9 +21,10 @@
 
 /// 全局宏定义、常量类、公共类
 #pragma mark - Macro
-#import "GQHMacro.h"
 #import "GQHConstantHelper.h"
+#import "GQHMacro.h"
 #import "GQHLogger.h"
+#import "GQHDatabaseManager.h"
 
 
 /// 网络请求
@@ -36,15 +37,18 @@
 
 /// 自定义库
 #pragma mark - Library
-#import "GQHBadgeView.h" // 小红点
 #import "GQHDatePickerView.h" // 日期选择器
-#import "GQHSinglePickerView.h" // 单列视图选择器
 #import "GQHGlobalTimer.h" // 全局定时器
+#import "GQHSinglePickerView.h" // 单列视图选择器
 
 
 /// 类别头文件
 #pragma mark - Category
-#pragma mark --Foundation
+//MARK:AppDelegate
+#import "AppDelegate+GQHEasterEggs.h"
+#import "AppDelegate+GQHIAP.h"
+#import "AppDelegate+GQHShare.h"
+//MARK:Foundation
 #import "NSArray+GQHSafety.h"
 #import "NSDate+GQHFormatter.h"
 #import "NSDictionary+GQHJSON.h"
@@ -57,12 +61,8 @@
 #import "NSString+GQHFormatter.h"
 #import "NSString+GQHSafety.h"
 #import "NSBundle+GQHBundle.h"
-
-
-#pragma mark --UIKit
-#import "AppDelegate+GQH3DTouch.h"
-#import "AppDelegate+GQHEasterEggs.h"
-#import "AppDelegate+GQHShare.h"
+//MARK:UIKit
+#import "CAAnimation+GQHAnimation.h"
 #import "UIApplication+GQHApplication.h"
 #import "UIApplication+GQHFileManager.h"
 #import "UIButton+GQHButton.h"
@@ -73,12 +73,13 @@
 #import "UIResponder+GQHRouter.h"
 #import "UITextView+GQHPlaceholder.h"
 #import "UIView+GQHAnimation.h"
+#import "UIView+GQHBadge.h"
+#import "UIView+GQHDashLine.h"
 #import "UIView+GQHFrame.h"
 #import "UIView+GQHHUD.h"
 #import "UIViewController+GQHAlert.h"
 #import "UIViewController+GQHPermission.h"
-
-#pragma mark --GQH
+//MARK:BaseClass
 #import "GQHBaseViewController+GQHNavigationBar.h"
 #import "GQHBaseViewController+GQHNetworking.h"
 #import "GQHBaseViewController+GQHRefresh.h"
@@ -87,6 +88,7 @@
 /// CocoaPods库
 #pragma mark - CocoaPods
 #import <AFNetworking/AFNetworking.h>
+#import <FMDB/FMDB.h>
 #import <Masonry/Masonry.h>
 #import <MJRefresh/MJRefresh.h>
 #import <IQKeyboardManager/IQKeyboardManager.h>

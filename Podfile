@@ -1,7 +1,7 @@
 source 'https://github.com/CocoaPods/Specs.git'
 
 inhibit_all_warnings!
-platform :ios, '9.0'
+platform :ios, '10.0'
 
 def seed_pods
     
@@ -9,7 +9,7 @@ def seed_pods
     pod 'AFNetworking'
     
     #sqlite的工具
-    #pod 'FMDB'
+    pod 'FMDB'
     
     #键盘
     pod 'IQKeyboardManager'

@@ -10,6 +10,8 @@
 #import "GQHHeader.h"
 #import "GQHHomeController.h"
 
+#import "GQHLevelModel.h"
+
 
 @interface AppDelegate ()
 
@@ -19,6 +21,9 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
+    
+    // 0.应用程序本地沙盒路径
+    NSLog(@"%@",UIApplication.sharedApplication.qh_documentsPath);
     
     // 1.初始化应用程序窗口
     self.window = [[UIWindow alloc] initWithFrame:UIScreen.mainScreen.bounds];
@@ -54,7 +59,7 @@
     [[GQHNetworkStatusMonitor qh_sharedNetStatusMonitor] qh_monitorNetStatus];
     
     // 6.3D Touch 功能
-//    [self qh_creatAppShortcutItems];
+    // [self qh_creatAppShortcutItems];
     
     // 7、添加全局定时器
     [[GQHGlobalTimer qh_sharedGlobalTimer] qh_resumeTimer];
@@ -117,6 +122,17 @@
         
         [NSUserDefaults.standardUserDefaults setObject:@"sound_0" forKey:GQHGameSoundKey];
     }
+    
+    //
+    NSString *path = [UIApplication.sharedApplication.qh_documentsPath stringByAppendingPathComponent:@"puzzle.sqlite"];
+    
+    GQHLevelModel *model = [[GQHLevelModel alloc] init];
+    model.qh_id = 1;
+    model.qh_title = @"title";
+    model.qh_order = 4;
+    model.qh_detail = @"detail";
+    
+    [[GQHDatabaseManager qh_sharedDatabaseManager] qh_insertDataWithModel:model filePath:path];
 }
 
 @end
