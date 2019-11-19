@@ -21,6 +21,16 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, copy) NSString *qh_id;
 
 /**
+ 标题
+ */
+@property (nonatomic, copy) NSString *qh_title;
+
+/**
+ 图标
+ */
+@property (nonatomic, copy) NSString *qh_icon;
+
+/**
  模型类
  */
 //@property (nonatomic, strong) NSArray<GQHBookModel *> *qh_books;

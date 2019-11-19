@@ -7,6 +7,7 @@
 
 #import "GQHLevelView.h"
 #import "GQHHeader.h"
+#import "GQHLevelModel.h"
 
 
 #pragma mark -
@@ -254,27 +255,24 @@
     
     if (data) {
         
+        GQHLevelModel *level = (GQHLevelModel *)data;
+        
         // 等级标题
-        NSString *title = [data objectForKey:@"title"];
-        self.titleLabel.text = NSLocalizedString(title, @"等级");
+        self.titleLabel.text = NSLocalizedString(level.qh_title, @"等级");
         
         // 阶数
-        NSNumber *order = [data objectForKey:@"order"];
-        self.orderLabel.text = [NSString stringWithFormat:@"%@",order];
+        self.orderLabel.text = level.qh_order;
         
         // 等级描述
-        NSString *detail = [data objectForKey:@"detail"];
-        self.detailLabel.text = NSLocalizedString(detail, @"说明");
+        self.detailLabel.text = NSLocalizedString(level.qh_detail, @"说明");
         
-        // 选中当前页
-        NSNumber *index = [data objectForKey:@"id"];
-        NSNumber *level = [[NSUserDefaults standardUserDefaults] objectForKey:GQHGameLevelKey];
-        NSLog(@"@@@@@@@@@@@@@@%@-%@",index, level);
-        
-        if ([level isEqualToNumber:index]) {
+        // 选中标识
+        if (level.qh_mark) {
             
-            NSLog(@"--------------------");
             self.containerView.backgroundColor = [UIColor redColor];
+        } else {
+            
+            self.containerView.backgroundColor = [UIColor qh_randomColor];
         }
     }
 }
@@ -295,7 +293,7 @@
     if (!_containerView) {
         
         _containerView = [[UIView alloc] init];
-        _containerView.backgroundColor = [UIColor whiteColor];
+        _containerView.backgroundColor = [UIColor qh_randomColor];
         
         _containerView.layer.cornerRadius = 2.0f;
         _containerView.layer.masksToBounds = YES;

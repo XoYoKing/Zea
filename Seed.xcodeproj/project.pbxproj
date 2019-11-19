@@ -35,7 +35,6 @@
 		04DA1963237AB8FE000F0CBA /* GQHHelpView.m in Sources */ = {isa = PBXBuildFile; fileRef = 04DA1961237AB8FE000F0CBA /* GQHHelpView.m */; };
 		04E695A3237E462400564DF3 /* GQHHelpModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 04E6959F237E462400564DF3 /* GQHHelpModel.m */; };
 		04E695A4237E462400564DF3 /* GQHMenuModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 04E695A1237E462400564DF3 /* GQHMenuModel.m */; };
-		04E695A6237E807700564DF3 /* Seed.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 04E695A5237E807600564DF3 /* Seed.bundle */; };
 		04E695A9237E814F00564DF3 /* NSBundle+GQHBundle.m in Sources */ = {isa = PBXBuildFile; fileRef = 04E695A8237E814F00564DF3 /* NSBundle+GQHBundle.m */; };
 		04E695B9237E82CB00564DF3 /* GQHAppVersionModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 04E695B4237E82CA00564DF3 /* GQHAppVersionModel.m */; };
 		04E695BA237E82CB00564DF3 /* GQHAppFeedbackModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 04E695B5237E82CB00564DF3 /* GQHAppFeedbackModel.m */; };
@@ -46,6 +45,7 @@
 		04E695C7237E832400564DF3 /* GQHLevelController.m in Sources */ = {isa = PBXBuildFile; fileRef = 04E695C5237E832400564DF3 /* GQHLevelController.m */; };
 		04E695CC237E833100564DF3 /* GQHLevelView.m in Sources */ = {isa = PBXBuildFile; fileRef = 04E695C8237E833100564DF3 /* GQHLevelView.m */; };
 		04E695CD237E833100564DF3 /* GQHRecordView.m in Sources */ = {isa = PBXBuildFile; fileRef = 04E695C9237E833100564DF3 /* GQHRecordView.m */; };
+		04EC525723838893002D189C /* Seed.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 04EC525623838893002D189C /* Seed.bundle */; };
 		1A46AACB389F9172E3FD8D47 /* libPods-Seed.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 1F9022C94008243A6972068F /* libPods-Seed.a */; };
 		714D41090B87C418AAE32C7B /* libPods-SeedUITests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = CBB22A5583A8D587340B3181 /* libPods-SeedUITests.a */; };
 		C7EBE85CA3FAE16267B15F16 /* libPods-SeedTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 965655FC3B0AA93F8EE6E1B7 /* libPods-SeedTests.a */; };
@@ -195,7 +195,6 @@
 		04E695A0237E462400564DF3 /* GQHHelpModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GQHHelpModel.h; sourceTree = "<group>"; };
 		04E695A1237E462400564DF3 /* GQHMenuModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GQHMenuModel.m; sourceTree = "<group>"; };
 		04E695A2237E462400564DF3 /* GQHMenuModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GQHMenuModel.h; sourceTree = "<group>"; };
-		04E695A5237E807600564DF3 /* Seed.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Seed.bundle; sourceTree = "<group>"; };
 		04E695A7237E814F00564DF3 /* NSBundle+GQHBundle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSBundle+GQHBundle.h"; path = "../../../../../Seed/Seed/General/Category/Foundation/NSBundle+GQHBundle.h"; sourceTree = "<group>"; };
 		04E695A8237E814F00564DF3 /* NSBundle+GQHBundle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSBundle+GQHBundle.m"; path = "../../../../../Seed/Seed/General/Category/Foundation/NSBundle+GQHBundle.m"; sourceTree = "<group>"; };
 		04E695B3237E82CA00564DF3 /* GQHAppVersionModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GQHAppVersionModel.h; sourceTree = "<group>"; };
@@ -216,6 +215,7 @@
 		04E695C9237E833100564DF3 /* GQHRecordView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GQHRecordView.m; sourceTree = "<group>"; };
 		04E695CA237E833100564DF3 /* GQHRecordView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GQHRecordView.h; sourceTree = "<group>"; };
 		04E695CB237E833100564DF3 /* GQHLevelView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GQHLevelView.h; sourceTree = "<group>"; };
+		04EC525623838893002D189C /* Seed.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Seed.bundle; sourceTree = "<group>"; };
 		1F9022C94008243A6972068F /* libPods-Seed.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Seed.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		26432BFBF9351331B984F0C8 /* Pods-Seed.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Seed.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Seed/Pods-Seed.debug.xcconfig"; sourceTree = "<group>"; };
 		2B3DBF78FB0941BD23D9ADA4 /* Pods-Seed.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Seed.release.xcconfig"; path = "Pods/Target Support Files/Pods-Seed/Pods-Seed.release.xcconfig"; sourceTree = "<group>"; };
@@ -566,7 +566,7 @@
 				D5B158ED202D7DCA005B76B1 /* Library */,
 				D5A5C07622FFE87600A21A77 /* Module */,
 				D5B158AC202D7DCA005B76B1 /* Resource */,
-				04E695A5237E807600564DF3 /* Seed.bundle */,
+				04EC525623838893002D189C /* Seed.bundle */,
 				D5B159E6202D7DEC005B76B1 /* Support Files */,
 			);
 			path = Seed;
@@ -995,11 +995,11 @@
 				D5E56CDD2128780C001BCD74 /* puzzle_2.png in Resources */,
 				D5E56CDA2128780C001BCD74 /* puzzle_0.png in Resources */,
 				04953FE82370131400C3CFE4 /* LaunchScreen.storyboard in Resources */,
+				04EC525723838893002D189C /* Seed.bundle in Resources */,
 				D5E56CF22128780C001BCD74 /* puzzle_7.png in Resources */,
 				D5B159ED202D818B005B76B1 /* Localizable.strings in Resources */,
 				D5B159EA202D7E31005B76B1 /* Main.storyboard in Resources */,
 				D5E56CEE2128780C001BCD74 /* puzzle_6.png in Resources */,
-				04E695A6237E807700564DF3 /* Seed.bundle in Resources */,
 				D5B159A2202D7DCB005B76B1 /* README.md in Resources */,
 				D5E56CD92128780C001BCD74 /* puzzle_1.png in Resources */,
 				D5E56CDB2128780C001BCD74 /* puzzle_3.png in Resources */,

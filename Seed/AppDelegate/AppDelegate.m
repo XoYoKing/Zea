@@ -122,17 +122,6 @@
         
         [NSUserDefaults.standardUserDefaults setObject:@"sound_0" forKey:GQHGameSoundKey];
     }
-    
-    //
-    NSString *path = [UIApplication.sharedApplication.qh_documentsPath stringByAppendingPathComponent:@"puzzle.sqlite"];
-    
-    GQHLevelModel *model = [[GQHLevelModel alloc] init];
-    model.qh_id = 1;
-    model.qh_title = @"title";
-    model.qh_order = 4;
-    model.qh_detail = @"detail";
-    
-    [[GQHDatabaseManager qh_sharedDatabaseManager] qh_insertDataWithModel:model filePath:path];
 }
 
 @end

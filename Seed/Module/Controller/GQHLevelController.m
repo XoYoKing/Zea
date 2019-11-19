@@ -9,6 +9,7 @@
 #import "GQHHeader.h"
 
 #pragma mark Model
+#import "GQHLevelModel.h"
 
 #pragma mark View
 #import "GQHLevelView.h"
@@ -29,7 +30,7 @@
 /**
  数据源
  */
-@property (nonatomic, strong) NSMutableArray *dataSourceArray;
+@property (nonatomic, strong) NSMutableArray<GQHLevelModel *> *dataSourceArray;
 
 @end
 
@@ -162,11 +163,8 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     NSLog(@"");
     
-    // 数据data
-    NSMutableDictionary *data = self.dataSourceArray[indexPath.row];
-    
     // 视图cell
-    GQHLevelTableViewCell *cell = [GQHLevelTableViewCell qh_tableView:tableView cellWithData:data];
+    GQHLevelTableViewCell *cell = [GQHLevelTableViewCell qh_tableView:tableView cellWithData:self.dataSourceArray[indexPath.row]];
     cell.qh_delegate = self;
     
     return cell;
@@ -197,6 +195,17 @@
     
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     
+    [self.dataSourceArray enumerateObjectsUsingBlock:^(GQHLevelModel * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+        
+        obj.qh_mark = NO;
+        
+        if (indexPath.row == idx) {
+            
+            obj.qh_mark = YES;
+        }
+    }];
+    
+    // 选中的标识保存本地
     [[NSUserDefaults standardUserDefaults] setObject:@(indexPath.row) forKey:GQHGameLevelKey];
     [[NSUserDefaults standardUserDefaults] synchronize];
     
@@ -275,6 +284,70 @@
 
 #pragma mark - PrivateMethod
 
+- (NSArray *)levels {
+    
+    // 资源文件名
+    NSString *fileName = @"db_puzzle.sqlite";
+    // 数据表名
+    NSString *tableName = @"p_level";
+    
+    // 等级列表
+    __block NSMutableArray *levels = [NSMutableArray array];
+    
+    NSString *path = [[NSBundle qh_bundle] pathForResource:fileName ofType:nil];
+    FMDatabaseQueue *queue = [[FMDatabaseQueue alloc] initWithPath:path];
+    [queue inDatabase:^(FMDatabase * _Nonnull db) {
+        
+        if ([db open]) {
+            
+            if ([db tableExists:tableName]) {
+                
+                NSString *sql_query = [NSString stringWithFormat:@"SELECT * FROM '%@'",tableName];
+                FMResultSet *resultSet = [db executeQuery:sql_query];
+                
+                while ([resultSet next]) {
+                    
+                    GQHLevelModel *level = [[GQHLevelModel alloc] init];
+                    
+                    [[resultSet resultDictionary] enumerateKeysAndObjectsUsingBlock:^(id  _Nonnull key, id  _Nonnull obj, BOOL * _Nonnull stop) {
+                        
+                        if ([key isEqualToString:@"p_level_id"]) {
+                            
+                            level.qh_id = obj;
+                        } else if ([key isEqualToString:@"p_level_title"]) {
+                            
+                            level.qh_title = obj;
+                        } else if ([key isEqualToString:@"p_level_order"]) {
+                            
+                            level.qh_order = obj;
+                        } else if ([key isEqualToString:@"p_level_detail"]) {
+                            
+                            level.qh_detail = obj;
+                        }
+                        
+                        // 选中标识
+                        NSString *mark = [NSUserDefaults.standardUserDefaults objectForKey:GQHGameLevelKey];
+                        if ([level.qh_id isEqualToString:mark]) {
+                            
+                            level.qh_mark = YES;
+                        }
+                    }];
+                    
+                    if (level.qh_id) {
+                        
+                        [levels insertObject:level atIndex:[level.qh_id integerValue]];
+                    }
+                }
+            }
+        }
+        
+        [db close];
+    }];
+    
+    return [levels copy];
+}
+
+
 #pragma mark - Setter
 
 #pragma mark - Getter
@@ -292,12 +365,11 @@
     return _rootView;
 }
 
-- (NSMutableArray *)dataSourceArray {
+- (NSMutableArray<GQHLevelModel *> *)dataSourceArray {
     
     if (!_dataSourceArray) {
         
-        NSString *filePath = [[NSBundle qh_bundle] pathForResource:@"data_menu_level" ofType:@"plist"];
-        _dataSourceArray = [NSMutableArray arrayWithContentsOfFile:filePath];
+        _dataSourceArray = [NSMutableArray arrayWithArray:[self levels]];
     }
     
     return _dataSourceArray;

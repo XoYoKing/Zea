@@ -18,30 +18,27 @@ NS_ASSUME_NONNULL_BEGIN
 /**
  ID
  */
-@property (nonatomic, assign) NSInteger qh_id;
+@property (nonatomic, copy) NSString *qh_id;
 
 /**
  等级标题
  */
-@property (nonatomic, strong) NSString *qh_title;
+@property (nonatomic, copy) NSString *qh_title;
 
 /**
  等级阶数
  */
-@property (nonatomic, assign) NSInteger qh_order;
+@property (nonatomic, copy) NSString *qh_order;
 
 /**
  等级描述
  */
-@property (nonatomic, strong) NSString *qh_detail;
+@property (nonatomic, copy) NSString *qh_detail;
 
-//@[@{@"title":@"newbie",@"order":@"3",@"detail":@"新手入门级"}.mutableCopy,
-//@{@"title":@"junior",@"order":@"4",@"detail":@"初级"}.mutableCopy,
-//@{@"title":@"senior",@"order":@"5",@"detail":@"高级"}.mutableCopy,
-//@{@"title":@"master",@"order":@"7",@"detail":@"大师级"}.mutableCopy,
-//@{@"title":@"guru",@"order":@"9",@"detail":@"宗师级"}.mutableCopy,
-//@{@"title":@"god",@"order":@"11",@"detail":@"惊为天人"}.mutableCopy].mutableCopy;
-
+/**
+ 是否选中
+ */
+@property (nonatomic, assign) BOOL qh_mark;
 
 #pragma mark -
 /**

@@ -7,6 +7,7 @@
 
 #import "GQHHomeView.h"
 #import "GQHHeader.h"
+#import "GQHMenuModel.h"
 
 
 #pragma mark -
@@ -297,8 +298,10 @@
     
     if (data) {
         
-        self.menuImageView.image = [UIImage imageNamed:[data objectForKey:@"image"]];
-        self.menuTitleLabel.text = NSLocalizedString([data objectForKey:@"title"], @"标题");
+        GQHMenuModel *menu = (GQHMenuModel *)data;
+        
+        self.menuImageView.image = [UIImage imageNamed:menu.qh_icon];
+        self.menuTitleLabel.text = NSLocalizedString(menu.qh_title, @"标题");
     }
     
     self.menuImageView.backgroundColor = [UIColor qh_randomColor];
