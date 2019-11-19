@@ -21,6 +21,26 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, copy) NSString *qh_id;
 
 /**
+ 等级(标题)
+ */
+@property (nonatomic, copy) NSString *qh_level;
+
+/**
+ 用时
+ */
+@property (nonatomic, copy) NSString *qh_time;
+
+/**
+ 计数
+ */
+@property (nonatomic, copy) NSString *qh_count;
+
+/**
+ 时间戳
+ */
+@property (nonatomic, copy) NSString *qh_timestamp;
+
+/**
  模型类
  */
 //@property (nonatomic, strong) NSArray<GQHBookModel *> *qh_books;

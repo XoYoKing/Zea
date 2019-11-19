@@ -9,6 +9,7 @@
 #import "GQHHeader.h"
 
 #pragma mark Model
+#import "GQHImageModel.h"
 
 #pragma mark View
 #import "GQHGalleryView.h"
@@ -29,7 +30,7 @@
 /**
  数据源
  */
-@property (nonatomic, strong) NSMutableArray *dataSourceArray;
+@property (nonatomic, strong) NSMutableArray<GQHImageModel *> *dataSourceArray;
 
 @end
 
@@ -168,15 +169,12 @@
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
     
-//    return self.dataSourceArray.count;
-    return 100;
+    return self.dataSourceArray.count;
 }
 
 - (__kindof UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
     
-//    GQHGalleryViewImagesCollecionViewCell *cell = [GQHGalleryViewImagesCollecionViewCell qh_collectionView:collectionView cellForIndexPath:indexPath data:self.dataSourceArray[indexPath.row]];
-    GQHGalleryViewImagesCollecionViewCell *cell = [GQHGalleryViewImagesCollecionViewCell qh_collectionView:collectionView cellForIndexPath:indexPath data:nil];
-    
+    GQHGalleryViewImagesCollecionViewCell *cell = [GQHGalleryViewImagesCollecionViewCell qh_collectionView:collectionView cellForIndexPath:indexPath data:self.dataSourceArray[indexPath.row]];
     cell.qh_delegate = self;
     
     return cell;
@@ -185,6 +183,21 @@
 #pragma mark - UICollectionViewDelegate
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
     
+    [collectionView deselectItemAtIndexPath:indexPath animated:YES];
+    
+    // 取消选中
+    [self.dataSourceArray enumerateObjectsUsingBlock:^(GQHImageModel * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+        
+        obj.qh_mark = NO;
+    }];
+    
+    // 选中的标识保存本地
+    GQHImageModel *image = self.dataSourceArray[indexPath.row];
+    image.qh_mark = YES;
+    [[NSUserDefaults standardUserDefaults] setObject:image.qh_image forKey:GQHGameImageKey];
+    [[NSUserDefaults standardUserDefaults] synchronize];
+    
+    [collectionView reloadData];
 }
 
 #pragma mark - GQHGalleryViewDelegate
@@ -192,6 +205,66 @@
 #pragma mark - TargetMethod
 
 #pragma mark - PrivateMethod
+
+- (NSArray *)images {
+    
+    // 资源文件名
+    NSString *fileName = @"db_puzzle.sqlite";
+    // 数据表名
+    NSString *tableName = @"p_gallery";
+    
+    // 等级列表
+    __block NSMutableArray *images = [NSMutableArray array];
+    
+    NSString *path = [[NSBundle qh_bundle] pathForResource:fileName ofType:nil];
+    FMDatabaseQueue *queue = [[FMDatabaseQueue alloc] initWithPath:path];
+    [queue inDatabase:^(FMDatabase * _Nonnull db) {
+        
+        if ([db open]) {
+            
+            if ([db tableExists:tableName]) {
+                
+                NSString *sql_query = [NSString stringWithFormat:@"SELECT * FROM '%@'",tableName];
+                FMResultSet *resultSet = [db executeQuery:sql_query];
+                
+                while ([resultSet next]) {
+                    
+                    GQHImageModel *image = [[GQHImageModel alloc] init];
+                    
+                    [[resultSet resultDictionary] enumerateKeysAndObjectsUsingBlock:^(id  _Nonnull key, id  _Nonnull obj, BOOL * _Nonnull stop) {
+                        
+                        if ([key isEqualToString:@"p_gallery_id"]) {
+                            
+                            image.qh_id = obj;
+                        } else if ([key isEqualToString:@"p_gallery_title"]) {
+                            
+                            image.qh_title = obj;
+                        } else if ([key isEqualToString:@"p_gallery_image"]) {
+                            
+                            image.qh_image = obj;
+                        }
+                        
+                        // 选中标识
+                        NSString *mark = [NSUserDefaults.standardUserDefaults objectForKey:GQHGameImageKey];
+                        if ([image.qh_image isEqualToString:mark]) {
+                            
+                            image.qh_mark = YES;
+                        }
+                    }];
+                    
+                    if (image.qh_id) {
+                        
+                        [images insertObject:image atIndex:[image.qh_id integerValue]];
+                    }
+                }
+            }
+        }
+        
+        [db close];
+    }];
+    
+    return [images copy];
+}
 
 #pragma mark - Setter
 
@@ -214,7 +287,11 @@
     
     if (!_dataSourceArray) {
         
-        _dataSourceArray = [NSMutableArray array];
+        _dataSourceArray = [NSMutableArray arrayWithArray:[self images]];
+        
+        // 动物 animal
+        // 自然风景 natural
+        // 人工建筑 cultural
     }
     
     return _dataSourceArray;

@@ -46,9 +46,6 @@
 
 
 
-
-
-
 /**
  当前的游戏状态
  */
@@ -93,8 +90,6 @@
     
     [self.qh_titleButton setTitle:NSLocalizedString(@"puzzle", @"拼图") forState:UIControlStateNormal];
     [self.qh_rightMostButton setImage:[UIImage imageNamed:GQHNavigationBarResetBlackOnClear] forState:UIControlStateNormal];
-    
-    self.level = 11;
 }
 
 /**
@@ -176,6 +171,14 @@
 #pragma mark - GQHGameViewDelegate
 
 #pragma mark - TargetMethod
+
+/// 重置游戏
+/// @param sender <#sender description#>
+- (void)qh_didClickRightMostButton:(UIButton *)sender {
+    
+    [self resetGame:sender];
+}
+
 /// 触摸拼图块
 /// @param sender 拼图块
 - (IBAction)touchPuzzlePiece:(GQHPuzzlePiece *)sender {
@@ -364,10 +367,16 @@
     
     if (!_gameImage) {
         
-        _gameImage = [UIImage imageNamed:@"puzzle_4"];
+        NSString *imageName = [NSUserDefaults.standardUserDefaults objectForKey:GQHGameImageKey];
+        _gameImage = [UIImage imageNamed:imageName];
     }
     
     return _gameImage;
+}
+
+- (NSInteger)level {
+    
+    return [[NSUserDefaults.standardUserDefaults objectForKey:GQHGameLevelKey] integerValue];
 }
 
 @end

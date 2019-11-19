@@ -21,10 +21,19 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, copy) NSString *qh_id;
 
 /**
- 模型类
+ 图片分类名称
  */
-//@property (nonatomic, strong) NSArray<GQHBookModel *> *qh_books;
+@property (nonatomic, copy) NSString *qh_title;
 
+/**
+ 图片(本地文件名称)
+ */
+@property (nonatomic, copy) NSString *qh_image;
+
+/**
+ 是否选中
+ */
+@property (nonatomic, assign) BOOL qh_mark;
 
 #pragma mark -
 /**

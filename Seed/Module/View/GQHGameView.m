@@ -299,7 +299,8 @@
         _previewImageView = [[UIImageView alloc] init];
         _previewImageView.backgroundColor = [UIColor qh_randomColor];
         
-        _previewImageView.image = [UIImage imageNamed:@""];
+        NSString *imageName = [NSUserDefaults.standardUserDefaults objectForKey:GQHGameImageKey];
+        _previewImageView.image = [UIImage imageNamed:imageName];
         
         _previewImageView.layer.cornerRadius = 2.0f;
         _previewImageView.layer.masksToBounds = YES;

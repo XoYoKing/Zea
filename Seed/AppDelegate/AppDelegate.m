@@ -110,7 +110,7 @@
     
     if (![NSUserDefaults.standardUserDefaults objectForKey:GQHGameImageKey]) {
         
-        [NSUserDefaults.standardUserDefaults setObject:@"puzzle_4" forKey:GQHGameImageKey];
+        [NSUserDefaults.standardUserDefaults setObject:@"db_gallery_cultural_0" forKey:GQHGameImageKey];
     }
     
     if (![NSUserDefaults.standardUserDefaults objectForKey:GQHGameLevelKey]) {

@@ -124,9 +124,9 @@
 @property (nonatomic, strong) UILabel *levelLabel;
 
 /**
- 游戏完成时间
+ 游戏完成时间戳
  */
-@property (nonatomic, strong) UILabel *dateLabel;
+@property (nonatomic, strong) UILabel *timestampLabel;
 
 /**
  游戏用时
@@ -228,8 +228,8 @@
     }];
     
     // 游戏完成时间
-    [self.contentView addSubview:self.dateLabel];
-    [self.dateLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+    [self.contentView addSubview:self.timestampLabel];
+    [self.timestampLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         
         make.bottom.mas_equalTo(self.contentView);
         make.left.and.right.mas_equalTo(self.levelLabel);
@@ -250,7 +250,7 @@
     [self.contentView addSubview:self.countLabel];
     [self.countLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         
-        make.bottom.mas_equalTo(self.dateLabel);
+        make.bottom.mas_equalTo(self.timestampLabel);
         make.left.and.right.mas_equalTo(self.timeLabel);
         make.height.mas_equalTo(40.0f);
     }];
@@ -299,21 +299,21 @@
     return _levelLabel;
 }
 
-- (UILabel *)dateLabel {
+- (UILabel *)timestampLabel {
     
-    if (!_dateLabel) {
+    if (!_timestampLabel) {
         
-        _dateLabel = [[UILabel alloc] init];
-        _dateLabel.backgroundColor = [UIColor whiteColor];
+        _timestampLabel = [[UILabel alloc] init];
+        _timestampLabel.backgroundColor = [UIColor whiteColor];
         
-        _dateLabel.font = [UIFont fontWithName:GQHFontNamePFSRegular size:15.0f];
-        _dateLabel.text = NSLocalizedString(@"2019-11-13 14:47:38", @"Label");
-        _dateLabel.textColor = [UIColor qh_colorWithHexString:GQHFontColorGray];
-        _dateLabel.textAlignment = NSTextAlignmentLeft;
-        _dateLabel.numberOfLines = 1;
+        _timestampLabel.font = [UIFont fontWithName:GQHFontNamePFSRegular size:15.0f];
+        _timestampLabel.text = NSLocalizedString(@"2019-11-13 14:47:38", @"Label");
+        _timestampLabel.textColor = [UIColor qh_colorWithHexString:GQHFontColorGray];
+        _timestampLabel.textAlignment = NSTextAlignmentLeft;
+        _timestampLabel.numberOfLines = 1;
     }
     
-    return _dateLabel;
+    return _timestampLabel;
 }
 
 - (UILabel *)timeLabel {

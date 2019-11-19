@@ -195,18 +195,16 @@
     
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     
+    // 取消选中
     [self.dataSourceArray enumerateObjectsUsingBlock:^(GQHLevelModel * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
         
         obj.qh_mark = NO;
-        
-        if (indexPath.row == idx) {
-            
-            obj.qh_mark = YES;
-        }
     }];
     
     // 选中的标识保存本地
-    [[NSUserDefaults standardUserDefaults] setObject:@(indexPath.row) forKey:GQHGameLevelKey];
+    GQHLevelModel *level = self.dataSourceArray[indexPath.row];
+    level.qh_mark = YES;
+    [[NSUserDefaults standardUserDefaults] setObject:level.qh_order forKey:GQHGameLevelKey];
     [[NSUserDefaults standardUserDefaults] synchronize];
     
     [tableView reloadData];
@@ -327,7 +325,7 @@
                         
                         // 选中标识
                         NSString *mark = [NSUserDefaults.standardUserDefaults objectForKey:GQHGameLevelKey];
-                        if ([level.qh_id isEqualToString:mark]) {
+                        if ([level.qh_order isEqualToString:mark]) {
                             
                             level.qh_mark = YES;
                         }
@@ -346,7 +344,6 @@
     
     return [levels copy];
 }
-
 
 #pragma mark - Setter
 

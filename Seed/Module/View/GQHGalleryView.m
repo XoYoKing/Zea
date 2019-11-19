@@ -7,6 +7,7 @@
 
 #import "GQHGalleryView.h"
 #import "GQHHeader.h"
+#import "GQHImageModel.h"
 
 
 #pragma mark -
@@ -227,11 +228,22 @@
     
     if (data) {
         
-        self.gameImageView.image = [UIImage imageNamed:[data objectForKey:@"image"]];
-        self.titleLabel.text = NSLocalizedString([data objectForKey:@"title"], @"title");
+        GQHImageModel *image = (GQHImageModel *)data;
+        
+        self.gameImageView.image = [UIImage imageNamed:image.qh_image];
+        self.titleLabel.text = NSLocalizedString(image.qh_title, @"title");
+        
+        // 选中标识
+        if (image.qh_mark) {
+            
+            self.gameImageView.layer.borderColor = UIColor.redColor.CGColor;
+            self.gameImageView.layer.borderWidth = 1.0f;
+        } else {
+            
+            self.gameImageView.layer.borderColor = UIColor.clearColor.CGColor;
+            self.gameImageView.layer.borderWidth = 0.0f;
+        }
     }
-    
-    self.gameImageView.backgroundColor = [UIColor qh_randomColor];
 }
 
 #pragma mark - Setter
@@ -269,10 +281,9 @@
         _titleLabel = [[UILabel alloc] init];
         _titleLabel.backgroundColor = [UIColor clearColor];
         
-        _titleLabel.font = [UIFont fontWithName:GQHFontNamePFSMedium size:18.0f];
-        _titleLabel.text = NSLocalizedString(@"图片标题", @"");
+        _titleLabel.font = [UIFont fontWithName:GQHFontNamePFSMedium size:16.0f];
         _titleLabel.textColor = [UIColor qh_colorWithHexString:GQHFontColorDarkGray];
-        _titleLabel.textAlignment = NSTextAlignmentCenter;
+        _titleLabel.textAlignment = NSTextAlignmentLeft;
         _titleLabel.numberOfLines = 1;
     }
     
