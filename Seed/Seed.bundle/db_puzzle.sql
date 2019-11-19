@@ -1,4 +1,31 @@
-CREATE TABLE "p_level" (
+/*菜单表*/
+CREATE TABLE IF NOT EXISTS "p_menu" (
+    "p_menu_id" TEXT PRIMARY KEY NOT NULL UNIQUE,
+    "p_menu_title" TEXT,
+    "p_menu_icon" TEXT
+);
+
+INSERT INTO "p_menu"
+VALUES ('0', 'start', 'menu_start');
+
+INSERT INTO "p_menu"
+VALUES ('1', 'record', 'menu_record');
+
+INSERT INTO "p_menu"
+VALUES ('2', 'gallery', 'menu_gallery');
+
+INSERT INTO "p_menu"
+VALUES ('3', 'level', 'menu_level');
+
+INSERT INTO "p_menu"
+VALUES ('4', 'help', 'menu_help');
+
+INSERT INTO "p_menu"
+VALUES ('5', 'about', 'menu_about');
+
+
+/*等级表*/
+CREATE TABLE IF NOT EXISTS "p_level" (
     "p_level_id" TEXT PRIMARY KEY NOT NULL UNIQUE,
     "p_level_title" TEXT,
     "p_level_order" TEXT,
@@ -24,27 +51,28 @@ INSERT INTO "p_level"
 VALUES ('5', 'god', '11', 'level_god_detail');
 
 
-
-CREATE TABLE "p_menu" (
-    "p_menu_id" TEXT PRIMARY KEY NOT NULL UNIQUE,
-    "p_menu_title" TEXT,
-    "p_menu_icon" TEXT
+/*图片表*/
+CREATE TABLE IF NOT EXISTS "p_gallery" (
+    "p_gallery_id" TEXT PRIMARY KEY NOT NULL UNIQUE,
+    "p_gallery_title" TEXT,
+    "p_gallery_image" TEXT
 );
 
-INSERT INTO "p_menu"
-VALUES ('0', 'start', 'menu_start');
+INSERT INTO "p_gallery"
+VALUES ('0', 'animal', 'db_gallery_animal_0');
 
-INSERT INTO "p_menu"
-VALUES ('1', 'record', 'menu_record');
+INSERT INTO "p_gallery"
+VALUES ('1', 'animal', 'db_gallery_animal_1');
 
-INSERT INTO "p_menu"
-VALUES ('2', 'gallery', 'menu_gallery');
+INSERT INTO "p_gallery"
+VALUES ('2', 'animal', 'db_gallery_animal_2');
 
-INSERT INTO "p_menu"
-VALUES ('3', 'level', 'menu_level');
+INSERT INTO "p_gallery"
+VALUES ('3', 'cultural', 'db_gallery_cultural_0');
 
-INSERT INTO "p_menu"
-VALUES ('4', 'help', 'menu_help');
+INSERT INTO "p_gallery"
+VALUES ('4', 'natural', 'db_gallery_natural_0');
 
-INSERT INTO "p_menu"
-VALUES ('5', 'about', 'menu_about');
+INSERT INTO "p_gallery"
+VALUES ('5', 'natural', 'db_gallery_natural_1');
+
