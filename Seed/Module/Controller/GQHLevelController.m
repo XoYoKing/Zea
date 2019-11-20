@@ -204,7 +204,8 @@
     // 选中的标识保存本地
     GQHLevelModel *level = self.dataSourceArray[indexPath.row];
     level.qh_mark = YES;
-    [[NSUserDefaults standardUserDefaults] setObject:level.qh_order forKey:GQHGameLevelKey];
+    [NSUserDefaults.standardUserDefaults setObject:level.qh_order forKey:GQHGameLevelOrderKey];
+    [NSUserDefaults.standardUserDefaults setObject:level.qh_title forKey:GQHGameLevelTitleKey];
     [[NSUserDefaults standardUserDefaults] synchronize];
     
     [tableView reloadData];
@@ -282,69 +283,6 @@
 
 #pragma mark - PrivateMethod
 
-- (NSArray *)levels {
-    
-    // 资源文件名
-    NSString *fileName = @"db_puzzle.sqlite";
-    // 数据表名
-    NSString *tableName = @"p_level";
-    
-    // 等级列表
-    __block NSMutableArray *levels = [NSMutableArray array];
-    
-    NSString *path = [[NSBundle qh_bundle] pathForResource:fileName ofType:nil];
-    FMDatabaseQueue *queue = [[FMDatabaseQueue alloc] initWithPath:path];
-    [queue inDatabase:^(FMDatabase * _Nonnull db) {
-        
-        if ([db open]) {
-            
-            if ([db tableExists:tableName]) {
-                
-                NSString *sql_query = [NSString stringWithFormat:@"SELECT * FROM '%@'",tableName];
-                FMResultSet *resultSet = [db executeQuery:sql_query];
-                
-                while ([resultSet next]) {
-                    
-                    GQHLevelModel *level = [[GQHLevelModel alloc] init];
-                    
-                    [[resultSet resultDictionary] enumerateKeysAndObjectsUsingBlock:^(id  _Nonnull key, id  _Nonnull obj, BOOL * _Nonnull stop) {
-                        
-                        if ([key isEqualToString:@"p_level_id"]) {
-                            
-                            level.qh_id = obj;
-                        } else if ([key isEqualToString:@"p_level_title"]) {
-                            
-                            level.qh_title = obj;
-                        } else if ([key isEqualToString:@"p_level_order"]) {
-                            
-                            level.qh_order = obj;
-                        } else if ([key isEqualToString:@"p_level_detail"]) {
-                            
-                            level.qh_detail = obj;
-                        }
-                        
-                        // 选中标识
-                        NSString *mark = [NSUserDefaults.standardUserDefaults objectForKey:GQHGameLevelKey];
-                        if ([level.qh_order isEqualToString:mark]) {
-                            
-                            level.qh_mark = YES;
-                        }
-                    }];
-                    
-                    if (level.qh_id) {
-                        
-                        [levels insertObject:level atIndex:[level.qh_id integerValue]];
-                    }
-                }
-            }
-        }
-        
-        [db close];
-    }];
-    
-    return [levels copy];
-}
-
 #pragma mark - Setter
 
 #pragma mark - Getter
@@ -366,7 +304,7 @@
     
     if (!_dataSourceArray) {
         
-        _dataSourceArray = [NSMutableArray arrayWithArray:[self levels]];
+        _dataSourceArray = [[GQHLevelModel qh_fetchAllLevels] mutableCopy];
     }
     
     return _dataSourceArray;

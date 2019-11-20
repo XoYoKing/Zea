@@ -236,8 +236,8 @@
         // 选中标识
         if (image.qh_mark) {
             
-            self.gameImageView.layer.borderColor = UIColor.redColor.CGColor;
-            self.gameImageView.layer.borderWidth = 1.0f;
+            self.gameImageView.layer.borderColor = [UIColor qh_colorWithHexString:@"#DB3C1f"].CGColor;
+            self.gameImageView.layer.borderWidth = 5.0f;
         } else {
             
             self.gameImageView.layer.borderColor = UIColor.clearColor.CGColor;

@@ -150,7 +150,7 @@
     if (!_containerView) {
         
         _containerView = [[UIView alloc] init];
-        _containerView.backgroundColor = [UIColor qh_randomColor];
+        _containerView.backgroundColor = [UIColor qh_colorWithHexString:@"#A64B3A"];
         
         _containerView.layer.cornerRadius = 0.0f;
         _containerView.layer.masksToBounds = YES;
@@ -299,8 +299,9 @@
     if (data) {
         
         GQHMenuModel *menu = (GQHMenuModel *)data;
-        
+        // 菜单icon
         self.menuImageView.image = [UIImage imageNamed:menu.qh_icon];
+        // 菜单标题
         self.menuTitleLabel.text = NSLocalizedString(menu.qh_title, @"标题");
     }
     

@@ -11,8 +11,11 @@
 
 /// 游戏图片
 NSString * const GQHGameImageKey = @"game_image";
-/// 游戏等级
-NSString * const GQHGameLevelKey = @"game_level";
+/// 游戏等级(阶数)
+NSString * const GQHGameLevelOrderKey = @"game_level_order";
+/// 游戏等级(标题)
+NSString * const GQHGameLevelTitleKey = @"game_level_title";
+
 /// 游戏音效
 NSString * const GQHGameSoundKey = @"game_sound";
 /// 游戏记录

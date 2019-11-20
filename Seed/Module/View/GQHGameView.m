@@ -7,6 +7,7 @@
 
 #import "GQHGameView.h"
 #import "GQHHeader.h"
+#import "GQHRecordModel.h"
 
 
 #pragma mark -
@@ -265,6 +266,19 @@
 - (void)updateRootViewWithData:(id)data {
     NSLog(@"");
     
+    if (data) {
+           
+           GQHRecordModel *record = (GQHRecordModel *)data;
+           
+           // 游戏用时
+           NSInteger hours = record.qh_gameTime/3600;
+           NSInteger minutes = (record.qh_gameTime%3600)/60;
+           NSInteger seconds = record.qh_gameTime%60;
+           self.currentTimeTextLabel.text = [NSString stringWithFormat:@"%02ld:%02ld:%02ld",hours,minutes,seconds];
+           
+           // 游戏计数
+           self.currentCountTextLabel.text = [NSString stringWithFormat:@"%ld",record.qh_gameCount];
+       }
 }
 
 #pragma mark - Setter
@@ -299,6 +313,7 @@
         _previewImageView = [[UIImageView alloc] init];
         _previewImageView.backgroundColor = [UIColor qh_randomColor];
         
+        // 本地游戏图片
         NSString *imageName = [NSUserDefaults.standardUserDefaults objectForKey:GQHGameImageKey];
         _previewImageView.image = [UIImage imageNamed:imageName];
         
@@ -314,7 +329,7 @@
     if (!_bestBackgroundView) {
         
         _bestBackgroundView = [[UIView alloc] init];
-        _bestBackgroundView.backgroundColor = [UIColor qh_randomColor];
+        _bestBackgroundView.backgroundColor = [UIColor qh_colorWithHexString:@"#EC8C7A"];
         
         _bestBackgroundView.layer.cornerRadius = 2.0f;
         _bestBackgroundView.layer.masksToBounds = YES;
@@ -330,9 +345,9 @@
         _bestTimeTitleLabel = [[UILabel alloc] init];
         _bestTimeTitleLabel.backgroundColor = [UIColor clearColor];
         
-        _bestTimeTitleLabel.font = [UIFont fontWithName:GQHFontNamePFSSemibold size:15.0f];
+        _bestTimeTitleLabel.font = [UIFont fontWithName:GQHFontNamePFSSemibold size:18.0f];
         _bestTimeTitleLabel.text = NSLocalizedString(@"best", @"标题");
-        _bestTimeTitleLabel.textColor = [UIColor qh_colorWithHexString:GQHFontColorGray];
+        _bestTimeTitleLabel.textColor = [UIColor qh_colorWithHexString:GQHFontColorDarkBlack];
         _bestTimeTitleLabel.textAlignment = NSTextAlignmentRight;
         _bestTimeTitleLabel.numberOfLines = 1;
     }
@@ -347,9 +362,9 @@
         _bestTimeTextLabel = [[UILabel alloc] init];
         _bestTimeTextLabel.backgroundColor = [UIColor clearColor];
         
-        _bestTimeTextLabel.font = [UIFont fontWithName:GQHFontNamePFSSemibold size:15.0f];
+        _bestTimeTextLabel.font = [UIFont fontWithName:GQHFontNamePFSSemibold size:18.0f];
         _bestTimeTextLabel.text = NSLocalizedString(@"00:38:20", @"");
-        _bestTimeTextLabel.textColor = [UIColor redColor];
+        _bestTimeTextLabel.textColor = [UIColor qh_colorWithHexString:GQHFontColorDarkBlack];
         _bestTimeTextLabel.textAlignment = NSTextAlignmentLeft;
         _bestTimeTextLabel.numberOfLines = 1;
     }
@@ -364,9 +379,9 @@
         _bestCountTittleLabel = [[UILabel alloc] init];
         _bestCountTittleLabel.backgroundColor = [UIColor clearColor];
         
-        _bestCountTittleLabel.font = [UIFont fontWithName:GQHFontNamePFSSemibold size:15.0f];
+        _bestCountTittleLabel.font = [UIFont fontWithName:GQHFontNamePFSSemibold size:18.0f];
         _bestCountTittleLabel.text = NSLocalizedString(@"least", @"标题");
-        _bestCountTittleLabel.textColor = [UIColor qh_colorWithHexString:GQHFontColorGray];
+        _bestCountTittleLabel.textColor = [UIColor qh_colorWithHexString:GQHFontColorDarkBlack];
         _bestCountTittleLabel.textAlignment = NSTextAlignmentRight;
         _bestCountTittleLabel.numberOfLines = 1;
     }
@@ -381,9 +396,9 @@
         _bestCountTextLabel = [[UILabel alloc] init];
         _bestCountTextLabel.backgroundColor = [UIColor clearColor];
         
-        _bestCountTextLabel.font = [UIFont fontWithName:GQHFontNamePFSSemibold size:15.0f];
+        _bestCountTextLabel.font = [UIFont fontWithName:GQHFontNamePFSSemibold size:18.0f];
         _bestCountTextLabel.text = NSLocalizedString(@"929939", @"");
-        _bestCountTextLabel.textColor = [UIColor redColor];
+        _bestCountTextLabel.textColor = [UIColor qh_colorWithHexString:GQHFontColorDarkBlack];
         _bestCountTextLabel.textAlignment = NSTextAlignmentLeft;
         _bestCountTextLabel.numberOfLines = 1;
     }
@@ -396,7 +411,7 @@
     if (!_currentBackgroundView) {
         
         _currentBackgroundView = [[UIView alloc] init];
-        _currentBackgroundView.backgroundColor = [UIColor qh_randomColor];
+        _currentBackgroundView.backgroundColor = [UIColor qh_colorWithHexString:@"#EC8C7A"];
         
         _currentBackgroundView.layer.cornerRadius = 2.0f;
         _currentBackgroundView.layer.masksToBounds = YES;
@@ -412,9 +427,9 @@
         _currentTimeTitleLabel = [[UILabel alloc] init];
         _currentTimeTitleLabel.backgroundColor = [UIColor clearColor];
         
-        _currentTimeTitleLabel.font = [UIFont fontWithName:GQHFontNamePFSSemibold size:15.0f];
+        _currentTimeTitleLabel.font = [UIFont fontWithName:GQHFontNamePFSSemibold size:18.0f];
         _currentTimeTitleLabel.text = NSLocalizedString(@"time", @"标题");
-        _currentTimeTitleLabel.textColor = [UIColor qh_colorWithHexString:GQHFontColorGray];
+        _currentTimeTitleLabel.textColor = [UIColor qh_colorWithHexString:GQHFontColorDarkBlack];
         _currentTimeTitleLabel.textAlignment = NSTextAlignmentRight;
         _currentTimeTitleLabel.numberOfLines = 1;
     }
@@ -429,9 +444,9 @@
         _currentTimeTextLabel = [[UILabel alloc] init];
         _currentTimeTextLabel.backgroundColor = [UIColor clearColor];
         
-        _currentTimeTextLabel.font = [UIFont fontWithName:GQHFontNamePFSSemibold size:15.0f];
+        _currentTimeTextLabel.font = [UIFont fontWithName:GQHFontNamePFSSemibold size:18.0f];
         _currentTimeTextLabel.text = NSLocalizedString(@"00:29:38", @"");
-        _currentTimeTextLabel.textColor = [UIColor qh_colorWithHexString:GQHFontColorGray];
+        _currentTimeTextLabel.textColor = [UIColor qh_colorWithHexString:GQHFontColorDarkBlack];
         _currentTimeTextLabel.textAlignment = NSTextAlignmentLeft;
         _currentTimeTextLabel.numberOfLines = 1;
     }
@@ -446,9 +461,9 @@
         _currentCountTittleLabel = [[UILabel alloc] init];
         _currentCountTittleLabel.backgroundColor = [UIColor clearColor];
         
-        _currentCountTittleLabel.font = [UIFont fontWithName:GQHFontNamePFSSemibold size:15.0f];
+        _currentCountTittleLabel.font = [UIFont fontWithName:GQHFontNamePFSSemibold size:18.0f];
         _currentCountTittleLabel.text = NSLocalizedString(@"count", @"");
-        _currentCountTittleLabel.textColor = [UIColor qh_colorWithHexString:GQHFontColorGray];
+        _currentCountTittleLabel.textColor = [UIColor qh_colorWithHexString:GQHFontColorDarkBlack];
         _currentCountTittleLabel.textAlignment = NSTextAlignmentRight;
         _currentCountTittleLabel.numberOfLines = 1;
     }
@@ -463,9 +478,9 @@
         _currentCountTextLabel = [[UILabel alloc] init];
         _currentCountTextLabel.backgroundColor = [UIColor clearColor];
         
-        _currentCountTextLabel.font = [UIFont fontWithName:GQHFontNamePFSSemibold size:15.0f];
+        _currentCountTextLabel.font = [UIFont fontWithName:GQHFontNamePFSSemibold size:18.0f];
         _currentCountTextLabel.text = NSLocalizedString(@"182382", @"");
-        _currentCountTextLabel.textColor = [UIColor qh_colorWithHexString:GQHFontColorGray];
+        _currentCountTextLabel.textColor = [UIColor qh_colorWithHexString:GQHFontColorDarkBlack];
         _currentCountTextLabel.textAlignment = NSTextAlignmentLeft;
         _currentCountTextLabel.numberOfLines = 1;
     }
@@ -492,7 +507,7 @@
     if (!_qh_gameboardView) {
         
         _qh_gameboardView = [[UIView alloc] init];
-        _qh_gameboardView.backgroundColor = [UIColor qh_randomColor];
+        _qh_gameboardView.backgroundColor = [UIColor qh_colorWithHexString:@"#A8A8A8"];
         
         _qh_gameboardView.layer.cornerRadius = 2.0f;
         _qh_gameboardView.layer.masksToBounds = YES;

@@ -21,30 +21,34 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, copy) NSString *qh_id;
 
 /**
- 等级(标题)
+ 游戏等级(阶数)
  */
-@property (nonatomic, copy) NSString *qh_level;
+@property (nonatomic, assign) NSInteger qh_levelOrder;
 
 /**
- 用时
+ 游戏等级(标题)
  */
-@property (nonatomic, copy) NSString *qh_time;
+@property (nonatomic, copy) NSString *qh_levelTitle;
 
 /**
- 计数
+ 游戏图片
  */
-@property (nonatomic, copy) NSString *qh_count;
+@property (nonatomic, copy) NSString *qh_gameImage;
 
 /**
- 时间戳
+ 游戏用时
  */
-@property (nonatomic, copy) NSString *qh_timestamp;
+@property (nonatomic, assign) NSInteger qh_gameTime;
 
 /**
- 模型类
+ 游戏计数
  */
-//@property (nonatomic, strong) NSArray<GQHBookModel *> *qh_books;
+@property (nonatomic, assign) NSInteger qh_gameCount;
 
+/**
+ 游戏完成时间戳
+ */
+@property (nonatomic, assign) CGFloat qh_timestamp;
 
 #pragma mark -
 /**
@@ -86,6 +90,17 @@ NS_ASSUME_NONNULL_BEGIN
  @param handler 请求结果回调处理
  */
 + (void)qh_fetchRecordsWithParameters:(nullable id)parameters handler:(void(^)(BOOL status, NSNumber *code, NSString *message, id data))handler;
+
+
+/// 插入数据
+/// @param record 模型数据
++ (BOOL)qh_insertRecord:(GQHRecordModel *)record;
+
+/// 查询所有记录
++ (NSArray<GQHRecordModel *> *)qh_fetchAllRecords;
+
+/// 删除数据表
++ (BOOL)qh_removeTable;
 
 @end
 

@@ -7,7 +7,7 @@
 */
 
 // 首页菜单标题
-"welcome" = "Welcom\nPuzzle";
+"welcome" = "WELCOME\nPUZZLE";
 "start" = "START";
 "record" = "RECORD";
 "gallery" = "GALLERY";
@@ -16,18 +16,18 @@
 "about" = "ABOUT";
 
 // 游戏
-"time" = "Time";
-"count" = "Count";
-"best" = "Best";
-"least" = "Least";
+"time" = "TIME";
+"count" = "COUNT";
+"best" = "BEST";
+"least" = "LEAST";
 
 // 等级
-"newbie" = "Newbie";
-"junior" = "Junior";
-"senior" = "Senior";
-"master" = "Master";
-"guru" = "Guru";
-"god" = "God";
+"newbie" = "NEWBIE";
+"junior" = "JUNIOR";
+"senior" = "SENIOR";
+"master" = "MASTER";
+"guru" = "GURU";
+"god" = "GOD";
 
 // 其他
 "puzzle" = "PUZZLE";

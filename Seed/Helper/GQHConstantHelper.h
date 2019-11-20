@@ -21,8 +21,10 @@ typedef NS_ENUM(NSInteger, GQHGameLevel) {
 
 /// 游戏图片
 UIKIT_EXTERN NSString * const GQHGameImageKey;
-/// 游戏等级
-UIKIT_EXTERN NSString * const GQHGameLevelKey;
+/// 游戏等级(阶数)
+UIKIT_EXTERN NSString * const GQHGameLevelOrderKey;
+/// 游戏等级(标题)
+UIKIT_EXTERN NSString * const GQHGameLevelTitleKey;
 /// 游戏音效
 UIKIT_EXTERN NSString * const GQHGameSoundKey;
 /// 游戏记录

@@ -19,7 +19,7 @@
     [puzzlePiece setBackgroundImage:image forState:UIControlStateNormal];
     [puzzlePiece setBackgroundImage:image forState:UIControlStateHighlighted];
     
-    puzzlePiece.layer.borderWidth = 1.0f;
+    puzzlePiece.layer.borderWidth = 0.5f;
     puzzlePiece.layer.borderColor = UIColor.whiteColor.CGColor;
     
     //MARK:按钮重复点击冲突

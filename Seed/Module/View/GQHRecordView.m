@@ -7,6 +7,7 @@
 
 #import "GQHRecordView.h"
 #import "GQHHeader.h"
+#import "GQHRecordModel.h"
 
 
 #pragma mark -
@@ -269,6 +270,26 @@
 - (void)updateCellWithData:(id)data {
     NSLog(@"");
     
+    if (data) {
+        
+        GQHRecordModel *record = (GQHRecordModel *)data;
+        
+        // 游戏记录等级(标题)
+        self.levelLabel.text = NSLocalizedString(record.qh_levelTitle, @"等级");
+        
+        // 游戏记录用时
+        NSInteger hours = record.qh_gameTime/3600;
+        NSInteger minutes = (record.qh_gameTime%3600)/60;
+        NSInteger seconds = record.qh_gameTime%60;
+        self.timeLabel.text = [NSString stringWithFormat:@"%02ld:%02ld:%02ld",hours,minutes,seconds];
+        
+        // 游戏记录计数
+        self.countLabel.text = [NSString stringWithFormat:@"%ld",record.qh_gameCount];
+        
+        // 游戏记录创建时间戳
+        NSString *date = [NSDate qh_formatterDateStringWithTimeStamp:record.qh_timestamp formatter:GQHDateTimeFormatterTypeHyphen];
+        self.timestampLabel.text = date;
+    }
 }
 
 #pragma mark - Setter

@@ -10,6 +10,7 @@
 #import "GQHPuzzleStatus.h"
 
 #pragma mark Model
+#import "GQHRecordModel.h"
 
 #pragma mark View
 #import "GQHGameView.h"
@@ -26,24 +27,6 @@
  自定义根视图
  */
 @property (nonatomic, strong) GQHGameView *rootView;
-
-/**
- 数据源
- */
-@property (nonatomic, strong) NSMutableArray *dataSourceArray;
-
-
-
-/**
- 游戏图片 (本地读取)
- */
-@property (nonatomic, strong) UIImage *gameImage;
-
-/**
- 游戏等级
- */
-@property (nonatomic, assign) NSInteger level;
-
 
 
 /**
@@ -64,7 +47,18 @@
 /**
  正在自动拼图
  */
-@property (nonatomic, assign, getter=isAutoGaming) BOOL autoGaming;
+@property (nonatomic, assign) BOOL autoGaming;
+
+
+/**
+ 正在游戏中
+ */
+@property (nonatomic, assign) BOOL running;
+
+/**
+ 当前游戏记录
+ */
+@property (nonatomic, strong) GQHRecordModel *record;
 
 @end
 
@@ -90,6 +84,9 @@
     
     [self.qh_titleButton setTitle:NSLocalizedString(@"puzzle", @"拼图") forState:UIControlStateNormal];
     [self.qh_rightMostButton setImage:[UIImage imageNamed:GQHNavigationBarResetBlackOnClear] forState:UIControlStateNormal];
+    
+    // 加载图片并打乱顺序 相当于重置游戏
+    [self resetGame];
 }
 
 /**
@@ -101,12 +98,7 @@
     [super viewWillAppear:animated];
     NSLog(@"");
     
-    // 是否有未报保存的游戏
-    
-    
-    // 加载图片并打乱顺序 相当于重置游戏
-    [self resetGame:nil];
-    
+    //TODO: 是否有未保存的游戏
 }
 
 /**
@@ -173,10 +165,10 @@
 #pragma mark - TargetMethod
 
 /// 重置游戏
-/// @param sender <#sender description#>
+/// @param sender 重置按钮
 - (void)qh_didClickRightMostButton:(UIButton *)sender {
     
-    [self resetGame:sender];
+    [self resetGame];
 }
 
 /// 触摸拼图块
@@ -184,7 +176,7 @@
 - (IBAction)touchPuzzlePiece:(GQHPuzzlePiece *)sender {
     NSLog(@"");
     
-    if (self.isAutoGaming) {
+    if (self.autoGaming) {
         
         return;
     }
@@ -202,31 +194,50 @@
     [status qh_moveTo:index];
     
     //MARK: 重新加载拼图板
-    [self reloadGameBoardWithStatus:self.currentStatus order:self.level];
+    [self reloadGameBoardWithStatus:self.currentStatus order:self.record.qh_levelOrder];
+    
+    self.running = YES;
+    self.record.qh_gameCount++;
+    self.rootView.qh_data = self.record;
     
     // 完成
     if ([status qh_isEqualTo:self.endStatus]) {
         
-        NSLog(@"完成");
         //TODO:完成
-        GQHPuzzlePiece *piece = [self.endStatus.qh_puzzlePieceArray lastObject];
-        piece.alpha = 1.0f;
-        status.qh_mark = -1;
+        
+        // 取消交互
+        self.rootView.qh_gameboardView.userInteractionEnabled = NO;
+        
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.2f * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+            
+            GQHPuzzlePiece *piece = [self.endStatus.qh_puzzlePieceArray lastObject];
+            piece.alpha = 1.0f;
+            status.qh_mark = -1;
+            self.running = NO;
+        });
     }
 }
 
 #pragma mark - PrivateMethod
-
 /// 重置游戏
-/// @param sender 重置按钮
-- (IBAction)resetGame:(id)sender {
+- (void)resetGame {
     
-    if (self.isAutoGaming) {
+    // 自动拼图中
+    if (self.autoGaming) {
         
         return;
     }
     
-    if (!self.gameImage) {
+    // 游戏等级
+    NSInteger gameLevel = self.record.qh_levelOrder;
+    if (gameLevel < 3 || gameLevel > 11) {
+        
+        return;
+    }
+    
+    // 游戏图片
+    UIImage *gameImage = [UIImage imageNamed:self.record.qh_gameImage];
+    if (!gameImage) {
         
         return;
     }
@@ -238,21 +249,42 @@
     }
     
     //MARK:准备拼图块
-    self.currentStatus = [GQHPuzzleStatus qh_puzzleStatusWithOrder:self.level image:self.gameImage];
+    self.currentStatus = [GQHPuzzleStatus qh_puzzleStatusWithOrder:gameLevel image:gameImage];
     
+    // 添加触摸事件
     [self.currentStatus.qh_puzzlePieceArray enumerateObjectsUsingBlock:^(GQHPuzzlePiece * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
         
-        // 添加触摸事件
         [obj addTarget:self action:@selector(touchPuzzlePiece:) forControlEvents:UIControlEventTouchUpInside];
     }];
     
     self.endStatus = nil;
     
+    //MARK:重置游戏数据
+    self.record.qh_gameTime = 0;
+    self.record.qh_gameCount = 0;
+    self.rootView.qh_data =self.record;
+    
     //MARK:显示游戏板
-    [self loadGameBoardView:self.rootView.qh_gameboardView order:self.level];
+    [self loadGameBoardView:self.rootView.qh_gameboardView order:gameLevel];
     
     //MARK:打乱顺序
-    [self shuffleGameBoardViewWithOrder:self.level];
+    [self shuffleGameBoardViewWithOrder:gameLevel];
+    
+    //MARK:Tick-Tick
+    // 记时器是否运行
+    self.running = NO;
+    [GQHGlobalTimer qh_sharedGlobalTimer].qh_block = ^(double timeStamp) {
+
+        if (self.running) {
+
+            self.record.qh_gameTime++;
+        }
+
+        self.rootView.qh_data = self.record;
+    };
+    
+    // 交互
+    self.rootView.qh_gameboardView.userInteractionEnabled = YES;
 }
 
 /// 加载游戏板
@@ -320,7 +352,7 @@
 /// 打乱拼图块顺序(洗牌)
 - (void)shuffleGameBoardViewWithOrder:(NSInteger)order {
     
-    if (self.isAutoGaming) {
+    if (self.autoGaming) {
         
         return;
     }
@@ -335,8 +367,6 @@
     [self.currentStatus qh_shuffle:(order * order * 100)];
     [self reloadGameBoardWithStatus:self.currentStatus order:order];
 }
-
-
 
 #pragma mark - Setter
 
@@ -353,30 +383,32 @@
     return _rootView;
 }
 
-- (NSMutableArray *)dataSourceArray {
+- (GQHRecordModel *)record {
     
-    if (!_dataSourceArray) {
+    if (!_record) {
         
-        _dataSourceArray = [NSMutableArray array];
+        _record = [[GQHRecordModel alloc] init];
+        
+        // 游戏记录等级(阶数)
+        _record.qh_levelOrder = [[NSUserDefaults.standardUserDefaults objectForKey:GQHGameLevelOrderKey] integerValue];
+        _record.qh_levelTitle = [NSUserDefaults.standardUserDefaults objectForKey:GQHGameLevelTitleKey];
+        // 游戏记录图片
+        _record.qh_gameImage = [NSUserDefaults.standardUserDefaults objectForKey:GQHGameImageKey];
+        // 游戏记录用时
+        _record.qh_gameTime = 0;
+        // 游戏记录计数
+        _record.qh_gameCount = 0;
+        
+        
+        
+        //TODO:保存游戏记录时赋值
+        // 游戏记录id
+//        _record.qh_id = @"12";
+        // 游戏记录创建时间
+//        _record.qh_timestamp = [[NSDate date] timeIntervalSince1970];
     }
     
-    return _dataSourceArray;
-}
-
-- (UIImage *)gameImage {
-    
-    if (!_gameImage) {
-        
-        NSString *imageName = [NSUserDefaults.standardUserDefaults objectForKey:GQHGameImageKey];
-        _gameImage = [UIImage imageNamed:imageName];
-    }
-    
-    return _gameImage;
-}
-
-- (NSInteger)level {
-    
-    return [[NSUserDefaults.standardUserDefaults objectForKey:GQHGameLevelKey] integerValue];
+    return _record;
 }
 
 @end

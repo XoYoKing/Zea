@@ -94,7 +94,7 @@
     if (!_qh_tableView) {
         
         _qh_tableView = [[UITableView alloc] initWithFrame:CGRectZero style:UITableViewStyleGrouped];
-        _qh_tableView.backgroundColor = [UIColor whiteColor];
+        _qh_tableView.backgroundColor = [UIColor clearColor];
         _qh_tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
         _qh_tableView.showsVerticalScrollIndicator = NO;
         _qh_tableView.showsHorizontalScrollIndicator = NO;
@@ -269,10 +269,14 @@
         // 选中标识
         if (level.qh_mark) {
             
-            self.containerView.backgroundColor = [UIColor redColor];
+            self.orderLabel.textColor = [UIColor qh_colorWithHexString:@"#DB3C1f"];
+            self.orderLabel.backgroundColor = [UIColor whiteColor];
+            self.containerView.backgroundColor = [UIColor qh_colorWithHexString:@"#DB3C1f"];
         } else {
             
-            self.containerView.backgroundColor = [UIColor qh_randomColor];
+            self.orderLabel.textColor = [UIColor whiteColor];
+            self.orderLabel.backgroundColor = [UIColor qh_colorWithHexString:@"#DB3C1f"];
+            self.containerView.backgroundColor = [UIColor whiteColor];
         }
     }
 }

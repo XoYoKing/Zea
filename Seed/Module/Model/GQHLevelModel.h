@@ -81,7 +81,8 @@ NS_ASSUME_NONNULL_BEGIN
  */
 + (void)qh_fetchLevelsWithParameters:(nullable id)parameters handler:(void(^)(BOOL status, NSNumber *code, NSString *message, id data))handler;
 
-
+/// 查询所有记录
++ (NSArray<GQHLevelModel *> *)qh_fetchAllLevels;
 
 @end
 

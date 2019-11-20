@@ -9,8 +9,10 @@
 #import "GQHHeader.h"
 
 
-/// 本地归档文件名
-static NSString * const kFileName = @"game_level.f";
+/// 本地数据库文件名
+static NSString * const kFileName = @"db_puzzle.sqlite";
+/// 本地数据表文件名
+static NSString * const kTableName = @"p_level";
 
 @implementation GQHLevelModel
 
@@ -159,6 +161,69 @@ static NSString * const kFileName = @"game_level.f";
  */
 + (void)qh_fetchLevelsWithParameters:(id)parameters handler:(void(^)(BOOL status, NSNumber *code, NSString *message, id data))handler {
     
+}
+
+
+/// 查询所有记录
++ (NSArray<GQHLevelModel *> *)qh_fetchAllLevels {
+    
+    // 数据库文件路径
+    NSString *filePath = [[NSBundle qh_bundle] pathForResource:kFileName ofType:nil];
+    // 数据库队列
+    FMDatabaseQueue *queue = [[FMDatabaseQueue alloc] initWithPath:filePath];
+    
+    // 等级列表
+    __block NSMutableArray *levels = [NSMutableArray array];
+    
+    [queue inDatabase:^(FMDatabase * _Nonnull db) {
+        
+        if ([db open]) {
+            
+            if ([db tableExists:kTableName]) {
+                
+                NSString *sql_query = [NSString stringWithFormat:@"SELECT * FROM '%@'",kTableName];
+                FMResultSet *resultSet = [db executeQuery:sql_query];
+                
+                while ([resultSet next]) {
+                    
+                    GQHLevelModel *level = [[GQHLevelModel alloc] init];
+                    
+                    [[resultSet resultDictionary] enumerateKeysAndObjectsUsingBlock:^(id  _Nonnull key, id  _Nonnull obj, BOOL * _Nonnull stop) {
+                        
+                        if ([key isEqualToString:@"p_level_id"]) {
+                            
+                            level.qh_id = obj;
+                        } else if ([key isEqualToString:@"p_level_title"]) {
+                            
+                            level.qh_title = obj;
+                        } else if ([key isEqualToString:@"p_level_order"]) {
+                            
+                            level.qh_order = obj;
+                        } else if ([key isEqualToString:@"p_level_detail"]) {
+                            
+                            level.qh_detail = obj;
+                        }
+                        
+                        // 选中标识
+                        NSString *mark = [NSUserDefaults.standardUserDefaults objectForKey:GQHGameLevelOrderKey];
+                        if ([level.qh_order isEqualToString:mark]) {
+                            
+                            level.qh_mark = YES;
+                        }
+                    }];
+                    
+                    if (level.qh_id) {
+                        
+                        [levels insertObject:level atIndex:[level.qh_id integerValue]];
+                    }
+                }
+            }
+        }
+        
+        [db close];
+    }];
+    
+    return [levels copy];
 }
 
 #pragma mark - Setter

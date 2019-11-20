@@ -174,7 +174,7 @@ static NSString * const kDateTimeFormatterTypeColonHourMinute = @"HH:mm";
  */
 + (NSString *)qh_formatterDateStringWithTimeStamp:(NSTimeInterval)timeStamp formatter:(GQHDateTimeFormatterType)formatterType {
     
-    NSDate *date = [NSDate dateWithTimeIntervalSince1970:timeStamp/1000];
+    NSDate *date = [NSDate dateWithTimeIntervalSince1970:timeStamp];
     
     NSDateFormatter *dateFormatter = NSDate.qh_defaultDateFormatter;
     dateFormatter.dateFormat = [self qh_formatterTypeStringWith:formatterType];

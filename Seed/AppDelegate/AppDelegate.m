@@ -10,8 +10,6 @@
 #import "GQHHeader.h"
 #import "GQHHomeController.h"
 
-#import "GQHLevelModel.h"
-
 
 @interface AppDelegate ()
 
@@ -113,14 +111,10 @@
         [NSUserDefaults.standardUserDefaults setObject:@"db_gallery_cultural_0" forKey:GQHGameImageKey];
     }
     
-    if (![NSUserDefaults.standardUserDefaults objectForKey:GQHGameLevelKey]) {
-        
-        [NSUserDefaults.standardUserDefaults setObject:[NSNumber numberWithInteger:GQHGameLevelNewbie] forKey:GQHGameLevelKey];
-    }
-    
-    if (![NSUserDefaults.standardUserDefaults objectForKey:GQHGameSoundKey]) {
-        
-        [NSUserDefaults.standardUserDefaults setObject:@"sound_0" forKey:GQHGameSoundKey];
+    if (![NSUserDefaults.standardUserDefaults objectForKey:GQHGameLevelOrderKey]) {
+
+        [NSUserDefaults.standardUserDefaults setObject:@"3" forKey:GQHGameLevelOrderKey];
+        [NSUserDefaults.standardUserDefaults setObject:@"newbie" forKey:GQHGameLevelTitleKey];
     }
 }
 

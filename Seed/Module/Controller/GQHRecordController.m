@@ -9,6 +9,7 @@
 #import "GQHHeader.h"
 
 #pragma mark Model
+#import "GQHRecordModel.h"
 
 #pragma mark View
 #import "GQHRecordView.h"
@@ -54,6 +55,16 @@
     NSLog(@"");
     
     [self.qh_titleButton setTitle:NSLocalizedString(@"record", @"标题") forState:UIControlStateNormal];
+    
+    GQHRecordModel *record = [[GQHRecordModel alloc] init];
+    record.qh_id = @"0";
+    record.qh_levelOrder = 3;
+    record.qh_levelTitle = @"newbie";
+    record.qh_gameImage = @"db_gallery_animal_2";
+    record.qh_gameTime = 312;
+    record.qh_gameCount = 39;
+    record.qh_timestamp = 1574223423.54634;
+    [GQHRecordModel qh_insertRecord:record];
 }
 
 /**
@@ -149,7 +160,7 @@
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     NSLog(@"");
     
-    return 50;
+    return self.dataSourceArray.count;
 }
 
 /**
@@ -162,11 +173,8 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     NSLog(@"");
     
-    // 数据data
-    NSMutableDictionary *data = [NSMutableDictionary dictionary];
-    
     // 视图cell
-    GQHRecordTableViewCell *cell = [GQHRecordTableViewCell qh_tableView:tableView cellWithData:data];
+    GQHRecordTableViewCell *cell = [GQHRecordTableViewCell qh_tableView:tableView cellWithData:self.dataSourceArray[indexPath.row]];
     cell.qh_delegate = self;
     
     return cell;
@@ -292,7 +300,7 @@
     
     if (!_dataSourceArray) {
         
-        _dataSourceArray = [NSMutableArray array];
+        _dataSourceArray = [[GQHRecordModel qh_fetchAllRecords] mutableCopy];
     }
     
     return _dataSourceArray;
