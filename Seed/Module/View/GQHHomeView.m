@@ -85,9 +85,9 @@
     [self addSubview:self.qh_collectionView];
     [self.qh_collectionView mas_makeConstraints:^(MASConstraintMaker *make) {
         
-        make.top.mas_equalTo(self.containerView.mas_bottom).with.inset(GQHSpacing);
+        make.top.mas_equalTo(self.containerView.mas_bottom);
         make.left.and.right.mas_equalTo(self).with.inset(GQHSingleMargin);
-        make.bottom.mas_equalTo(self);
+        make.bottom.mas_equalTo(self).with.inset(self.qh_homeIndicatorHeight);
     }];
 }
 
