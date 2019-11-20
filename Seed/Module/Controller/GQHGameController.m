@@ -55,6 +55,12 @@
  */
 @property (nonatomic, assign) BOOL running;
 
+
+/**
+ 最优记录
+ */
+@property (nonatomic, strong) GQHRecordModel *bestRecord;
+
 /**
  当前游戏记录
  */
@@ -85,8 +91,11 @@
     [self.qh_titleButton setTitle:NSLocalizedString(@"puzzle", @"拼图") forState:UIControlStateNormal];
     [self.qh_rightMostButton setImage:[UIImage imageNamed:GQHNavigationBarResetBlackOnClear] forState:UIControlStateNormal];
     
-    // 加载图片并打乱顺序 相当于重置游戏
+    // 重置游戏
     [self resetGame];
+    
+    // 查询最优记录
+    [self fetchBestRecord];
 }
 
 /**
@@ -198,12 +207,10 @@
     
     self.running = YES;
     self.record.qh_gameCount++;
-    self.rootView.qh_data = self.record;
+    self.rootView.qh_record = self.record;
     
-    // 完成
+    //TODO:完成
     if ([status qh_isEqualTo:self.endStatus]) {
-        
-        //TODO:完成
         
         // 取消交互
         self.rootView.qh_gameboardView.userInteractionEnabled = NO;
@@ -214,6 +221,13 @@
             piece.alpha = 1.0f;
             status.qh_mark = -1;
             self.running = NO;
+            
+            self.record.qh_timestamp = [[NSDate date] timeIntervalSince1970];
+            if ([GQHRecordModel qh_insertRecord:self.record]) {
+                
+                // 完成
+                [self qh_alertWithTitle:NSLocalizedString(@"gameover", @"游戏结束") message:nil handler:nil completion:nil];
+            }
         });
     }
 }
@@ -262,7 +276,7 @@
     //MARK:重置游戏数据
     self.record.qh_gameTime = 0;
     self.record.qh_gameCount = 0;
-    self.rootView.qh_data =self.record;
+    self.rootView.qh_record =self.record;
     
     //MARK:显示游戏板
     [self loadGameBoardView:self.rootView.qh_gameboardView order:gameLevel];
@@ -280,7 +294,7 @@
             self.record.qh_gameTime++;
         }
 
-        self.rootView.qh_data = self.record;
+        self.rootView.qh_record = self.record;
     };
     
     // 交互
@@ -368,6 +382,20 @@
     [self reloadGameBoardWithStatus:self.currentStatus order:order];
 }
 
+- (void)fetchBestRecord {
+    
+    NSArray<GQHRecordModel *> *records = [GQHRecordModel qh_fetchBestRecords];
+    [records enumerateObjectsUsingBlock:^(GQHRecordModel * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+        
+        if (self.record.qh_levelOrder == obj.qh_levelOrder) {
+            
+            self.bestRecord = obj;
+        }
+    }];
+    
+    self.rootView.qh_bestRecord = self.bestRecord;
+}
+
 #pragma mark - Setter
 
 #pragma mark - Getter
@@ -398,14 +426,6 @@
         _record.qh_gameTime = 0;
         // 游戏记录计数
         _record.qh_gameCount = 0;
-        
-        
-        
-        //TODO:保存游戏记录时赋值
-        // 游戏记录id
-//        _record.qh_id = @"12";
-        // 游戏记录创建时间
-//        _record.qh_timestamp = [[NSDate date] timeIntervalSince1970];
     }
     
     return _record;

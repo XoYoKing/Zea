@@ -254,7 +254,8 @@
 - (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section {
     NSLog(@"");
     
-    return CGFLOAT_MIN;
+    //MARK:适配刘海屏底部操作区
+    return self.rootView.qh_homeIndicatorHeight + GQHSpacing;
 }
 
 /**

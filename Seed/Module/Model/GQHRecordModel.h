@@ -99,6 +99,9 @@ NS_ASSUME_NONNULL_BEGIN
 /// 查询所有记录
 + (NSArray<GQHRecordModel *> *)qh_fetchAllRecords;
 
+/// 最优记录
++ (NSArray<GQHRecordModel *> *)qh_fetchBestRecords;
+
 /// 删除数据表
 + (BOOL)qh_removeTable;
 

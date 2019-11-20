@@ -265,6 +265,68 @@ static NSString * const kTableName = @"p_record";
     return [result copy];
 }
 
+/// 最优记录
++ (NSArray<GQHRecordModel *> *)qh_fetchBestRecords {
+    
+    // 数据库文件路径
+    NSString *filePath = [self filePathWith:kFileName];
+    // 数据库队列
+    FMDatabaseQueue *queue = [FMDatabaseQueue databaseQueueWithPath:filePath];
+    
+    NSMutableArray *result = [NSMutableArray array];
+    
+    [queue inDatabase:^(FMDatabase * _Nonnull db) {
+        
+        if ([db open]) {
+            
+            if ([db tableExists:kTableName]) {
+                
+                FMResultSet *resultSet = [db executeQuery:[self sql_queryBestRecords:kTableName]];
+                
+                while ([resultSet next]) {
+                    
+                    __block GQHRecordModel *model = [[GQHRecordModel alloc] init];
+                    
+                    [[resultSet resultDictionary] enumerateKeysAndObjectsUsingBlock:^(id  _Nonnull key, id  _Nonnull obj, BOOL * _Nonnull stop) {
+                        
+                        if ([key isEqualToString:@"p_record_id"]) {
+                            
+                            model.qh_id = obj;
+                        } else if ([key isEqualToString:@"p_record_level_order"]) {
+                            
+                            model.qh_levelOrder = [obj integerValue];
+                        } else if ([key isEqualToString:@"p_record_level_title"]) {
+                            
+                            model.qh_levelTitle = obj;
+                        } else if ([key isEqualToString:@"p_record_image"]) {
+                            
+                            model.qh_gameImage = obj;
+                        } else if ([key isEqualToString:@"p_record_time"]) {
+                            
+                            model.qh_gameTime = [obj integerValue];
+                        } else if ([key isEqualToString:@"p_record_count"]) {
+                            
+                            model.qh_gameCount = [obj integerValue];
+                        } else if ([key isEqualToString:@"p_record_timestamp"]) {
+                            
+                            model.qh_timestamp = [obj doubleValue];
+                        }
+                    }];
+                    
+                    if (model.qh_id) {
+                        
+                        [result addObject:model];
+                    }
+                }
+            }
+        }
+        
+        [db close];
+    }];
+    
+    return [result copy];
+}
+
 /// 删除数据表
 + (BOOL)qh_removeTable {
     
@@ -332,14 +394,21 @@ static NSString * const kTableName = @"p_record";
 /// @param table 数据表名称
 + (NSString *)sql_queryRecords:(NSString *)table {
     
-    return [NSString stringWithFormat:@"SELECT * FROM '%@'",table];
+    return [NSString stringWithFormat:@"SELECT * FROM '%@';",table];
+}
+
+/// 查询最优记录
+/// @param table 数据表名称
++ (NSString *)sql_queryBestRecords:(NSString *)table {
+    
+    return [NSString stringWithFormat:@"SELECT *, MIN(p_record_time) FROM '%@' GROUP BY p_record_level_order;",table];
 }
 
 /// 删除数据表
 /// @param table 数据表名称
 + (NSString *)sql_dropTable:(NSString *)table {
     
-    return [NSString stringWithFormat:@"DROP TABLE '%@'", table];
+    return [NSString stringWithFormat:@"DROP TABLE '%@';", table];
 }
 
 #pragma mark - Setter

@@ -6,7 +6,7 @@
 //
 
 #import "GQHBaseView.h"
-
+@class GQHRecordModel;
 
 /**
  自定义视图的代理
@@ -38,6 +38,16 @@ NS_ASSUME_NONNULL_BEGIN
  视图数据
  */
 @property (nonatomic, strong) id qh_data;
+
+/**
+ 当前记录
+ */
+@property (nonatomic, strong) GQHRecordModel *qh_record;
+
+/**
+ 最优记录
+ */
+@property (nonatomic, strong) GQHRecordModel *qh_bestRecord;
 
 /**
  游戏板视图

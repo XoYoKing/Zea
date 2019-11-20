@@ -266,19 +266,6 @@
 - (void)updateRootViewWithData:(id)data {
     NSLog(@"");
     
-    if (data) {
-           
-           GQHRecordModel *record = (GQHRecordModel *)data;
-           
-           // 游戏用时
-           NSInteger hours = record.qh_gameTime/3600;
-           NSInteger minutes = (record.qh_gameTime%3600)/60;
-           NSInteger seconds = record.qh_gameTime%60;
-           self.currentTimeTextLabel.text = [NSString stringWithFormat:@"%02ld:%02ld:%02ld",hours,minutes,seconds];
-           
-           // 游戏计数
-           self.currentCountTextLabel.text = [NSString stringWithFormat:@"%ld",record.qh_gameCount];
-       }
 }
 
 #pragma mark - Setter
@@ -288,6 +275,45 @@
     
     // 根据视图数据更新视图
     [self updateRootViewWithData:qh_data];
+}
+
+- (void)setQh_record:(GQHRecordModel *)qh_record {
+    
+    _qh_record = qh_record;
+    
+    // 游戏用时
+    NSInteger hours = qh_record.qh_gameTime/3600;
+    NSInteger minutes = (qh_record.qh_gameTime%3600)/60;
+    NSInteger seconds = qh_record.qh_gameTime%60;
+    self.currentTimeTextLabel.text = [NSString stringWithFormat:@"%02ld:%02ld:%02ld",hours,minutes,seconds];
+    
+    // 游戏计数
+    self.currentCountTextLabel.text = [NSString stringWithFormat:@"%ld",qh_record.qh_gameCount];
+}
+
+- (void)setQh_bestRecord:(GQHRecordModel *)qh_bestRecord {
+    
+    _qh_bestRecord = qh_bestRecord;
+    // 游戏用时
+    if (qh_bestRecord.qh_gameTime) {
+        
+        NSInteger hours = qh_bestRecord.qh_gameTime/3600;
+        NSInteger minutes = (qh_bestRecord.qh_gameTime%3600)/60;
+        NSInteger seconds = qh_bestRecord.qh_gameTime%60;
+        self.bestTimeTextLabel.text = [NSString stringWithFormat:@"%02ld:%02ld:%02ld",hours,minutes,seconds];
+    } else {
+        
+        self.bestTimeTextLabel.text = @"-";
+    }
+    
+    // 游戏计数
+    if (qh_bestRecord.qh_gameCount) {
+        
+        self.bestCountTextLabel.text = [NSString stringWithFormat:@"%ld",qh_bestRecord.qh_gameCount];
+    } else {
+        
+        self.bestCountTextLabel.text = @"-";
+    }
 }
 
 #pragma mark - Getter
@@ -363,7 +389,7 @@
         _bestTimeTextLabel.backgroundColor = [UIColor clearColor];
         
         _bestTimeTextLabel.font = [UIFont fontWithName:GQHFontNamePFSSemibold size:18.0f];
-        _bestTimeTextLabel.text = NSLocalizedString(@"00:38:20", @"");
+        _bestTimeTextLabel.text = NSLocalizedString(@"-", @"");
         _bestTimeTextLabel.textColor = [UIColor qh_colorWithHexString:GQHFontColorDarkBlack];
         _bestTimeTextLabel.textAlignment = NSTextAlignmentLeft;
         _bestTimeTextLabel.numberOfLines = 1;
@@ -397,7 +423,7 @@
         _bestCountTextLabel.backgroundColor = [UIColor clearColor];
         
         _bestCountTextLabel.font = [UIFont fontWithName:GQHFontNamePFSSemibold size:18.0f];
-        _bestCountTextLabel.text = NSLocalizedString(@"929939", @"");
+        _bestCountTextLabel.text = NSLocalizedString(@"-", @"");
         _bestCountTextLabel.textColor = [UIColor qh_colorWithHexString:GQHFontColorDarkBlack];
         _bestCountTextLabel.textAlignment = NSTextAlignmentLeft;
         _bestCountTextLabel.numberOfLines = 1;
@@ -445,7 +471,7 @@
         _currentTimeTextLabel.backgroundColor = [UIColor clearColor];
         
         _currentTimeTextLabel.font = [UIFont fontWithName:GQHFontNamePFSSemibold size:18.0f];
-        _currentTimeTextLabel.text = NSLocalizedString(@"00:29:38", @"");
+        _currentTimeTextLabel.text = NSLocalizedString(@"-", @"");
         _currentTimeTextLabel.textColor = [UIColor qh_colorWithHexString:GQHFontColorDarkBlack];
         _currentTimeTextLabel.textAlignment = NSTextAlignmentLeft;
         _currentTimeTextLabel.numberOfLines = 1;
@@ -479,7 +505,7 @@
         _currentCountTextLabel.backgroundColor = [UIColor clearColor];
         
         _currentCountTextLabel.font = [UIFont fontWithName:GQHFontNamePFSSemibold size:18.0f];
-        _currentCountTextLabel.text = NSLocalizedString(@"182382", @"");
+        _currentCountTextLabel.text = NSLocalizedString(@"-", @"");
         _currentCountTextLabel.textColor = [UIColor qh_colorWithHexString:GQHFontColorDarkBlack];
         _currentCountTextLabel.textAlignment = NSTextAlignmentLeft;
         _currentCountTextLabel.numberOfLines = 1;

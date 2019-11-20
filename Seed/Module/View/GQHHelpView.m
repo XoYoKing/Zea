@@ -163,7 +163,7 @@
         [self autoLayoutWithConstraints];
         
         // 其他初始化
-        
+        self.backgroundColor = [UIColor whiteColor];
     }
     
     return self;

@@ -16,10 +16,10 @@
 "about" = "关于";
 
 // 游戏
-"time" = "时间";
-"count" = "计数";
-"best" = "最佳";
-"least" = "最少";
+"time" = "当前时间";
+"count" = "当前计数";
+"best" = "最佳时间";
+"least" = "最少计数";
 
 // 等级
 "newbie" = "新手";
@@ -29,8 +29,18 @@
 "guru" = "宗师";
 "god" = "天人";
 
+"level_newbie_detail" = "开始吧!";
+"level_junior_detail" = "会玩啦!";
+"level_senior_detail" = "很擅长!";
+"level_master_detail" = "神操作!";
+"level_guru_detail" = "眼神好!";
+"level_god_detail" = "惊为天人!";
+
+
 // 其他
 "puzzle" = "拼图";
+"gameover" = "棒极了!";
+"ok" = "确定";
 
 // 图库分类
 "animal" = "动物";

@@ -128,9 +128,9 @@
         _qh_collectionView.showsHorizontalScrollIndicator = NO;
         _qh_collectionView.showsVerticalScrollIndicator = NO;
         _qh_collectionView.pagingEnabled = NO;
-        _qh_collectionView.bounces = NO;
+        _qh_collectionView.bounces = YES;
         _qh_collectionView.alwaysBounceVertical = NO;
-        _qh_collectionView.scrollEnabled = NO;
+        _qh_collectionView.scrollEnabled = YES;
         _qh_collectionView.backgroundColor = [UIColor clearColor];
         
         // 注册cell
@@ -305,7 +305,7 @@
         self.menuTitleLabel.text = NSLocalizedString(menu.qh_title, @"标题");
     }
     
-    self.menuImageView.backgroundColor = [UIColor qh_randomColor];
+    self.menuImageView.backgroundColor = [UIColor clearColor];
 }
 
 #pragma mark - Setter

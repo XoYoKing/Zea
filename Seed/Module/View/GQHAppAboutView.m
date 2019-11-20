@@ -173,9 +173,12 @@
         _iconImageView = [[UIImageView alloc] init];
         _iconImageView.backgroundColor = [UIColor whiteColor];
         
-        _iconImageView.image = [UIImage imageNamed:@"iconstore_1024pt"];
+        // app中的icon
+        NSDictionary *infoPlist = [[NSBundle mainBundle] infoDictionary];
+        NSString *icon = [[infoPlist valueForKeyPath:@"CFBundleIcons.CFBundlePrimaryIcon.CFBundleIconFiles"] lastObject];
+        _iconImageView.image = [UIImage imageNamed:icon];
         
-        _iconImageView.layer.cornerRadius = 2.0f;
+        _iconImageView.layer.cornerRadius = 12.0f;
         _iconImageView.layer.masksToBounds = YES;
     }
     

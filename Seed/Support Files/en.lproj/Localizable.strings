@@ -29,8 +29,18 @@
 "guru" = "GURU";
 "god" = "GOD";
 
+"level_newbie_detail" = "Let's go!";
+"level_junior_detail" = "You can play!";
+"level_senior_detail" = "You're good at it!";
+"level_master_detail" = "God's Action!";
+"level_guru_detail" = "Good eyes";
+"level_god_detail" = "Oh My God!";
+
+
 // 其他
 "puzzle" = "PUZZLE";
+"gameover" = "AWESOME!";
+"ok" = "OK";
 
 // 图库分类
 "animal" = "ANIMAL";

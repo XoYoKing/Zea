@@ -94,7 +94,7 @@
     if (!_qh_tableView) {
         
         _qh_tableView = [[UITableView alloc] initWithFrame:CGRectZero style:UITableViewStyleGrouped];
-        _qh_tableView.backgroundColor = [UIColor whiteColor];
+        _qh_tableView.backgroundColor = [UIColor qh_colorWithHexString:@"#f8f8f8"];
         _qh_tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
         _qh_tableView.showsVerticalScrollIndicator = NO;
         _qh_tableView.showsHorizontalScrollIndicator = NO;
@@ -189,7 +189,7 @@
         [self autoLayoutWithConstraints];
         
         // 其他初始化
-        
+        self.backgroundColor = UIColor.whiteColor;
     }
     
     return self;

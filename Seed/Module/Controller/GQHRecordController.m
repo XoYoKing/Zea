@@ -55,16 +55,6 @@
     NSLog(@"");
     
     [self.qh_titleButton setTitle:NSLocalizedString(@"record", @"标题") forState:UIControlStateNormal];
-    
-    GQHRecordModel *record = [[GQHRecordModel alloc] init];
-    record.qh_id = @"0";
-    record.qh_levelOrder = 3;
-    record.qh_levelTitle = @"newbie";
-    record.qh_gameImage = @"db_gallery_animal_2";
-    record.qh_gameTime = 312;
-    record.qh_gameCount = 39;
-    record.qh_timestamp = 1574223423.54634;
-    [GQHRecordModel qh_insertRecord:record];
 }
 
 /**
@@ -250,7 +240,7 @@
     NSLog(@"");
     
     //MARK:适配刘海屏底部操作区
-    return self.rootView.qh_homeIndicatorHeight;
+    return self.rootView.qh_homeIndicatorHeight + GQHSpacing;
 }
 
 /**
