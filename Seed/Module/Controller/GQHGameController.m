@@ -173,6 +173,95 @@
 
 #pragma mark - TargetMethod
 
+- (void)qh_didClickRightButton:(UIButton *)sender {
+    
+    if (self.autoGaming) {
+        
+        return;
+    }
+    
+    if (self.currentStatus.qh_mark < 0) {
+        
+        return;
+    }
+    
+    self.rootView.qh_gameboardView.userInteractionEnabled = NO;
+    
+    
+    GQHPathSearcher *searcher = [[GQHAStarSearcher alloc] init];
+    searcher.qh_startStatus = [self.currentStatus qh_copy];
+    searcher.qh_targetStatus = [self.endStatus qh_copy];
+    
+    [searcher setQh_comparator:^BOOL(GQHPuzzleStatus *status1, GQHPuzzleStatus *status2) {
+        
+        return [status1 qh_isEqualTo:status2];
+    }];
+    
+    // 开始搜索
+    NSMutableArray<GQHPuzzleStatus *> *path = [searcher qh_startSearching];
+    
+    __block NSInteger count = path.count;
+    self.record.qh_gameCount = count;
+    self.record.qh_gameTime = count * 0.25f;
+    
+    if (!path || count == 0) {
+        
+        return;
+    }
+    
+    // 开始自动拼图
+    self.autoGaming = YES;
+    
+    // 定时信号，控制拼图速度
+    dispatch_semaphore_t sema = dispatch_semaphore_create(0);
+    NSTimer *timer = [NSTimer scheduledTimerWithTimeInterval:0.25f repeats:YES block:^(NSTimer * _Nonnull timer) {
+        
+        dispatch_semaphore_signal(sema);
+    }];
+    
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+        
+        [path enumerateObjectsUsingBlock:^(GQHPuzzleStatus * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+            
+            // 等待信号
+            dispatch_semaphore_wait(sema, DISPATCH_TIME_FOREVER);
+            // 刷新UI
+            dispatch_async(dispatch_get_main_queue(), ^{
+                
+                // 显示排列
+                [self reloadGameBoardWithStatus:obj order:self.record.qh_levelOrder];
+            });
+        }];
+        
+        // 拼图完成
+        [timer invalidate];
+        self.currentStatus = [path lastObject];
+        self.autoGaming = NO;
+        // 保存记录
+        self.record.qh_timestamp = [[NSDate date] timeIntervalSince1970];
+        // 操作UI
+        dispatch_async(dispatch_get_main_queue(), ^{
+            
+            // 取消交互
+            self.rootView.qh_gameboardView.userInteractionEnabled = YES;
+            
+            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.2f * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+                
+                GQHPuzzlePiece *piece = [self.endStatus.qh_puzzlePieceArray lastObject];
+                piece.alpha = 1.0f;
+                self.currentStatus.qh_mark = -1;
+                
+                self.record.qh_timestamp = [[NSDate date] timeIntervalSince1970];
+                if ([GQHRecordModel qh_insertRecord:self.record]) {
+                    
+                    // 完成
+                    [self qh_alertWithTitle:NSLocalizedString(@"gameover", @"游戏结束") message:nil handler:nil completion:nil];
+                }
+            });
+        });
+    });
+}
+
 /// 重置游戏
 /// @param sender 重置按钮
 - (void)qh_didClickRightMostButton:(UIButton *)sender {
@@ -376,9 +465,9 @@
         return;
     }
     
-    NSLog(@"洗牌:%@阶矩阵, 随机移动%@步",@(order),@(order * order * 100));
+    NSLog(@"洗牌:%@阶矩阵, 随机移动%@步",@(order),@(order * order * 10));
     
-    [self.currentStatus qh_shuffle:(order * order * 100)];
+    [self.currentStatus qh_shuffle:(order * order * 10)];
     [self reloadGameBoardWithStatus:self.currentStatus order:order];
 }
 

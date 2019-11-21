@@ -42,13 +42,13 @@ INSERT INTO 'p_level'
 VALUES ('2', 'senior', '5', 'level_senior_detail');
 
 INSERT INTO 'p_level'
-VALUES ('3', 'master', '7', 'level_master_detail');
+VALUES ('3', 'master', '6', 'level_master_detail');
 
 INSERT INTO 'p_level'
-VALUES ('4', 'guru', '9', 'level_guru_detail');
+VALUES ('4', 'guru', '7', 'level_guru_detail');
 
 INSERT INTO 'p_level'
-VALUES ('5', 'god', '11', 'level_god_detail');
+VALUES ('5', 'god', '8', 'level_god_detail');
 
 
 /*图片表*/

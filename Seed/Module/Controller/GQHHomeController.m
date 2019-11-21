@@ -23,6 +23,7 @@
 #import "GQHAppHelpController.h"
 #import "GQHAppAboutController.h"
 
+#import "GQHHelpWebController.h"
 
 #pragma mark -
 
@@ -214,8 +215,11 @@
         case 4: {
             
             // 游戏帮助
-            GQHAppHelpController *appHelpController = [[GQHAppHelpController alloc] init];
-            [self.navigationController pushViewController:appHelpController animated:YES];
+//            GQHAppHelpController *appHelpController = [[GQHAppHelpController alloc] init];
+//            [self.navigationController pushViewController:appHelpController animated:YES];
+            GQHHelpWebController *helpWebController = [[GQHHelpWebController alloc] init];
+            helpWebController.qh_URLString = @"http://uter.top/2019/11/21/app_puzzle.html";
+            [self.navigationController pushViewController:helpWebController animated:YES];
         }
             break;
         case 5: {

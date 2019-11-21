@@ -27,7 +27,6 @@
 		04974AB7237165BE00095393 /* GQHPriorityQueue.m in Sources */ = {isa = PBXBuildFile; fileRef = 04974AB6237165BE00095393 /* GQHPriorityQueue.m */; };
 		04CBE6D62373B3F700AA694A /* GQHDoubleBreadthFirstSearcher.m in Sources */ = {isa = PBXBuildFile; fileRef = 04CBE6D52373B3F700AA694A /* GQHDoubleBreadthFirstSearcher.m */; };
 		04CBE6D92373BE2C00AA694A /* GQHAStarSearcher.m in Sources */ = {isa = PBXBuildFile; fileRef = 04CBE6D82373BE2C00AA694A /* GQHAStarSearcher.m */; };
-		04CBE6DE2373BF9000AA694A /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 04CBE6DD2373BF9000AA694A /* StoreKit.framework */; };
 		04D80B8C232F923400617689 /* GQHBaseViewController+GQHNavigationBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 04D80B76232F923400617689 /* GQHBaseViewController+GQHNavigationBar.m */; };
 		04D80B8D232F923400617689 /* GQHBaseViewController+GQHNetworking.m in Sources */ = {isa = PBXBuildFile; fileRef = 04D80B78232F923400617689 /* GQHBaseViewController+GQHNetworking.m */; };
 		04D80B8E232F923400617689 /* GQHBaseViewController+GQHRefresh.m in Sources */ = {isa = PBXBuildFile; fileRef = 04D80B7A232F923400617689 /* GQHBaseViewController+GQHRefresh.m */; };
@@ -39,6 +38,7 @@
 		04D80B96232F923400617689 /* GQHWebController.m in Sources */ = {isa = PBXBuildFile; fileRef = 04D80B88232F923400617689 /* GQHWebController.m */; };
 		04DA1960237AB6D9000F0CBA /* GQHHelpController.m in Sources */ = {isa = PBXBuildFile; fileRef = 04DA195F237AB6D9000F0CBA /* GQHHelpController.m */; };
 		04DA1963237AB8FE000F0CBA /* GQHHelpView.m in Sources */ = {isa = PBXBuildFile; fileRef = 04DA1961237AB8FE000F0CBA /* GQHHelpView.m */; };
+		04E4DC6C23867E230040FD90 /* GQHHelpWebController.m in Sources */ = {isa = PBXBuildFile; fileRef = 04E4DC6B23867E230040FD90 /* GQHHelpWebController.m */; };
 		04E695A3237E462400564DF3 /* GQHHelpModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 04E6959F237E462400564DF3 /* GQHHelpModel.m */; };
 		04E695A4237E462400564DF3 /* GQHMenuModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 04E695A1237E462400564DF3 /* GQHMenuModel.m */; };
 		04E695A9237E814F00564DF3 /* NSBundle+GQHBundle.m in Sources */ = {isa = PBXBuildFile; fileRef = 04E695A8237E814F00564DF3 /* NSBundle+GQHBundle.m */; };
@@ -172,7 +172,6 @@
 		04CBE6D72373BE2C00AA694A /* GQHAStarSearcher.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GQHAStarSearcher.h; sourceTree = "<group>"; };
 		04CBE6D82373BE2C00AA694A /* GQHAStarSearcher.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GQHAStarSearcher.m; sourceTree = "<group>"; };
 		04CBE6DC2373BF8800AA694A /* Seed.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Seed.entitlements; sourceTree = "<group>"; };
-		04CBE6DD2373BF9000AA694A /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
 		04D80B73232F923300617689 /* GQHBaseView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GQHBaseView.h; sourceTree = "<group>"; };
 		04D80B75232F923400617689 /* GQHBaseViewController+GQHNavigationBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "GQHBaseViewController+GQHNavigationBar.h"; sourceTree = "<group>"; };
 		04D80B76232F923400617689 /* GQHBaseViewController+GQHNavigationBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "GQHBaseViewController+GQHNavigationBar.m"; sourceTree = "<group>"; };
@@ -195,6 +194,8 @@
 		04DA195F237AB6D9000F0CBA /* GQHHelpController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GQHHelpController.m; sourceTree = "<group>"; };
 		04DA1961237AB8FE000F0CBA /* GQHHelpView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GQHHelpView.m; sourceTree = "<group>"; };
 		04DA1962237AB8FE000F0CBA /* GQHHelpView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GQHHelpView.h; sourceTree = "<group>"; };
+		04E4DC6A23867E230040FD90 /* GQHHelpWebController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GQHHelpWebController.h; sourceTree = "<group>"; };
+		04E4DC6B23867E230040FD90 /* GQHHelpWebController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GQHHelpWebController.m; sourceTree = "<group>"; };
 		04E6959F237E462400564DF3 /* GQHHelpModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GQHHelpModel.m; sourceTree = "<group>"; };
 		04E695A0237E462400564DF3 /* GQHHelpModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GQHHelpModel.h; sourceTree = "<group>"; };
 		04E695A1237E462400564DF3 /* GQHMenuModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GQHMenuModel.m; sourceTree = "<group>"; };
@@ -370,7 +371,6 @@
 			files = (
 				0428545823823FE100D0335F /* libsqlite3.0.tbd in Frameworks */,
 				1A46AACB389F9172E3FD8D47 /* libPods-Seed.a in Frameworks */,
-				04CBE6DE2373BF9000AA694A /* StoreKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -429,7 +429,6 @@
 			isa = PBXGroup;
 			children = (
 				0428545723823FE100D0335F /* libsqlite3.0.tbd */,
-				04CBE6DD2373BF9000AA694A /* StoreKit.framework */,
 				1F9022C94008243A6972068F /* libPods-Seed.a */,
 				965655FC3B0AA93F8EE6E1B7 /* libPods-SeedTests.a */,
 				CBB22A5583A8D587340B3181 /* libPods-SeedUITests.a */,
@@ -464,6 +463,8 @@
 				D5A5C0C222FFE8C400A21A77 /* GQHGameController.m */,
 				04DA195E237AB6D8000F0CBA /* GQHHelpController.h */,
 				04DA195F237AB6D9000F0CBA /* GQHHelpController.m */,
+				04E4DC6A23867E230040FD90 /* GQHHelpWebController.h */,
+				04E4DC6B23867E230040FD90 /* GQHHelpWebController.m */,
 				D5A5C0CA22FFE8C500A21A77 /* GQHHomeController.h */,
 				D5A5C0CB22FFE8C500A21A77 /* GQHHomeController.m */,
 				D5A5C0C522FFE8C400A21A77 /* GQHLaunchController.h */,
@@ -1237,6 +1238,7 @@
 				D5B15861202D7D55005B76B1 /* main.m in Sources */,
 				D5B15853202D7D55005B76B1 /* AppDelegate.m in Sources */,
 				D5C8A6A522FFE10100947237 /* UIDevice+GQHDevice.m in Sources */,
+				04E4DC6C23867E230040FD90 /* GQHHelpWebController.m in Sources */,
 				D5C8A6AF22FFE10100947237 /* UIViewController+GQHPermission.m in Sources */,
 				D5A5C10522FFE8F200A21A77 /* GQHLaunchView.m in Sources */,
 				D5C8A6B422FFE10100947237 /* NSObject+GQHValidator.m in Sources */,
@@ -1422,13 +1424,16 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = Seed/Seed.entitlements;
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 563G9T67Z2;
+				DEVELOPMENT_TEAM = JM52XZKNAA;
 				INFOPLIST_FILE = "$(SRCROOT)/Seed/Support Files/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.seed.zea;
+				MARKETING_VERSION = 4.0.0;
+				PRODUCT_BUNDLE_IDENTIFIER = app.GuanQinghao.puzzle;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
@@ -1439,13 +1444,16 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = Seed/Seed.entitlements;
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 563G9T67Z2;
+				DEVELOPMENT_TEAM = JM52XZKNAA;
 				INFOPLIST_FILE = "$(SRCROOT)/Seed/Support Files/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.seed.zea;
+				MARKETING_VERSION = 4.0.0;
+				PRODUCT_BUNDLE_IDENTIFIER = app.GuanQinghao.puzzle;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
