@@ -86,7 +86,7 @@
     [self.qh_collectionView mas_makeConstraints:^(MASConstraintMaker *make) {
         
         make.top.mas_equalTo(self.containerView.mas_bottom);
-        make.left.and.right.mas_equalTo(self).with.inset(GQHSingleMargin);
+        make.left.and.right.mas_equalTo(self).with.inset(5.0f);
         make.bottom.mas_equalTo(self).with.inset(self.qh_homeIndicatorHeight);
     }];
 }
@@ -166,7 +166,7 @@
         _welcomeLabel = [[UILabel alloc] init];
         _welcomeLabel.backgroundColor = [UIColor clearColor];
         
-        _welcomeLabel.font = [UIFont fontWithName:GQHFontNamePFSSemibold size:38.0f];
+        _welcomeLabel.font = [UIFont fontWithName:GQHFontNamePFSSemibold size:32.0f];
         _welcomeLabel.text = NSLocalizedString(@"welcome", @"欢迎语");
         _welcomeLabel.textColor = [UIColor qh_colorWithHexString:GQHFontColorDarkBlack];
         _welcomeLabel.textAlignment = NSTextAlignmentCenter;
@@ -261,7 +261,7 @@
     [self.contentView addSubview:self.containerView];
     [self.containerView mas_makeConstraints:^(MASConstraintMaker *make) {
         
-        make.edges.mas_equalTo(self.contentView).with.insets(UIEdgeInsetsMake(8.0f, 8.0f, 8.0f, 8.0f));
+        make.edges.mas_equalTo(self.contentView).with.insets(UIEdgeInsetsMake(5.0f, 5.0f, 5.0f, 5.0f));
     }];
     
     // 菜单标题
@@ -269,7 +269,7 @@
     [self.menuTitleLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         
         make.left.and.bottom.and.right.mas_equalTo(self.containerView).with.inset(GQHSpacing);
-        make.height.mas_greaterThanOrEqualTo(GQHMinLayoutValue);
+        make.height.mas_greaterThanOrEqualTo(GQHLayoutMinValue);
     }];
     
     // 菜单图片
@@ -277,8 +277,8 @@
     [self.menuImageView mas_makeConstraints:^(MASConstraintMaker *make) {
         
         make.centerX.mas_equalTo(self.containerView);
-        make.top.mas_equalTo(self.containerView).with.inset(GQHMinLayoutValue);
-        make.bottom.mas_equalTo(self.menuTitleLabel.mas_top).with.inset(GQHMinLayoutValue);
+        make.top.mas_equalTo(self.containerView).with.inset(GQHLayoutMinValue);
+        make.bottom.mas_equalTo(self.menuTitleLabel.mas_top).with.inset(GQHLayoutMinValue);
         make.width.mas_equalTo(self.menuImageView.mas_height).with.multipliedBy(1.0f);
     }];
 }
@@ -326,7 +326,7 @@
         _containerView = [[UIView alloc] init];
         _containerView.backgroundColor = [UIColor whiteColor];
         
-        _containerView.layer.cornerRadius = 2.0f;
+        _containerView.layer.cornerRadius = GQHUICornerRadius;
         _containerView.layer.masksToBounds = YES;
     }
     
@@ -356,7 +356,7 @@
         _menuTitleLabel = [[UILabel alloc] init];
         _menuTitleLabel.backgroundColor = [UIColor clearColor];
         
-        _menuTitleLabel.font = [UIFont fontWithName:GQHFontNamePFSMedium size:24.0f];
+        _menuTitleLabel.font = [UIFont fontWithName:GQHFontNamePFSMedium size:20.0f];
         _menuTitleLabel.textColor = [UIColor qh_colorWithHexString:GQHFontColorDarkBlack];
         _menuTitleLabel.textAlignment = NSTextAlignmentCenter;
         _menuTitleLabel.numberOfLines = 1;

@@ -7,7 +7,6 @@
 //
 
 #import "GQHGlobalTimer.h"
-#import "GQHMacro.h"
 
 
 @interface GQHGlobalTimer ()

@@ -256,7 +256,7 @@
     
     UILabel *titleLabel = [[UILabel alloc] init];
     titleLabel.frame = CGRectMake(15.0f, 10.0f, tableView.frame.size.width - 30.0f, tableView.sectionHeaderHeight - 10.0f);
-    titleLabel.font = [UIFont systemFontOfSize:15.0f];
+    titleLabel.font = [UIFont systemFontOfSize:14.0f];
     titleLabel.textColor = UIColor.darkTextColor;
     titleLabel.backgroundColor = UIColor.clearColor;
     [headerView addSubview:titleLabel];

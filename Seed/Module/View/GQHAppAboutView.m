@@ -93,7 +93,7 @@
     [self.nameLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         
         make.top.mas_equalTo(self.iconImageView.mas_bottom);
-        make.width.mas_greaterThanOrEqualTo(GQHMinLayoutValue);
+        make.width.mas_greaterThanOrEqualTo(GQHLayoutMinValue);
         make.centerX.mas_equalTo(self);
         make.height.mas_equalTo(40.0f);
     }];
@@ -103,7 +103,7 @@
     [self.versionLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         
         make.top.mas_equalTo(self.nameLabel.mas_bottom);
-        make.width.mas_greaterThanOrEqualTo(GQHMinLayoutValue);
+        make.width.mas_greaterThanOrEqualTo(GQHLayoutMinValue);
         make.centerX.mas_equalTo(self);
         make.height.mas_equalTo(15.0f);
     }];
@@ -114,7 +114,7 @@
         
         make.bottom.mas_equalTo(self).with.inset(self.qh_homeIndicatorHeight);
         make.left.and.right.mas_equalTo(self).with.inset(GQHSpacing);
-        make.height.mas_greaterThanOrEqualTo(GQHMinLayoutValue);
+        make.height.mas_greaterThanOrEqualTo(GQHLayoutMinValue);
     }];
 }
 
@@ -192,7 +192,7 @@
         _nameLabel = [[UILabel alloc] init];
         _nameLabel.backgroundColor = [UIColor clearColor];
         
-        _nameLabel.font = [UIFont fontWithName:GQHFontNamePFSMedium size:20.0f];
+        _nameLabel.font = [UIFont fontWithName:GQHFontNamePFSMedium size:16.0f];
         _nameLabel.text = UIApplication.sharedApplication.qh_applicationDisplayName;
         _nameLabel.textColor = [UIColor qh_colorWithHexString:GQHFontColorDarkGray];
         _nameLabel.textAlignment = NSTextAlignmentCenter;

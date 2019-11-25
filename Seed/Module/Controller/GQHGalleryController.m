@@ -130,7 +130,7 @@
 #pragma mark - UICollectionViewDelegateFlowLayout
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath {
     
-    CGFloat width = 0.5f * (self.rootView.qh_contentAreaWidth - GQHDoubleMargin);
+    CGFloat width = 0.5f * (self.rootView.qh_contentAreaWidth - 2 * GQHSpacing);
     CGFloat height = width + 35.0f;
     
     return CGSizeMake(width,height);
@@ -138,12 +138,12 @@
 
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout referenceSizeForHeaderInSection:(NSInteger)section {
 
-    return CGSizeZero;
+    return CGSizeMake(self.rootView.qh_contentAreaWidth, 5.0f);
 }
 
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout referenceSizeForFooterInSection:(NSInteger)section {
     
-    return CGSizeMake(self.rootView.qh_contentAreaWidth, self.rootView.qh_homeIndicatorHeight);
+    return CGSizeMake(self.rootView.qh_contentAreaWidth, self.rootView.qh_homeIndicatorHeight + 5.0f);
 }
 
 - (UIEdgeInsets)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout insetForSectionAtIndex:(NSInteger)section {

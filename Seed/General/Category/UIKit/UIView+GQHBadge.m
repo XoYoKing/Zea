@@ -245,7 +245,7 @@ static CGFloat const kDotWidth = 8.0f;
     
     UIFont *font = objc_getAssociatedObject(self, _cmd);
     
-    return font ? : ([UIFont boldSystemFontOfSize:9.0f]);
+    return font ? : ([UIFont boldSystemFontOfSize:8.0f]);
 }
 
 /// 标识文字颜色

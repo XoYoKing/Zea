@@ -343,7 +343,7 @@
         NSString *imageName = [NSUserDefaults.standardUserDefaults objectForKey:GQHGameImageKey];
         _previewImageView.image = [UIImage imageNamed:imageName];
         
-        _previewImageView.layer.cornerRadius = 2.0f;
+        _previewImageView.layer.cornerRadius = GQHUICornerRadius;
         _previewImageView.layer.masksToBounds = YES;
     }
     
@@ -357,7 +357,7 @@
         _bestBackgroundView = [[UIView alloc] init];
         _bestBackgroundView.backgroundColor = [UIColor qh_colorWithHexString:@"#EC8C7A"];
         
-        _bestBackgroundView.layer.cornerRadius = 2.0f;
+        _bestBackgroundView.layer.cornerRadius = GQHUICornerRadius;
         _bestBackgroundView.layer.masksToBounds = YES;
     }
     
@@ -371,7 +371,7 @@
         _bestTimeTitleLabel = [[UILabel alloc] init];
         _bestTimeTitleLabel.backgroundColor = [UIColor clearColor];
         
-        _bestTimeTitleLabel.font = [UIFont fontWithName:GQHFontNamePFSSemibold size:18.0f];
+        _bestTimeTitleLabel.font = [UIFont fontWithName:GQHFontNamePFSSemibold size:16.0f];
         _bestTimeTitleLabel.text = NSLocalizedString(@"best", @"标题");
         _bestTimeTitleLabel.textColor = [UIColor qh_colorWithHexString:GQHFontColorDarkBlack];
         _bestTimeTitleLabel.textAlignment = NSTextAlignmentRight;
@@ -388,7 +388,7 @@
         _bestTimeTextLabel = [[UILabel alloc] init];
         _bestTimeTextLabel.backgroundColor = [UIColor clearColor];
         
-        _bestTimeTextLabel.font = [UIFont fontWithName:GQHFontNamePFSSemibold size:18.0f];
+        _bestTimeTextLabel.font = [UIFont fontWithName:GQHFontNamePFSSemibold size:16.0f];
         _bestTimeTextLabel.text = NSLocalizedString(@"-", @"");
         _bestTimeTextLabel.textColor = [UIColor qh_colorWithHexString:GQHFontColorDarkBlack];
         _bestTimeTextLabel.textAlignment = NSTextAlignmentLeft;
@@ -405,7 +405,7 @@
         _bestCountTittleLabel = [[UILabel alloc] init];
         _bestCountTittleLabel.backgroundColor = [UIColor clearColor];
         
-        _bestCountTittleLabel.font = [UIFont fontWithName:GQHFontNamePFSSemibold size:18.0f];
+        _bestCountTittleLabel.font = [UIFont fontWithName:GQHFontNamePFSSemibold size:16.0f];
         _bestCountTittleLabel.text = NSLocalizedString(@"least", @"标题");
         _bestCountTittleLabel.textColor = [UIColor qh_colorWithHexString:GQHFontColorDarkBlack];
         _bestCountTittleLabel.textAlignment = NSTextAlignmentRight;
@@ -422,7 +422,7 @@
         _bestCountTextLabel = [[UILabel alloc] init];
         _bestCountTextLabel.backgroundColor = [UIColor clearColor];
         
-        _bestCountTextLabel.font = [UIFont fontWithName:GQHFontNamePFSSemibold size:18.0f];
+        _bestCountTextLabel.font = [UIFont fontWithName:GQHFontNamePFSSemibold size:16.0f];
         _bestCountTextLabel.text = NSLocalizedString(@"-", @"");
         _bestCountTextLabel.textColor = [UIColor qh_colorWithHexString:GQHFontColorDarkBlack];
         _bestCountTextLabel.textAlignment = NSTextAlignmentLeft;
@@ -439,7 +439,7 @@
         _currentBackgroundView = [[UIView alloc] init];
         _currentBackgroundView.backgroundColor = [UIColor qh_colorWithHexString:@"#EC8C7A"];
         
-        _currentBackgroundView.layer.cornerRadius = 2.0f;
+        _currentBackgroundView.layer.cornerRadius = GQHUICornerRadius;
         _currentBackgroundView.layer.masksToBounds = YES;
     }
     
@@ -453,7 +453,7 @@
         _currentTimeTitleLabel = [[UILabel alloc] init];
         _currentTimeTitleLabel.backgroundColor = [UIColor clearColor];
         
-        _currentTimeTitleLabel.font = [UIFont fontWithName:GQHFontNamePFSSemibold size:18.0f];
+        _currentTimeTitleLabel.font = [UIFont fontWithName:GQHFontNamePFSSemibold size:16.0f];
         _currentTimeTitleLabel.text = NSLocalizedString(@"time", @"标题");
         _currentTimeTitleLabel.textColor = [UIColor qh_colorWithHexString:GQHFontColorDarkBlack];
         _currentTimeTitleLabel.textAlignment = NSTextAlignmentRight;
@@ -470,7 +470,7 @@
         _currentTimeTextLabel = [[UILabel alloc] init];
         _currentTimeTextLabel.backgroundColor = [UIColor clearColor];
         
-        _currentTimeTextLabel.font = [UIFont fontWithName:GQHFontNamePFSSemibold size:18.0f];
+        _currentTimeTextLabel.font = [UIFont fontWithName:GQHFontNamePFSSemibold size:16.0f];
         _currentTimeTextLabel.text = NSLocalizedString(@"-", @"");
         _currentTimeTextLabel.textColor = [UIColor qh_colorWithHexString:GQHFontColorDarkBlack];
         _currentTimeTextLabel.textAlignment = NSTextAlignmentLeft;
@@ -487,7 +487,7 @@
         _currentCountTittleLabel = [[UILabel alloc] init];
         _currentCountTittleLabel.backgroundColor = [UIColor clearColor];
         
-        _currentCountTittleLabel.font = [UIFont fontWithName:GQHFontNamePFSSemibold size:18.0f];
+        _currentCountTittleLabel.font = [UIFont fontWithName:GQHFontNamePFSSemibold size:16.0f];
         _currentCountTittleLabel.text = NSLocalizedString(@"count", @"");
         _currentCountTittleLabel.textColor = [UIColor qh_colorWithHexString:GQHFontColorDarkBlack];
         _currentCountTittleLabel.textAlignment = NSTextAlignmentRight;
@@ -504,7 +504,7 @@
         _currentCountTextLabel = [[UILabel alloc] init];
         _currentCountTextLabel.backgroundColor = [UIColor clearColor];
         
-        _currentCountTextLabel.font = [UIFont fontWithName:GQHFontNamePFSSemibold size:18.0f];
+        _currentCountTextLabel.font = [UIFont fontWithName:GQHFontNamePFSSemibold size:16.0f];
         _currentCountTextLabel.text = NSLocalizedString(@"-", @"");
         _currentCountTextLabel.textColor = [UIColor qh_colorWithHexString:GQHFontColorDarkBlack];
         _currentCountTextLabel.textAlignment = NSTextAlignmentLeft;
@@ -535,7 +535,7 @@
         _qh_gameboardView = [[UIView alloc] init];
         _qh_gameboardView.backgroundColor = [UIColor qh_colorWithHexString:@"#A8A8A8"];
         
-        _qh_gameboardView.layer.cornerRadius = 2.0f;
+        _qh_gameboardView.layer.cornerRadius = GQHUICornerRadius;
         _qh_gameboardView.layer.masksToBounds = YES;
     }
     

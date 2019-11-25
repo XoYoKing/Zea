@@ -299,7 +299,7 @@
         _containerView = [[UIView alloc] init];
         _containerView.backgroundColor = [UIColor qh_randomColor];
         
-        _containerView.layer.cornerRadius = 2.0f;
+        _containerView.layer.cornerRadius = GQHUICornerRadius;
         _containerView.layer.masksToBounds = YES;
     }
     
@@ -313,7 +313,7 @@
         _titleLabel = [[UILabel alloc] init];
         _titleLabel.backgroundColor = [UIColor clearColor];
         
-        _titleLabel.font = [UIFont fontWithName:GQHFontNamePFSMedium size:28.0f];
+        _titleLabel.font = [UIFont fontWithName:GQHFontNamePFSMedium size:24.0f];
         _titleLabel.textColor = [UIColor qh_colorWithHexString:GQHFontColorDarkBlack];
         _titleLabel.textAlignment = NSTextAlignmentLeft;
         _titleLabel.numberOfLines = 1;
@@ -329,7 +329,7 @@
         _orderLabel = [[UILabel alloc] init];
         _orderLabel.backgroundColor = [UIColor whiteColor];
         
-        _orderLabel.font = [UIFont fontWithName:GQHFontNamePFSSemibold size:24.0f];
+        _orderLabel.font = [UIFont fontWithName:GQHFontNamePFSSemibold size:22.0f];
         _orderLabel.textColor = [UIColor redColor];
         _orderLabel.textAlignment = NSTextAlignmentCenter;
         _orderLabel.numberOfLines = 1;
@@ -348,7 +348,7 @@
         _detailLabel = [[UILabel alloc] init];
         _detailLabel.backgroundColor = [UIColor clearColor];
         
-        _detailLabel.font = [UIFont fontWithName:GQHFontNamePFSRegular size:16.0f];
+        _detailLabel.font = [UIFont fontWithName:GQHFontNamePFSRegular size:14.0f];
         _detailLabel.textColor = [UIColor qh_colorWithHexString:GQHFontColorDarkGray];
         _detailLabel.textAlignment = NSTextAlignmentLeft;
         _detailLabel.numberOfLines = 1;

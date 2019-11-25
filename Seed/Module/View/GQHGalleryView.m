@@ -237,7 +237,7 @@
         if (image.qh_mark) {
             
             self.gameImageView.layer.borderColor = [UIColor qh_colorWithHexString:@"#DB3C1f"].CGColor;
-            self.gameImageView.layer.borderWidth = 5.0f;
+            self.gameImageView.layer.borderWidth = 2.0f;
         } else {
             
             self.gameImageView.layer.borderColor = UIColor.clearColor.CGColor;
@@ -267,7 +267,7 @@
         
         _gameImageView.image = [UIImage imageNamed:@""];
         
-        _gameImageView.layer.cornerRadius = 2.0f;
+        _gameImageView.layer.cornerRadius = GQHUICornerRadius;
         _gameImageView.layer.masksToBounds = YES;
     }
     
@@ -281,7 +281,7 @@
         _titleLabel = [[UILabel alloc] init];
         _titleLabel.backgroundColor = [UIColor clearColor];
         
-        _titleLabel.font = [UIFont fontWithName:GQHFontNamePFSMedium size:16.0f];
+        _titleLabel.font = [UIFont fontWithName:GQHFontNamePFSMedium size:14.0f];
         _titleLabel.textColor = [UIColor qh_colorWithHexString:GQHFontColorDarkGray];
         _titleLabel.textAlignment = NSTextAlignmentLeft;
         _titleLabel.numberOfLines = 1;

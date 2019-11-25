@@ -145,7 +145,7 @@ CGFloat const kCellDoubleMargin = 2 * kCellSingleMargin;
         _aTextLabel = [[UILabel alloc] init];
         _aTextLabel.backgroundColor = [UIColor whiteColor];
         
-        _aTextLabel.font = [UIFont systemFontOfSize:16.0f];
+        _aTextLabel.font = [UIFont systemFontOfSize:14.0f];
         _aTextLabel.text = NSLocalizedString(@"Label", @"Label");
         _aTextLabel.textColor = [UIColor darkTextColor];
         _aTextLabel.textAlignment = NSTextAlignmentLeft;
@@ -301,7 +301,7 @@ CGFloat const kCellDoubleMargin = 2 * kCellSingleMargin;
         _contentTextField = [[UITextField alloc] init];
         _contentTextField.backgroundColor = [UIColor whiteColor];
         
-        _contentTextField.font = [UIFont systemFontOfSize:16.0f];
+        _contentTextField.font = [UIFont systemFontOfSize:14.0f];
         _contentTextField.placeholder = NSLocalizedString(@"TextFieldPlaceholder", @"TextFieldPlaceholder");
         _contentTextField.text = NSLocalizedString(@"TextField", @"TextField");
         _contentTextField.textColor = [UIColor darkTextColor];

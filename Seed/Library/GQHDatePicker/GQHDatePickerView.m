@@ -257,7 +257,7 @@ static CGFloat const kPickerViewHeight = 216.0f;
     if (!_cancelButton) {
         
         _cancelButton = [UIButton buttonWithType:UIButtonTypeCustom];
-        _cancelButton.titleLabel.font = [UIFont systemFontOfSize:16.0f];
+        _cancelButton.titleLabel.font = [UIFont systemFontOfSize:14.0f];
         [_cancelButton setTitle:NSLocalizedString(@"取消", @"取消") forState:UIControlStateNormal];
         [_cancelButton setTitleColor:UIColor.redColor forState:UIControlStateNormal];
         [_cancelButton addTarget:self action:@selector(qh_pickerViewDismiss:) forControlEvents:UIControlEventTouchUpInside];
@@ -271,7 +271,7 @@ static CGFloat const kPickerViewHeight = 216.0f;
     if (!_doneButton) {
         
         _doneButton = [UIButton buttonWithType:UIButtonTypeCustom];
-        _doneButton.titleLabel.font = [UIFont systemFontOfSize:16.0f];
+        _doneButton.titleLabel.font = [UIFont systemFontOfSize:14.0f];
         [_doneButton setTitle:NSLocalizedString(@"确定", @"确定") forState:UIControlStateNormal];
         [_doneButton setTitleColor:UIColor.redColor forState:UIControlStateNormal];
         [_doneButton addTarget:self action:@selector(didSelectPickerViewData:) forControlEvents:UIControlEventTouchUpInside];
@@ -285,7 +285,7 @@ static CGFloat const kPickerViewHeight = 216.0f;
     if (!_previewLabel) {
         
         _previewLabel = [[UILabel alloc] init];
-        _previewLabel.font = [UIFont systemFontOfSize:16.0f];
+        _previewLabel.font = [UIFont systemFontOfSize:14.0f];
         _previewLabel.textColor = UIColor.blackColor;
         _previewLabel.textAlignment = NSTextAlignmentCenter;
     }

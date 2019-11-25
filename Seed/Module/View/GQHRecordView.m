@@ -215,7 +215,7 @@
     [self.line mas_makeConstraints:^(MASConstraintMaker *make) {
         
         make.top.and.left.and.right.mas_equalTo(self.contentView);
-        make.height.mas_equalTo(GQHMinLayoutValue);
+        make.height.mas_equalTo(GQHLayoutMinValue);
     }];
     
     // 游戏等级
@@ -310,7 +310,7 @@
         _levelLabel = [[UILabel alloc] init];
         _levelLabel.backgroundColor = [UIColor whiteColor];
         
-        _levelLabel.font = [UIFont fontWithName:GQHFontNamePFSSemibold size:27.0f];
+        _levelLabel.font = [UIFont fontWithName:GQHFontNamePFSSemibold size:24.0f];
         _levelLabel.text = NSLocalizedString(@"宗师", @"Label");
         _levelLabel.textColor = [UIColor qh_colorWithHexString:GQHFontColorDarkGray];
         _levelLabel.textAlignment = NSTextAlignmentLeft;
@@ -327,7 +327,7 @@
         _timestampLabel = [[UILabel alloc] init];
         _timestampLabel.backgroundColor = [UIColor whiteColor];
         
-        _timestampLabel.font = [UIFont fontWithName:GQHFontNamePFSRegular size:15.0f];
+        _timestampLabel.font = [UIFont fontWithName:GQHFontNamePFSRegular size:14.0f];
         _timestampLabel.text = NSLocalizedString(@"2019-11-13 14:47:38", @"Label");
         _timestampLabel.textColor = [UIColor qh_colorWithHexString:GQHFontColorGray];
         _timestampLabel.textAlignment = NSTextAlignmentLeft;
@@ -344,7 +344,7 @@
         _timeLabel = [[UILabel alloc] init];
         _timeLabel.backgroundColor = [UIColor whiteColor];
         
-        _timeLabel.font = [UIFont fontWithName:GQHFontNamePFSSemibold size:22.0f];
+        _timeLabel.font = [UIFont fontWithName:GQHFontNamePFSSemibold size:20.0f];
         _timeLabel.text = NSLocalizedString(@"00:23:39", @"Label");
         _timeLabel.textColor = [UIColor qh_colorWithHexString:GQHFontColorDarkGray];
         _timeLabel.textAlignment = NSTextAlignmentRight;
@@ -361,7 +361,7 @@
         _countLabel = [[UILabel alloc] init];
         _countLabel.backgroundColor = [UIColor whiteColor];
         
-        _countLabel.font = [UIFont fontWithName:GQHFontNamePFSSemibold size:22.0f];
+        _countLabel.font = [UIFont fontWithName:GQHFontNamePFSSemibold size:20.0f];
         _countLabel.text = NSLocalizedString(@"999999", @"Label");
         _countLabel.textColor = [UIColor qh_colorWithHexString:GQHFontColorDarkGray];
         _countLabel.textAlignment = NSTextAlignmentRight;

@@ -9,30 +9,8 @@
 #import "GQHConstantHelper.h"
 
 
-/// 游戏图片
-NSString * const GQHGameImageKey = @"game_image";
-/// 游戏等级(阶数)
-NSString * const GQHGameLevelOrderKey = @"game_level_order";
-/// 游戏等级(标题)
-NSString * const GQHGameLevelTitleKey = @"game_level_title";
-
-/// 游戏音效
-NSString * const GQHGameSoundKey = @"game_sound";
-/// 游戏记录
-NSString * const GQHGameRecordKey = @"game_record";
-
-
 #pragma mark - color
-///
-NSString * const GQHLightestGreen = @"#e7f7e8";
 
-NSString * const GQHLightGreen = @"#8cda93";
-
-NSString * const GQHGreen = @"#36a93f";
-
-NSString * const GQHDarkGreen = @"#26762c";
-
-NSString * const GQHDarkestGreen = @"#154219";
 
 #pragma mark - font color
 /// 黑色 #111111
@@ -81,45 +59,41 @@ CGFloat const GQHDoubleMargin = 2 * GQHSingleMargin;
 /// 全局常量-线的粗细
 CGFloat const GQHLineWidth = 0.75f;
 /// 视图布局最小尺寸
-CGFloat const GQHMinLayoutValue = 10.0f;
+CGFloat const GQHLayoutMinValue = 10.0f;
 /// 普通按钮高度
 CGFloat const GQHButtonNormalHeight = 44.0f;
-
-
+/// UI圆角
+CGFloat const GQHUICornerRadius = 5.0f;
 
 
 #pragma makr - network
 /// 成功code 1
 NSInteger const GQHHTTPStatusOKCode = 1;
 /// 服务器错误code 500
-NSInteger const GQHHTTPStatusServiceErrorCode = 503;
+NSInteger const GQHHTTPStatusServiceErrorCode = 500;
 /// 无服务code 503
 NSInteger const GQHHTTPStatusNoServiceCode = 503;
 /// 无效的令牌code 401
 NSInteger const GQHHTTPStatusUnauthorizedCode = 401;
 
 #ifdef DEBUG
-
 /// 接口根域名地址
 NSString * const GQHAPIServerBaseURL = @"";
 /// 接口路径地址
-NSString * const GQHAPIPathURL = @"https://1chalk.com";
+NSString * const GQHAPIPathURL = @"";
 /// 图片服务器地址
-NSString * const GQHPictureServerURL = @"https://1chalk.com";
+NSString * const GQHPictureServerURL = @"";
 /// 文件服务器地址
-NSString * const GQHFileServerURL = @"https://1chalk.com";
-
+NSString * const GQHFileServerURL = @"";
 #else
-
 /// 接口根域名地址
 NSString * const GQHAPIServerBaseURL = @"";
 /// 接口路径地址
-NSString * const GQHAPIPathURL = @"https://1chalk.com/mall-app";
+NSString * const GQHAPIPathURL = @"";
 /// 图片服务器地址
-NSString * const GQHPictureServerURL = @"https://1chalk.com";
+NSString * const GQHPictureServerURL = @"";
 /// 文件服务器地址
-NSString * const GQHFileServerURL = @"https://1chalk.com";
-
+NSString * const GQHFileServerURL = @"";
 #endif
 
 /// 空白页链接
@@ -130,10 +104,16 @@ NSString * const GQHBlankURL = @"about:blank";
 /// 分页每页大小
 NSInteger const GQHPageSize = 10;
 
-/// 百度地图AppKey
-NSString * const GQHBMKAppKey = @"pacFIP2AGLpWHV2ODzeGG1L7Ehegjwp7";
-/// 友盟AppKey
-NSString * const GQHUMShareAppKey = @"5c43f1c4f1f556893f0004d2";
+/// 游戏图片
+NSString * const GQHGameImageKey = @"game_image";
+/// 游戏等级(阶数)
+NSString * const GQHGameLevelOrderKey = @"game_level_order";
+/// 游戏等级(标题)
+NSString * const GQHGameLevelTitleKey = @"game_level_title";
+/// 游戏音效
+NSString * const GQHGameSoundKey = @"game_sound";
+/// 游戏记录
+NSString * const GQHGameRecordKey = @"game_record";
 
 
 #pragma mark - assets
@@ -142,30 +122,6 @@ NSString * const GQHNavigationBarBackArrowBlackOnClear = @"NavigationBarBackArro
 NSString * const GQHNavigationBarBackArrowWhiteOnBlack = @"NavigationBarBackArrowWhiteOnBlack";
 NSString * const GQHNavigationBarBackArrowWhiteOnClear = @"NavigationBarBackArrowWhiteOnClear";
 NSString * const GQHNavigationBarResetBlackOnClear = @"NavigationBarResetBlackOnClear";
-
-
-
-
-/// TabBar
-NSString * const GQHTabBarItemHomeNormal = @"TabBarItemHomeNormal";
-NSString * const GQHTabBarItemHomeSelected = @"TabBarItemHomeSelected";
-NSString * const GQHTabBarItemDepartmentNormal = @"TabBarItemDepartmentNormal";
-NSString * const GQHTabBarItemDepartmentSelected = @"TabBarItemDepartmentSelected";
-NSString * const GQHTabBarItemCartNormal = @"TabBarItemCartNormal";
-NSString * const GQHTabBarItemCartSelected = @"TabBarItemCartSelected";
-NSString * const GQHTabBarItemDiscoverNormal = @"TabBarItemDiscoverNormal";
-NSString * const GQHTabBarItemDiscoverSelected = @"TabBarItemDiscoverSelected";
-NSString * const GQHTabBarItemMeNormal = @"TabBarItemMeNormal";
-NSString * const GQHTabBarItemMeSelected = @"TabBarItemMeSelected";
-
-
-/// Me
-NSString * const GQHMeAppFeedbackAddPicture = @"MeAppFeedbackAddPicture";
-NSString * const GQHMeAppFeedbackRemovePicture = @"MeAppFeedbackRemovePicture";
-
-/// Login
-NSString * const GQHLoginEyeOff = @"LoginEyeOff";
-NSString * const GQHLoginEyeOn = @"LoginEyeOn";
 
 
 @implementation GQHConstantHelper

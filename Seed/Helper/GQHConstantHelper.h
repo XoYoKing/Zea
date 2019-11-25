@@ -8,40 +8,8 @@
 
 #import <UIKit/UIKit.h>
 
-/// 游戏等级
-typedef NS_ENUM(NSInteger, GQHGameLevel) {
-    
-    GQHGameLevelNewbie    = 3,
-    GQHGameLevelJunior  = 4,
-    GQHGameLevelSenior  = 5,
-    GQHGameLevelMaster = 7,
-    GQHGameLevelGuru = 9,
-    GQHGameLevelGod = 11
-};
-
-/// 游戏图片
-UIKIT_EXTERN NSString * const GQHGameImageKey;
-/// 游戏等级(阶数)
-UIKIT_EXTERN NSString * const GQHGameLevelOrderKey;
-/// 游戏等级(标题)
-UIKIT_EXTERN NSString * const GQHGameLevelTitleKey;
-/// 游戏音效
-UIKIT_EXTERN NSString * const GQHGameSoundKey;
-/// 游戏记录
-UIKIT_EXTERN NSString * const GQHGameRecordKey;
-
 
 #pragma mark - color
-
-UIKIT_EXTERN NSString * const GQHLightestGreen;
-
-UIKIT_EXTERN NSString * const GQHLightGreen;
-
-UIKIT_EXTERN NSString * const GQHGreen;
-
-UIKIT_EXTERN NSString * const GQHDarkGreen;
-
-UIKIT_EXTERN NSString * const GQHDarkestGreen;
 
 
 #pragma mark - font color
@@ -91,9 +59,11 @@ UIKIT_EXTERN CGFloat const GQHDoubleMargin;
 /// 全局常量-线的粗细
 UIKIT_EXTERN CGFloat const GQHLineWidth;
 /// 视图布局最小尺寸
-UIKIT_EXTERN CGFloat const GQHMinLayoutValue;
+UIKIT_EXTERN CGFloat const GQHLayoutMinValue;
 /// 普通按钮高度
 UIKIT_EXTERN CGFloat const GQHButtonNormalHeight;
+/// UI圆角
+UIKIT_EXTERN CGFloat const GQHUICornerRadius;
 
 
 #pragma makr - network
@@ -122,10 +92,16 @@ UIKIT_EXTERN NSString * const GQHBlankURL;
 /// 分页每页大小
 UIKIT_EXTERN NSInteger const GQHPageSize;
 
-/// 百度地图AppKey
-UIKIT_EXTERN NSString * const GQHBMKAppKey;
-/// 友盟AppKey
-UIKIT_EXTERN NSString * const GQHUMShareAppKey;
+/// 游戏图片
+UIKIT_EXTERN NSString * const GQHGameImageKey;
+/// 游戏等级(阶数)
+UIKIT_EXTERN NSString * const GQHGameLevelOrderKey;
+/// 游戏等级(标题)
+UIKIT_EXTERN NSString * const GQHGameLevelTitleKey;
+/// 游戏音效
+UIKIT_EXTERN NSString * const GQHGameSoundKey;
+/// 游戏记录
+UIKIT_EXTERN NSString * const GQHGameRecordKey;
 
 
 #pragma mark - assets
@@ -136,30 +112,10 @@ UIKIT_EXTERN NSString * const GQHNavigationBarBackArrowWhiteOnClear;
 UIKIT_EXTERN NSString * const GQHNavigationBarResetBlackOnClear;
 
 
-
-
-
-/// TabBar
-UIKIT_EXTERN NSString * const GQHTabBarItemHomeNormal;
-UIKIT_EXTERN NSString * const GQHTabBarItemHomeSelected;
-UIKIT_EXTERN NSString * const GQHTabBarItemDepartmentNormal;
-UIKIT_EXTERN NSString * const GQHTabBarItemDepartmentSelected;
-UIKIT_EXTERN NSString * const GQHTabBarItemCartNormal;
-UIKIT_EXTERN NSString * const GQHTabBarItemCartSelected;
-UIKIT_EXTERN NSString * const GQHTabBarItemDiscoverNormal;
-UIKIT_EXTERN NSString * const GQHTabBarItemDiscoverSelected;
-UIKIT_EXTERN NSString * const GQHTabBarItemMeNormal;
-UIKIT_EXTERN NSString * const GQHTabBarItemMeSelected;
-
-/// Me
-UIKIT_EXTERN NSString * const GQHMeAppFeedbackAddPicture;
-UIKIT_EXTERN NSString * const GQHMeAppFeedbackRemovePicture;
-
-/// Login
-UIKIT_EXTERN NSString * const GQHLoginEyeOff;
-UIKIT_EXTERN NSString * const GQHLoginEyeOn;
-
+NS_ASSUME_NONNULL_BEGIN
 
 @interface GQHConstantHelper : NSObject
 
 @end
+
+NS_ASSUME_NONNULL_END

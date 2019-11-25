@@ -241,7 +241,7 @@
         
         backButton = [UIButton buttonWithType:UIButtonTypeCustom];
         backButton.backgroundColor = [UIColor clearColor];
-        backButton.titleLabel.font = [UIFont systemFontOfSize:15.0f];
+        backButton.titleLabel.font = [UIFont systemFontOfSize:14.0f];
         [backButton setTitleColor:[UIColor qh_colorWithHexString:GQHFontColorDarkBlack] forState:UIControlStateNormal];
         [backButton setImage:[UIImage imageNamed:GQHNavigationBarBackArrowBlackOnClear] forState:UIControlStateNormal];
         [backButton addTarget:self action:@selector(qh_didClickBackButton:) forControlEvents:UIControlEventTouchUpInside];
@@ -268,7 +268,7 @@
         
         leftButton = [UIButton buttonWithType:UIButtonTypeCustom];
         leftButton.backgroundColor = [UIColor clearColor];
-        leftButton.titleLabel.font = [UIFont systemFontOfSize:15.0f];
+        leftButton.titleLabel.font = [UIFont systemFontOfSize:14.0f];
         [leftButton setTitleColor:[UIColor qh_colorWithHexString:GQHFontColorDarkBlack] forState:UIControlStateNormal];
         [leftButton addTarget:self action:@selector(qh_didClickLeftButton:) forControlEvents:UIControlEventTouchUpInside];
         
@@ -294,7 +294,7 @@
         
         titleButton = [UIButton buttonWithType:UIButtonTypeCustom];
         titleButton.backgroundColor = [UIColor clearColor];
-        titleButton.titleLabel.font = [UIFont fontWithName:GQHFontNamePFSMedium size:18.0f];
+        titleButton.titleLabel.font = [UIFont fontWithName:GQHFontNamePFSMedium size:16.0f];
         titleButton.contentHorizontalAlignment = UIControlContentHorizontalAlignmentLeft;
         [titleButton setTitleColor:[UIColor qh_colorWithHexString:GQHFontColorDarkBlack] forState:UIControlStateNormal];
         [titleButton addTarget:self action:@selector(qh_didClickTitleButton:) forControlEvents:UIControlEventTouchUpInside];
@@ -321,7 +321,7 @@
         
         rightButton = [UIButton buttonWithType:UIButtonTypeCustom];
         rightButton.backgroundColor = [UIColor clearColor];
-        rightButton.titleLabel.font = [UIFont systemFontOfSize:15.0f];
+        rightButton.titleLabel.font = [UIFont systemFontOfSize:14.0f];
         [rightButton setTitleColor:[UIColor qh_colorWithHexString:GQHFontColorDarkBlack] forState:UIControlStateNormal];
         [rightButton addTarget:self action:@selector(qh_didClickRightButton:) forControlEvents:UIControlEventTouchUpInside];
         
@@ -347,7 +347,7 @@
         
         rightMostButton = [UIButton buttonWithType:UIButtonTypeCustom];
         rightMostButton.backgroundColor = [UIColor clearColor];
-        rightMostButton.titleLabel.font = [UIFont systemFontOfSize:15.0f];
+        rightMostButton.titleLabel.font = [UIFont systemFontOfSize:14.0f];
         [rightMostButton setTitleColor:[UIColor qh_colorWithHexString:GQHFontColorDarkBlack] forState:UIControlStateNormal];
         [rightMostButton addTarget:self action:@selector(qh_didClickRightMostButton:) forControlEvents:UIControlEventTouchUpInside];
         

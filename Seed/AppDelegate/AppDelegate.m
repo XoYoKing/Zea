@@ -22,6 +22,7 @@
     
     // 0.应用程序本地沙盒路径
     NSLog(@"%@",UIApplication.sharedApplication.qh_documentsPath);
+    NSLog(@"屏幕大小%@",@(UIScreen.mainScreen.scale));
     
     // 1.初始化应用程序窗口
     self.window = [[UIWindow alloc] initWithFrame:UIScreen.mainScreen.bounds];

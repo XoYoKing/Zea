@@ -336,7 +336,6 @@
 		D5C8A68F22FFE10100947237 /* NSArray+GQHSafety.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSArray+GQHSafety.h"; sourceTree = "<group>"; };
 		D5C8A69022FFE10100947237 /* NSString+GQHSafety.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+GQHSafety.m"; sourceTree = "<group>"; };
 		D5C8A69122FFE10100947237 /* NSDate+GQHFormatter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDate+GQHFormatter.h"; sourceTree = "<group>"; };
-		D5C8A6BF22FFE14F00947237 /* GQHMacro.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GQHMacro.h; sourceTree = "<group>"; };
 		D5C8A6C022FFE14F00947237 /* GQHHeader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GQHHeader.h; sourceTree = "<group>"; };
 		D5C8A6C122FFE18F00947237 /* GQHConstantHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GQHConstantHelper.h; sourceTree = "<group>"; };
 		D5C8A6C322FFE18F00947237 /* GQHNetworkError.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GQHNetworkError.h; sourceTree = "<group>"; };
@@ -554,7 +553,6 @@
 				04CBE6DC2373BF8800AA694A /* Seed.entitlements */,
 				D5B15883202D7D85005B76B1 /* AppDelegate */,
 				D5B15884202D7DCA005B76B1 /* General */,
-				D5B1596E202D7DCB005B76B1 /* Header */,
 				D5B158A5202D7DCA005B76B1 /* Helper */,
 				D5B158ED202D7DCA005B76B1 /* Library */,
 				D5A5C07622FFE87600A21A77 /* Module */,
@@ -612,6 +610,7 @@
 		D5B158A5202D7DCA005B76B1 /* Helper */ = {
 			isa = PBXGroup;
 			children = (
+				D5C8A6C022FFE14F00947237 /* GQHHeader.h */,
 				D5C8A6C122FFE18F00947237 /* GQHConstantHelper.h */,
 				D5C8A6CB22FFE18F00947237 /* GQHConstantHelper.m */,
 				D5C8A6C222FFE18F00947237 /* NetWork */,
@@ -643,16 +642,6 @@
 			);
 			name = Library;
 			path = Seed/Library;
-			sourceTree = SOURCE_ROOT;
-		};
-		D5B1596E202D7DCB005B76B1 /* Header */ = {
-			isa = PBXGroup;
-			children = (
-				D5C8A6C022FFE14F00947237 /* GQHHeader.h */,
-				D5C8A6BF22FFE14F00947237 /* GQHMacro.h */,
-			);
-			name = Header;
-			path = Seed/Header;
 			sourceTree = SOURCE_ROOT;
 		};
 		D5B159E6202D7DEC005B76B1 /* Support Files */ = {
@@ -1407,7 +1396,7 @@
 				INFOPLIST_FILE = "$(SRCROOT)/Seed/Support Files/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				MARKETING_VERSION = 4.0.0;
+				MARKETING_VERSION = 4.0.1;
 				PRODUCT_BUNDLE_IDENTIFIER = app.GuanQinghao.puzzle;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -1427,7 +1416,7 @@
 				INFOPLIST_FILE = "$(SRCROOT)/Seed/Support Files/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				MARKETING_VERSION = 4.0.0;
+				MARKETING_VERSION = 4.0.1;
 				PRODUCT_BUNDLE_IDENTIFIER = app.GuanQinghao.puzzle;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
