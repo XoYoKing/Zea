@@ -14,47 +14,6 @@ NS_ASSUME_NONNULL_BEGIN
 @interface UIColor (GQHColor)
 
 #pragma mark - Constant
-/**
- 字体颜色 灰色 (系统灰色)
- */
-@property (nonatomic, readonly, class) UIColor *qh_grayColor;
-
-/**
- 字体颜色 深灰色
- */
-@property (nonatomic, readonly, class) UIColor *qh_darkGrayColor;
-
-/**
- 字体颜色 深黑色
- */
-@property (nonatomic, readonly, class) UIColor *qh_darkBlackColor;
-
-
-/**
- 浅灰色 背景色
- */
-@property (nonatomic, readonly, class) UIColor *qh_lightGrayColor;
-
-/**
- 浅色 填充、描边、分隔等
- */
-@property (nonatomic, readonly, class) UIColor *qh_lightStrokeColor;
-
-/**
- 深色 填充、描边、分隔等
- */
-@property (nonatomic, readonly, class) UIColor *qh_strokeColor;
-
-
-/**
- 苹果蓝 (系统色)
- */
-@property (nonatomic, readonly, class) UIColor *qh_appleBlueColor;
-
-/**
- 苹果导航颜色 (系统色)
- */
-@property (nonatomic, readonly, class) UIColor *qh_appleGrayColor;
 
 #pragma mark - Converter
 

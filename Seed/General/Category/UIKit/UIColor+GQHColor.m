@@ -12,45 +12,6 @@
 @implementation UIColor (GQHColor)
 
 #pragma mark - Constant
-+ (UIColor *)qh_grayColor {
-    
-    return [UIColor colorWithRed:153/255.0f green:153/255.0f blue:153/255.0f alpha:1.0f];
-}
-
-+ (UIColor *)qh_darkGrayColor {
-    
-    return [UIColor colorWithRed:102/255.0f green:102/255.0f blue:102/255.0f alpha:1.0f];
-}
-
-+ (UIColor *)qh_darkBlackColor {
-    
-    return [UIColor colorWithRed:51/255.0f green:51/255.0f blue:51/255.0f alpha:1.0f];
-}
-
-+ (UIColor *)qh_lightGrayColor {
-    
-    return [UIColor colorWithRed:238/255.0f green:238/255.0f blue:238/255.0f alpha:1.0f];
-}
-
-+ (UIColor *)qh_lightStrokeColor {
-    
-    return [UIColor colorWithRed:229/255.0f green:229/255.0f blue:229/255.0f alpha:1.0f];
-}
-
-+ (UIColor *)qh_strokeColor {
-    
-    return [UIColor colorWithRed:204/255.0f green:204/255.0f blue:204/255.0f alpha:1.0f];
-}
-
-+ (UIColor *)qh_appleBlueColor {
-    
-    return [UIColor colorWithRed:0/255.0f green:122/255.0f blue:255/255.0f alpha:1.0f];
-}
-
-+ (UIColor *)qh_appleGrayColor {
-    
-    return [UIColor colorWithRed:249/255.0f green:249/255.0f blue:249/255.0f alpha:1.0f];
-}
 
 #pragma mark - Converter
 

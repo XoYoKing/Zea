@@ -1,58 +1,12 @@
 //
-//  AppDelegate+GQHIAP.m
+//  GQHIAPHelper.m
 //  Seed
 //
-//  Created by Mac on 2019/10/21.
+//  Created by Mac on 2019/11/27.
 //  Copyright © 2019 GuanQinghao. All rights reserved.
 //
 
-#import "AppDelegate+GQHIAP.h"
-
-@implementation AppDelegate (GQHIAP)
-
-/**
- 初始化IAP服务
- 
- @param launchOptions 启动方式
- */
-- (void)qh_IAPServerWithOptions:(NSDictionary *)launchOptions {
-    
-    // 应用程序启动完成
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didLaunch:) name:UIApplicationDidFinishLaunchingNotification object:nil];
-    
-    // 应用程序将要被终止
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(willTerminate:) name:UIApplicationWillTerminateNotification object:nil];
-}
-
-/**
- 启动内购服务
-
- @param notification 应用程序启动通知
- */
-- (void)didLaunch:(NSNotification *)notification {
-    
-    [[GQHIAPManager qh_sharedIAPMannager] qh_startMonitoringIAP];
-}
-
-/**
- 停止内购服务
-
- @param notification 应用程序被终止通知
- */
-- (void)willTerminate:(NSNotification *)notification {
-    
-    [[GQHIAPManager qh_sharedIAPMannager] qh_stopMonitoringIAP];
-}
-
-@end
-
-
-
-
-
-
-
-
+#import "GQHIAPHelper.h"
 
 
 /// 收据Key
@@ -62,6 +16,8 @@ static NSString * const iap_date_key = @"iap_date_key";
 /// 用户Key
 static NSString * const iap_user_id_key = @"iap_user_id_key";
 
+
+/// 内购队列
 dispatch_queue_t iap_queue() {
     
     static dispatch_queue_t as_iap_queue;
@@ -77,8 +33,7 @@ dispatch_queue_t iap_queue() {
 
 
 
-
-@interface GQHIAPManager () <SKPaymentTransactionObserver, SKProductsRequestDelegate>
+@interface GQHIAPHelper () <SKPaymentTransactionObserver, SKProductsRequestDelegate>
 
 /**
  交易成功后拿到一个BASE64编码字符串, 表示交易收据
@@ -102,10 +57,11 @@ dispatch_queue_t iap_queue() {
 
 @end
 
-/// 内购管理器单例
-static GQHIAPManager *manager = nil;
 
-@implementation GQHIAPManager
+/// 内购管理器单例
+static GQHIAPHelper *manager = nil;
+
+@implementation GQHIAPHelper
 
 /// 内购管理器单例
 + (instancetype)qh_sharedIAPMannager {
@@ -123,6 +79,10 @@ static GQHIAPManager *manager = nil;
     
     return  [[self class] qh_sharedIAPMannager];
 }
+
+
+
+
 
 /// 开始监听内购
 - (void)qh_startMonitoringIAP {
@@ -147,7 +107,7 @@ static GQHIAPManager *manager = nil;
          应用程序启动时监听是否有未完成的订单
          */
         [[SKPaymentQueue defaultQueue] addTransactionObserver:self];
-
+        
         /**
          阶段二场景:
          应用程序启动时检测本地是否有未验证的receipt文件
@@ -165,43 +125,35 @@ static GQHIAPManager *manager = nil;
     });
 }
 
+
+#pragma mark - 请求商品列表
 /// 请求商品信息
 /// @param productIDs 商品ID数组(AppStore)
 - (void)qh_fetchProductsWith:(NSArray<NSString *> *)productIDs {
     
-    if (self.finish) {
+    if ([SKPaymentQueue canMakePayments]) {
         
-        if ([SKPaymentQueue canMakePayments]) {
+        if (productIDs.count > 0) {
             
-            //MARK: 用户授权允许内购
-            if (productIDs.count > 0) {
-                
-                //TODO:字符串集合
-                NSSet *set = [NSSet setWithArray:productIDs];
-                SKProductsRequest *request = [[SKProductsRequest alloc] initWithProductIdentifiers:set];
-                request.delegate = self;
-                [request start];
-            } else {
-                
-                
-                
-                
-                
-                NSLog(@"App Store 商品ID为空");
-                //TODO: 商品为空
-                
-                self.finish = YES;
-            }
+            NSSet *set = [NSSet setWithArray:productIDs];
+            SKProductsRequest *request = [[SKProductsRequest alloc] initWithProductIdentifiers:set];
+            request.delegate = self;
+            [request start];
         } else {
             
-            NSLog(@"没有权限");
-            //TODO:没有权限
-            self.finish = YES;
+            // 商品ID为空
+            if ([self.qh_delegate respondsToSelector:@selector(qh_fetchProductsWithCode:content:)]) {
+                
+                [self.qh_delegate qh_fetchProductsWithCode:GQHIAPServiceCodeProductsEmpty content:nil];
+            }
         }
     } else {
         
-        NSLog(@"还有未完成的订单");
-        
+        if ([self.qh_delegate respondsToSelector:@selector(qh_fetchProductsWithCode:content:)]) {
+            
+            // 内购不可用
+            [self.qh_delegate qh_fetchProductsWithCode:GQHIAPServiceCodeUnavailable content:nil];
+        }
     }
 }
 
@@ -212,22 +164,22 @@ static GQHIAPManager *manager = nil;
 /// @param response 收到的响应
 - (void)productsRequest:(SKProductsRequest *)request didReceiveResponse:(SKProductsResponse *)response {
     
-    // 商品列表 - 对一个productID有多个商品
+    // 商品列表
     NSArray<SKProduct *> *products = response.products;
     
-    
-    //TODO: 商品列表查询处理
     if (products.count > 0) {
         
-        if ([self.qh_delegate respondsToSelector:@selector(qh_fetchProducts:code:info:)]) {
+        if ([self.qh_delegate respondsToSelector:@selector(qh_fetchProductsWithCode:content:)]) {
             
-            [self.qh_delegate qh_fetchProducts:products code:1 info:@{}];
+            [self.qh_delegate qh_fetchProductsWithCode:GQHIAPServiceCodeProductsOK content:products];
         }
     } else {
         
-        NSLog(@"无法获取商品信息或商品列表为空");
-        
-        self.finish = YES;
+        // 商品列表为空
+        if ([self.qh_delegate respondsToSelector:@selector(qh_fetchProductsWithCode:content:)]) {
+            
+            [self.qh_delegate qh_fetchProductsWithCode:GQHIAPServiceCodeProductsEmpty content:nil];
+        }
     }
 }
 
@@ -236,21 +188,16 @@ static GQHIAPManager *manager = nil;
 /// @param error 错误信息
 - (void)request:(SKRequest *)request didFailWithError:(NSError *)error {
     
-    NSLog(@"商品查询失败");
-    //TODO:失败
-    
-    self.finish = YES;
+    if ([self.qh_delegate respondsToSelector:@selector(qh_fetchProductsWithCode:content:)]) {
+        
+        [self.qh_delegate qh_fetchProductsWithCode:GQHIAPServiceCodeProductsUnobtainable content:nil];
+    }
 }
 
-/// 内购支付
-/// @param product 内购商品信息
-- (void)qh_payForProduct:(SKProduct *)product {
-    
-    // 发起购买请求
-    SKPayment *payment = [SKPayment paymentWithProduct:product];
-    [[SKPaymentQueue defaultQueue] addPayment:payment];
-}
 
+
+
+//TODO:内购结束
 /// 验证成功后移除购买凭证
 - (void)removeReceiptFileAtPath:(NSString *)filePath {
     
@@ -259,6 +206,20 @@ static GQHIAPManager *manager = nil;
         
         [fileManager removeItemAtPath:filePath error:nil];
     }
+}
+
+
+
+
+
+#pragma mark - 内购支付
+/// 内购支付
+/// @param product 内购商品信息
+- (void)qh_payForProduct:(SKProduct *)product {
+    
+    // 发起购买请求
+    SKPayment *payment = [SKPayment paymentWithProduct:product];
+    [[SKPaymentQueue defaultQueue] addPayment:payment];
 }
 
 #pragma mark - SKPaymentTransactionObserver
@@ -384,9 +345,9 @@ static GQHIAPManager *manager = nil;
     NSString *filePath = [NSString stringWithFormat:@"%@/%@.plist",[self receiptdiDirectoryPath] ,self.date];
     
     // 本地文件内容
-    NSDictionary *receipt = @{receipt_key:self.receipt,
-                              date_key:self.date,
-                              user_id_key:self.userID};
+    NSDictionary *receipt = @{iap_receipt_key:self.receipt,
+                              iap_date_key:self.date,
+                              iap_user_id_key:self.userID};
     
     [receipt writeToFile:filePath atomically:YES];
 }
@@ -408,6 +369,8 @@ static GQHIAPManager *manager = nil;
     }
 }
 
+
+
 - (void)sendAppStoreRequest:(NSString *)file {
     
     NSDictionary *receipt = [NSDictionary dictionaryWithContentsOfFile:file];
@@ -415,12 +378,19 @@ static GQHIAPManager *manager = nil;
     //TODO:与后台交互
 }
 
+
+
+
+
+
+
+
 /// 保存收据文件夹路径
 - (NSString *)receiptdiDirectoryPath {
     
-    NSString *documentPath = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES).firstObject;
+    NSString *documentsPath = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES).firstObject;
     
-    return [NSString stringWithFormat:@"%@/iap",documentPath];
+    return [NSString stringWithFormat:@"%@/iap",documentsPath];
 }
 
 /// UUID替代方法

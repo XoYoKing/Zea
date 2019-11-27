@@ -1,78 +1,48 @@
 //
-//  AppDelegate+GQHIAP.h
+//  GQHIAPHelper.h
 //  Seed
 //
-//  Created by Mac on 2019/10/21.
+//  Created by Mac on 2019/11/27.
 //  Copyright © 2019 GuanQinghao. All rights reserved.
 //
 
-#import "AppDelegate.h"
+#import <Foundation/Foundation.h>
 #import <StoreKit/StoreKit.h>
 
-/**
- 测试账号:admin@uter.top
- 测试密码:@Bcd1234
- 
- productID:
- top.uter.puzzle.aai
- top.uter.puzzle.ai
- */
 
 NS_ASSUME_NONNULL_BEGIN
-
-/**
- IAP(应用程序内购买)
- */
-@interface AppDelegate (GQHIAP)
-
-/**
- 初始化IAP服务
-
- @param launchOptions 启动方式
- */
-- (void)qh_IAPServerWithOptions:(NSDictionary *)launchOptions;
-
-@end
-
-NS_ASSUME_NONNULL_END
-
-
-
-
-
-
-
-
-
-
 
 typedef NS_ENUM(NSUInteger, GQHIAPResultCode) {
     
     GQHIAPResultCodeUnknown,
-    GQHIAPResultCodeServiceUnavailable,
-    GQHIAPResultCodeProductsUnobtainable,
-    GQHIAPResultCodeProductsEmpty,
     GQHIAPResultCodePaymentFailed,
     GQHIAPResultCodePaymentCancelled
 };
 
-typedef void(^GQHIAPResultHandler)(GQHIAPResultCode code, NSString *message, id data);
+
+typedef NS_ENUM(NSUInteger, GQHIAPServiceCode) {
+    
+    GQHIAPServiceCodeUnknown,
+    GQHIAPServiceCodeUnsupport,
+    GQHIAPServiceCodeUnavailable,
+    GQHIAPServiceCodeProductsUnobtainable,
+    GQHIAPServiceCodeProductsEmpty,
+    GQHIAPServiceCodeProductsOK
+};
 
 
-NS_ASSUME_NONNULL_BEGIN
+
 
 @protocol GQHIAPDelegate <NSObject>
 
 @required
 
 /// 获取商品列表
-/// @param products 商品列表
 /// @param code 返回码
-/// @param info 返回信息
-- (void)qh_fetchProducts:(NSArray *)products code:(NSInteger)code info:(NSDictionary *)info;
+/// @param content 返回内容
+- (void)qh_fetchProductsWithCode:(GQHIAPServiceCode)code content:(nullable id)content;
 
 
-- (void)qh_fetchProductsWith:(GQHIAPResultHandler *)handler;
 
 
 /// 发送App Store收据
@@ -86,13 +56,9 @@ NS_ASSUME_NONNULL_BEGIN
 NS_ASSUME_NONNULL_END
 
 
-
-
-
-
 NS_ASSUME_NONNULL_BEGIN
 
-@interface GQHIAPManager : NSObject
+@interface GQHIAPHelper : NSObject
 
 /**
  内购代理

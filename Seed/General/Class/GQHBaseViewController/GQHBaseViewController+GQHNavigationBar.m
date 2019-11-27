@@ -161,7 +161,7 @@
         make.top.mas_equalTo(self.qh_navigationBar).with.inset(self.view.qh_statusBarHeight);
         make.bottom.mas_equalTo(self.qh_navigationBar);
         make.right.mas_equalTo(self.qh_rightMostButton.mas_left);
-        make.width.mas_equalTo(CGFLOAT_MIN);
+        make.width.mas_equalTo(self.view.qh_navigationBarHeight);
     }];
     
     // 自定义导航栏标题栏
@@ -170,7 +170,7 @@
         make.top.mas_equalTo(self.qh_backButton);
         make.bottom.mas_equalTo(self.qh_navigationBar);
         make.left.mas_equalTo(self.qh_backButton.mas_right);
-        make.right.mas_equalTo(self.qh_rightMostButton.mas_left);
+        make.right.mas_equalTo(self.qh_rightButton.mas_left);
     }];
     
     // 分割线放到最前面

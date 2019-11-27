@@ -9,6 +9,8 @@
 #import "GQHHeader.h"
 #import "GQHPuzzleStatus.h"
 
+#import "AppDelegate+GQHIAP.h"
+
 #pragma mark Model
 #import "GQHRecordModel.h"
 
@@ -21,7 +23,7 @@
 
 #pragma mark -
 
-@interface GQHGameController () <GQHGameViewDelegate>
+@interface GQHGameController () <GQHGameViewDelegate, GQHIAPDelegate>
 
 /**
  自定义根视图
@@ -91,11 +93,18 @@
     [self.qh_titleButton setTitle:NSLocalizedString(@"puzzle", @"拼图") forState:UIControlStateNormal];
     [self.qh_rightMostButton setImage:[UIImage imageNamed:GQHNavigationBarResetBlackOnClear] forState:UIControlStateNormal];
     
+    // 右键
+    [self.qh_rightButton setTitle:@"内购" forState:UIControlStateNormal];
+    
     // 重置游戏
     [self resetGame];
     
     // 查询最优记录
     [self fetchBestRecord];
+    
+    
+    [GQHIAPManager qh_sharedIAPMannager].qh_delegate = self;
+    
 }
 
 /**
@@ -171,9 +180,23 @@
 
 #pragma mark - GQHGameViewDelegate
 
+#pragma mark -
+- (void)qh_fetchProducts:(NSArray *)products code:(NSInteger)code info:(NSDictionary *)info {
+    
+    for (SKProduct *product in products) {
+        
+        NSLog(@"%@%@%@%@",product.localizedTitle,product.localizedDescription, product.price,product.productIdentifier);
+    }
+}
+
 #pragma mark - TargetMethod
 
 - (void)qh_didClickRightButton:(UIButton *)sender {
+    
+    [[GQHIAPManager qh_sharedIAPMannager] qh_fetchProductsWith:@[@"top.uter.puzzle.aai",@"top.uter.puzzle.ai"]];
+    
+    return;
+    
     
     if (self.autoGaming) {
         

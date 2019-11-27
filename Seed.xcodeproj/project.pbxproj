@@ -52,6 +52,7 @@
 		04E695CC237E833100564DF3 /* GQHLevelView.m in Sources */ = {isa = PBXBuildFile; fileRef = 04E695C8237E833100564DF3 /* GQHLevelView.m */; };
 		04E695CD237E833100564DF3 /* GQHRecordView.m in Sources */ = {isa = PBXBuildFile; fileRef = 04E695C9237E833100564DF3 /* GQHRecordView.m */; };
 		04EC525723838893002D189C /* Seed.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 04EC525623838893002D189C /* Seed.bundle */; };
+		04F4CA75238E5C1C0029F2E7 /* GQHIAPHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 04F4CA74238E5C1B0029F2E7 /* GQHIAPHelper.m */; };
 		1A46AACB389F9172E3FD8D47 /* libPods-Seed.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 1F9022C94008243A6972068F /* libPods-Seed.a */; };
 		714D41090B87C418AAE32C7B /* libPods-SeedUITests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = CBB22A5583A8D587340B3181 /* libPods-SeedUITests.a */; };
 		C7EBE85CA3FAE16267B15F16 /* libPods-SeedTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 965655FC3B0AA93F8EE6E1B7 /* libPods-SeedTests.a */; };
@@ -78,9 +79,6 @@
 		D5B159EA202D7E31005B76B1 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D5B159E9202D7E31005B76B1 /* Main.storyboard */; };
 		D5B159ED202D818B005B76B1 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = D5B159EF202D818B005B76B1 /* Localizable.strings */; };
 		D5C8A69222FFE10100947237 /* UIPaddingLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = D5C8A63322FFE10100947237 /* UIPaddingLabel.m */; };
-		D5C8A69322FFE10100947237 /* GQHCommonCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D5C8A63522FFE10100947237 /* GQHCommonCell.m */; };
-		D5C8A69422FFE10100947237 /* GQHCustomCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D5C8A63622FFE10100947237 /* GQHCustomCell.m */; };
-		D5C8A69522FFE10100947237 /* GQHCustomButton.m in Sources */ = {isa = PBXBuildFile; fileRef = D5C8A63A22FFE10100947237 /* GQHCustomButton.m */; };
 		D5C8A6A322FFE10100947237 /* UIView+GQHAnimation.m in Sources */ = {isa = PBXBuildFile; fileRef = D5C8A65922FFE10100947237 /* UIView+GQHAnimation.m */; };
 		D5C8A6A422FFE10100947237 /* UIView+GQHHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = D5C8A65A22FFE10100947237 /* UIView+GQHHUD.m */; };
 		D5C8A6A522FFE10100947237 /* UIDevice+GQHDevice.m in Sources */ = {isa = PBXBuildFile; fileRef = D5C8A65B22FFE10100947237 /* UIDevice+GQHDevice.m */; };
@@ -219,6 +217,8 @@
 		04E695CA237E833100564DF3 /* GQHRecordView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GQHRecordView.h; sourceTree = "<group>"; };
 		04E695CB237E833100564DF3 /* GQHLevelView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GQHLevelView.h; sourceTree = "<group>"; };
 		04EC525623838893002D189C /* Seed.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Seed.bundle; sourceTree = "<group>"; };
+		04F4CA73238E5C1B0029F2E7 /* GQHIAPHelper.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GQHIAPHelper.h; sourceTree = "<group>"; };
+		04F4CA74238E5C1B0029F2E7 /* GQHIAPHelper.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GQHIAPHelper.m; sourceTree = "<group>"; };
 		1F9022C94008243A6972068F /* libPods-Seed.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Seed.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		26432BFBF9351331B984F0C8 /* Pods-Seed.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Seed.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Seed/Pods-Seed.debug.xcconfig"; sourceTree = "<group>"; };
 		2B3DBF78FB0941BD23D9ADA4 /* Pods-Seed.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Seed.release.xcconfig"; path = "Pods/Target Support Files/Pods-Seed/Pods-Seed.release.xcconfig"; sourceTree = "<group>"; };
@@ -275,12 +275,6 @@
 		D5B159F0202D8199005B76B1 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Localizable.strings"; sourceTree = "<group>"; };
 		D5B159F1202D81A1005B76B1 /* zh-Hant */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hant"; path = "zh-Hant.lproj/Localizable.strings"; sourceTree = "<group>"; };
 		D5C8A63322FFE10100947237 /* UIPaddingLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UIPaddingLabel.m; sourceTree = "<group>"; };
-		D5C8A63522FFE10100947237 /* GQHCommonCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GQHCommonCell.m; sourceTree = "<group>"; };
-		D5C8A63622FFE10100947237 /* GQHCustomCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GQHCustomCell.m; sourceTree = "<group>"; };
-		D5C8A63722FFE10100947237 /* GQHCustomCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GQHCustomCell.h; sourceTree = "<group>"; };
-		D5C8A63822FFE10100947237 /* GQHCommonCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GQHCommonCell.h; sourceTree = "<group>"; };
-		D5C8A63A22FFE10100947237 /* GQHCustomButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GQHCustomButton.m; sourceTree = "<group>"; };
-		D5C8A63B22FFE10100947237 /* GQHCustomButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GQHCustomButton.h; sourceTree = "<group>"; };
 		D5C8A63D22FFE10100947237 /* UIPaddingLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UIPaddingLabel.h; sourceTree = "<group>"; };
 		D5C8A65922FFE10100947237 /* UIView+GQHAnimation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+GQHAnimation.m"; sourceTree = "<group>"; };
 		D5C8A65A22FFE10100947237 /* UIView+GQHHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+GQHHUD.m"; sourceTree = "<group>"; };
@@ -590,6 +584,8 @@
 				D5C8A66A22FFE10100947237 /* AppDelegate+GQHEasterEggs.m */,
 				0428545123823C2600D0335F /* AppDelegate+GQHIAP.h */,
 				0428544E23823C2600D0335F /* AppDelegate+GQHIAP.m */,
+				04F4CA73238E5C1B0029F2E7 /* GQHIAPHelper.h */,
+				04F4CA74238E5C1B0029F2E7 /* GQHIAPHelper.m */,
 				D5C8A66B22FFE10100947237 /* AppDelegate+GQHShare.h */,
 				D5C8A65D22FFE10100947237 /* AppDelegate+GQHShare.m */,
 			);
@@ -661,32 +657,10 @@
 		D5C8A63122FFE10100947237 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				D5C8A63922FFE10100947237 /* Button */,
-				D5C8A63422FFE10100947237 /* Cell */,
 				D5C8A63D22FFE10100947237 /* UIPaddingLabel.h */,
 				D5C8A63322FFE10100947237 /* UIPaddingLabel.m */,
 			);
 			path = View;
-			sourceTree = "<group>";
-		};
-		D5C8A63422FFE10100947237 /* Cell */ = {
-			isa = PBXGroup;
-			children = (
-				D5C8A63822FFE10100947237 /* GQHCommonCell.h */,
-				D5C8A63522FFE10100947237 /* GQHCommonCell.m */,
-				D5C8A63722FFE10100947237 /* GQHCustomCell.h */,
-				D5C8A63622FFE10100947237 /* GQHCustomCell.m */,
-			);
-			path = Cell;
-			sourceTree = "<group>";
-		};
-		D5C8A63922FFE10100947237 /* Button */ = {
-			isa = PBXGroup;
-			children = (
-				D5C8A63B22FFE10100947237 /* GQHCustomButton.h */,
-				D5C8A63A22FFE10100947237 /* GQHCustomButton.m */,
-			);
-			path = Button;
 			sourceTree = "<group>";
 		};
 		D5C8A63E22FFE10100947237 /* Class */ = {
@@ -762,6 +736,8 @@
 			children = (
 				D5C8A68F22FFE10100947237 /* NSArray+GQHSafety.h */,
 				D5C8A68622FFE10100947237 /* NSArray+GQHSafety.m */,
+				04E695A7237E814F00564DF3 /* NSBundle+GQHBundle.h */,
+				04E695A8237E814F00564DF3 /* NSBundle+GQHBundle.m */,
 				D5C8A69122FFE10100947237 /* NSDate+GQHFormatter.h */,
 				D5C8A68422FFE10100947237 /* NSDate+GQHFormatter.m */,
 				D5C8A68C22FFE10100947237 /* NSDictionary+GQHJSON.h */,
@@ -782,8 +758,6 @@
 				D5C8A67F22FFE10100947237 /* NSString+GQHFormatter.m */,
 				D5C8A68522FFE10100947237 /* NSString+GQHSafety.h */,
 				D5C8A69022FFE10100947237 /* NSString+GQHSafety.m */,
-				04E695A7237E814F00564DF3 /* NSBundle+GQHBundle.h */,
-				04E695A8237E814F00564DF3 /* NSBundle+GQHBundle.m */,
 			);
 			path = Foundation;
 			sourceTree = "<group>";
@@ -1010,7 +984,7 @@
 			);
 			inputPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-Seed/Pods-Seed-resources.sh",
-				"${PODS_ROOT}/IQKeyboardManager/IQKeyboardManager/Resources/IQKeyboardManager.bundle",
+				"${PODS_CONFIGURATION_BUILD_DIR}/IQKeyboardManager/IQKeyboardManager.bundle",
 				"${PODS_ROOT}/MJRefresh/MJRefresh/MJRefresh.bundle",
 			);
 			name = "[CP] Copy Pods Resources";
@@ -1030,7 +1004,7 @@
 			);
 			inputPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-SeedTests/Pods-SeedTests-resources.sh",
-				"${PODS_ROOT}/IQKeyboardManager/IQKeyboardManager/Resources/IQKeyboardManager.bundle",
+				"${PODS_CONFIGURATION_BUILD_DIR}/IQKeyboardManager/IQKeyboardManager.bundle",
 				"${PODS_ROOT}/MJRefresh/MJRefresh/MJRefresh.bundle",
 			);
 			name = "[CP] Copy Pods Resources";
@@ -1086,7 +1060,7 @@
 			);
 			inputPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-SeedUITests/Pods-SeedUITests-resources.sh",
-				"${PODS_ROOT}/IQKeyboardManager/IQKeyboardManager/Resources/IQKeyboardManager.bundle",
+				"${PODS_CONFIGURATION_BUILD_DIR}/IQKeyboardManager/IQKeyboardManager.bundle",
 				"${PODS_ROOT}/MJRefresh/MJRefresh/MJRefresh.bundle",
 			);
 			name = "[CP] Copy Pods Resources";
@@ -1149,7 +1123,6 @@
 				0428545B23827B8200D0335F /* GQHDatabaseManager.m in Sources */,
 				04E695A3237E462400564DF3 /* GQHHelpModel.m in Sources */,
 				D5A5C0D322FFE8C600A21A77 /* GQHAppAboutController.m in Sources */,
-				D5C8A69322FFE10100947237 /* GQHCommonCell.m in Sources */,
 				D5C8A6BD22FFE10100947237 /* NSDictionary+GQHSafety.m in Sources */,
 				0428545323823C2600D0335F /* UIView+GQHBadge.m in Sources */,
 				D5C8A6AA22FFE10100947237 /* UIView+GQHFrame.m in Sources */,
@@ -1176,11 +1149,11 @@
 				0428545523823C2600D0335F /* AppDelegate+GQHIAP.m in Sources */,
 				D5A5C10122FFE8F200A21A77 /* GQHAppAboutView.m in Sources */,
 				D5A5C0D222FFE8C600A21A77 /* GQHLaunchController.m in Sources */,
+				04F4CA75238E5C1C0029F2E7 /* GQHIAPHelper.m in Sources */,
 				D5A5C0D422FFE8C600A21A77 /* GQHHomeController.m in Sources */,
 				04E695C6237E832400564DF3 /* GQHRecordController.m in Sources */,
 				04E695B9237E82CB00564DF3 /* GQHAppVersionModel.m in Sources */,
 				D5C8A6A822FFE10100947237 /* UIViewController+GQHAlert.m in Sources */,
-				D5C8A69422FFE10100947237 /* GQHCustomCell.m in Sources */,
 				D5C8A6B722FFE10100947237 /* NSDictionary+GQHJSON.m in Sources */,
 				D5C8A6CD22FFE18F00947237 /* GQHNetworkError.m in Sources */,
 				04E695CC237E833100564DF3 /* GQHLevelView.m in Sources */,
@@ -1190,7 +1163,6 @@
 				04E695C1237E830700564DF3 /* GQHAppHelpView.m in Sources */,
 				D5C8A6A422FFE10100947237 /* UIView+GQHHUD.m in Sources */,
 				D5C8A6CC22FFE18F00947237 /* GQHNetworkStatusMonitor.m in Sources */,
-				D5C8A69522FFE10100947237 /* GQHCustomButton.m in Sources */,
 				04E695BA237E82CB00564DF3 /* GQHAppFeedbackModel.m in Sources */,
 				D5C8A6B922FFE10100947237 /* NSArray+GQHSafety.m in Sources */,
 				D5C8A6BC22FFE10100947237 /* NSObject+GQHProperty.m in Sources */,
@@ -1394,7 +1366,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = JM52XZKNAA;
 				INFOPLIST_FILE = "$(SRCROOT)/Seed/Support Files/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				MARKETING_VERSION = 4.0.1;
 				PRODUCT_BUNDLE_IDENTIFIER = app.GuanQinghao.puzzle;
@@ -1414,7 +1386,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = JM52XZKNAA;
 				INFOPLIST_FILE = "$(SRCROOT)/Seed/Support Files/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				MARKETING_VERSION = 4.0.1;
 				PRODUCT_BUNDLE_IDENTIFIER = app.GuanQinghao.puzzle;

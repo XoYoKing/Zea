@@ -63,6 +63,9 @@
     // 7、添加全局定时器
     [[GQHGlobalTimer qh_sharedGlobalTimer] qh_resumeTimer];
     
+    // 8.内购服务
+    [self qh_IAPServerWithOptions:launchOptions];
+    
     return YES;
 }
 
