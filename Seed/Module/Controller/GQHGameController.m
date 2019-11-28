@@ -8,8 +8,7 @@
 #pragma mark Other
 #import "GQHHeader.h"
 #import "GQHPuzzleStatus.h"
-
-#import "AppDelegate+GQHIAP.h"
+#import "GQHIAPManager.h"
 
 #pragma mark Model
 #import "GQHRecordModel.h"
@@ -30,6 +29,10 @@
  */
 @property (nonatomic, strong) GQHGameView *rootView;
 
+/**
+ 拼图机器人
+ */
+@property (nonatomic, strong) UIButton *robotButton;
 
 /**
  当前的游戏状态
@@ -180,23 +183,67 @@
 
 #pragma mark - GQHGameViewDelegate
 
-#pragma mark -
-- (void)qh_fetchProducts:(NSArray *)products code:(NSInteger)code info:(NSDictionary *)info {
+#pragma mark - GQHIAPDelegate
+
+/// 请求商品列表
+/// @param code 返回码
+/// @param content 返回内容
+- (void)qh_fetchProductsWithCode:(GQHIAPServiceCode)code content:(nullable id)content {
     
-    for (SKProduct *product in products) {
-        
-        NSLog(@"%@%@%@%@",product.localizedTitle,product.localizedDescription, product.price,product.productIdentifier);
+    switch (code) {
+        case GQHIAPServiceCodeUnavailable:
+            NSLog(@"内购不可用");
+            break;
+        case GQHIAPServiceCodeProductsUnobtainable:
+            NSLog(@"无法获取商品");
+            break;
+        case GQHIAPServiceCodeProductsEmpty:
+            NSLog(@"商品为空");
+            break;
+        case GQHIAPServiceCodeProductsOK: {
+            
+            NSArray<SKProduct *> *products = [NSArray arrayWithArray:content];
+            
+            for (SKProduct *product in products) {
+                
+                NSLog(@"%@%@%@%@",product.localizedTitle,product.localizedDescription, product.price,product.productIdentifier);
+            }
+            
+            [[GQHIAPManager qh_sharedIAPMannager] qh_payForProduct:products.firstObject];
+        }
+            break;
     }
+}
+
+/// 交易失败
+/// @param code 交易失败码
+- (void)qh_failedTransactionWithCode:(GQHIAPResultCode)code {
+    
+    switch (code) {
+        case GQHIAPResultCodePaymentFailed:
+            
+            break;
+            
+        case GQHIAPResultCodePaymentCancelled:
+            
+            break;
+    }
+}
+
+/// 发送App Store交易收据(验证通过，删除收据，完成此次交易)
+/// @param transaction 本次交易
+/// @param file 收据文件路径
+- (void)qh_sendAppStoreTransaction:(SKPaymentTransaction *)transaction receipt:(NSString *)file {
+    
+    NSDictionary *receipt = [NSDictionary dictionaryWithContentsOfFile:file];
+    NSLog(@"%@",receipt);
+    
+    [[GQHIAPManager qh_sharedIAPMannager] qh_finishTransaction:transaction receipt:file];
 }
 
 #pragma mark - TargetMethod
 
 - (void)qh_didClickRightButton:(UIButton *)sender {
-    
-    [[GQHIAPManager qh_sharedIAPMannager] qh_fetchProductsWith:@[@"top.uter.puzzle.aai",@"top.uter.puzzle.ai"]];
-    
-    return;
-    
     
     if (self.autoGaming) {
         
@@ -400,12 +447,12 @@
     // 记时器是否运行
     self.running = NO;
     [GQHGlobalTimer qh_sharedGlobalTimer].qh_block = ^(double timeStamp) {
-
+        
         if (self.running) {
-
+            
             self.record.qh_gameTime++;
         }
-
+        
         self.rootView.qh_record = self.record;
     };
     

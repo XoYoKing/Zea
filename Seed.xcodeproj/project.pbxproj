@@ -23,6 +23,7 @@
 		044544C623729BCE000A7A28 /* GQHBreadthFirstSearcher.m in Sources */ = {isa = PBXBuildFile; fileRef = 044544C523729BCE000A7A28 /* GQHBreadthFirstSearcher.m */; };
 		04719BED23751DBF008A10A8 /* GQHPuzzlePiece.m in Sources */ = {isa = PBXBuildFile; fileRef = 04719BEC23751DBF008A10A8 /* GQHPuzzlePiece.m */; };
 		04719BF023752036008A10A8 /* GQHPuzzleStatus.m in Sources */ = {isa = PBXBuildFile; fileRef = 04719BEF23752036008A10A8 /* GQHPuzzleStatus.m */; };
+		048DAFA0238F6C000035E7E5 /* GQHIAPManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 048DAF9F238F6C000035E7E5 /* GQHIAPManager.m */; };
 		04953FE82370131400C3CFE4 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 04953FE72370131400C3CFE4 /* LaunchScreen.storyboard */; };
 		04974AB7237165BE00095393 /* GQHPriorityQueue.m in Sources */ = {isa = PBXBuildFile; fileRef = 04974AB6237165BE00095393 /* GQHPriorityQueue.m */; };
 		04CBE6D62373B3F700AA694A /* GQHDoubleBreadthFirstSearcher.m in Sources */ = {isa = PBXBuildFile; fileRef = 04CBE6D52373B3F700AA694A /* GQHDoubleBreadthFirstSearcher.m */; };
@@ -52,7 +53,6 @@
 		04E695CC237E833100564DF3 /* GQHLevelView.m in Sources */ = {isa = PBXBuildFile; fileRef = 04E695C8237E833100564DF3 /* GQHLevelView.m */; };
 		04E695CD237E833100564DF3 /* GQHRecordView.m in Sources */ = {isa = PBXBuildFile; fileRef = 04E695C9237E833100564DF3 /* GQHRecordView.m */; };
 		04EC525723838893002D189C /* Seed.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 04EC525623838893002D189C /* Seed.bundle */; };
-		04F4CA75238E5C1C0029F2E7 /* GQHIAPHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 04F4CA74238E5C1B0029F2E7 /* GQHIAPHelper.m */; };
 		1A46AACB389F9172E3FD8D47 /* libPods-Seed.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 1F9022C94008243A6972068F /* libPods-Seed.a */; };
 		714D41090B87C418AAE32C7B /* libPods-SeedUITests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = CBB22A5583A8D587340B3181 /* libPods-SeedUITests.a */; };
 		C7EBE85CA3FAE16267B15F16 /* libPods-SeedTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 965655FC3B0AA93F8EE6E1B7 /* libPods-SeedTests.a */; };
@@ -160,6 +160,8 @@
 		04719BEC23751DBF008A10A8 /* GQHPuzzlePiece.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GQHPuzzlePiece.m; sourceTree = "<group>"; };
 		04719BEE23752036008A10A8 /* GQHPuzzleStatus.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GQHPuzzleStatus.h; sourceTree = "<group>"; };
 		04719BEF23752036008A10A8 /* GQHPuzzleStatus.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GQHPuzzleStatus.m; sourceTree = "<group>"; };
+		048DAF9E238F6C000035E7E5 /* GQHIAPManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GQHIAPManager.h; sourceTree = "<group>"; };
+		048DAF9F238F6C000035E7E5 /* GQHIAPManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GQHIAPManager.m; sourceTree = "<group>"; };
 		04953FE72370131400C3CFE4 /* LaunchScreen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
 		04974AB5237165BE00095393 /* GQHPriorityQueue.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GQHPriorityQueue.h; sourceTree = "<group>"; };
 		04974AB6237165BE00095393 /* GQHPriorityQueue.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GQHPriorityQueue.m; sourceTree = "<group>"; };
@@ -217,8 +219,6 @@
 		04E695CA237E833100564DF3 /* GQHRecordView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GQHRecordView.h; sourceTree = "<group>"; };
 		04E695CB237E833100564DF3 /* GQHLevelView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GQHLevelView.h; sourceTree = "<group>"; };
 		04EC525623838893002D189C /* Seed.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Seed.bundle; sourceTree = "<group>"; };
-		04F4CA73238E5C1B0029F2E7 /* GQHIAPHelper.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GQHIAPHelper.h; sourceTree = "<group>"; };
-		04F4CA74238E5C1B0029F2E7 /* GQHIAPHelper.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GQHIAPHelper.m; sourceTree = "<group>"; };
 		1F9022C94008243A6972068F /* libPods-Seed.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Seed.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		26432BFBF9351331B984F0C8 /* Pods-Seed.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Seed.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Seed/Pods-Seed.debug.xcconfig"; sourceTree = "<group>"; };
 		2B3DBF78FB0941BD23D9ADA4 /* Pods-Seed.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Seed.release.xcconfig"; path = "Pods/Target Support Files/Pods-Seed/Pods-Seed.release.xcconfig"; sourceTree = "<group>"; };
@@ -584,8 +584,8 @@
 				D5C8A66A22FFE10100947237 /* AppDelegate+GQHEasterEggs.m */,
 				0428545123823C2600D0335F /* AppDelegate+GQHIAP.h */,
 				0428544E23823C2600D0335F /* AppDelegate+GQHIAP.m */,
-				04F4CA73238E5C1B0029F2E7 /* GQHIAPHelper.h */,
-				04F4CA74238E5C1B0029F2E7 /* GQHIAPHelper.m */,
+				048DAF9E238F6C000035E7E5 /* GQHIAPManager.h */,
+				048DAF9F238F6C000035E7E5 /* GQHIAPManager.m */,
 				D5C8A66B22FFE10100947237 /* AppDelegate+GQHShare.h */,
 				D5C8A65D22FFE10100947237 /* AppDelegate+GQHShare.m */,
 			);
@@ -1149,7 +1149,6 @@
 				0428545523823C2600D0335F /* AppDelegate+GQHIAP.m in Sources */,
 				D5A5C10122FFE8F200A21A77 /* GQHAppAboutView.m in Sources */,
 				D5A5C0D222FFE8C600A21A77 /* GQHLaunchController.m in Sources */,
-				04F4CA75238E5C1C0029F2E7 /* GQHIAPHelper.m in Sources */,
 				D5A5C0D422FFE8C600A21A77 /* GQHHomeController.m in Sources */,
 				04E695C6237E832400564DF3 /* GQHRecordController.m in Sources */,
 				04E695B9237E82CB00564DF3 /* GQHAppVersionModel.m in Sources */,
@@ -1187,6 +1186,7 @@
 				04E695BE237E82F900564DF3 /* GQHAppHelpController.m in Sources */,
 				D5A5C10322FFE8F200A21A77 /* GQHGalleryView.m in Sources */,
 				D5C8A6A722FFE10100947237 /* UIApplication+GQHFileManager.m in Sources */,
+				048DAFA0238F6C000035E7E5 /* GQHIAPManager.m in Sources */,
 				04CBE6D62373B3F700AA694A /* GQHDoubleBreadthFirstSearcher.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
