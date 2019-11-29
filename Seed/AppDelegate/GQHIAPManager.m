@@ -18,6 +18,7 @@ static NSString * const iap_user_id_key = @"iap_user_id_key";
 /// 商品Key
 static NSString * const iap_product_id_key = @"iap_product_id_key";
 
+
 /// 内购队列
 dispatch_queue_t iap_queue() {
     
@@ -31,6 +32,7 @@ dispatch_queue_t iap_queue() {
     return as_iap_queue;
 }
 
+
 @interface GQHIAPManager () <SKPaymentTransactionObserver, SKProductsRequestDelegate>
 
 /**
@@ -42,11 +44,6 @@ dispatch_queue_t iap_queue() {
  交易日期
  */
 @property (nonatomic, copy) NSString *date;
-
-/**
- 交易人
- */
-@property (nonatomic, copy) NSString *userID;
 
 /**
  请求是否完成(避免重复请求)
@@ -77,6 +74,7 @@ static GQHIAPManager *manager = nil;
     return  [[self class] qh_sharedIAPMannager];
 }
 
+
 /// 开始监听内购
 - (void)qh_startMonitoringIAP {
     NSLog(@"%s",__func__);
@@ -86,27 +84,16 @@ static GQHIAPManager *manager = nil;
         self.finish = YES;
         
         /**
-         内购两个阶段:
-         阶段一:
-         第一步, 向苹果服务器请求商品列表
-         第二步, 根据商品信息支付费用, 支付成功后返回凭证
-         
-         阶段二:
-         第一步, 应用程序向公司服务器发送凭证验证
-         第二步, 公司服务器向苹果服务器凭证验证
+         内购过程:
+         0.向苹果服务器发送请求, 查询商品列表
+         1.根据商品信息发起内购支付或恢复内购
+         2.内购成功返回内购收据, 向公司服务器发送收据进行验证
+         3.公司服务器向苹果服务器验证收据
+         4.收据验证结束, 完成交易, 删除本地收据
          */
         
-        /**
-         阶段一场景:
-         应用程序启动时监听是否有未完成的订单
-         */
+        // 应用程序启动时监听内购
         [[SKPaymentQueue defaultQueue] addTransactionObserver:self];
-        
-        /**
-         阶段二场景:
-         应用程序启动时检测本地是否有未验证的receipt文件
-         */
-        //        [self verifyReceiptFile];
     });
 }
 
@@ -116,18 +103,21 @@ static GQHIAPManager *manager = nil;
     
     dispatch_async(dispatch_get_global_queue(0, 0), ^{
         
+        // 应用程序启动时移除监听
         [[SKPaymentQueue defaultQueue] removeTransactionObserver:self];
     });
 }
 
-#pragma mark - 请求商品列表
+
+#pragma mark - 阶段一:请求商品列表
 /// 请求商品信息
 /// @param productIDs 商品ID数组(AppStore)
-- (void)qh_fetchProductsWith:(NSArray<NSString *> *)productIDs {
+- (void)qh_fetchIAPProductsWith:(NSArray<NSString *> *)productIDs {
     NSLog(@"%s",__func__);
     
     if (self.finish) {
         
+        //MARK:用户是否允许内购
         if ([SKPaymentQueue canMakePayments]) {
             
             if (productIDs.count > 0) {
@@ -142,9 +132,9 @@ static GQHIAPManager *manager = nil;
             } else {
                 
                 // 商品ID为空
-                if ([self.qh_delegate respondsToSelector:@selector(qh_fetchProductsWithCode:content:)]) {
+                if ([self.qh_delegate respondsToSelector:@selector(qh_fetchIAPProductsWithCode:content:)]) {
                     
-                    [self.qh_delegate qh_fetchProductsWithCode:GQHIAPServiceCodeProductsEmpty content:nil];
+                    [self.qh_delegate qh_fetchIAPProductsWithCode:GQHIAPServiceCodeProductsEmpty content:nil];
                 }
                 
                 // 请求完成
@@ -152,10 +142,10 @@ static GQHIAPManager *manager = nil;
             }
         } else {
             
-            if ([self.qh_delegate respondsToSelector:@selector(qh_fetchProductsWithCode:content:)]) {
+            if ([self.qh_delegate respondsToSelector:@selector(qh_fetchIAPProductsWithCode:content:)]) {
                 
                 // 内购不可用
-                [self.qh_delegate qh_fetchProductsWithCode:GQHIAPServiceCodeUnavailable content:nil];
+                [self.qh_delegate qh_fetchIAPProductsWithCode:GQHIAPServiceCodeUnavailable content:nil];
             }
             
             // 请求完成
@@ -179,16 +169,16 @@ static GQHIAPManager *manager = nil;
     
     if (products.count > 0) {
         
-        if ([self.qh_delegate respondsToSelector:@selector(qh_fetchProductsWithCode:content:)]) {
+        if ([self.qh_delegate respondsToSelector:@selector(qh_fetchIAPProductsWithCode:content:)]) {
             
-            [self.qh_delegate qh_fetchProductsWithCode:GQHIAPServiceCodeProductsOK content:products];
+            [self.qh_delegate qh_fetchIAPProductsWithCode:GQHIAPServiceCodeProductsOK content:products];
         }
     } else {
         
         // 商品列表为空
-        if ([self.qh_delegate respondsToSelector:@selector(qh_fetchProductsWithCode:content:)]) {
+        if ([self.qh_delegate respondsToSelector:@selector(qh_fetchIAPProductsWithCode:content:)]) {
             
-            [self.qh_delegate qh_fetchProductsWithCode:GQHIAPServiceCodeProductsEmpty content:nil];
+            [self.qh_delegate qh_fetchIAPProductsWithCode:GQHIAPServiceCodeProductsEmpty content:nil];
         }
     }
 }
@@ -202,17 +192,17 @@ static GQHIAPManager *manager = nil;
     // 请求完成
     self.finish = YES;
     
-    if ([self.qh_delegate respondsToSelector:@selector(qh_fetchProductsWithCode:content:)]) {
+    if ([self.qh_delegate respondsToSelector:@selector(qh_fetchIAPProductsWithCode:content:)]) {
         
-        [self.qh_delegate qh_fetchProductsWithCode:GQHIAPServiceCodeProductsUnobtainable content:nil];
+        [self.qh_delegate qh_fetchIAPProductsWithCode:GQHIAPServiceCodeProductsUnobtainable content:nil];
     }
 }
 
 
-#pragma mark - 内购支付
+#pragma mark - 阶段二:内购支付
 /// 内购支付
 /// @param product 内购商品信息
-- (void)qh_payForProduct:(SKProduct *)product {
+- (void)qh_payForIAPProduct:(SKProduct *)product {
     NSLog(@"%s",__func__);
     
     if (self.finish) {
@@ -228,8 +218,7 @@ static GQHIAPManager *manager = nil;
 
 /// 恢复内购交易
 /// @param username 用户名
-- (void)qh_restoreCompletedTransactionsWithApplicationUsername:(NSString *)username {
-    NSLog(@"%s",__func__);
+- (void)qh_restoreCompletedIAPTransactionsWithApplicationUsername:(NSString *)username {
     
     [[SKPaymentQueue defaultQueue] restoreCompletedTransactionsWithApplicationUsername:username];
     self.finish = YES;
@@ -238,8 +227,7 @@ static GQHIAPManager *manager = nil;
 /// 收据验证成功, 完成交易并删除收据
 /// @param transaction 本次交易
 /// @param file 收据文件路径
-- (void)qh_finishTransaction:(SKPaymentTransaction *)transaction receipt:(NSString *)file {
-    NSLog(@"%s",__func__);
+- (void)qh_finishIAPTransaction:(SKPaymentTransaction *)transaction receipt:(NSString *)file {
     
     [[SKPaymentQueue defaultQueue] finishTransaction:transaction];
     self.finish = YES;
@@ -270,12 +258,7 @@ static GQHIAPManager *manager = nil;
             case SKPaymentTransactionStatePurchased: {
                 
                 // 交易完成
-                // 0.获取本次交易的收据
-                [self fetchTransactionReceipt:transaction];
-                // 1.持久化保存收据 -> Documents/iap/name.plist
-                [self saveTransactionReceipt:transaction];
-                // 2.验证收据
-                [self verifyTransactionReceipt:transaction];
+                [self updateIAPTransaction:transaction];
             }
                 break;
                 
@@ -288,13 +271,8 @@ static GQHIAPManager *manager = nil;
                 
             case SKPaymentTransactionStateRestored: {
                 
-                // 恢复已购买过的交易
-                // 0.获取本次交易的收据
-                [self fetchTransactionReceipt:transaction];
-                // 1.持久化保存收据 -> Documents/iap/name.plist
-                [self saveTransactionReceipt:transaction];
-                // 2.验证收据
-                [self verifyTransactionReceipt:transaction];
+                //恢复内购
+                [self updateIAPTransaction:transaction];
             }
                 break;
                 
@@ -307,9 +285,23 @@ static GQHIAPManager *manager = nil;
     }
 }
 
-//MARK:交易成功
+/// 更新内购交易
+/// @param transaction 内购交易
+- (void)updateIAPTransaction:(SKPaymentTransaction *)transaction {
+    
+    if ([self.qh_delegate respondsToSelector:@selector(qh_sendIAPTransaction:receipt:)]) {
+        
+        // 获取交易收据
+        [self fetchTransactionReceipt:transaction];
+        // 保存交易收据
+        [self saveTransactionReceipt:transaction];
+        // 验证交易收据
+        [self verifyTransactionReceipt:transaction];
+    }
+}
+
 /// 获取交易收据
-/// @param transaction 本次交易
+/// @param transaction 内购交易
 - (void)fetchTransactionReceipt:(SKPaymentTransaction *)transaction {
     NSLog(@"%s",__func__);
     
@@ -326,31 +318,25 @@ static GQHIAPManager *manager = nil;
     // 购买的东西
     NSString *productID = transaction.payment.productIdentifier;
     
-    // 购买日期
+    // 购买的日期
     NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
     [dateFormatter setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
     self.date = [dateFormatter stringFromDate:transaction.transactionDate];
     
-    // 用户ID
-    self.userID = @"UserID";
-    
     // 收据文件保存路径
     NSString *filePath = [NSString stringWithFormat:@"%@/%@_%@.plist",[self receiptdiDirectoryPath] ,productID ,self.date];
     
-    // 本地文件内容
-    NSMutableDictionary *receipt = [NSMutableDictionary dictionary];
-    [receipt setObject:productID forKey:iap_product_id_key];
-    [receipt setObject:self.date forKey:iap_date_key];
+    // 收据保存本地
     if (self.receipt) {
-        [receipt setObject:self.receipt forKey:iap_receipt_key];
-    }
-    
-    if ([receipt writeToFile:filePath atomically:YES]) {
         
-        NSLog(@"保存成功");
-    } else {
+        NSMutableDictionary *receipt = [NSMutableDictionary dictionary];
+        [receipt setObject:productID forKey:iap_product_id_key];
+        [receipt setObject:self.date forKey:iap_date_key];
+        if (self.receipt) {
+            [receipt setObject:self.receipt forKey:iap_receipt_key];
+        }
         
-        NSLog(@"保存失败");
+        [receipt writeToFile:filePath atomically:YES] ? NSLog(@"保存成功") : NSLog(@"保存失败");
     }
 }
 
@@ -369,17 +355,7 @@ static GQHIAPManager *manager = nil;
         NSString *filePath = [NSString stringWithFormat:@"%@/%@",directory,name];
         NSLog(@"%@",filePath);
         
-        if ([self.qh_delegate respondsToSelector:@selector(qh_sendAppStoreTransaction:receipt:)]) {
-            
-            [self.qh_delegate qh_sendAppStoreTransaction:transaction receipt:filePath];
-        } else {
-            
-            NSFileManager *fileManager =[NSFileManager defaultManager];
-            if ([fileManager fileExistsAtPath:filePath]) {
-                
-                [fileManager removeItemAtPath:filePath error:nil];
-            }
-        }
+        [self.qh_delegate qh_sendIAPTransaction:transaction receipt:filePath];
     }
 }
 
@@ -388,25 +364,14 @@ static GQHIAPManager *manager = nil;
 - (void)failedTransaction:(SKPaymentTransaction *)transaction {
     NSLog(@"%s",__func__);
     
-    if (transaction.error.code == SKErrorPaymentCancelled) {
+    if ([self.qh_delegate respondsToSelector:@selector(qh_failedIAPTransactionWithCode:)]) {
         
-        // 用户取消
-        //TODO:cancelled
-        NSLog(@"用户取消");
-        
-        if ([self.qh_delegate respondsToSelector:@selector(qh_failedTransactionWithCode:)]) {
+        if (transaction.error.code == SKErrorPaymentCancelled) {
             
-            [self.qh_delegate qh_failedTransactionWithCode:GQHIAPResultCodePaymentCancelled];
-        }
-    } else {
-        
-        // 内购支付失败
-        //TODO:failed
-        NSLog(@"交易失败");
-        
-        if ([self.qh_delegate respondsToSelector:@selector(qh_failedTransactionWithCode:)]) {
+            [self.qh_delegate qh_failedIAPTransactionWithCode:GQHIAPResultCodePaymentCancelled];
+        } else {
             
-            [self.qh_delegate qh_failedTransactionWithCode:GQHIAPResultCodePaymentFailed];
+            [self.qh_delegate qh_failedIAPTransactionWithCode:GQHIAPResultCodePaymentFailed];
         }
     }
     

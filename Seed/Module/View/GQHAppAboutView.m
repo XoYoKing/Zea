@@ -226,8 +226,6 @@
         _wechatImageView = [[UIImageView alloc] init];
         _wechatImageView.backgroundColor = [UIColor qh_randomColor];
         
-        _wechatImageView.image = [UIImage imageNamed:@""];
-        
         _wechatImageView.layer.cornerRadius = 0.0f;
         _wechatImageView.layer.masksToBounds = YES;
     }

@@ -9,14 +9,15 @@
 #import <Foundation/Foundation.h>
 #import <StoreKit/StoreKit.h>
 
-
+/// 内购支付结果码
 typedef NS_ENUM(NSUInteger, GQHIAPResultCode) {
     
+    GQHIAPResultCodePaymentOK,
     GQHIAPResultCodePaymentFailed,
     GQHIAPResultCodePaymentCancelled
 };
 
-
+/// 内购服务查询结果码
 typedef NS_ENUM(NSUInteger, GQHIAPServiceCode) {
     
     GQHIAPServiceCodeUnavailable,
@@ -28,26 +29,24 @@ typedef NS_ENUM(NSUInteger, GQHIAPServiceCode) {
 
 NS_ASSUME_NONNULL_BEGIN
 
-@protocol GQHIAPDelegate <NSObject>
+/// 内购代理
+@protocol GQHIAPManagerDelegate <NSObject>
 
 @required
 
-/// 请求商品列表
-/// @param code 返回码
-/// @param content 返回内容
-- (void)qh_fetchProductsWithCode:(GQHIAPServiceCode)code content:(nullable id)content;
+/// 请求内购商品列表
+/// @param code 查询结果码
+/// @param content 查询结果
+- (void)qh_fetchIAPProductsWithCode:(GQHIAPServiceCode)code content:(nullable id)content;
 
 /// 交易失败
-/// @param code 交易失败码
-- (void)qh_failedTransactionWithCode:(GQHIAPResultCode)code;
+/// @param code 交易结果码
+- (void)qh_failedIAPTransactionWithCode:(GQHIAPResultCode)code;
 
-/// 发送App Store交易收据(验证通过，删除收据，完成此次交易)
-/// @param transaction 本次交易
+/// 发送内购交易收据到服务器(验证通过，删除收据，完成此次交易)
+/// @param transaction 内购交易
 /// @param file 收据文件路径
-- (void)qh_sendAppStoreTransaction:(SKPaymentTransaction *)transaction receipt:(NSString *)file;
-
-
-
+- (void)qh_sendIAPTransaction:(SKPaymentTransaction *)transaction receipt:(NSString *)file;
 
 @optional
 
@@ -63,7 +62,7 @@ NS_ASSUME_NONNULL_BEGIN
 /**
  内购代理
  */
-@property (nonatomic, weak) id<GQHIAPDelegate> qh_delegate;
+@property (nonatomic, weak) id<GQHIAPManagerDelegate> qh_delegate;
 
 /// 内购管理器单例
 + (instancetype)qh_sharedIAPMannager;
@@ -74,24 +73,24 @@ NS_ASSUME_NONNULL_BEGIN
 /// 停止监听内购
 - (void)qh_stopMonitoringIAP;
 
-#pragma mark - 请求商品列表
+#pragma mark - 阶段一:请求商品列表
 /// 请求商品信息
 /// @param productIDs 商品ID数组(AppStore)
-- (void)qh_fetchProductsWith:(NSArray<NSString *> *)productIDs;
+- (void)qh_fetchIAPProductsWith:(NSArray<NSString *> *)productIDs;
 
-#pragma mark - 内购支付
+#pragma mark - 阶段二:内购支付
 /// 内购支付
 /// @param product 内购商品信息
-- (void)qh_payForProduct:(SKProduct *)product;
+- (void)qh_payForIAPProduct:(SKProduct *)product;
 
 /// 收据验证成功, 完成交易并删除收据
 /// @param transaction 本次交易
 /// @param file 收据文件路径
-- (void)qh_finishTransaction:(SKPaymentTransaction *)transaction receipt:(NSString *)file;
+- (void)qh_finishIAPTransaction:(SKPaymentTransaction *)transaction receipt:(NSString *)file;
 
 /// 恢复内购交易
 /// @param username 用户名
-- (void)qh_restoreCompletedTransactionsWithApplicationUsername:(NSString *)username;
+- (void)qh_restoreCompletedIAPTransactionsWithApplicationUsername:(NSString *)username;
 
 @end
 

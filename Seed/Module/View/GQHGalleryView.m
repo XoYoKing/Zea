@@ -265,8 +265,6 @@
         _gameImageView.backgroundColor = [UIColor clearColor];
         _gameImageView.userInteractionEnabled = YES;
         
-        _gameImageView.image = [UIImage imageNamed:@""];
-        
         _gameImageView.layer.cornerRadius = GQHUICornerRadius;
         _gameImageView.layer.masksToBounds = YES;
     }

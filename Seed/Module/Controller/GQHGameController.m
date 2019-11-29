@@ -22,7 +22,7 @@
 
 #pragma mark -
 
-@interface GQHGameController () <GQHGameViewDelegate, GQHIAPDelegate>
+@interface GQHGameController () <GQHGameViewDelegate, GQHIAPManagerDelegate>
 
 /**
  自定义根视图
@@ -106,8 +106,8 @@
     [self fetchBestRecord];
     
     
+    // 内购代理
     [GQHIAPManager qh_sharedIAPMannager].qh_delegate = self;
-    
 }
 
 /**
@@ -183,12 +183,12 @@
 
 #pragma mark - GQHGameViewDelegate
 
-#pragma mark - GQHIAPDelegate
+#pragma mark - GQHIAPManagerDelegate
 
 /// 请求商品列表
 /// @param code 返回码
 /// @param content 返回内容
-- (void)qh_fetchProductsWithCode:(GQHIAPServiceCode)code content:(nullable id)content {
+- (void)qh_fetchIAPProductsWithCode:(GQHIAPServiceCode)code content:(nullable id)content {
     
     switch (code) {
         case GQHIAPServiceCodeUnavailable:
@@ -206,10 +206,10 @@
             
             for (SKProduct *product in products) {
                 
-                NSLog(@"%@%@%@%@",product.localizedTitle,product.localizedDescription, product.price,product.productIdentifier);
+                NSLog(@"商品信息%@%@%@%@",product.localizedTitle,product.localizedDescription, product.price,product.productIdentifier);
             }
             
-            [[GQHIAPManager qh_sharedIAPMannager] qh_payForProduct:products.firstObject];
+            [[GQHIAPManager qh_sharedIAPMannager] qh_payForIAPProduct:products.firstObject];
         }
             break;
     }
@@ -217,9 +217,13 @@
 
 /// 交易失败
 /// @param code 交易失败码
-- (void)qh_failedTransactionWithCode:(GQHIAPResultCode)code {
+- (void)qh_failedIAPTransactionWithCode:(GQHIAPResultCode)code {
     
     switch (code) {
+            
+        case GQHIAPResultCodePaymentOK:
+            
+            break;
         case GQHIAPResultCodePaymentFailed:
             
             break;
@@ -230,16 +234,23 @@
     }
 }
 
-/// 发送App Store交易收据(验证通过，删除收据，完成此次交易)
-/// @param transaction 本次交易
+/// 发送内购交易收据到服务器(验证通过，删除收据，完成此次交易)
+/// @param transaction 内购交易
 /// @param file 收据文件路径
-- (void)qh_sendAppStoreTransaction:(SKPaymentTransaction *)transaction receipt:(NSString *)file {
+- (void)qh_sendIAPTransaction:(SKPaymentTransaction *)transaction receipt:(NSString *)file {
     
     NSDictionary *receipt = [NSDictionary dictionaryWithContentsOfFile:file];
     NSLog(@"%@",receipt);
     
-    [[GQHIAPManager qh_sharedIAPMannager] qh_finishTransaction:transaction receipt:file];
+    [self showToastWithText:@"验证成功"];
+    
+    [[GQHIAPManager qh_sharedIAPMannager] qh_finishIAPTransaction:transaction receipt:file];
 }
+
+
+
+
+
 
 #pragma mark - TargetMethod
 
@@ -336,7 +347,9 @@
 /// @param sender 重置按钮
 - (void)qh_didClickRightMostButton:(UIButton *)sender {
     
-    [self resetGame];
+    [[GQHIAPManager qh_sharedIAPMannager] qh_restoreCompletedIAPTransactionsWithApplicationUsername:@"iap"];
+    
+//    [self resetGame];
 }
 
 /// 触摸拼图块

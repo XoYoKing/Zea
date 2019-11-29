@@ -340,8 +340,6 @@
         _menuImageView = [[UIImageView alloc] init];
         _menuImageView.backgroundColor = [UIColor clearColor];
         
-        _menuImageView.image = [UIImage imageNamed:@""];
-        
         _menuImageView.layer.cornerRadius = 0.0f;
         _menuImageView.layer.masksToBounds = YES;
     }
