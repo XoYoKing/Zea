@@ -8,6 +8,7 @@
 #import "GQHBaseView.h"
 @class GQHRecordModel;
 
+
 /**
  自定义视图的代理
  */

@@ -10,6 +10,14 @@
 
 
 #pragma mark - color
+/// #C8351A
+NSString * const GQHColorFireBrick = @"#C8351A";
+/// #E48978
+NSString * const GQHColorDarkSalmon = @"#E48978";
+/// #C0C0C0
+NSString * const GQHColorSilver = @"#C0C0C0";
+/// #F8F8F8
+NSString * const GQHColorWhiteSmoke = @"#F8F8F8";
 
 
 #pragma mark - font color

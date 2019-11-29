@@ -236,7 +236,7 @@
         // 选中标识
         if (image.qh_mark) {
             
-            self.gameImageView.layer.borderColor = [UIColor qh_colorWithHexString:@"#DB3C1f"].CGColor;
+            self.gameImageView.layer.borderColor = [UIColor qh_colorWithHexString:GQHColorFireBrick].CGColor;
             self.gameImageView.layer.borderWidth = 2.0f;
         } else {
             

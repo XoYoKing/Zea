@@ -227,7 +227,6 @@
         case GQHIAPResultCodePaymentFailed:
             
             break;
-            
         case GQHIAPResultCodePaymentCancelled:
             
             break;

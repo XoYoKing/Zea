@@ -37,8 +37,6 @@
 		04D80B94232F923400617689 /* GQHBaseView.m in Sources */ = {isa = PBXBuildFile; fileRef = 04D80B86232F923400617689 /* GQHBaseView.m */; };
 		04D80B95232F923400617689 /* GQHUIController.m in Sources */ = {isa = PBXBuildFile; fileRef = 04D80B87232F923400617689 /* GQHUIController.m */; };
 		04D80B96232F923400617689 /* GQHWebController.m in Sources */ = {isa = PBXBuildFile; fileRef = 04D80B88232F923400617689 /* GQHWebController.m */; };
-		04DA1960237AB6D9000F0CBA /* GQHHelpController.m in Sources */ = {isa = PBXBuildFile; fileRef = 04DA195F237AB6D9000F0CBA /* GQHHelpController.m */; };
-		04DA1963237AB8FE000F0CBA /* GQHHelpView.m in Sources */ = {isa = PBXBuildFile; fileRef = 04DA1961237AB8FE000F0CBA /* GQHHelpView.m */; };
 		04E4DC6C23867E230040FD90 /* GQHHelpWebController.m in Sources */ = {isa = PBXBuildFile; fileRef = 04E4DC6B23867E230040FD90 /* GQHHelpWebController.m */; };
 		04E695A3237E462400564DF3 /* GQHHelpModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 04E6959F237E462400564DF3 /* GQHHelpModel.m */; };
 		04E695A4237E462400564DF3 /* GQHMenuModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 04E695A1237E462400564DF3 /* GQHMenuModel.m */; };
@@ -188,10 +186,6 @@
 		04D80B87232F923400617689 /* GQHUIController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GQHUIController.m; sourceTree = "<group>"; };
 		04D80B88232F923400617689 /* GQHWebController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GQHWebController.m; sourceTree = "<group>"; };
 		04D80B8B232F923400617689 /* GQHUIController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GQHUIController.h; sourceTree = "<group>"; };
-		04DA195E237AB6D8000F0CBA /* GQHHelpController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GQHHelpController.h; sourceTree = "<group>"; };
-		04DA195F237AB6D9000F0CBA /* GQHHelpController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GQHHelpController.m; sourceTree = "<group>"; };
-		04DA1961237AB8FE000F0CBA /* GQHHelpView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GQHHelpView.m; sourceTree = "<group>"; };
-		04DA1962237AB8FE000F0CBA /* GQHHelpView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GQHHelpView.h; sourceTree = "<group>"; };
 		04E4DC6A23867E230040FD90 /* GQHHelpWebController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GQHHelpWebController.h; sourceTree = "<group>"; };
 		04E4DC6B23867E230040FD90 /* GQHHelpWebController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GQHHelpWebController.m; sourceTree = "<group>"; };
 		04E6959F237E462400564DF3 /* GQHHelpModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GQHHelpModel.m; sourceTree = "<group>"; };
@@ -441,26 +435,24 @@
 		D5A5C07722FFE87600A21A77 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
-				D5A5C0CC22FFE8C500A21A77 /* GQHAppAboutController.h */,
-				D5A5C0C922FFE8C500A21A77 /* GQHAppAboutController.m */,
-				04E695BD237E82F900564DF3 /* GQHAppHelpController.h */,
-				04E695BC237E82F900564DF3 /* GQHAppHelpController.m */,
-				D5A5C0CD22FFE8C500A21A77 /* GQHGalleryController.h */,
-				D5A5C0CE22FFE8C600A21A77 /* GQHGalleryController.m */,
-				D5A5C0C422FFE8C400A21A77 /* GQHGameController.h */,
-				D5A5C0C222FFE8C400A21A77 /* GQHGameController.m */,
-				04DA195E237AB6D8000F0CBA /* GQHHelpController.h */,
-				04DA195F237AB6D9000F0CBA /* GQHHelpController.m */,
-				04E4DC6A23867E230040FD90 /* GQHHelpWebController.h */,
-				04E4DC6B23867E230040FD90 /* GQHHelpWebController.m */,
-				D5A5C0CA22FFE8C500A21A77 /* GQHHomeController.h */,
-				D5A5C0CB22FFE8C500A21A77 /* GQHHomeController.m */,
 				D5A5C0C522FFE8C400A21A77 /* GQHLaunchController.h */,
 				D5A5C0C622FFE8C400A21A77 /* GQHLaunchController.m */,
-				04E695C4237E832300564DF3 /* GQHLevelController.h */,
-				04E695C5237E832400564DF3 /* GQHLevelController.m */,
+				D5A5C0CA22FFE8C500A21A77 /* GQHHomeController.h */,
+				D5A5C0CB22FFE8C500A21A77 /* GQHHomeController.m */,
+				D5A5C0C422FFE8C400A21A77 /* GQHGameController.h */,
+				D5A5C0C222FFE8C400A21A77 /* GQHGameController.m */,
 				04E695C3237E832300564DF3 /* GQHRecordController.h */,
 				04E695C2237E832300564DF3 /* GQHRecordController.m */,
+				D5A5C0CD22FFE8C500A21A77 /* GQHGalleryController.h */,
+				D5A5C0CE22FFE8C600A21A77 /* GQHGalleryController.m */,
+				04E695C4237E832300564DF3 /* GQHLevelController.h */,
+				04E695C5237E832400564DF3 /* GQHLevelController.m */,
+				04E4DC6A23867E230040FD90 /* GQHHelpWebController.h */,
+				04E4DC6B23867E230040FD90 /* GQHHelpWebController.m */,
+				04E695BD237E82F900564DF3 /* GQHAppHelpController.h */,
+				04E695BC237E82F900564DF3 /* GQHAppHelpController.m */,
+				D5A5C0CC22FFE8C500A21A77 /* GQHAppAboutController.h */,
+				D5A5C0C922FFE8C500A21A77 /* GQHAppAboutController.m */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -497,24 +489,22 @@
 		D5A5C09722FFE87600A21A77 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				D5A5C0FD22FFE8F200A21A77 /* GQHAppAboutView.h */,
-				D5A5C0F322FFE8F000A21A77 /* GQHAppAboutView.m */,
-				04E695BF237E830700564DF3 /* GQHAppHelpView.h */,
-				04E695C0237E830700564DF3 /* GQHAppHelpView.m */,
-				D5A5C0FE22FFE8F200A21A77 /* GQHGalleryView.h */,
-				D5A5C0F622FFE8F100A21A77 /* GQHGalleryView.m */,
-				D5A5C0F922FFE8F100A21A77 /* GQHGameView.h */,
-				D5A5C0FF22FFE8F200A21A77 /* GQHGameView.m */,
-				04DA1962237AB8FE000F0CBA /* GQHHelpView.h */,
-				04DA1961237AB8FE000F0CBA /* GQHHelpView.m */,
-				D5A5C0FA22FFE8F100A21A77 /* GQHHomeView.h */,
-				D5A5C0F422FFE8F100A21A77 /* GQHHomeView.m */,
 				D5A5C0FB22FFE8F200A21A77 /* GQHLaunchView.h */,
 				D5A5C0FC22FFE8F200A21A77 /* GQHLaunchView.m */,
-				04E695CB237E833100564DF3 /* GQHLevelView.h */,
-				04E695C8237E833100564DF3 /* GQHLevelView.m */,
+				D5A5C0FA22FFE8F100A21A77 /* GQHHomeView.h */,
+				D5A5C0F422FFE8F100A21A77 /* GQHHomeView.m */,
+				D5A5C0F922FFE8F100A21A77 /* GQHGameView.h */,
+				D5A5C0FF22FFE8F200A21A77 /* GQHGameView.m */,
 				04E695CA237E833100564DF3 /* GQHRecordView.h */,
 				04E695C9237E833100564DF3 /* GQHRecordView.m */,
+				D5A5C0FE22FFE8F200A21A77 /* GQHGalleryView.h */,
+				D5A5C0F622FFE8F100A21A77 /* GQHGalleryView.m */,
+				04E695CB237E833100564DF3 /* GQHLevelView.h */,
+				04E695C8237E833100564DF3 /* GQHLevelView.m */,
+				04E695BF237E830700564DF3 /* GQHAppHelpView.h */,
+				04E695C0237E830700564DF3 /* GQHAppHelpView.m */,
+				D5A5C0FD22FFE8F200A21A77 /* GQHAppAboutView.h */,
+				D5A5C0F322FFE8F000A21A77 /* GQHAppAboutView.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -1102,7 +1092,6 @@
 				D5A5C0E922FFE8DC00A21A77 /* GQHUserModel.m in Sources */,
 				0428545623823C2600D0335F /* UIView+GQHDashLine.m in Sources */,
 				04D80B8D232F923400617689 /* GQHBaseViewController+GQHNetworking.m in Sources */,
-				04DA1963237AB8FE000F0CBA /* GQHHelpView.m in Sources */,
 				D5C8A6BE22FFE10100947237 /* NSString+GQHSafety.m in Sources */,
 				D5C8A6CE22FFE18F00947237 /* GQHNetworkResult.m in Sources */,
 				D5C8A6A922FFE10100947237 /* UIApplication+GQHApplication.m in Sources */,
@@ -1135,7 +1124,6 @@
 				04E695BB237E82CB00564DF3 /* GQHAppAboutModel.m in Sources */,
 				D5A5C0EE22FFE8DC00A21A77 /* GQHTokenModel.m in Sources */,
 				D5A5C0EB22FFE8DC00A21A77 /* GQHRecordModel.m in Sources */,
-				04DA1960237AB6D9000F0CBA /* GQHHelpController.m in Sources */,
 				D5A5C0F122FFE8DC00A21A77 /* GQHImageModel.m in Sources */,
 				D5A5C0EC22FFE8DC00A21A77 /* GQHLevelModel.m in Sources */,
 				0428545423823C2600D0335F /* CAAnimation+GQHAnimation.m in Sources */,

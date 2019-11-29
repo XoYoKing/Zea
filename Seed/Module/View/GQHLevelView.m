@@ -269,13 +269,13 @@
         // 选中标识
         if (level.qh_mark) {
             
-            self.orderLabel.textColor = [UIColor qh_colorWithHexString:@"#DB3C1f"];
+            self.orderLabel.textColor = [UIColor qh_colorWithHexString:GQHColorFireBrick];
             self.orderLabel.backgroundColor = [UIColor whiteColor];
-            self.containerView.backgroundColor = [UIColor qh_colorWithHexString:@"#DB3C1f"];
+            self.containerView.backgroundColor = [UIColor qh_colorWithHexString:GQHColorDarkSalmon];
         } else {
             
             self.orderLabel.textColor = [UIColor whiteColor];
-            self.orderLabel.backgroundColor = [UIColor qh_colorWithHexString:@"#DB3C1f"];
+            self.orderLabel.backgroundColor = [UIColor qh_colorWithHexString:GQHColorDarkSalmon];
             self.containerView.backgroundColor = [UIColor whiteColor];
         }
     }

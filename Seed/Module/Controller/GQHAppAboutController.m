@@ -278,7 +278,7 @@
     if (!_rootView) {
         
         _rootView = [[GQHAppAboutView alloc] initWithFrame:UIScreen.mainScreen.bounds];
-        _rootView.backgroundColor = [UIColor qh_colorWithHexString:@"#f8f8f8"];
+        _rootView.backgroundColor = [UIColor qh_colorWithHexString:GQHColorWhiteSmoke];
         _rootView.qh_tableView.delegate = self;
         _rootView.qh_tableView.dataSource = self;
         _rootView.qh_delegate = self;

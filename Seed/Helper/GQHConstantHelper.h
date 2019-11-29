@@ -10,6 +10,14 @@
 
 
 #pragma mark - color
+/// #C8351A
+UIKIT_EXTERN NSString * const GQHColorFireBrick;
+/// #E48978
+UIKIT_EXTERN NSString * const GQHColorDarkSalmon;
+/// #C0C0C0
+UIKIT_EXTERN NSString * const GQHColorSilver;
+/// #F8F8F8
+UIKIT_EXTERN NSString * const GQHColorWhiteSmoke;
 
 
 #pragma mark - font color

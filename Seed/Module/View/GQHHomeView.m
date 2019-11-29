@@ -150,7 +150,7 @@
     if (!_containerView) {
         
         _containerView = [[UIView alloc] init];
-        _containerView.backgroundColor = [UIColor qh_colorWithHexString:@"#A64B3A"];
+        _containerView.backgroundColor = [UIColor qh_colorWithHexString:GQHColorFireBrick];
         
         _containerView.layer.cornerRadius = 0.0f;
         _containerView.layer.masksToBounds = YES;

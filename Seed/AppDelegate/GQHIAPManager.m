@@ -221,7 +221,6 @@ static GQHIAPManager *manager = nil;
 - (void)qh_restoreCompletedIAPTransactionsWithApplicationUsername:(NSString *)username {
     
     [[SKPaymentQueue defaultQueue] restoreCompletedTransactionsWithApplicationUsername:username];
-    self.finish = YES;
 }
 
 /// 收据验证成功, 完成交易并删除收据

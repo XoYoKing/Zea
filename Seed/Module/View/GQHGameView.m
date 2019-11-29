@@ -294,6 +294,7 @@
 - (void)setQh_bestRecord:(GQHRecordModel *)qh_bestRecord {
     
     _qh_bestRecord = qh_bestRecord;
+    
     // 游戏用时
     if (qh_bestRecord.qh_gameTime) {
         
@@ -355,7 +356,7 @@
     if (!_bestBackgroundView) {
         
         _bestBackgroundView = [[UIView alloc] init];
-        _bestBackgroundView.backgroundColor = [UIColor qh_colorWithHexString:@"#EC8C7A"];
+        _bestBackgroundView.backgroundColor = [UIColor qh_colorWithHexString:GQHColorDarkSalmon];
         
         _bestBackgroundView.layer.cornerRadius = GQHUICornerRadius;
         _bestBackgroundView.layer.masksToBounds = YES;
@@ -437,7 +438,7 @@
     if (!_currentBackgroundView) {
         
         _currentBackgroundView = [[UIView alloc] init];
-        _currentBackgroundView.backgroundColor = [UIColor qh_colorWithHexString:@"#EC8C7A"];
+        _currentBackgroundView.backgroundColor = [UIColor qh_colorWithHexString:GQHColorDarkSalmon];
         
         _currentBackgroundView.layer.cornerRadius = GQHUICornerRadius;
         _currentBackgroundView.layer.masksToBounds = YES;
@@ -533,7 +534,7 @@
     if (!_qh_gameboardView) {
         
         _qh_gameboardView = [[UIView alloc] init];
-        _qh_gameboardView.backgroundColor = [UIColor qh_colorWithHexString:@"#A8A8A8"];
+        _qh_gameboardView.backgroundColor = [UIColor qh_colorWithHexString:GQHColorSilver];
         
         _qh_gameboardView.layer.cornerRadius = GQHUICornerRadius;
         _qh_gameboardView.layer.masksToBounds = YES;
