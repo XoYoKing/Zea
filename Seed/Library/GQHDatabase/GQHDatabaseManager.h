@@ -22,12 +22,12 @@ NS_ASSUME_NONNULL_BEGIN
 /// @param path 数据库文件路径
 - (BOOL)qh_createDatabase:(NSString *)databaseName atPath:(NSString *)path;
 
-/// 删除数据库文件
+/// 删除数据库文件(先删除数据表再删数据库)
 /// @param databaseName 数据库文件名
 /// @param path 数据库文件路径
 - (BOOL)qh_removeDatabase:(NSString *)databaseName atPath:(NSString *)path;
 
-/// 数据库文件路径(已存在的数据库,不存在则返回nil)
+/// 数据库文件路径(Documents文件夹下, 已存在的数据库, 不存在则返回nil)
 /// @param databaseName 数据库文件名
 - (nullable NSString *)qh_pathOfDatabase:(NSString *)databaseName;
 
@@ -36,8 +36,7 @@ NS_ASSUME_NONNULL_BEGIN
 /// @param databaseName 数据库文件名
 /// @param tableName 数据表名
 /// @param cls 数据表对应的模型类
-/// @param primary 主键名(单主键)
-- (BOOL)qh_createTableInDatabase:(NSString *)databaseName withTableName:(NSString *)tableName model:(Class)cls primary:(NSString *)primary;
+- (BOOL)qh_createTableInDatabase:(NSString *)databaseName withTableName:(NSString *)tableName model:(Class)cls;
 
 /// 清空数据库中的数据表
 /// @param tableName 数据表名
@@ -71,44 +70,11 @@ NS_ASSUME_NONNULL_BEGIN
 - (NSArray *)qh_queryAllWithClass:(Class)cls inTable:(NSString *)tableName database:(NSString *)databaseName;
 
 /// 删除指定属性指定值的数据
-/// @param cls 数据表对应的模型类
 /// @param key 指定属性
 /// @param value 指定值
 /// @param tableName 数据表名
 /// @param databaseName 数据库文件名
-- (NSArray *)qh_deleteData:(Class)cls withKey:(NSString *)key value:(NSString *)value inTable:(NSString *)tableName database:(NSString *)databaseName;
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-/// 插入数据
-/// @param model 模型数据
-/// @param path 数据表路径
-- (BOOL)qh_insertDataWithModel:(id)model filePath:(NSString *)path;
-
-/// 查询所有数据
-/// @param cls 模型类
-/// @param path 数据表路径
-- (NSArray *)qh_fetchDataWithClass:(Class)cls filePath:(NSString *)path;
-
-/// 删除表文件
-/// @param path 数据表路径
-- (BOOL)qh_removeDatabase:(NSString *)path;
+- (BOOL)qh_deleteDataWithKey:(NSString *)key value:(NSString *)value inTable:(NSString *)tableName database:(NSString *)databaseName;
 
 @end
 

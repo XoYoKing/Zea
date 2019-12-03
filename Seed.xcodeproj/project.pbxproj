@@ -375,6 +375,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		048D754F2396716B0030F4A4 /* GQHDatabase */ = {
+			isa = PBXGroup;
+			children = (
+				0428545923827B8200D0335F /* GQHDatabaseManager.h */,
+				0428545A23827B8200D0335F /* GQHDatabaseManager.m */,
+			);
+			path = GQHDatabase;
+			sourceTree = "<group>";
+		};
 		04984FF523793B7B00FC7742 /* Algorithm */ = {
 			isa = PBXGroup;
 			children = (
@@ -476,8 +485,6 @@
 				04E695A1237E462400564DF3 /* GQHMenuModel.m */,
 				D5A5C0D722FFE8DA00A21A77 /* GQHRecordModel.h */,
 				D5A5C0DD22FFE8DA00A21A77 /* GQHRecordModel.m */,
-				0428545923827B8200D0335F /* GQHDatabaseManager.h */,
-				0428545A23827B8200D0335F /* GQHDatabaseManager.m */,
 				D5A5C0E222FFE8DB00A21A77 /* GQHTokenModel.h */,
 				D5A5C0E122FFE8DB00A21A77 /* GQHTokenModel.m */,
 				D5A5C0D822FFE8DA00A21A77 /* GQHUserModel.h */,
@@ -622,6 +629,7 @@
 		D5B158ED202D7DCA005B76B1 /* Library */ = {
 			isa = PBXGroup;
 			children = (
+				048D754F2396716B0030F4A4 /* GQHDatabase */,
 				D5C8A6E822FFE29D00947237 /* GQHDatePicker */,
 				D5C8A6D422FFE29C00947237 /* GQHGlobalTimer */,
 				D5C8A6DA22FFE29D00947237 /* GQHSinglePicker */,
