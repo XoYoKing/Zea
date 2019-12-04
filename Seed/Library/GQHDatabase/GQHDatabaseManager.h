@@ -22,7 +22,7 @@ NS_ASSUME_NONNULL_BEGIN
 /// @param path 数据库文件路径
 - (BOOL)qh_createDatabase:(NSString *)databaseName atPath:(NSString *)path;
 
-/// 删除数据库文件(先删除数据表再删数据库)
+/// 删除数据库文件(不能删除非空数据库, 先删除数据表再删数据库)
 /// @param databaseName 数据库文件名
 /// @param path 数据库文件路径
 - (BOOL)qh_removeDatabase:(NSString *)databaseName atPath:(NSString *)path;

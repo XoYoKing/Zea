@@ -11,12 +11,13 @@
 #import <objc/message.h>
 
 
-@interface GQHDatabaseManager ()
+/// 数据表固定主键值(model中手动添加此属性)
+static NSString * const kDatabasePrimaryKey = @"db_id_pk";
+/// 数据库管理单例
+static GQHDatabaseManager *manager = nil;
 
-/**
- 文件管理器
- */
-@property (nonatomic, strong) NSFileManager *fileManager;
+
+@interface GQHDatabaseManager ()
 
 /**
  数据库队列
@@ -24,8 +25,6 @@
 @property (nonatomic, strong) FMDatabaseQueue *databaseQueue;
 
 @end
-
-static GQHDatabaseManager *manager = nil;
 
 @implementation GQHDatabaseManager
 
@@ -55,12 +54,13 @@ static GQHDatabaseManager *manager = nil;
     if (databaseName && databaseName.length > 0) {
         
         // 数据库文件全路径
-        NSString *databasePath = [path stringByAppendingPathComponent:databaseName];
+        NSString *databasePath = [self databaseName:databaseName atPath:path];
+        NSLog(@"数据库文件路径:%@",databasePath);
         
-        if (![self.fileManager fileExistsAtPath:databasePath]) {
+        if (![[NSFileManager defaultManager] fileExistsAtPath:databasePath]) {
             
             // 创建数据库文件
-            return [self.fileManager createFileAtPath:databasePath contents:nil attributes:nil];
+            return [[NSFileManager defaultManager] createFileAtPath:databasePath contents:nil attributes:nil];
         }
     }
     
@@ -75,9 +75,10 @@ static GQHDatabaseManager *manager = nil;
     if (databaseName && databaseName.length > 0) {
         
         // 数据库文件全路径
-        NSString *databasePath = [path stringByAppendingPathComponent:databaseName];
+        NSString *databasePath = [self databaseName:databaseName atPath:path];
+        NSLog(@"数据库文件路径:%@",databasePath);
         
-        if ([self.fileManager fileExistsAtPath:databasePath]) {
+        if ([[NSFileManager defaultManager] fileExistsAtPath:databasePath]) {
             
             // 数据库队列
             self.databaseQueue = [FMDatabaseQueue databaseQueueWithPath:databasePath];
@@ -110,11 +111,46 @@ static GQHDatabaseManager *manager = nil;
                 }
             }
             
-            return [self.fileManager removeItemAtPath:databasePath error:nil];
+            // 删除前手动关闭数据库
+            [self.databaseQueue close];
+            
+            return [[NSFileManager defaultManager] removeItemAtPath:databasePath error:nil];
         }
     }
     
     return NO;
+}
+
+/// 数据库文件全路径
+/// @param name 数据库名
+/// @param path 数据库文件路径
+- (NSString *)databaseName:(NSString *)name atPath:(NSString *)path {
+    
+    if (path.length > 0) {
+        
+        // 是否是文件夹目录
+        BOOL isDirectory = false;
+        
+        if ([[NSFileManager defaultManager] fileExistsAtPath:path isDirectory:&isDirectory]) {
+            
+            if (isDirectory) {
+                
+                // 存在且是文件夹
+                return [path stringByAppendingPathComponent:name];
+            }
+        }
+        
+        // 不是文件夹或不存在
+        if ([[NSFileManager defaultManager] createDirectoryAtPath:path withIntermediateDirectories:YES attributes:nil error:nil]) {
+            
+            // 创建路径成功
+            return [path stringByAppendingPathComponent:name];
+        }
+    }
+    
+    // 路径为空或创建失败
+    NSString *documentsPath = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES).firstObject;
+    return [documentsPath stringByAppendingPathComponent:name];
 }
 
 /// 数据库文件路径(已存在的数据库,不存在则返回nil)
@@ -195,7 +231,6 @@ static GQHDatabaseManager *manager = nil;
             if ([db tableExists:tableName]) {
                 
                 // 存在, 检查数据表
-                
                 // 所有字段
                 NSMutableArray *fields = [NSMutableArray array];
                 
@@ -532,8 +567,8 @@ static GQHDatabaseManager *manager = nil;
 /// @param tableName 数据表名
 - (NSString *)sql_createTable:(NSString *)tableName model:(id)model {
     
-    // 数据库全部采用Text类型
-    NSString *sqlString = [NSString stringWithFormat:@"CREATE TABLE IF NOT EXISTS '%@' ('id' INTEGER PRIMARY KEY NOT NULL UNIQUE",tableName];
+    // 数据库全部采用TEXT类型
+    NSString *sqlString = [NSString stringWithFormat:@"CREATE TABLE IF NOT EXISTS '%@' ('%@' INTEGER PRIMARY KEY NOT NULL UNIQUE", tableName, kDatabasePrimaryKey];
     
     // 属性个数
     unsigned int count = 0;
@@ -548,6 +583,13 @@ static GQHDatabaseManager *manager = nil;
         const char *name = property_getName(property);
         // 数据库字段名
         NSString *field = [NSString stringWithUTF8String:name];
+        
+        if ([field isEqualToString:kDatabasePrimaryKey]) {
+            
+            // 排除主键
+            continue;
+        }
+        
         sqlString = [sqlString stringByAppendingFormat:@", %@ TEXT",field];
     }
     
@@ -563,8 +605,8 @@ static GQHDatabaseManager *manager = nil;
 - (NSString *)sql_insertData:(id)model inTable:(NSString *)tableName database:(NSString *)databaseName {
     
     // SQL语句
-    // INSERT INTO 'table_name' ('id','name','age') VALUES (NULL,'allen','29');
-    NSString *sqlString = [NSString stringWithFormat:@"INSERT INTO '%@' ('id'",tableName];
+    // INSERT INTO 'table_name' ('db_id_pk','name','age') VALUES (NULL,'allen','29');
+    NSString *sqlString = [NSString stringWithFormat:@"INSERT INTO '%@' ('%@'", tableName, kDatabasePrimaryKey];
     
     // 属性个数
     unsigned int count = 0;
@@ -582,8 +624,15 @@ static GQHDatabaseManager *manager = nil;
         const char *name = property_getName(property);
         // 数据库字段名
         NSString *field = [NSString stringWithUTF8String:name];
+        
         // 数据库字段值
         NSString *value = [NSString stringWithFormat:@"%@", [model valueForKey:field]];
+        
+        if ([field isEqualToString:kDatabasePrimaryKey]) {
+            
+            // 排除主键
+            continue;
+        }
         
         if (value && value.length > 0) {
             
@@ -609,12 +658,6 @@ static GQHDatabaseManager *manager = nil;
     }
     
     return [sqlString stringByAppendingString:@");"];
-}
-
-//MARK:Setter/Getter
-- (NSFileManager *)fileManager {
-    
-    return [NSFileManager defaultManager];
 }
 
 @end
