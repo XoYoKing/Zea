@@ -396,7 +396,7 @@ static GQHDatabaseManager *manager = nil;
 /// @param value 指定值
 /// @param tableName 数据表名
 /// @param databaseName 数据库文件名
-- (NSArray *)qh_queryData:(Class)cls withKey:(NSString *)key value:(NSString *)value inTable:(NSString *)tableName database:(NSString *)databaseName {
+- (NSArray *)qh_queryOneWithClass:(Class)cls key:(NSString *)key value:(NSString *)value inTable:(NSString *)tableName database:(NSString *)databaseName {
     
     // 数据库文件路径
     NSString *databasePath = [self qh_pathOfDatabase:databaseName];
@@ -651,10 +651,18 @@ static GQHDatabaseManager *manager = nil;
         
         NSString *key = keys[i];
         
-        NSString *value = [NSString stringWithFormat:@"%@", [model valueForKey:key]];
-        
         // 字段对应的值
-        sqlString = [sqlString stringByAppendingFormat:@",'%@'",value];
+        id object = [model valueForKey:key];
+        
+        if ([object isKindOfClass:[NSString class]] || [object isKindOfClass:[NSNumber class]] || [object isKindOfClass:NSClassFromString(@"__NSCFBoolean")]) {
+            
+            // 字符串类型、数字对象类型、BOOL值
+            sqlString = [sqlString stringByAppendingFormat:@",'%@'",object];
+        } else {
+            
+            // 其他
+            sqlString = [sqlString stringByAppendingFormat:@",NULL"];
+        }
     }
     
     return [sqlString stringByAppendingString:@");"];

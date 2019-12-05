@@ -20,12 +20,12 @@ NS_ASSUME_NONNULL_BEGIN
 /// 创建数据库文件
 /// @param databaseName 数据库文件名
 /// @param path 数据库文件路径
-- (BOOL)qh_createDatabase:(NSString *)databaseName atPath:(NSString *)path;
+- (BOOL)qh_createDatabase:(NSString *)databaseName atPath:(nullable NSString *)path;
 
 /// 删除数据库文件(不能删除非空数据库, 先删除数据表再删数据库)
 /// @param databaseName 数据库文件名
 /// @param path 数据库文件路径
-- (BOOL)qh_removeDatabase:(NSString *)databaseName atPath:(NSString *)path;
+- (BOOL)qh_removeDatabase:(NSString *)databaseName atPath:(nullable NSString *)path;
 
 /// 数据库文件路径(Documents文件夹下, 已存在的数据库, 不存在则返回nil)
 /// @param databaseName 数据库文件名
@@ -61,7 +61,7 @@ NS_ASSUME_NONNULL_BEGIN
 /// @param value 指定值
 /// @param tableName 数据表名
 /// @param databaseName 数据库文件名
-- (NSArray *)qh_queryData:(Class)cls withKey:(NSString *)key value:(NSString *)value inTable:(NSString *)tableName database:(NSString *)databaseName;
+- (NSArray *)qh_queryOneWithClass:(Class)cls key:(NSString *)key value:(NSString *)value inTable:(NSString *)tableName database:(NSString *)databaseName;
 
 /// 查询数据表中的所有数据
 /// @param cls 数据表对应的模型类
