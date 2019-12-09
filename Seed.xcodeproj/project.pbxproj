@@ -12,7 +12,6 @@
 		0428545523823C2600D0335F /* AppDelegate+GQHIAP.m in Sources */ = {isa = PBXBuildFile; fileRef = 0428544E23823C2600D0335F /* AppDelegate+GQHIAP.m */; };
 		0428545623823C2600D0335F /* UIView+GQHDashLine.m in Sources */ = {isa = PBXBuildFile; fileRef = 0428545223823C2600D0335F /* UIView+GQHDashLine.m */; };
 		0428545823823FE100D0335F /* libsqlite3.0.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 0428545723823FE100D0335F /* libsqlite3.0.tbd */; };
-		0428545B23827B8200D0335F /* GQHDatabaseManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 0428545A23827B8200D0335F /* GQHDatabaseManager.m */; };
 		0437E78E2383F09A0068D792 /* db_gallery_natural_0.png in Resources */ = {isa = PBXBuildFile; fileRef = 0437E7882383F09A0068D792 /* db_gallery_natural_0.png */; };
 		0437E78F2383F09A0068D792 /* db_gallery_natural_1.png in Resources */ = {isa = PBXBuildFile; fileRef = 0437E7892383F09A0068D792 /* db_gallery_natural_1.png */; };
 		0437E7902383F09A0068D792 /* db_gallery_cultural_0.png in Resources */ = {isa = PBXBuildFile; fileRef = 0437E78A2383F09A0068D792 /* db_gallery_cultural_0.png */; };
@@ -23,6 +22,7 @@
 		044544C623729BCE000A7A28 /* GQHBreadthFirstSearcher.m in Sources */ = {isa = PBXBuildFile; fileRef = 044544C523729BCE000A7A28 /* GQHBreadthFirstSearcher.m */; };
 		04719BED23751DBF008A10A8 /* GQHPuzzlePiece.m in Sources */ = {isa = PBXBuildFile; fileRef = 04719BEC23751DBF008A10A8 /* GQHPuzzlePiece.m */; };
 		04719BF023752036008A10A8 /* GQHPuzzleStatus.m in Sources */ = {isa = PBXBuildFile; fileRef = 04719BEF23752036008A10A8 /* GQHPuzzleStatus.m */; };
+		04734B99239E24B300F1ED6D /* GQHDatabaseManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 04734B97239E24B300F1ED6D /* GQHDatabaseManager.m */; };
 		048DAFA0238F6C000035E7E5 /* GQHIAPManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 048DAF9F238F6C000035E7E5 /* GQHIAPManager.m */; };
 		04953FE82370131400C3CFE4 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 04953FE72370131400C3CFE4 /* LaunchScreen.storyboard */; };
 		04974AB7237165BE00095393 /* GQHPriorityQueue.m in Sources */ = {isa = PBXBuildFile; fileRef = 04974AB6237165BE00095393 /* GQHPriorityQueue.m */; };
@@ -142,8 +142,6 @@
 		0428545123823C2600D0335F /* AppDelegate+GQHIAP.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "AppDelegate+GQHIAP.h"; sourceTree = "<group>"; };
 		0428545223823C2600D0335F /* UIView+GQHDashLine.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+GQHDashLine.m"; sourceTree = "<group>"; };
 		0428545723823FE100D0335F /* libsqlite3.0.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.0.tbd; path = usr/lib/libsqlite3.0.tbd; sourceTree = SDKROOT; };
-		0428545923827B8200D0335F /* GQHDatabaseManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GQHDatabaseManager.h; sourceTree = "<group>"; };
-		0428545A23827B8200D0335F /* GQHDatabaseManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GQHDatabaseManager.m; sourceTree = "<group>"; };
 		0437E7882383F09A0068D792 /* db_gallery_natural_0.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = db_gallery_natural_0.png; sourceTree = "<group>"; };
 		0437E7892383F09A0068D792 /* db_gallery_natural_1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = db_gallery_natural_1.png; sourceTree = "<group>"; };
 		0437E78A2383F09A0068D792 /* db_gallery_cultural_0.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = db_gallery_cultural_0.png; sourceTree = "<group>"; };
@@ -158,6 +156,8 @@
 		04719BEC23751DBF008A10A8 /* GQHPuzzlePiece.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GQHPuzzlePiece.m; sourceTree = "<group>"; };
 		04719BEE23752036008A10A8 /* GQHPuzzleStatus.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GQHPuzzleStatus.h; sourceTree = "<group>"; };
 		04719BEF23752036008A10A8 /* GQHPuzzleStatus.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GQHPuzzleStatus.m; sourceTree = "<group>"; };
+		04734B97239E24B300F1ED6D /* GQHDatabaseManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GQHDatabaseManager.m; sourceTree = "<group>"; };
+		04734B98239E24B300F1ED6D /* GQHDatabaseManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GQHDatabaseManager.h; sourceTree = "<group>"; };
 		048DAF9E238F6C000035E7E5 /* GQHIAPManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GQHIAPManager.h; sourceTree = "<group>"; };
 		048DAF9F238F6C000035E7E5 /* GQHIAPManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GQHIAPManager.m; sourceTree = "<group>"; };
 		04953FE72370131400C3CFE4 /* LaunchScreen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -375,13 +375,13 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		048D754F2396716B0030F4A4 /* GQHDatabase */ = {
+		04734B96239E24B300F1ED6D /* GQHDatabaseManager */ = {
 			isa = PBXGroup;
 			children = (
-				0428545923827B8200D0335F /* GQHDatabaseManager.h */,
-				0428545A23827B8200D0335F /* GQHDatabaseManager.m */,
+				04734B98239E24B300F1ED6D /* GQHDatabaseManager.h */,
+				04734B97239E24B300F1ED6D /* GQHDatabaseManager.m */,
 			);
-			path = GQHDatabase;
+			path = GQHDatabaseManager;
 			sourceTree = "<group>";
 		};
 		04984FF523793B7B00FC7742 /* Algorithm */ = {
@@ -629,7 +629,7 @@
 		D5B158ED202D7DCA005B76B1 /* Library */ = {
 			isa = PBXGroup;
 			children = (
-				048D754F2396716B0030F4A4 /* GQHDatabase */,
+				04734B96239E24B300F1ED6D /* GQHDatabaseManager */,
 				D5C8A6E822FFE29D00947237 /* GQHDatePicker */,
 				D5C8A6D422FFE29C00947237 /* GQHGlobalTimer */,
 				D5C8A6DA22FFE29D00947237 /* GQHSinglePicker */,
@@ -1117,7 +1117,6 @@
 				D5C8A6EB22FFE29D00947237 /* GQHGlobalTimer.m in Sources */,
 				D5C8A6AC22FFE10100947237 /* UIButton+GQHButton.m in Sources */,
 				04E695C7237E832400564DF3 /* GQHLevelController.m in Sources */,
-				0428545B23827B8200D0335F /* GQHDatabaseManager.m in Sources */,
 				04E695A3237E462400564DF3 /* GQHHelpModel.m in Sources */,
 				D5A5C0D322FFE8C600A21A77 /* GQHAppAboutController.m in Sources */,
 				D5C8A6BD22FFE10100947237 /* NSDictionary+GQHSafety.m in Sources */,
@@ -1144,6 +1143,7 @@
 				04D80B8F232F923400617689 /* GQHBaseViewController.m in Sources */,
 				0428545523823C2600D0335F /* AppDelegate+GQHIAP.m in Sources */,
 				D5A5C10122FFE8F200A21A77 /* GQHAppAboutView.m in Sources */,
+				04734B99239E24B300F1ED6D /* GQHDatabaseManager.m in Sources */,
 				D5A5C0D222FFE8C600A21A77 /* GQHLaunchController.m in Sources */,
 				D5A5C0D422FFE8C600A21A77 /* GQHHomeController.m in Sources */,
 				04E695C6237E832400564DF3 /* GQHRecordController.m in Sources */,
