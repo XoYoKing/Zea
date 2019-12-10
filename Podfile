@@ -8,8 +8,8 @@ def seed_pods
     #网络请求
     pod 'AFNetworking'
     
-    #sqlite的工具
-    pod 'FMDB'
+    #SQLite
+    pod 'FMDB/SQLCipher'
     
     #键盘
     pod 'IQKeyboardManager'
