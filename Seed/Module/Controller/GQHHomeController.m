@@ -250,60 +250,6 @@
 
 #pragma mark - PrivateMethod
 
-/// 通过资源文件获取菜单列表
-- (NSArray *)menus {
-    
-    // 资源文件名
-    NSString *fileName = @"db_puzzle.sqlite";
-    // 数据表名
-    NSString *tableName = @"p_menu";
-    
-    // 菜单列表
-    __block NSMutableArray *menus = [NSMutableArray array];
-    
-    NSString *path = [[NSBundle qh_bundle] pathForResource:fileName ofType:nil];
-    FMDatabaseQueue *queue = [[FMDatabaseQueue alloc] initWithPath:path];
-    [queue inDatabase:^(FMDatabase * _Nonnull db) {
-        
-        if ([db open]) {
-            
-            if ([db tableExists:tableName]) {
-                
-                NSString *sql_query = [NSString stringWithFormat:@"SELECT * FROM '%@'",tableName];
-                FMResultSet *resultSet = [db executeQuery:sql_query];
-                
-                while ([resultSet next]) {
-                    
-                    GQHMenuModel *menu = [[GQHMenuModel alloc] init];
-                    
-                    [[resultSet resultDictionary] enumerateKeysAndObjectsUsingBlock:^(id  _Nonnull key, id  _Nonnull obj, BOOL * _Nonnull stop) {
-                        
-                        if ([key isEqualToString:@"p_menu_id"]) {
-                            
-                            menu.qh_id = obj;
-                        } else if ([key isEqualToString:@"p_menu_title"]) {
-                            
-                            menu.qh_title = obj;
-                        } else if ([key isEqualToString:@"p_menu_icon"]) {
-                            
-                            menu.qh_icon = obj;
-                        }
-                    }];
-                    
-                    if (menu.qh_id) {
-                        
-                        [menus insertObject:menu atIndex:[menu.qh_id integerValue]];
-                    }
-                }
-            }
-        }
-        
-        [db close];
-    }];
-    
-    return [menus copy];
-}
-
 #pragma mark - Setter
 
 #pragma mark - Getter
@@ -325,7 +271,7 @@
     
     if (!_dataSourceArray) {
         
-        _dataSourceArray = [NSMutableArray arrayWithArray:[self menus]];
+        _dataSourceArray = [NSMutableArray arrayWithArray:[GQHMenuModel qh_allMenus]];
     }
     
     return _dataSourceArray;

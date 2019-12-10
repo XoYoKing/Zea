@@ -287,7 +287,7 @@
     
     if (!_dataSourceArray) {
         
-        _dataSourceArray = [NSMutableArray arrayWithArray:[self images]];
+        _dataSourceArray = [NSMutableArray arrayWithArray:[GQHImageModel qh_fetchImageWithPage:0]];
         
         // 动物 animal
         // 自然风景 natural

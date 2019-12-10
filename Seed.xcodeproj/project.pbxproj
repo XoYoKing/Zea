@@ -28,6 +28,7 @@
 		04974AB7237165BE00095393 /* GQHPriorityQueue.m in Sources */ = {isa = PBXBuildFile; fileRef = 04974AB6237165BE00095393 /* GQHPriorityQueue.m */; };
 		04B72E3E239F565500CCBF17 /* GQHEncryptDatabase.m in Sources */ = {isa = PBXBuildFile; fileRef = 04B72E3C239F565500CCBF17 /* GQHEncryptDatabase.m */; };
 		04B72E3F239F565500CCBF17 /* GQHEncryptDatabaseQueue.m in Sources */ = {isa = PBXBuildFile; fileRef = 04B72E3D239F565500CCBF17 /* GQHEncryptDatabaseQueue.m */; };
+		04B72E42239F78A300CCBF17 /* AppDelegate+GQHDatabaseInstaller.m in Sources */ = {isa = PBXBuildFile; fileRef = 04B72E41239F78A300CCBF17 /* AppDelegate+GQHDatabaseInstaller.m */; };
 		04CBE6D62373B3F700AA694A /* GQHDoubleBreadthFirstSearcher.m in Sources */ = {isa = PBXBuildFile; fileRef = 04CBE6D52373B3F700AA694A /* GQHDoubleBreadthFirstSearcher.m */; };
 		04CBE6D92373BE2C00AA694A /* GQHAStarSearcher.m in Sources */ = {isa = PBXBuildFile; fileRef = 04CBE6D82373BE2C00AA694A /* GQHAStarSearcher.m */; };
 		04D80B8C232F923400617689 /* GQHBaseViewController+GQHNavigationBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 04D80B76232F923400617689 /* GQHBaseViewController+GQHNavigationBar.m */; };
@@ -169,6 +170,8 @@
 		04B72E3B239F565500CCBF17 /* GQHEncryptDatabase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GQHEncryptDatabase.h; sourceTree = "<group>"; };
 		04B72E3C239F565500CCBF17 /* GQHEncryptDatabase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GQHEncryptDatabase.m; sourceTree = "<group>"; };
 		04B72E3D239F565500CCBF17 /* GQHEncryptDatabaseQueue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GQHEncryptDatabaseQueue.m; sourceTree = "<group>"; };
+		04B72E40239F78A300CCBF17 /* AppDelegate+GQHDatabaseInstaller.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "AppDelegate+GQHDatabaseInstaller.h"; sourceTree = "<group>"; };
+		04B72E41239F78A300CCBF17 /* AppDelegate+GQHDatabaseInstaller.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "AppDelegate+GQHDatabaseInstaller.m"; sourceTree = "<group>"; };
 		04CBE6D42373B3F700AA694A /* GQHDoubleBreadthFirstSearcher.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GQHDoubleBreadthFirstSearcher.h; sourceTree = "<group>"; };
 		04CBE6D52373B3F700AA694A /* GQHDoubleBreadthFirstSearcher.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GQHDoubleBreadthFirstSearcher.m; sourceTree = "<group>"; };
 		04CBE6D72373BE2C00AA694A /* GQHAStarSearcher.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GQHAStarSearcher.h; sourceTree = "<group>"; };
@@ -587,6 +590,8 @@
 			children = (
 				D5B15851202D7D55005B76B1 /* AppDelegate.h */,
 				D5B15852202D7D55005B76B1 /* AppDelegate.m */,
+				04B72E40239F78A300CCBF17 /* AppDelegate+GQHDatabaseInstaller.h */,
+				04B72E41239F78A300CCBF17 /* AppDelegate+GQHDatabaseInstaller.m */,
 				D5C8A65E22FFE10100947237 /* AppDelegate+GQHEasterEggs.h */,
 				D5C8A66A22FFE10100947237 /* AppDelegate+GQHEasterEggs.m */,
 				0428545123823C2600D0335F /* AppDelegate+GQHIAP.h */,
@@ -1176,6 +1181,7 @@
 				D5A5C10622FFE8F200A21A77 /* GQHGameView.m in Sources */,
 				D5C8A6BB22FFE10100947237 /* NSMutableAttributedString+GQHAttributed.m in Sources */,
 				04D80B94232F923400617689 /* GQHBaseView.m in Sources */,
+				04B72E42239F78A300CCBF17 /* AppDelegate+GQHDatabaseInstaller.m in Sources */,
 				04D80B93232F923400617689 /* GQHLogger.m in Sources */,
 				D5C8A6B222FFE10100947237 /* UIColor+GQHColor.m in Sources */,
 				D5C8A6AE22FFE10100947237 /* UIImage+GQHImage.m in Sources */,
@@ -1376,7 +1382,7 @@
 				INFOPLIST_FILE = "$(SRCROOT)/Seed/Support Files/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				MARKETING_VERSION = 4.0.1;
+				MARKETING_VERSION = 4.0.2;
 				PRODUCT_BUNDLE_IDENTIFIER = app.GuanQinghao.puzzle;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -1396,7 +1402,7 @@
 				INFOPLIST_FILE = "$(SRCROOT)/Seed/Support Files/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				MARKETING_VERSION = 4.0.1;
+				MARKETING_VERSION = 4.0.2;
 				PRODUCT_BUNDLE_IDENTIFIER = app.GuanQinghao.puzzle;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";

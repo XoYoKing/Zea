@@ -109,6 +109,22 @@ NSString * const GQHBlankURL = @"about:blank";
 
 
 #pragma mark - business
+//MARK:database
+/// 数据库文件名
+NSString * const GQHDatabaseFileName = @"db_puzzle.sqlite";
+/// 数据库版本号Key
+NSString * const GQHDatabaseVersionKey = @"db_version_key";
+/// 图库表
+NSString * const GQHDatabaseGalleryTable = @"db_gallery";
+/// 等级表
+NSString * const GQHDatabaseLevelTable = @"db_level";
+/// 菜单表
+NSString * const GQHDatabaseMenuTable = @"db_menu";
+/// 记录表
+NSString * const GQHDatabaseRecordTable = @"db_record";
+
+
+
 /// 分页每页大小
 NSInteger const GQHPageSize = 10;
 

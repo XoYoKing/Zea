@@ -97,6 +97,24 @@ UIKIT_EXTERN NSString * const GQHBlankURL;
 
 
 #pragma mark - business
+//MARK:database
+/// 数据库文件名
+UIKIT_EXTERN NSString * const GQHDatabaseFileName;
+/// 数据库版本号Key
+UIKIT_EXTERN NSString * const GQHDatabaseVersionKey;
+/// 图库表
+UIKIT_EXTERN NSString * const GQHDatabaseGalleryTable;
+/// 等级表
+UIKIT_EXTERN NSString * const GQHDatabaseLevelTable;
+/// 菜单表
+UIKIT_EXTERN NSString * const GQHDatabaseMenuTable;
+/// 记录表
+UIKIT_EXTERN NSString * const GQHDatabaseRecordTable;
+
+
+
+
+
 /// 分页每页大小
 UIKIT_EXTERN NSInteger const GQHPageSize;
 

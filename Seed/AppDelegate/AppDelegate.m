@@ -9,6 +9,7 @@
 #import "AppDelegate.h"
 #import "GQHHeader.h"
 #import "GQHHomeController.h"
+#import "AppDelegate+GQHDatabaseInstaller.h"
 
 
 @interface AppDelegate ()
@@ -64,6 +65,9 @@
     
     // 8.内购服务
     [self qh_IAPServerWithOptions:launchOptions];
+    
+    // 9.初始化数据库
+    [self qh_installDatabase];
     
     return YES;
 }

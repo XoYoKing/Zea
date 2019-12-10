@@ -305,7 +305,7 @@
     
     if (!_dataSourceArray) {
         
-        _dataSourceArray = [[GQHLevelModel qh_fetchAllLevels] mutableCopy];
+        _dataSourceArray = [NSMutableArray arrayWithArray: [GQHLevelModel qh_allLevels]];
     }
     
     return _dataSourceArray;

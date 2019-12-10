@@ -13,10 +13,15 @@ NS_ASSUME_NONNULL_BEGIN
 /**
  <#Description#>
  */
-@interface GQHMenuModel : GQHBaseModel <NSSecureCoding>
+@interface GQHMenuModel : GQHBaseModel
 
 /**
- ID
+ SQLite数据表的主键(固定)
+ */
+@property (nonatomic, copy) NSString *db_pk_id;
+
+/**
+ 后台业务id
  */
 @property (nonatomic, copy) NSString *qh_id;
 
@@ -30,52 +35,8 @@ NS_ASSUME_NONNULL_BEGIN
  */
 @property (nonatomic, copy) NSString *qh_icon;
 
-/**
- 模型类
- */
-//@property (nonatomic, strong) NSArray<GQHBookModel *> *qh_books;
-
-
-#pragma mark -
-/**
- 增-
- 
- @param parameters 请求参数
- @param handler 请求结果回调处理
- */
-+ (void)qh_createMenuWithParameters:(nullable id)parameters handler:(void(^)(BOOL status, NSNumber *code, NSString *message, id data))handler;
-
-/**
- 查-
- 
- @param parameters 请求参数
- @param handler 请求结果回调处理
- */
-+ (void)qh_readMenuWithParameters:(nullable id)parameters handler:(void(^)(BOOL status, NSNumber *code, NSString *message, id data))handler;
-
-/**
- 改-
- 
- @param parameters 请求参数
- @param handler 请求结果回调处理
- */
-+ (void)qh_updateMenuWithParameters:(nullable id)parameters handler:(void(^)(BOOL status, NSNumber *code, NSString *message, id data))handler;
-
-/**
- 删-
- 
- @param parameters 请求参数
- @param handler 请求结果回调处理
- */
-+ (void)qh_deleteMenuWithParameters:(nullable id)parameters handler:(void(^)(BOOL status, NSNumber *code, NSString *message, id data))handler;
-
-/**
- 列表-
- 
- @param parameters 请求参数
- @param handler 请求结果回调处理
- */
-+ (void)qh_fetchMenusWithParameters:(nullable id)parameters handler:(void(^)(BOOL status, NSNumber *code, NSString *message, id data))handler;
+/// 首页菜单
++ (NSArray<GQHMenuModel *> *)qh_allMenus;
 
 @end
 

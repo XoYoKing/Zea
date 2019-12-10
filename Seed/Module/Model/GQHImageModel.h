@@ -13,10 +13,15 @@ NS_ASSUME_NONNULL_BEGIN
 /**
  <#Description#>
  */
-@interface GQHImageModel : GQHBaseModel <NSSecureCoding>
+@interface GQHImageModel : GQHBaseModel
 
 /**
- ID
+ SQLite数据表的主键(固定)
+ */
+@property (nonatomic, copy) NSString *db_pk_id;
+
+/**
+ 后台业务id
  */
 @property (nonatomic, copy) NSString *qh_id;
 
@@ -35,46 +40,8 @@ NS_ASSUME_NONNULL_BEGIN
  */
 @property (nonatomic, assign) BOOL qh_mark;
 
-#pragma mark -
-/**
- 增-
- 
- @param parameters 请求参数
- @param handler 请求结果回调处理
- */
-+ (void)qh_createImageWithParameters:(nullable id)parameters handler:(void(^)(BOOL status, NSNumber *code, NSString *message, id data))handler;
-
-/**
- 查-
- 
- @param parameters 请求参数
- @param handler 请求结果回调处理
- */
-+ (void)qh_readImageWithParameters:(nullable id)parameters handler:(void(^)(BOOL status, NSNumber *code, NSString *message, id data))handler;
-
-/**
- 改-
- 
- @param parameters 请求参数
- @param handler 请求结果回调处理
- */
-+ (void)qh_updateImageWithParameters:(nullable id)parameters handler:(void(^)(BOOL status, NSNumber *code, NSString *message, id data))handler;
-
-/**
- 删-
- 
- @param parameters 请求参数
- @param handler 请求结果回调处理
- */
-+ (void)qh_deleteImageWithParameters:(nullable id)parameters handler:(void(^)(BOOL status, NSNumber *code, NSString *message, id data))handler;
-
-/**
- 列表-
- 
- @param parameters 请求参数
- @param handler 请求结果回调处理
- */
-+ (void)qh_fetchImagesWithParameters:(nullable id)parameters handler:(void(^)(BOOL status, NSNumber *code, NSString *message, id data))handler;
+/// 查询图片
++ (NSArray<GQHImageModel *> *)qh_fetchImageWithPage:(NSInteger)page;
 
 @end
 

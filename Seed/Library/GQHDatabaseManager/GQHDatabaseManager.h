@@ -30,7 +30,7 @@ typedef struct _GQHSQLiteCondition {
     
     GQHDatabase db_database;// 数据库结构体
     NSInteger db_size;// 页大小
-    NSInteger db_page;// 页码
+    NSInteger db_page;// 页码 (从0开始)
     NSDictionary *db_query;// 查询条件
 } GQHSQLiteCondition;
 

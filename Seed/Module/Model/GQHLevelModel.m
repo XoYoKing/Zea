@@ -6,13 +6,9 @@
 //
 
 #import "GQHLevelModel.h"
-#import "GQHHeader.h"
+#import "GQHDatabaseManager.h"
+#import "GQHConstantHelper.h"
 
-
-/// 本地数据库文件名
-static NSString * const kFileName = @"db_puzzle.sqlite";
-/// 本地数据表文件名
-static NSString * const kTableName = @"p_level";
 
 @implementation GQHLevelModel
 
@@ -30,204 +26,20 @@ static NSString * const kTableName = @"p_level";
     return self;
 }
 
-/**
- 模型字段映射
- 
- @return 模型字段映射字典
- */
-+ (nullable NSDictionary<NSString *, id> *)modelCustomPropertyMapper {
+/// 查询等级
++ (NSArray<GQHLevelModel *> *)qh_allLevels {
     
-    return @{
-             
-             @"qh_id" : @[@"id",@"iD",@"Id"],
-             };
+    // 数据库
+    GQHDatabase database;
+    database.db_name = GQHDatabaseFileName;
+    database.db_table = GQHDatabaseLevelTable;
+    database.db_cls = [GQHLevelModel class];
+    
+    // 查询条件
+    GQHSQLiteCondition condition;
+    condition.db_database = database;
+    
+    return [GQHDatabaseManager.qh_sharedDatabaseManager qh_queryDataWith:condition];
 }
-
-/**
- 模型类映射
- 
- @return 模型类映射字典
- */
-+ (nullable NSDictionary<NSString *, id> *)modelContainerPropertyGenericClass {
-    
-    return @{
-             
-//             @"qh_books" : GQHBookModel.class,
-             };
-}
-
-/**
- 获取本地文件保存路径
- 
- @param file 文件名
- @return 本地文件保存路径
- */
-+ (NSString *)filePathWith:(NSString * _Nonnull )file {
-    
-    // 文件夹路径
-    NSString *filePath = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES).firstObject;
-    
-    return [NSString stringWithFormat:@"%@/%@", filePath, file];
-}
-
-/**
- 编码解档
- 
- @param aDecoder 编码器
- @return 自定义对象
- */
-- (instancetype)initWithCoder:(NSCoder *)aDecoder {
-    
-    if (self = [super init]) {
-        
-        self.qh_id = [aDecoder decodeObjectForKey:@"qh_id"];
-        self.qh_title = [aDecoder decodeObjectForKey:@"qh_title"];
-        self.qh_order = [aDecoder decodeObjectForKey:@"qh_order"];
-        self.qh_detail = [aDecoder decodeObjectForKey:@"qh_detail"];
-    }
-    
-    return self;
-}
-
-/**
- 编码归档
- 
- @param aCoder 编码器
- */
-- (void)encodeWithCoder:(NSCoder *)aCoder {
-    
-    [aCoder encodeObject:self.qh_id forKey:@"qh_id"];
-    [aCoder encodeObject:self.qh_title forKey:@"qh_title"];
-    [aCoder encodeObject:self.qh_order forKey:@"qh_order"];
-    [aCoder encodeObject:self.qh_detail forKey:@"qh_detail"];
-}
-
-/**
- 安全编码
- 
- @return 是否支持
- */
-+ (BOOL)supportsSecureCoding {
-    
-    return YES;
-}
-
-#pragma mark -
-/**
- 增-
- 
- @param parameters 请求参数
- @param handler 请求结果回调处理
- */
-+ (void)qh_createLevelWithParameters:(id)parameters handler:(void(^)(BOOL status, NSNumber *code, NSString *message, id data))handler {
-    
-}
-
-/**
- 查-
- 
- @param parameters 请求参数
- @param handler 请求结果回调处理
- */
-+ (void)qh_readLevelWithParameters:(id)parameters handler:(void(^)(BOOL status, NSNumber *code, NSString *message, id data))handler {
-    
-}
-
-/**
- 改-
- 
- @param parameters 请求参数
- @param handler 请求结果回调处理
- */
-+ (void)qh_updateLevelWithParameters:(id)parameters handler:(void(^)(BOOL status, NSNumber *code, NSString *message, id data))handler {
-    
-}
-
-/**
- 删-
- 
- @param parameters 请求参数
- @param handler 请求结果回调处理
- */
-+ (void)qh_deleteLevelWithParameters:(id)parameters handler:(void(^)(BOOL status, NSNumber *code, NSString *message, id data))handler {
-    
-}
-
-/**
- 列表-
- 
- @param parameters 请求参数
- @param handler 请求结果回调处理
- */
-+ (void)qh_fetchLevelsWithParameters:(id)parameters handler:(void(^)(BOOL status, NSNumber *code, NSString *message, id data))handler {
-    
-}
-
-
-/// 查询所有记录
-+ (NSArray<GQHLevelModel *> *)qh_fetchAllLevels {
-    
-    // 数据库文件路径
-    NSString *filePath = [[NSBundle qh_bundle] pathForResource:kFileName ofType:nil];
-    // 数据库队列
-    FMDatabaseQueue *queue = [[FMDatabaseQueue alloc] initWithPath:filePath];
-    
-    // 等级列表
-    __block NSMutableArray *levels = [NSMutableArray array];
-    
-    [queue inDatabase:^(FMDatabase * _Nonnull db) {
-        
-        if ([db open]) {
-            
-            if ([db tableExists:kTableName]) {
-                
-                NSString *sql_query = [NSString stringWithFormat:@"SELECT * FROM '%@'",kTableName];
-                FMResultSet *resultSet = [db executeQuery:sql_query];
-                
-                while ([resultSet next]) {
-                    
-                    GQHLevelModel *level = [[GQHLevelModel alloc] init];
-                    
-                    [[resultSet resultDictionary] enumerateKeysAndObjectsUsingBlock:^(id  _Nonnull key, id  _Nonnull obj, BOOL * _Nonnull stop) {
-                        
-                        if ([key isEqualToString:@"p_level_id"]) {
-                            
-                            level.qh_id = obj;
-                        } else if ([key isEqualToString:@"p_level_title"]) {
-                            
-                            level.qh_title = obj;
-                        } else if ([key isEqualToString:@"p_level_order"]) {
-                            
-                            level.qh_order = obj;
-                        } else if ([key isEqualToString:@"p_level_detail"]) {
-                            
-                            level.qh_detail = obj;
-                        }
-                        
-                        // 选中标识
-                        NSString *mark = [NSUserDefaults.standardUserDefaults objectForKey:GQHGameLevelOrderKey];
-                        if ([level.qh_order isEqualToString:mark]) {
-                            
-                            level.qh_mark = YES;
-                        }
-                    }];
-                    
-                    if (level.qh_id) {
-                        
-                        [levels insertObject:level atIndex:[level.qh_id integerValue]];
-                    }
-                }
-            }
-        }
-        
-        [db close];
-    }];
-    
-    return [levels copy];
-}
-
-#pragma mark - Setter
-
-#pragma mark - Getter
 
 @end
