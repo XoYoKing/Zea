@@ -18,6 +18,11 @@
 #endif
 
 
+/// UI设计图宽度基准值按比例缩放
+#define kBaselineValue  375.0f
+#define FIT_UI(value)    (value * CGRectGetWidth(UIApplication.sharedApplication.delegate.window.bounds) / kBaselineValue);
+
+
 /// 工程基类
 #pragma mark - Classes
 #import "GQHBaseModel.h"
